@@ -26,17 +26,17 @@ function Gallery() {
             const body = {
                 "page":"1"
             };
-            fetch("http://167.71.231.3/api/gallerycategory", {
+            fetch("https://admin.urbandmusic.com/api/gallerycategory", {
                 method: "POST",
                 body: JSON.stringify(body)
             })
               .then(results => results.json())
               .then(result => {
-                console.log("iiiiiiiiiii", result);
+                //console.log("iiiiiiiiiii", result);
                 
                 
                 setFirstName(result.result[0].id);
-                console.log("iiiiiitttttttiiiii", firstName);
+                //console.log("iiiiiitttttttiiiii", firstName);
                 setLastName();
               });
           }, []);

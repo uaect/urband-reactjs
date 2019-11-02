@@ -13,7 +13,7 @@ class albumListHome extends Component {
     if (this.props.albums.success === true)
       // Second step
     isResponseData = true;
-    const image_url = "http://167.71.231.3/storage/";
+    const image_url = "https://admin.urbandmusic.com/storage/";
     const albums = this.props.albums.result; // first step
     //console.log("albumxzzzz", albums);
 

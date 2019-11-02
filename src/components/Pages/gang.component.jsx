@@ -7,7 +7,7 @@ import * as actionCreators from "../../../src/store/actions/";
 
 class Gang extends Component {
   render() {
-    const image_url = "http://167.71.231.3/storage/";
+    const image_url = "https://admin.urbandmusic.com/storage/";
     const detail = this.props.detail;
     const gang = detail.gang;
 

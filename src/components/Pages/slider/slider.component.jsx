@@ -9,9 +9,9 @@ class sliderHero extends React.Component {
   }
 
   render() {
-    const image_url = "http://167.71.231.3/storage/";
+    const image_url = "https://admin.urbandmusic.com/storage/";
     const getbanner = this.props.banners;
-    console.log("log", getbanner);
+    //console.log("log", getbanner);
     
     let styles = {
       backgroundImage: 'url(' + image_url + getbanner.image + ')'
