@@ -37,7 +37,7 @@ class PlayerHero extends Component {
                     {
                         position: '1',
                         songName: item.name,
-                        songUrl: 'http://167.71.231.3/storage/'+item.file
+                        songUrl: 'http://admin.urbandmusic.com/storage/'+item.file
                     },
                  
                 ],
@@ -55,7 +55,7 @@ class PlayerHero extends Component {
 
     render() {
         const playsong = this.state.playsong;
-        const image_url = "http://167.71.231.3/storage/"
+        const image_url = "http://admin.urbandmusic.com/storage/"
         const album = this.props.value;
         const track = album.tracks;
         const responsive = {

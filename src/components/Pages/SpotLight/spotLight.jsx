@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ModalVideo from '../../VideoModal/video-modal.component';
-import './spot-light.component.css'
+import './style.css'
 class spotLight extends Component {
  
    

@@ -26,7 +26,7 @@ export const fetchAlbumsDetails = (id) => {
         const body = {
             albumid: id
         };
-        fetch("http://167.71.231.3/api/albumdetails", {
+        fetch("http://admin.urbandmusic.com/api/albumdetails", {
             method: "POST",
             body: JSON.stringify(body)
         })
@@ -48,7 +48,7 @@ export const fetchgallerycategory = () => {
         const body = {
             "page":"1"
         };
-        fetch("http://167.71.231.3/api/gallerycategory", {
+        fetch("http://admin.urbandmusic.com/api/gallerycategory", {
             method: "POST",
             body: JSON.stringify(body)
         })

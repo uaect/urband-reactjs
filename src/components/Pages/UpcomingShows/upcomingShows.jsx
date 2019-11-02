@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import './upcoming-shows.component.css'
+import './style.css'
 class upcomingShowHome extends Component {
  
    

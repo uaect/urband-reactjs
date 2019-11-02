@@ -16,7 +16,7 @@ class AlbumHome extends Component {
   }
 
   render() {
-    const image_url = "http://167.71.231.3/storage/";
+    const image_url = "http://admin.urbandmusic.com/storage/";
     const albums = this.props.albums.result;
 
     return (

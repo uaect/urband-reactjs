@@ -6,7 +6,7 @@ import ComingSoon from "../Pages/comingsoon.component";
 
 class WhatweDo extends Component {
   render() {
-    //const image_url = "http://167.71.231.3/storage/";
+    //const image_url = "http://admin.urbandmusic.com/storage/";
     const detail = this.props.detail;
     const services = detail.whatwedo;
 

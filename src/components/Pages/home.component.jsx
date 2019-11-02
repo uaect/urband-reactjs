@@ -6,8 +6,8 @@ import MultiCarouselHero from '../Urband-MultiCarousel/multi-carousel'
 import PlayAnimation from './RecordAnimation/playAnimation'
 import AlbumListHome from './Album/album3d'
 import PreviousShowHome from './PreviousShows/previousShow'
-import UpcomingShowHome from '../Pages/UpcomingShows/upcoming-shows.component'
-import SpotLight from '../Pages/SpotLight/spot-light.component'
+import UpcomingShowHome from './UpcomingShows/upcomingShows'
+import SpotLight from './SpotLight/spotLight'
 
 class HomePage extends Component{
 

@@ -5,7 +5,7 @@ export const fetchPosts = () => {
         const body = {
             page: 1
         };
-        fetch("http://167.71.231.3/api/artists", {
+        fetch("http://admin.urbandmusic.com/api/artists", {
             method: "POST",
             body: JSON.stringify(body)
         })
@@ -25,7 +25,7 @@ export const fetchPosts = () => {
 export const fetchContact = () => {
     return dispatch => {
       
-        fetch("http://167.71.231.3/api/aboutus", {
+        fetch("http://admin.urbandmusic.com/api/aboutus", {
             method: "GET"
         })
             .then(res => res.json())
@@ -47,7 +47,7 @@ export const fetchClients = () => {
             page: 1
         };
 
-        fetch("http://167.71.231.3/api/clientsfeedback", {
+        fetch("http://admin.urbandmusic.com/api/clientsfeedback", {
             method: "POST",
             body: JSON.stringify(body)
         })
@@ -71,7 +71,7 @@ export const fetchClientsList = () => {
             page: 1
         };
 
-        fetch("http://167.71.231.3/api/clients", {
+        fetch("http://admin.urbandmusic.com/api/clients", {
             method: "POST",
             body: JSON.stringify(body)
         })
@@ -95,7 +95,7 @@ export const fetchEvent = () => {
             page: 1
         };
 
-        fetch("http://167.71.231.3/api/events", {
+        fetch("http://admin.urbandmusic.com/api/events", {
             method: "POST",
             body: JSON.stringify(body)
         })
@@ -118,7 +118,7 @@ export const fetchEventDetail = (id) => {
             "eventid": id
         };
 
-        fetch("http://167.71.231.3/api/eventdetails", {
+        fetch("http://admin.urbandmusic.com/api/eventdetails", {
             method: "POST",
             body: JSON.stringify(body)
         })

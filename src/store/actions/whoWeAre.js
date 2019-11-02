@@ -2,7 +2,7 @@ import {FETCH_WHO_WEW_ARE} from "./types";
 //import axios from 'axios'
 export const fetchWhoWeAre = () => {
     return dispatch => {
-//     axios.get("http://167.71.231.3/api/aboutus")
+//     axios.get("http://admin.urbandmusic.com/api/aboutus")
 //     .then(response => response.json())
 //     .then(response => {               
 //         dispatch({
@@ -13,7 +13,7 @@ export const fetchWhoWeAre = () => {
 // .catch(error => {
 //             //console.log("error" + JSON.stringify(error));
 //         });
-        fetch("http://167.71.231.3/api/aboutus", {
+        fetch("http://admin.urbandmusic.com/api/aboutus", {
             method: "GET"
         })
             .then(res => res.json())

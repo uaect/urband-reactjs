@@ -16,10 +16,9 @@ class EventDetail extends Component {
     if (events) {
       var event = events.result;
       var artists = events.artists;
-      console.log("ffffffffffffff", events);
 
     }
-    const image_url = "http://167.71.231.3/storage/";
+    const image_url = "http://admin.urbandmusic.com/storage/";
 
 
 
@@ -45,26 +44,7 @@ class EventDetail extends Component {
 
     return (
       <div>
-        {event ? (
-          <section className="page-header event-header">
-            <div className="tim-container">
-              <div className="page-header-title event-page-header text-center">
-                <h2>{event.headline}</h2>
-                <h3>{event.title}</h3>
-
-                <Link to="/" className="tim-btn tim-btn-bgt">
-                  Buy Now
-              </Link>
-              </div>
-
-              <div className="breadcrumbs">
-                <Link to="/">Home</Link>
-                <span>/</span>
-                <span>Events</span>
-              </div>
-            </div>
-          </section>
-        ) : ""}
+      <BannerHero title={"Events"} />
         {event ? (
           <section id="event-about">
             <div className="container">
