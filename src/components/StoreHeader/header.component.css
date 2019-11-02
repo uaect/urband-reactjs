@@ -1,0 +1,27 @@
+.catalog-tab-discography .heading {
+    display: table;
+    margin: 32px 0 24px;
+    width: 100%;
+}
+.catalog-tab-discography .heading .cell {
+    display: table-cell;
+    vertical-align: middle;
+}
+.heading-2 {
+    font-size: 23px;
+    font-weight: 600;
+    font-family: "Changa", sans-serif;
+}
+.catalog-tab-discography .heading .cell-line {
+    padding: 0 10px;
+    width: 100%;
+}
+.catalog-tab-discography .heading .cell-line .line {
+    background-color: #dedee3;
+    height: 1px;
+}
+.cell-sort{
+    width: 211px;
+    display: flex !important;
+    align-self: center;
+  }
