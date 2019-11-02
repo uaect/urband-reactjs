@@ -26,7 +26,7 @@ export const fetchContact = () => {
     return dispatch => {
       
         fetch("https://admin.urbandmusic.com/api/aboutus", {
-            method: "GET"
+            method: "POST"
         })
             .then(res => res.json())
             .then(res =>  {

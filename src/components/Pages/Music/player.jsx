@@ -55,7 +55,7 @@ class PlayerHero extends Component {
 
     render() {
         const playsong = this.state.playsong;
-        const image_url = "https://admin.urbandmusic.com/storage/"
+        //const image_url = "https://admin.urbandmusic.com/storage/"
         const album = this.props.value;
         const track = album.tracks;
         const responsive = {

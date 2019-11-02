@@ -9,7 +9,7 @@ class DetailHero extends Component {
 		if (album.tracks) {
 			var tracks = album.tracks.length;
 		} else {
-			var tracks = 0;
+			tracks = 0;
 		}
 		return (
 
