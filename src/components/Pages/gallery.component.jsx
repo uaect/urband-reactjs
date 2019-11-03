@@ -15,19 +15,17 @@ function Gallery() {
         categories: []
     });
 
-    const [gallery, setGallery] = React.useState({
-        galleries: []
-    });
-
     const [lightboxController, setLightboxController] = useState({
         toggler: false,
-        sourceIndex: 0
+        sourceIndex: 0,
+        sourceImg:'../../media/gallery/1.jpg'
     });
 
-    function openLightboxOnSourceIndex(sourceIndex) {
+    function openLightboxOnSourceIndex(sourceIndex,sourceImg) {
         setLightboxController({
             toggler: !lightboxController.toggler,
             sourceIndex: sourceIndex,
+            sourceImg: sourceImg
         });
     }
 
@@ -45,33 +43,10 @@ function Gallery() {
             });
     }, []);
 
-    React.useEffect(() => {
-        const body = {
-            "page": "1",
-            "category":""
-        };
-        fetch("https://admin.urbandmusic.com/api/gallery", {
-            method: "POST",
-            body: JSON.stringify(body)
-        })
-            .then(results => results.json())
-            .then(result => {
-                setGallery({ galleries: result });
-            });
-    }, []);
+   
+    const categories =category.categories.result;
+    console.log(categories);
 
-    
-
-
-
-    function activateTabs(e) {
-
-        
-    }
-
-    const categories = category.categories.result;
-    const galleries = gallery.galleries.result;
-    console.log("galleries",galleries);
     return ( 
         <div>
             <section className="page-header store-banner">
@@ -93,151 +68,53 @@ function Gallery() {
                     </div>
                     <div className="tim-isotope tim-isotope-2">
                         <Tabs
-                            defaultTab="All"
+                            defaultTab="Drum"
                             onChange={(tabId) => { console.log(tabId) }}
                         >
                             <div className="tim-isotope-filter album-filter-button album-filter-button-two">
                                 <TabList>
-                                <Tab tabFor="all" onClick={activateTabs}>all</Tab>
                                     {categories && categories.map(item => {
                                         return (
-                                                <Tab tabFor="{item.title}" onClick={activateTabs}>{item.title}</Tab>
+                                                <Tab tabFor={item.title}>{item.title}</Tab>
                                             );
                                     })}
                                    
                                 </TabList>
                             </div>
                             <div className="col-xl-10 mx-auto">
-                                <TabPanel tabId="All">
+                               {categories && categories.map(item => {
+                                    return (<TabPanel tabId={item.title}>
                                     <ul class="tim-filter-items tim-album-items grid">
-                                        <li className="tim-album-item grid-item">
+                                    {item.gallery && item.gallery.map(gal => {
+                                        return (<li className="tim-album-item grid-item">
                                             <div className="tim-isotope-grid__img effect-active">
-                                                <Link onClick={() => openLightboxOnSourceIndex(1)}>
-                                                    <img src={require('../../media/gallery/1.jpg')} alt="album thumb" />
+                                                <Link onClick={() => openLightboxOnSourceIndex(1,gal.image_url +'/'+ gal.files.image)}>
+                                                    <img src={gal.image_url +'/'+ gal.files.image} alt={gal.title} />
                                                 </Link>
                                             </div>
                                             <div className="gallery_details_wrap">
                                                 <div className="gallery-info">
-                                                    <h4 className="album-title">Hot Party</h4>
-                                                    <h5 className="artist-name">Music on Night</h5>
+                                                    <h4 className="album-title">{gal.title}</h4>
+                                                    <h5 className="artist-name">{gal.sub_title}</h5>
                                                 </div>
                                             </div>
-                                        </li>
-                                        <li className="tim-album-item grid-item">
-                                            <div className="tim-isotope-grid__img effect-active">
-                                                <Link onClick={() => openLightboxOnSourceIndex(2)}>
-                                                    <img src={require('../../media/gallery/2.jpg')} alt="album thumb" />
-                                                </Link>
-                                            </div>
-                                            <div className="gallery_details_wrap">
-                                                <div className="gallery-info">
-                                                    <h4 className="album-title">Hot Party</h4>
-                                                    <h5 className="artist-name">Music on Night</h5>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li className="tim-album-item grid-item">
-                                            <div className="tim-isotope-grid__img effect-active">
-                                                <Link onClick={() => openLightboxOnSourceIndex(3)}>
-                                                    <img src={require('../../media/gallery/3.jpg')} alt="album thumb" />
-                                                </Link>
-                                            </div>
-                                            <div className="gallery_details_wrap">
-                                                <div className="gallery-info">
-                                                    <h4 className="album-title">Hot Party</h4>
-                                                    <h5 className="artist-name">Music on Night</h5>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li className="tim-album-item grid-item">
-                                            <div className="tim-isotope-grid__img effect-active">
-                                                <Link onClick={() => openLightboxOnSourceIndex(4)}>
-                                                    <img src={require('../../media/gallery/4.jpg')} alt="album thumb" />
-                                                </Link>
-                                            </div>
-                                            <div className="gallery_details_wrap">
-                                                <div className="gallery-info">
-
-                                                    <h4 className="album-title">Hot Party</h4>
-                                                    <h5 className="artist-name">Music on Night</h5>
-
-                                                </div>
-                                            </div>
-                                        </li>
+                                        </li>);
+                                    })}
                                     </ul>
-                                </TabPanel>
-                                <TabPanel tabId="Drum">
-                                    <ul class="tim-filter-items tim-album-items grid">
-                                        <li className="tim-album-item grid-item">
-                                            <div className="tim-isotope-grid__img effect-active">
-                                                <Link onClick={() => openLightboxOnSourceIndex(1)}>
-                                                    <img src={require('../../media/gallery/1.jpg')} alt="album thumb" />
-                                                </Link>
-                                            </div>
-                                            <div className="gallery_details_wrap">
-                                                <div className="gallery-info">
-
-                                                    <h4 className="album-title">Hot Party</h4>
-                                                    <h5 className="artist-name">Music on Night</h5>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li className="tim-album-item grid-item">
-                                            <div className="tim-isotope-grid__img effect-active">
-                                                <Link onClick={() => openLightboxOnSourceIndex(2)}>
-                                                    <img src={require('../../media/gallery/2.jpg')} alt="album thumb" />
-                                                </Link>
-                                            </div>
-                                            <div className="gallery_details_wrap">
-                                                <div className="gallery-info">
-                                                    <h4 className="album-title">Hot Party</h4>
-                                                    <h5 className="artist-name">Music on Night</h5>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li className="tim-album-item grid-item">
-                                            <div className="tim-isotope-grid__img effect-active">
-                                                <img src={require('../../media/gallery/2.jpg')} alt="album thumb" />
-                                            </div>
-                                            <div className="gallery_details_wrap">
-                                                <div className="gallery-info">
-
-                                                    <h4 className="album-title">Hot Party</h4>
-                                                    <h5 className="artist-name">Music on Night</h5>
-
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li className="tim-album-item grid-item">
-                                            <div className="tim-isotope-grid__img effect-active">
-                                                <img src={require('../../media/gallery/2.jpg')} alt="album thumb" />
-                                            </div>
-
-                                            <div className="gallery_details_wrap">
-                                                <div className="gallery-info">
-
-                                                    <h4 className="album-title">Hot Party</h4>
-                                                    <h5 className="artist-name">Music on Night</h5>
-
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </TabPanel>
-                                <TabPanel tabId="Guiter">
-                                    <p>Tab 3 content</p>
-                                </TabPanel>
+                                </TabPanel>);
+                             })}
+                                
                             </div>
                         </Tabs>
+                            { console.log("xxxxx;",lightboxController.sourceImg)}
                         <FsLightbox
                             toggler={lightboxController.toggler}
+                            sourceImg={lightboxController.sourceImg}
                             sources={[
-                                require('../../media/gallery/1.jpg'),
-                                require('../../media/gallery/2.jpg'),
-                                require('../../media/gallery/3.jpg'),
-                                require('../../media/gallery/4.jpg')
+                                lightboxController.sourceImg
                             ]}
                         />
+
                     </div>
                 </div>
             </section>
