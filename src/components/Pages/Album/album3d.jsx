@@ -13,7 +13,7 @@ class albumListHome extends Component {
     if (this.props.albums.success === true)
       // Second step
     isResponseData = true;
-    const image_url = "http://admin.urbandmusic.com/storage/";
+    const image_url = "https://admin.urbandmusic.com/storage/";
     const albums = this.props.albums.result; // first step
     //console.log("albumxzzzz", albums);
 
@@ -39,10 +39,10 @@ class albumListHome extends Component {
                         ? albums.map(item => {
                             return (
                               <div className="col-md-2" key={item.id}>
-                                <div className="single-3d col-md-2"></div>
-
                                 <div className="single-3d" key={item.id}>
-                                  <Link to="/albums">
+                                  <Link to={{
+                                    pathname: `/albums/detail/heaven/${item.id}`
+                                  }}>
                                     <img src={image_url + item.image} alt="" />
                                   </Link>
                                 </div>

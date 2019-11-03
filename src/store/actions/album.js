@@ -5,7 +5,7 @@ export const fetchAlbums = () => {
         const body = {
             page: 1
         };
-        fetch("http://admin.urbandmusic.com/api/albums", {
+        fetch("https://admin.urbandmusic.com/api/albums", {
             method: "POST",
             body: JSON.stringify(body)
         })
@@ -26,7 +26,7 @@ export const fetchAlbumsDetails = (id) => {
         const body = {
             albumid: id
         };
-        fetch("http://admin.urbandmusic.com/api/albumdetails", {
+        fetch("https://admin.urbandmusic.com/api/albumdetails", {
             method: "POST",
             body: JSON.stringify(body)
         })
@@ -38,7 +38,7 @@ export const fetchAlbumsDetails = (id) => {
                 });
             })
             .catch(error => {
-                console.log("error" + JSON.stringify(error));
+                //console.log("error" + JSON.stringify(error));
             });
     };
 };
@@ -48,13 +48,13 @@ export const fetchgallerycategory = () => {
         const body = {
             "page":"1"
         };
-        fetch("http://admin.urbandmusic.com/api/gallerycategory", {
+        fetch("https://admin.urbandmusic.com/api/gallerycategory", {
             method: "POST",
             body: JSON.stringify(body)
         })
             .then(res => res.json())
             .then(res => {
-                console.log("res", res);
+                //console.log("res", res);
                 
                 dispatch({
                     type: FETCH_GALLERYCATEGORY,
@@ -62,7 +62,7 @@ export const fetchgallerycategory = () => {
                 });
             })
             .catch(error => {
-                console.log("error" + JSON.stringify(error));
+                //console.log("error" + JSON.stringify(error));
             });
     };
 };

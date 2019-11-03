@@ -5,7 +5,7 @@ export const fetchBanner = (id) => {
         const body = {
             page: id
         };
-        fetch("http://admin.urbandmusic.com/api/banners", {
+        fetch("https://admin.urbandmusic.com/api/banners", {
             method: "POST",
             body: JSON.stringify(body)
         })
@@ -19,7 +19,7 @@ export const fetchBanner = (id) => {
                 });
             })
             .catch(error => {
-                console.log("error" + JSON.stringify(error));
+                //console.log("error" + JSON.stringify(error));
             });
     };
 };

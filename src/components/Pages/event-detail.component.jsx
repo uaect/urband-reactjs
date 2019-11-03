@@ -16,9 +16,10 @@ class EventDetail extends Component {
     if (events) {
       var event = events.result;
       var artists = events.artists;
+      //console.log("ffffffffffffff", events);
 
     }
-    const image_url = "http://admin.urbandmusic.com/storage/";
+    const image_url = "https://admin.urbandmusic.com/storage/";
 
 
 
@@ -26,19 +27,19 @@ class EventDetail extends Component {
       superLargeDesktop: {
         // the naming can be any, depends on you.
         breakpoint: { max: 4000, min: 3000 },
-        items: 1
+        items: 4
       },
       desktop: {
         breakpoint: { max: 3000, min: 1024 },
-        items: 1
+        items: 4
       },
       tablet: {
         breakpoint: { max: 1024, min: 464 },
-        items: 2
+        items: 3
       },
       mobile: {
         breakpoint: { max: 464, min: 0 },
-        items: 1
+        items: 2
       }
     };
 

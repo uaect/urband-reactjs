@@ -5,7 +5,7 @@ export const fetchPosts = () => {
         const body = {
             page: 1
         };
-        fetch("http://admin.urbandmusic.com/api/artists", {
+        fetch("https://admin.urbandmusic.com/api/artists", {
             method: "POST",
             body: JSON.stringify(body)
         })
@@ -17,7 +17,7 @@ export const fetchPosts = () => {
                 });
             })
             .catch(error => {
-                console.log("error" + JSON.stringify(error));
+                //console.log("error" + JSON.stringify(error));
             });
     };
 };
@@ -25,8 +25,8 @@ export const fetchPosts = () => {
 export const fetchContact = () => {
     return dispatch => {
       
-        fetch("http://admin.urbandmusic.com/api/aboutus", {
-            method: "GET"
+        fetch("https://admin.urbandmusic.com/api/aboutus", {
+            method: "POST"
         })
             .then(res => res.json())
             .then(res =>  {
@@ -36,7 +36,7 @@ export const fetchContact = () => {
                 });
             })
             .catch(error => {
-                console.log("error" + JSON.stringify(error));
+                //console.log("error" + JSON.stringify(error));
             });
     };
 };
@@ -47,7 +47,7 @@ export const fetchClients = () => {
             page: 1
         };
 
-        fetch("http://admin.urbandmusic.com/api/clientsfeedback", {
+        fetch("https://admin.urbandmusic.com/api/clientsfeedback", {
             method: "POST",
             body: JSON.stringify(body)
         })
@@ -60,7 +60,7 @@ export const fetchClients = () => {
                 });
             })
             .catch(error => {
-                console.log("error" + JSON.stringify(error));
+                //console.log("error" + JSON.stringify(error));
             });
     };
 };
@@ -71,7 +71,7 @@ export const fetchClientsList = () => {
             page: 1
         };
 
-        fetch("http://admin.urbandmusic.com/api/clients", {
+        fetch("https://admin.urbandmusic.com/api/clients", {
             method: "POST",
             body: JSON.stringify(body)
         })
@@ -84,7 +84,7 @@ export const fetchClientsList = () => {
                 });
             })
             .catch(error => {
-                console.log("error" + JSON.stringify(error));
+                //console.log("error" + JSON.stringify(error));
             });
     };
 };
@@ -95,7 +95,7 @@ export const fetchEvent = () => {
             page: 1
         };
 
-        fetch("http://admin.urbandmusic.com/api/events", {
+        fetch("https://admin.urbandmusic.com/api/events", {
             method: "POST",
             body: JSON.stringify(body)
         })
@@ -107,7 +107,7 @@ export const fetchEvent = () => {
                 });
             })
             .catch(error => {
-                console.log("error" + JSON.stringify(error));
+                //console.log("error" + JSON.stringify(error));
             });
     };
 };
@@ -118,7 +118,7 @@ export const fetchEventDetail = (id) => {
             "eventid": id
         };
 
-        fetch("http://admin.urbandmusic.com/api/eventdetails", {
+        fetch("https://admin.urbandmusic.com/api/eventdetails", {
             method: "POST",
             body: JSON.stringify(body)
         })
@@ -130,7 +130,7 @@ export const fetchEventDetail = (id) => {
                 });
             })
             .catch(error => {
-                console.log("error" + JSON.stringify(error));
+                //console.log("error" + JSON.stringify(error));
             });
     };
 };

@@ -43,7 +43,7 @@ class Contact extends Component {
 
     return (
 	<div>
-	<BannerHero title={"Contact Us"}/>
+	<BannerHero title={"Contact"}/>
       <div className="fullWrap">
         {isResponseData ? (
           <div>

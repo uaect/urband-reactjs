@@ -13,7 +13,7 @@ class BannerHero extends Component {
   }
 
   render() {
-    const image_url = "http://admin.urbandmusic.com/storage/";
+    const image_url = "https://admin.urbandmusic.com/storage/";
     const getbanner = this.props.banners;
 
     let bannerImg = {

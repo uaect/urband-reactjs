@@ -29,7 +29,7 @@ class EventList extends Component {
 
 
   render() {
-    const image_url = "http://admin.urbandmusic.com/storage/";
+    const image_url = "https://admin.urbandmusic.com/storage/";
     const events = this.props.events;
     // const desc = events.description;
     // function createMarkup(desc) { return {__html: desc}; };

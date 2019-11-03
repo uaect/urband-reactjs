@@ -1,20 +1,8 @@
 import {FETCH_WHO_WEW_ARE} from "./types";
-//import axios from 'axios'
 export const fetchWhoWeAre = () => {
     return dispatch => {
-//     axios.get("http://admin.urbandmusic.com/api/aboutus")
-//     .then(response => response.json())
-//     .then(response => {               
-//         dispatch({
-//             type: FETCH_WHO_WEW_ARE,
-//             value: response.result
-//         });
-// })
-// .catch(error => {
-//             //console.log("error" + JSON.stringify(error));
-//         });
-        fetch("http://admin.urbandmusic.com/api/aboutus", {
-            method: "GET"
+        fetch("https://admin.urbandmusic.com/api/aboutus", {
+            method: "POST"
         })
             .then(res => res.json())
             .then(res => {
@@ -26,9 +14,7 @@ export const fetchWhoWeAre = () => {
                 });
             })
             .catch(error => {
-                console.log("error" + JSON.stringify(error));
+                //console.log("error" + JSON.stringify(error));
             });
     };
 };
-
-

@@ -16,10 +16,12 @@ import Clients from './components/Pages/clients.component'
 import Gallery from './components/Pages/gallery.component'
 import AlbumHome from './components/Pages/Album/album3d'
 import AlbumDetail from './components/Pages/Album/albumDetail'
+import AlbumList from './components/Pages/Album/albumList'
 import Vlog from './components/Pages/vlog.component'
 import Radio from './components/Pages/radio.component'
 import ShopHome from './components/Pages/UrbandStore/home.component'
 import ShopDetail from './components/Pages/UrbandStore/detail.component'
+import ShopCart from './components/Pages/UrbandStore/cart'
 import TicketDetail from './components/Pages/TicketBook/ticketDetail'
 import ComingSoon from './components/Pages/comingsoon.component'
 import './assets/intro/css/intro.css';
@@ -62,8 +64,10 @@ class App extends Component{
                 <Route path="/radio" component={Radio} />
                 <Route path="/store" component={ShopHome} />
                 <Route path="/detail" component={ ShopDetail} />
+                <Route path="/cart" component={ ShopCart } />
                 <Route path="/coming-soon" component={ComingSoon} />
-                <Route path="/albums" exact component={ AlbumHome } />
+                <Route path="/albums/detail/:id" exact component={ AlbumHome } />
+                <Route path="/" exact component={ AlbumList } />
                 <Route path={"/albums/detail/:id"} component={ AlbumDetail} />
                 <Route path="/vlog" component={ Vlog} />
                 <Route path={"/ticket-detail"} component={ TicketDetail} />
