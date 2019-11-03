@@ -1,9 +1,8 @@
 import {FETCH_WHO_WEW_ARE} from "./types";
 export const fetchWhoWeAre = () => {
     return dispatch => {
-
-        fetch("http://admin.urbandmusic.com/api/aboutus", {
-            method: "GET"
+        fetch("https://admin.urbandmusic.com/api/aboutus", {
+            method: "POST"
         })
             .then(res => res.json())
             .then(res => {
@@ -15,9 +14,7 @@ export const fetchWhoWeAre = () => {
                 });
             })
             .catch(error => {
-                console.log("error" + JSON.stringify(error));
+                //console.log("error" + JSON.stringify(error));
             });
     };
 };
-
-

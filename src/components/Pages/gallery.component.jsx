@@ -1,7 +1,7 @@
-import React , {Component} from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom'
 import { Tabs, Tab, TabPanel, TabList } from 'react-web-tabs';
-import BannerHero from "../Banners/bannerHero";
+//import BannerHero from "../Banners/bannerHero";
 import 'react-web-tabs/dist/react-web-tabs.css';
 import  { useState } from 'react';
 import FsLightbox from 'fslightbox-react';

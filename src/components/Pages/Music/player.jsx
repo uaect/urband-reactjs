@@ -37,7 +37,7 @@ class PlayerHero extends Component {
                     {
                         position: '1',
                         songName: item.name,
-                        songUrl: 'http://admin.urbandmusic.com/storage/'+item.file
+                        songUrl: 'https://admin.urbandmusic.com/storage/'+item.file
                     },
                  
                 ],
@@ -46,7 +46,7 @@ class PlayerHero extends Component {
 
 
         })
-   console.log(this.state.currentPlayList);
+   //console.log(this.state.currentPlayList);
    
     }
     componentDidMount() {
@@ -55,7 +55,7 @@ class PlayerHero extends Component {
 
     render() {
         const playsong = this.state.playsong;
-        const image_url = "http://admin.urbandmusic.com/storage/"
+        //const image_url = "https://admin.urbandmusic.com/storage/"
         const album = this.props.value;
         const track = album.tracks;
         const responsive = {
