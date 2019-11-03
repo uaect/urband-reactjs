@@ -63,7 +63,7 @@ class Contact extends Component {
                       <div className="email-info sin-cont-info d-flex align-items-center">
                         <div className="center-wrap">
                           <FontAwesomeIcon icon={faAt} className="ico" />
-                          <h3>Email Us</h3>?{" "}
+                          <h3>Email Us</h3>{" "}
                           <p>
                             Mail:
                             <Link to="">{contactus.email}</Link>
