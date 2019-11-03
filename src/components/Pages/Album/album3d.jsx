@@ -39,10 +39,10 @@ class albumListHome extends Component {
                         ? albums.map(item => {
                             return (
                               <div className="col-md-2" key={item.id}>
-                                <div className="single-3d col-md-2"></div>
-
                                 <div className="single-3d" key={item.id}>
-                                  <Link to="/albums">
+                                  <Link to={{
+                                    pathname: `/albums/detail/heaven/${item.id}`
+                                  }}>
                                     <img src={image_url + item.image} alt="" />
                                   </Link>
                                 </div>
