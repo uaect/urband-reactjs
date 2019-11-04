@@ -14,54 +14,51 @@ import * as actionCreators from "../../../src/store/actions/";
 
 library.add(faGlassCheers, faMixcloud, faMicrophone);
 class WhoWeAre extends Component {
-  // constructor() {
-  //   super();
-  // }
   componentDidMount() {
     this.props.fetchWhoWeAre();
   }
 
   render() {
-    const image_url = "https://admin.urbandmusic.com/storage/";
-    const detail = this.props.detail;
-    const whoweare = detail.whoweare;
-
     var isResponseData = false;
-    if (this.props.detail.success === true)
-    isResponseData = true;
+    if (this.props.detail.success === true) isResponseData = true;
 
+    const image_url = "https://admin.urbandmusic.com/storage/";
+    var detail = this.props.detail.result;
+    if (detail)
+    if(detail.whoweare) 
+    var whoweare = detail.whoweare;
 
     return (
       <div className="fullWrap">
-        <BannerHero title={"Who We Are"}/>
+        <BannerHero title={"Who We Are"} />
         <section className="section-hero pb-0">
-        <div className="fullWrap">
-          {isResponseData ? (
-          <div className="container">
-            <div className="row">
-              <div className="section-title style-four">
-                <h2>{whoweare ? whoweare.title : ""}</h2>
-                <p>{whoweare ? whoweare.description : ""}</p>
-                <Link to="/" className="tim-btn hero">
-                  Subscribe Us
-                </Link>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-12 text-center">
-                <div className="band-img">
-                  <img
-                    className="img-responsive"
-                    src={whoweare ? image_url + "/" + whoweare.image : ""}
-                    alt="About Band"
-                  />
+          <div className="fullWrap">
+            {isResponseData ? (
+              <div className="container">
+                <div className="row">
+                  <div className="section-title style-four">
+                    <h2>{whoweare ? whoweare.title : ""}</h2>
+                    <p>{whoweare ? whoweare.description : ""}</p>
+                    <Link to="/" className="tim-btn hero">
+                      Subscribe Us
+                    </Link>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-12 text-center">
+                    <div className="band-img">
+                      <img
+                        className="img-responsive"
+                        src={whoweare ? image_url + "/" + whoweare.image : ""}
+                        alt="About Band"
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-          ) : (
-            <ComingSoon/>
-          )}
+            ) : (
+              <ComingSoon />
+            )}
           </div>
 
           <InfoHero />

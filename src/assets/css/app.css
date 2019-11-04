@@ -16899,10 +16899,17 @@ h1 {
 
 .services-grid .content .text {
   margin-top: 5vw;
-  font-size: 14px;
-  line-height: 18px;
+  font-size: 15px;
+  line-height: 21px;
+  margin-bottom: 0.7em;
   text-align: center;
-
+  display: block;
+  display: -webkit-box;
+  max-width: 100%;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .services-grid .content .text p {

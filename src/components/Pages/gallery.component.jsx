@@ -18,7 +18,7 @@ function Gallery() {
     const [lightboxController, setLightboxController] = useState({
         toggler: false,
         sourceIndex: 0,
-        sourceImg:'../../media/gallery/1.jpg'
+        sourceImg:'https://admin.urbandmusic.com/storage/'
     });
 
     function openLightboxOnSourceIndex(sourceIndex,sourceImg) {
@@ -75,7 +75,7 @@ function Gallery() {
                                 <TabList>
                                     {categories && categories.map(item => {
                                         return (
-                                                <Tab tabFor={item.title}>{item.title}</Tab>
+                                                <Tab tabFor={item.title} key={item.id}>{item.title}</Tab>
                                             );
                                     })}
                                    

@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import "./style.css";
 import { connect } from "react-redux";
 import * as actionCreators from "../../../../src/store/actions/";
+
+
 class albumListHome extends Component {
   componentDidMount() {
     this.props.fetchAlbums();
@@ -13,7 +15,7 @@ class albumListHome extends Component {
     if (this.props.albums.success === true)
       // Second step
     isResponseData = true;
-    const image_url = "https://admin.urbandmusic.com/storage/";
+    const image_url = "http://admin.urbandmusic.com/storage/";
     const albums = this.props.albums.result; // first step
     //console.log("albumxzzzz", albums);
 
@@ -31,6 +33,10 @@ class albumListHome extends Component {
                 </p>
               </div>
 
+              {/* <div class="more-album">
+				        <Link to="">SEE ALL ALBUMS<i class="fa fa-play" aria-hidden="true"></i></a>
+              </div> */}
+
               <div className="three-d-album-width">
                 <div className="row">
                   <div className="threed-container-wrapper">
@@ -39,7 +45,8 @@ class albumListHome extends Component {
                         ? albums.map(item => {
                             return (
                               <div className="col-md-2" key={item.id}>
-                                <div className="single-3d" key={item.id}>
+                                <div className="single-3d col-md-2"></div>
+                                <div className="single-3d">
                                   <Link to={{
                                     pathname: `/albums/detail/heaven/${item.id}`
                                   }}>

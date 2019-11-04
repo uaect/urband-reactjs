@@ -105,7 +105,7 @@ class PlayerHero extends Component {
 
                                         {track ? track.map(item => {
                                             return (
-                                                <li className="jp-playlist-current style-fullwidth">
+                                                <li className="jp-playlist-current style-fullwidth" key={item.id}>
                                                     <div className="jp-album-me" onClick={() => this.handleClick(item)}><div className="cell-play-icons" ><FontAwesomeIcon icon={faPlay} /></div><span className="jp-artist">{item.name}</span></div>
                                                 </li>
                                             );

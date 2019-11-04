@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import ComingSoon from "../Pages/comingsoon.component";
-
+import BannerHero from "../Banners/bannerHero";
 class Vlog extends Component {
 
   render() {
@@ -12,24 +11,12 @@ class Vlog extends Component {
     };
     return (
       <div>
-        <section className="page-header store-banner">
-          <div className="tim-container">
-            <div className="page-header-title text-center">
-              <h2>Vlog</h2>
-            </div>
-
-            <div className="breadcrumbs">
-              <Link to="/index">Home</Link>
-              <span>/</span>
-              <span>Vlog</span>
-            </div>
-          </div>
-        </section>
+     <BannerHero title={"vlog"} />
 
         <section className="blog-posts video-list">
           <div className="container">
           <ComingSoon/>
-            </div>
+          </div>
         </section>
       </div>
     );

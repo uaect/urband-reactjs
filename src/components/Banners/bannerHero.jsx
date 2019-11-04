@@ -22,7 +22,7 @@ class BannerHero extends Component {
 
     return (
       <div>
-        <section className="page-header" style={bannerImg}>
+        {getbanner.image ?<section className="page-header" style={bannerImg}>
           <div className="tim-container">
             <div className="page-header-title text-center">
               <h2>{getbanner.title}</h2>
@@ -34,7 +34,7 @@ class BannerHero extends Component {
               <span>About</span>
             </div>
           </div>
-        </section>
+        </section>:<p>hhjkkkk</p>}
       </div>
     );
   }
