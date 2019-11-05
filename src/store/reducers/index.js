@@ -12,7 +12,7 @@ import contactReducer from './contactReducer';
 import eventDetailReducer from './eventDetailReducer';
 import storeListReducer from './storeListReducer';
 import storeDetailsReducer from './storeDetailsReducer';
-
+import storeCategoryReducer from './storeCategoryReducer';
 export default combineReducers({
     posts: postReducer, // choose any name
     clients: clientReducer,
@@ -26,6 +26,7 @@ export default combineReducers({
     contact:contactReducer,
     eventdetails:eventDetailReducer,
     storelist:storeListReducer,
-    storedetails:storeDetailsReducer
+    storedetails:storeDetailsReducer,
+    storecategory:storeCategoryReducer
 
 })

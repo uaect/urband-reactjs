@@ -51,27 +51,7 @@ class VolumeSlider extends Component {
               </div>
            </div>
 
-           <div className="filter-left-type">
-              <h3 className="title">By Artist</h3>
-              <div className="form-check">
-                <input className="form-check-input" type="checkbox" value="" id=""/>
-                <label className="form-check-label" htmlFor="defaultCheck1">
-                  Sami Yusuf
-                </label>
-              </div>
-              <div className="form-check">
-                <input className="form-check-input" type="checkbox" value="" id=""/>
-                <label className="form-check-label" htmlFor="defaultCheck1">
-                  John Lenon
-                </label>
-              </div>
-              <div className="form-check">
-                <input className="form-check-input" type="checkbox" value="" id=""/>
-                <label className="form-check-label" htmlFor="defaultCheck1">
-                  Jim Morrison
-                </label>
-              </div>
-          </div>    
+        
           
 
         </div>
