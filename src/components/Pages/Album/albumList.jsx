@@ -28,7 +28,7 @@ class AlbumHome extends Component {
             <div className="row album-listing">
               <StoreHeader />
 
-              {albums.length > 0
+              {albums ? albums.length > 0
                 ? albums.map(item => {
                     return (
                       <div
@@ -64,7 +64,7 @@ class AlbumHome extends Component {
                       </div>
                     );
                   })
-                : ""}
+                : "" : ""}
             </div>
           </div>
         </section>
