@@ -2,3 +2,4 @@ export {fetchPosts,fetchContact,fetchClients,fetchClientsList,fetchEventDetail,f
 export {fetchAlbums,fetchAlbumsDetails,fetchgallerycategory}  from './album.js';
 export {fetchBanner}  from './Banners.js';
 export {fetchWhoWeAre}  from './whoWeAre.js';
+export {fetchStoreList,fetchStoreDetails}  from './store.js';
