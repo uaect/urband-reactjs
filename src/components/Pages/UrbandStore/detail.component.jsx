@@ -41,7 +41,6 @@ class ShopDetail extends Component {
         images.push(image);
       }
     }
-    console.log("images", images);
   }
     return (
 
@@ -68,8 +67,7 @@ class ShopDetail extends Component {
             <div className="container">
               <div className="single-product-wrapper">
                 <div className="row">
-                  <div className="col-md-5 col-sm-6">
-                   
+                  <div className="col-md-5 col-sm-6 detail-left">
                         <ImageGallery
                           items={images[0]}
                           showPlayButton={false}
@@ -93,8 +91,8 @@ class ShopDetail extends Component {
                         </ins>
 
                         <del>
-                          <span className="woocommerce-Price-amount amount">
-                            <span className="woocommerce-Price-currencySymbol">
+                          <span>
+                            <span>
                               AED
                           </span>
                             200

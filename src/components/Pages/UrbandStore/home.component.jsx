@@ -11,8 +11,7 @@ class ShopHome extends Component {
     render() {
         const image_url = "https://admin.urbandmusic.com/storage/";
         const storelist = this.props.storelist;
-        console.log("eventttttttttt", storelist);
-
+        
         return (
 
             <div>
@@ -57,29 +56,25 @@ class ShopHome extends Component {
                                 </div>
                                 {storelist.length ? (
 
-                                    <div className="row products">
+                                    <div className="row store-products">
                                         {storelist.map(item => {
                                             return (
                                                 <div className="col-md-4 col-sm-6 col-12" key={item.id}>
-
+                                                      <Link to={{ pathname: `/detail/${item.id}` }}>
                                                     <div className="product">
-                                                        <div className="product-thumb">
-                                                            <Link to={{
-                                                                pathname: `/detail/${item.id}`
-                                                            }}>
-                                                                <img className="img-responsive" src={image_url + item.files[0].image} alt="Product Thumb" />
-
-                                                            </Link>
-                                                            <div className="product-thumb-hover">
+                                                                <div className="thumb-box fit-wrap">
+                                                                <img className="fit-it" src={image_url + item.files[0].image} alt="Product Thumb" />
+                                                                </div>
+                                                            {/* <div className="product-thumb-hover">
                                                                 <div className="btn-cart"><Link to="/">Add to Cart</Link></div>
-                                                            </div>
-                                                        </div>
+                                                            </div> */}
                                                         <div className="product-detail">
                                                             <h4 className="product-name">{item.title}</h4>
                                                             <p className="product-price">{item.price} AED</p>
 
                                                         </div>
                                                     </div>
+                                                    </Link>
 
                                                 </div>
 
