@@ -54,7 +54,7 @@ class App extends Component{
           <Scroll>
               <Switch>
                 
-                <Route exact path="/index" component={HomePage} />
+                <Route exact path="/" component={HomePage} />
                 <Route path="/who-we-are" component={WhoWeAre} />
                 <Route path="/event-list" component={EventList} />
                 <Route path="/event" component={EventDetail} />
