@@ -10,6 +10,9 @@ import whoWeAreReducer from './whoWeAreReducer';
 import gallerypics from './gallerypics';
 import contactReducer from './contactReducer';
 import eventDetailReducer from './eventDetailReducer';
+import storeListReducer from './storeListReducer';
+import storeDetailsReducer from './storeDetailsReducer';
+import storeCategoryReducer from './storeCategoryReducer';
 export default combineReducers({
     posts: postReducer, // choose any name
     clients: clientReducer,
@@ -21,6 +24,9 @@ export default combineReducers({
     whoweare:whoWeAreReducer,
     gallerypics:gallerypics,
     contact:contactReducer,
-    eventdetails:eventDetailReducer
+    eventdetails:eventDetailReducer,
+    storelist:storeListReducer,
+    storedetails:storeDetailsReducer,
+    storecategory:storeCategoryReducer
 
 })
