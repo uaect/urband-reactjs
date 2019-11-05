@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import { Tabs, Tab, TabPanel, TabList } from 'react-web-tabs';
-//import BannerHero from "../Banners/bannerHero";
+import BannerHero from "../Banners/bannerHero";
 import 'react-web-tabs/dist/react-web-tabs.css';
 import { useState } from 'react';
 import FsLightbox from 'fslightbox-react';
@@ -18,7 +18,7 @@ function Gallery() {
     const [lightboxController, setLightboxController] = useState({
         toggler: false,
         sourceIndex: 0,
-        sourceImg:'../../media/gallery/1.jpg'
+        sourceImg:'https://admin.urbandmusic.com/storage/'
     });
 
     function openLightboxOnSourceIndex(sourceIndex,sourceImg) {
@@ -49,18 +49,7 @@ function Gallery() {
 
     return ( 
         <div>
-            <section className="page-header store-banner">
-                <div className="tim-container">
-                    <div className="page-header-title text-center">
-                        <h2>Gallery</h2>
-                    </div>
-                    <div className="breadcrumbs">
-                        <Link to="/">Home</Link>
-                        <span>/</span>
-                        <span>Gallery</span>
-                    </div>
-                </div>
-            </section>
+             <BannerHero title={"gallery"} /> 
             <section className="section-padding">
                 <div className="tim-container">
                     <div className="section-title style-four text-center">
@@ -75,7 +64,7 @@ function Gallery() {
                                 <TabList>
                                     {categories && categories.map(item => {
                                         return (
-                                                <Tab tabFor={item.title}>{item.title}</Tab>
+                                                <Tab tabFor={item.title} key={item.id}>{item.title}</Tab>
                                             );
                                     })}
                                    

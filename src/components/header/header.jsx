@@ -34,7 +34,7 @@ class Header extends Component{
                             </ul>	
 						</li>
                         <li>
-                                <NavLink  to="/coming-soon"  className="in-array" activeClassName="selected">Radio</NavLink>	
+                                <NavLink  to="/radio"  className="in-array" activeClassName="selected">Radio</NavLink>	
 						</li>
                         <li className="menu-item-has-children">
                         <NavLink  to="/event-list" activeClassName="selected" className="in-array">Events

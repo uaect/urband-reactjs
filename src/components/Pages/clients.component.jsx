@@ -21,8 +21,6 @@ class Clients extends Component {
     const data = clients.result;
     const clientdata = clientslist.result;
 
-   
-
     const responsive = {
       superLargeDesktop: {
         // the naming can be any, depends on you.
@@ -45,10 +43,10 @@ class Clients extends Component {
 
     return (
       <div>
-       <BannerHero title={"Client"}/>
+        <BannerHero title={"Client"} />
         <div className="fullWrap">
-          {clients.length > 0 ? (
-            <div>
+          <div>
+            {data ? (
               <section>
                 <div className="page-padd">
                   <div className="container">
@@ -66,55 +64,54 @@ class Clients extends Component {
                           className="quote right"
                         />
                         <div className="col-md-12">
-                          {data &&
-                            data.length >
-                              0(
-                                <Carousel
-                                  responsive={responsive}
-                                  showDots={true}
-                                  arrows={false}
-                                  dotListClass="custom-dot-list-style"
-                                >
-                                  ?{" "}
-                                  {data.map(item => {
-                                    return (
-                                      <div
-                                        className="client-avathar"
-                                        key={item.id}
-                                      >
-                                        <figure>
-                                          <img
-                                            src={
-                                              clients.image_url +
-                                              "/" +
-                                              item.image
-                                            }
-                                            alt="thumb"
-                                            className="rounded-circle fit-it"
-                                          />
-                                        </figure>
-                                        <p>
-                                          Lorem ipsum dolor sit amet
-                                          consectetur, adipisicing elit.Eos
-                                          expedita, doloremque sequi blanditiis
-                                          perspiciatis rerum velit maiores omnis
-                                          modi voluptate est veniam
-                                        </p>
-                                        <div className="name">
-                                          <span>-</span> {item.title}
-                                        </div>
-                                      </div>
-                                    );
-                                  })}
-                                </Carousel>
-                              )}
+                          {data && data.length > 0 ? (
+                            <Carousel
+                              responsive={responsive}
+                              showDots={true}
+                              arrows={false}
+                              dotListClass="custom-dot-list-style"
+                            >
+                              {data.map(item => {
+                                return (
+                                  <div className="client-avathar" key={item.id}>
+                                    <figure>
+                                      <img
+                                        src={
+                                          clients.image_url + "/" + item.image
+                                        }
+                                        alt="thumb"
+                                        className="rounded-circle fit-it"
+                                      />
+                                    </figure>
+                                    <p>
+                                      Lorem ipsum dolor sit amet consectetur,
+                                      adipisicing elit.Eos expedita, doloremque
+                                      sequi blanditiis perspiciatis rerum velit
+                                      maiores omnis modi voluptate est veniam
+                                    </p>
+                                    <div className="name">
+                                      <span>-</span> {item.title}
+                                    </div>
+                                  </div>
+                                );
+                              })}
+                            </Carousel>
+                          ) : (
+                            " "
+                          )}
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </section>
+            ) : (
+              <div>
+                <ComingSoon />
+              </div>
+            )}
 
+            {clientdata ? (
               <section className="partners-area">
                 <div className="container">
                   <div className="d-flex justify-content-center row">
@@ -132,7 +129,7 @@ class Clients extends Component {
                           </div>
                         </div>
                         <div className="col-md-7">
-                          {clientdata && clientdata.length > 1 && (
+                          {clientdata && clientdata.length > 0 && (
                             <ul className="client-list">
                               {clientdata.map(item => {
                                 return (
@@ -155,13 +152,12 @@ class Clients extends Component {
                   </div>
                 </div>
               </section>
-            </div>
-          ) :
-           (
-            <div>
-              <ComingSoon />
-            </div>
-          )}
+            ) : (
+              <div>
+                <ComingSoon />
+              </div>
+            )}
+          </div>
         </div>
       </div>
     );

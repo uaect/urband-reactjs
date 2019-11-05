@@ -5,6 +5,7 @@ import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import BannerHero from "../../Banners/bannerHero";
 import StoreHeader from "../../StoreHeader/header.component";
+import ComingSoon from "../../Pages/comingsoon.component";
 import { connect } from "react-redux";
 import * as actionCreators from "../../../store/actions";
 
@@ -28,7 +29,7 @@ class AlbumHome extends Component {
             <div className="row album-listing">
               <StoreHeader />
 
-              {albums ? albums.length > 0
+              { albums ? albums.length > 0
                 ? albums.map(item => {
                     return (
                       <div
@@ -44,7 +45,7 @@ class AlbumHome extends Component {
                             />
                             <Link
                               to={{
-                                pathname: `/albums/detail/heaven/${item.id}`
+                                pathname: `/albums/detail/${item.id}`
                               }}
                               className="play-btn-round"
                             >
@@ -64,7 +65,9 @@ class AlbumHome extends Component {
                       </div>
                     );
                   })
-                : "" : ""}
+                :<ComingSoon/> 
+                : ""
+                }
             </div>
           </div>
         </section>

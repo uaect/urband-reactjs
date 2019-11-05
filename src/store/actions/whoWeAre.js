@@ -6,15 +6,15 @@ export const fetchWhoWeAre = () => {
         })
             .then(res => res.json())
             .then(res => {
-                //console.log("response", res.result[0]);
+                //console.log("response", res.result);
                 
                 dispatch({
                     type: FETCH_WHO_WEW_ARE,
-                    value: res.result
+                    value: res
                 });
             })
             .catch(error => {
-                //console.log("error" + JSON.stringify(error));
+                
             });
     };
 };

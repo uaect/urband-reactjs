@@ -124,7 +124,9 @@ a:focus {
   outline: none;
   box-shadow: none;
 }
-
+button:focus {
+ outline:none;
+}
 
 ul {
   list-style: none;
@@ -4183,20 +4185,18 @@ h6 {
   color: #fff;
   font-size: 16px;
   line-height: 16px;
-  margin-top: 8px;
+  margin-top: 2px;
   margin-bottom: 0;
 }
 
 .album-box .album-details .content .album-name {
-  font-size: 20px;
-  font-weight: 700;
-  position: relative;
-  padding-bottom: 8px;
-  line-height: 24px;
-  margin: 0;
-  -webkit-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
+    font-size: 18px;
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 8px;
+    line-height: 22px;
+    margin: 0;
+    transition: all 0.3s ease-in-out;
 }
 
 .album-box .album-details .content .album-name a {
@@ -4222,6 +4222,7 @@ h6 {
 .album-box .album-details .content .album-name:before {
   width: 100px;
   height: 1px;
+  display: none;
 }
 
 .album-box .album-details .content .album-name:after {
@@ -4229,6 +4230,7 @@ h6 {
   height: 3px;
   bottom: -1px;
   left: 15px;
+  display: none;
 }
 
 .album-box .album-details .icon {
@@ -4283,7 +4285,7 @@ h6 {
   position: relative;
   -webkit-box-shadow: 0px 5px 21px 0px rgba(119, 119, 119, 0.35);
   box-shadow: 0px 5px 21px 0px rgba(119, 119, 119, 0.35);
-  border-radius: 4px;
+  border-radius:50%;
   overflow: hidden;
 }
 
@@ -4293,13 +4295,16 @@ h6 {
 
 .album-box.album-box-two .box-thumb .icon {
   position: absolute;
-  bottom: 0;
-  right: 0;
-  height: 65px;
-  width: 65px;
-  line-height: 65px;
-  background: rgba(255, 255, 255, 0.5);
-  text-align: center;
+    top: 50%;
+    right: 0;
+    margin-top: -32.5px;
+    margin-left: -32.5px;
+    left: 50%;
+    height: 65px;
+    width: 65px;
+    line-height: 65px;
+    background: rgba(255, 255, 255, 0.5);
+    text-align: center;
 }
 
 .album-box.album-box-two .box-thumb .icon i {
@@ -4311,6 +4316,7 @@ h6 {
   position: static;
   background: transparent !important;
   padding: 20px 0;
+  text-align: center;
 }
 
 .album-box.album-box-two .album-details .content h3 a {
@@ -7654,7 +7660,7 @@ ul.comment-list .comment-body .reply a:hover {
   position: relative;
   /* overflow: hidden; */
   text-align: center;
-  height: 355px;
+  height: 303px;
 }
 
 .album-feature:after {
@@ -7958,6 +7964,9 @@ ul.comment-list .comment-body .reply a:hover {
 }
 
 .store-banner {
+  background: url("../../media/background/7.jpg");
+}
+.no-banner {
   background: url("../../media/background/7.jpg");
 }
 
@@ -12218,6 +12227,26 @@ ul.products li.product .product-thumb {
   overflow: hidden;
   margin: 0 auto 20px;
 }
+.store-products{
+  margin-top: 2em;
+}
+.store-products .product{
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+    max-height: 303px;
+    text-align: center;
+}
+.store-products .product .thumb-box{
+  height:281px;
+  width: 281px;
+}
+.store-products .product .product-price{
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #f60038;
+}
+
 
 ul.products li.product .product-thumb img {
   max-width: 100%;
@@ -12858,6 +12887,12 @@ ul.products li.product-two .ajax_add_to_cart i {
   padding: 100px 0 60px;
 }
 
+.single-product-details{
+  padding-left: 2.9em;
+}
+.detail-left{
+  
+}
 .single-product-details .product-title {
   font-size: 32px;
   line-height: 30px;
@@ -12865,7 +12900,7 @@ ul.products li.product-two .ajax_add_to_cart i {
 }
 
 .single-product-details .price {
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   color: #f60038;
 }
 
@@ -16899,10 +16934,17 @@ h1 {
 
 .services-grid .content .text {
   margin-top: 5vw;
-  font-size: 14px;
-  line-height: 18px;
+  font-size: 15px;
+  line-height: 21px;
+  margin-bottom: 0.7em;
   text-align: center;
-
+  display: block;
+  display: -webkit-box;
+  max-width: 100%;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .services-grid .content .text p {
@@ -16958,7 +17000,9 @@ h1 {
   position: relative;
   margin: 0 auto;
 }
-
+.fit-wrap{
+  position: relative;
+}
 .fit-it {
   position: absolute;
   bottom: 0;
@@ -17159,6 +17203,9 @@ h1 {
   padding-right: 20px;
   align-items: center;
 }
+.jp-album-me .jp-artist {
+  margin-left:0.5em;
+}
 
 .jp-album-me a {
   display: inline-flex;
@@ -17193,7 +17240,7 @@ h1 {
 .jp-playlist ul li {
   display: block;
   border-bottom: 1px solid #ebebeb;
-  padding: 5px 0px;
+  padding: 9px 0px;
 }
 
 

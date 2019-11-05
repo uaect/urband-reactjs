@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import store from './store'
 import Header from './components/header/header'
 import Footer from './components/Footer/footer.component'
+import SectionHero from './components/SectionHero/sectionHero'
 import HomePage from './components/Pages/home.component'
 import WhoWeAre from './components/Pages/who-we-are.component'
 import EventList from './components/Pages/event-list.component'
@@ -66,13 +67,13 @@ class App extends Component{
                 <Route path="/detail" component={ ShopDetail} />
                 <Route path="/cart" component={ ShopCart } />
                 <Route path="/coming-soon" component={ComingSoon} />
-                <Route path="/albums/detail/:id" exact component={ AlbumHome } />
-                <Route path="/albumlist" exact component={ AlbumList } />
+                <Route path="/albums" exact component={ AlbumList } />
                 <Route path={"/albums/detail/:id"} component={ AlbumDetail} />
                 <Route path="/vlog" component={ Vlog} />
                 <Route path={"/ticket-detail"} component={ TicketDetail} />
               
                 <HomePage/>
+                <SectionHero/>
                 <WhoWeAre/>
                 <EventList/>
                 <EventDetail/>

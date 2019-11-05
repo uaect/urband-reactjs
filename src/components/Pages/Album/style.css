@@ -13,6 +13,7 @@
     padding: 15px;
   }
   
+  
   .single-3d img {
     -webkit-box-shadow: 0px 36px 36.9px 1.1px rgba(0, 0, 0, 0.22), inset -0.5px -0.9px 0 0 rgba(255, 255, 255, 0.75);
             box-shadow: 0px 36px 36.9px 1.1px rgba(0, 0, 0, 0.22), inset -0.5px -0.9px 0 0 rgba(255, 255, 255, 0.75);
@@ -41,8 +42,10 @@
   }
   
   .three-d-album-width {
-    width: 122%;
-    margin-top: 185px;
+    width: 100%;
+    /* margin-top: 185px; */
+    display: flex;
+    justify-content: center;
   }
   
   .single-3d:hover img {
@@ -74,20 +77,20 @@
   }
   
   .three-d-album .more-album a {
-    font-size: 14px;
+    font-size: 16px;
     color: #959595;
     font-family: "Changa", sans-serif;
     font-weight: 500;
   }
   
-  .three-d-album .more-album a:hover i {
+  .three-d-album .more-album a:hover .play {
     margin-left: 20px;
     -webkit-transition: all 0.8s cubic-bezier(0, 1.09, 1, 1);
     -o-transition: all 0.8s cubic-bezier(0, 1.09, 1, 1);
     transition: all 0.8s cubic-bezier(0, 1.09, 1, 1);
   }
   
-  .three-d-album .more-album a i {
+  .three-d-album .more-album a .play {
     color: #f60038;
     display: block;
     -webkit-transition: all 0.8s cubic-bezier(0, 1.09, 1, 1);
@@ -95,6 +98,10 @@
     transition: all 0.8s cubic-bezier(0, 1.09, 1, 1);
     margin-left: 0;
   }
+  .album-box-wrap{
+    padding: 3em 0;
+  }
+
   
   @media (min-width: 992px) and (max-width: 1200px) {
     .single-3d {
