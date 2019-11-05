@@ -63,12 +63,12 @@ class ShopHome extends Component {
                                                       <Link to={{ pathname: `/detail/${item.id}` }}>
                                                     <div className="product">
                                                                 <div className="thumb-box fit-wrap">
-                                                                <img className="fit-it" src={image_url + item.files[0].image} alt="Product Thumb" />
+                                                                <img className="fit-it store-img" src={image_url + item.files[0].image} alt="Product Thumb" />
                                                                 </div>
                                                             {/* <div className="product-thumb-hover">
                                                                 <div className="btn-cart"><Link to="/">Add to Cart</Link></div>
                                                             </div> */}
-                                                        <div className="product-detail">
+                                                        <div className="product-detail bottom">
                                                             <h4 className="product-name">{item.title}</h4>
                                                             <p className="product-price">{item.price} AED</p>
 

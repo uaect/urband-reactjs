@@ -12231,11 +12231,12 @@ ul.products li.product .product-thumb {
   margin-top: 2em;
 }
 .store-products .product{
-    display: inline-block;
-    vertical-align: top;
-    width: 100%;
-    max-height: 303px;
-    text-align: center;
+  display: inline-block;
+  vertical-align: top;
+  width: 100%;
+  max-height: 361px;
+  text-align: center;
+  margin-bottom: 30px;
 }
 .store-products .product .thumb-box{
   height:281px;
@@ -12245,6 +12246,13 @@ ul.products li.product .product-thumb {
     font-size: 1.1rem;
     font-weight: 600;
     color: #f60038;
+}
+.fit-it.store-img{
+  min-width: 100%;
+  object-fit: cover;
+}
+.product-detail.bottom{
+  margin-top: 21px;
 }
 
 
@@ -12891,7 +12899,7 @@ ul.products li.product-two .ajax_add_to_cart i {
   padding-left: 2.9em;
 }
 .detail-left{
-  
+
 }
 .single-product-details .product-title {
   font-size: 32px;
