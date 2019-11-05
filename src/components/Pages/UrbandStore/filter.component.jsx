@@ -23,7 +23,6 @@ class VolumeSlider extends Component {
                 <div className="value"><span>Price:&nbsp;</span>{value}</div>
                 <Slider
                 value={value}
-                labels={0}
                 min={30}
                 max={500}
                 orientation="horizontal"

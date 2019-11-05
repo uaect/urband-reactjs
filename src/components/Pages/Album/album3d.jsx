@@ -1,9 +1,13 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faPlay } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { connect } from "react-redux";
 import * as actionCreators from "../../../../src/store/actions/";
 
+library.add(faPlay);
 
 class albumListHome extends Component {
   componentDidMount() {
@@ -14,10 +18,9 @@ class albumListHome extends Component {
     var isResponseData = false;
     if (this.props.albums.success === true)
       // Second step
-    isResponseData = true;
+      isResponseData = true;
     const image_url = "http://admin.urbandmusic.com/storage/";
     const albums = this.props.albums.result; // first step
-    //console.log("albumxzzzz", albums);
 
     return (
       <div className="fullWrap">
@@ -33,31 +36,48 @@ class albumListHome extends Component {
                 </p>
               </div>
 
-              {/* <div class="more-album">
-				        <Link to="">SEE ALL ALBUMS<i class="fa fa-play" aria-hidden="true"></i></a>
-              </div> */}
+              <div className="more-album">
+                <Link to="/albums">
+                  SEE ALL ALBUMS
+                  <FontAwesomeIcon icon={faPlay} className="play" />
+                </Link>
+              </div>
 
-              <div className="three-d-album-width">
-                <div className="row">
-                  <div className="threed-container-wrapper">
-                    <div className="threed-container-inner">
-                      {albums.length > 0
-                        ? albums.map(item => {
-                            return (
-                              <div className="col-md-2" key={item.id}>
-                                <div className="single-3d col-md-2"></div>
-                                <div className="single-3d">
-                                  <Link to={{
-                                    pathname: `/albums/detail/heaven/${item.id}`
-                                  }}>
+              <div className="album-boxs d-flex">
+                <div className="col-xl-10">
+                  <div className="row justify-content-center album-box-wrap">
+                    {albums.length > 0
+                      ? albums.map(item => {
+                          return (
+                            <div
+                              className="col-xl-2 col-lg-3 col-sm-6 col-md-4"
+                              key={item.id}
+                            >
+                              <div className="album-box album-box-two">
+                                <div className="box-thumb">
+                                  <Link
+                                    to={{
+                                      pathname: `/albums/detail/${item.id}`
+                                    }}
+                                  >
                                     <img src={image_url + item.image} alt="" />
                                   </Link>
+                                  {/* <div className="icon float-right">
+                                    <i className="tim-headphones"></i>
+                                  </div> */}
+                                </div>
+
+                                <div className="album-details clearfix">
+                                  <div className="content">
+                                    <h3 className="album-name">{item.title}</h3>
+                                    <p>{item.tracks.name}</p>
+                                  </div>
                                 </div>
                               </div>
-                            );
-                          })
-                        : ""}
-                    </div>
+                            </div>
+                          );
+                        })
+                      : ""}
                   </div>
                 </div>
               </div>

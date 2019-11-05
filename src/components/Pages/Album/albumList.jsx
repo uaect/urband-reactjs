@@ -45,7 +45,7 @@ class AlbumHome extends Component {
                             />
                             <Link
                               to={{
-                                pathname: `/albums/detail/heaven/${item.id}`
+                                pathname: `/albums/detail/${item.id}`
                               }}
                               className="play-btn-round"
                             >

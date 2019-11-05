@@ -6,6 +6,7 @@ import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import AudioPlayer from 'react-playlist-player'
 
+
 library.add(faPlay)
 
 class PlayerHero extends Component {

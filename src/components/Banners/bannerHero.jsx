@@ -27,14 +27,19 @@ class BannerHero extends Component {
             <div className="page-header-title text-center">
               <h2>{getbanner.title}</h2>
             </div>
-
-            <div className="breadcrumbs">
+            {/* <div className="breadcrumbs">
               <Link to="/">Home</Link>
               <span>/</span>
               <span>About</span>
+            </div> */}
+          </div>
+        </section>:<section className="page-header no-banner">
+          <div className="tim-container">
+            <div className="page-header-title text-center">
+              <h2>Banner</h2>
             </div>
           </div>
-        </section>:<p>hhjkkkk</p>}
+        </section>}
       </div>
     );
   }

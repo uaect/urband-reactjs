@@ -20,6 +20,8 @@ class Clients extends Component {
     const clientslist = this.props.clientslist;
     const data = clients.result;
     const clientdata = clientslist.result;
+    console.log(data);
+    
 
    
 
@@ -47,8 +49,9 @@ class Clients extends Component {
       <div>
        <BannerHero title={"Client"}/>
         <div className="fullWrap">
-          {clients.length > 0 ? (
             <div>
+
+          {data ? (
               <section>
                 <div className="page-padd">
                   <div className="container">
@@ -68,14 +71,13 @@ class Clients extends Component {
                         <div className="col-md-12">
                           {data &&
                             data.length >
-                              0(
+                              0?
                                 <Carousel
                                   responsive={responsive}
                                   showDots={true}
                                   arrows={false}
                                   dotListClass="custom-dot-list-style"
                                 >
-                                  ?{" "}
                                   {data.map(item => {
                                     return (
                                       <div
@@ -107,7 +109,7 @@ class Clients extends Component {
                                     );
                                   })}
                                 </Carousel>
-                              )}
+                              :" "}
                         </div>
                       </div>
                     </div>
@@ -115,6 +117,14 @@ class Clients extends Component {
                 </div>
               </section>
 
+              ) :
+           (
+            <div>
+              <ComingSoon />
+            </div>
+          )}
+
+           {clientdata ? (
               <section className="partners-area">
                 <div className="container">
                   <div className="d-flex justify-content-center row">
@@ -132,7 +142,7 @@ class Clients extends Component {
                           </div>
                         </div>
                         <div className="col-md-7">
-                          {clientdata && clientdata.length > 1 && (
+                          {clientdata && clientdata.length > 0 && (
                             <ul className="client-list">
                               {clientdata.map(item => {
                                 return (
@@ -155,13 +165,14 @@ class Clients extends Component {
                   </div>
                 </div>
               </section>
+            ) :
+            (
+             <div>
+               <ComingSoon />
+             </div>
+           )}
+           
             </div>
-          ) :
-           (
-            <div>
-              <ComingSoon />
-            </div>
-          )}
         </div>
       </div>
     );
