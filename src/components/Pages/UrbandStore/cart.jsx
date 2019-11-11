@@ -4,10 +4,22 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { faTimes, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import BannerHero from "../../Banners/bannerHero";
-
+import { connect } from "react-redux";
+import * as actionCreators from "../../../../src/store/actions/";
 library.add(faTimes, faArrowLeft);
 
 class cart extends Component {
+  
+  constructor(props){
+    super(props);
+    this.state = { showText: false};
+  }
+  componentDidMount() {
+    this.props.getfromcart();
+    console.log("ttttt", this.props);
+    
+  }
+
   render() {
     return (
       <div>
@@ -143,4 +155,21 @@ class cart extends Component {
   }
 }
 
-export default cart;
+const mapDispatchToProps = dispatch => {
+  // call action functions
+  return {
+    getfromcart: () => dispatch(actionCreators.getfromcart())
+  };
+};
+
+const mapStateToProps = state => {
+  return {
+    cart: state.cart.items // in this state list is array name as stored  API  from defined in eventListReducer
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(cart);
+
