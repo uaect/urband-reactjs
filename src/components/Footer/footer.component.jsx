@@ -12,7 +12,7 @@ class Footer extends Component {
     render () {
       return (
         
-        <footer id="footer-3">
+        <footer id="footer-3" className="AppFooter">
         <div className="container">
             <div className="d-flex justify-content-center row">
                 <div className="col-xl-10">

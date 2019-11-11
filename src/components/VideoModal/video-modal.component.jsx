@@ -29,7 +29,8 @@ class ModalVideoComponent extends Component {
 						    <FontAwesomeIcon icon={faPlay} />
 						</div>
           </div>
-          <ModalVideo channel='youtube' isOpen={this.state.isOpen} videoId='L61p2uyiMSo' onClose={() => this.setState({isOpen: false})} />
+          <ModalVideo channel='youtube' isOpen={this.state.isOpen} videoId='https://urband-t891.nodeboost.io/streams/hls/live/urband.m3u8' onClose={() => this.setState({isOpen: false})} />
+          
           
         </div>
        

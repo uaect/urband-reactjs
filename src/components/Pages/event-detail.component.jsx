@@ -92,7 +92,9 @@ class EventDetail extends Component {
                     available, but the majority.
                   </p> */}
 
-                    <Link to="/" className="tim-btn">
+                    <Link  to={{
+                                pathname: `/ticket-detail/${event.id}`
+                              }} className="tim-btn">
                       Buy Tickets
                   </Link>
                   </div>
@@ -125,7 +127,7 @@ class EventDetail extends Component {
                     <Carousel responsive={responsive}>
                       {artists.map(item => {
                         return (
-                          <li>
+                          <div key={item.id}>
                             <div className="schedule-item">
                               <div className="schedule-thumb">
                                 <img
@@ -143,7 +145,7 @@ class EventDetail extends Component {
                                 Durations: {item.duration}
                         </p>
                             </div>
-                          </li>
+                          </div>
                         )
                       })}
                     </Carousel>

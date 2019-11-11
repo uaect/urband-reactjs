@@ -6,6 +6,8 @@ import { Provider } from 'react-redux';
 import store from './store'
 import Header from './components/header/header'
 import Footer from './components/Footer/footer.component'
+import LogIn from './components/Pages/Account/logIn'
+import Register from './components/Pages/Account/register'
 import SectionHero from './components/SectionHero/sectionHero'
 import HomePage from './components/Pages/home.component'
 import WhoWeAre from './components/Pages/who-we-are.component'
@@ -15,7 +17,7 @@ import Artist from './components/Pages/artist.component'
 import Contact from './components/Pages/contact.component'
 import Clients from './components/Pages/clients.component'
 import Gallery from './components/Pages/gallery.component'
-import AlbumHome from './components/Pages/Album/album3d'
+//import AlbumHome from './components/Pages/Album/album3d'
 import AlbumDetail from './components/Pages/Album/albumDetail'
 import AlbumList from './components/Pages/Album/albumList'
 import Vlog from './components/Pages/vlog.component'
@@ -23,7 +25,10 @@ import Radio from './components/Pages/radio.component'
 import ShopHome from './components/Pages/UrbandStore/home.component'
 import ShopDetail from './components/Pages/UrbandStore/detail.component'
 import ShopCart from './components/Pages/UrbandStore/cart'
+import ShopCheckout from './components/Pages/UrbandStore/checkOut'
+import EventTickets from './components/Pages/TicketBook/eventTickets.jsx'
 import TicketDetail from './components/Pages/TicketBook/ticketDetail'
+import TicketCheckout from './components/Pages/TicketBook/checkOut'
 import ComingSoon from './components/Pages/comingsoon.component'
 import './assets/intro/css/intro.css';
 import './assets/css/app.css';
@@ -49,7 +54,8 @@ class App extends Component{
     return (
       <Provider store={store}>
       <Router>
-        <div className="AppContainer hero-site">
+        <div className="AppWrap">
+        <div className="AppContainer hero-conatiner">
           <Header />
           <Scroll>
               <Switch>
@@ -66,11 +72,16 @@ class App extends Component{
                 <Route path="/store" component={ShopHome} />
                 <Route path="/detail" component={ ShopDetail} />
                 <Route path="/cart" component={ ShopCart } />
+                <Route path="/checkout" component={ ShopCheckout  } />
                 <Route path="/coming-soon" component={ComingSoon} />
                 <Route path="/albums" exact component={ AlbumList } />
                 <Route path={"/albums/detail/:id"} component={ AlbumDetail} />
                 <Route path="/vlog" component={ Vlog} />
+                <Route path={"/event-tickets"} component={ EventTickets} />
                 <Route path={"/ticket-detail"} component={ TicketDetail} />
+                <Route path={"/ticket-checkout"} component={ TicketCheckout} />
+                <Route exact path="/login" component={LogIn} />
+                <Route exact path="/register" component={Register} />
               
                 <HomePage/>
                 <SectionHero/>
@@ -85,7 +96,8 @@ class App extends Component{
                 <ComingSoon/>
               </Switch>
             </Scroll>
-          <Footer/>
+         </div>
+         <Footer/>
          </div>
       </Router>
       </Provider>

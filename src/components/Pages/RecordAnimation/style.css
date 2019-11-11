@@ -195,13 +195,15 @@
   
   .bubble-wrap {
     position: absolute;
-    top: 36%;
-    left: 10%;
+    /* top: 36%;
+    left: 10%; */
+    top: 0%;
+    left: 0;
     -webkit-transform: rotate(39deg);
     -ms-transform: rotate(39deg);
     transform: rotate(47deg);
     z-index: -1;
-    opacity: 0;
+    opacity: 1;
     -webkit-transition: all 0.3s;
     -o-transition: all 0.3s;
     transition: all 0.3s;
@@ -209,13 +211,15 @@
   
   .bubble-wrap-right {
     position: absolute;
-    top: 53%;
-    right: 46%;
+    /* top: 53%;
+    right: 46%; */
+    top: 0;
+    left: 0;
     -webkit-transform: rotate(39deg);
     -ms-transform: rotate(39deg);
     transform: rotate(9deg);
     z-index: -1;
-    opacity: 0;
+    opacity: 1;
   }
   
   @-webkit-keyframes bub_opacity {

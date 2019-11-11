@@ -4,7 +4,7 @@ class comingSoon extends Component {
   render() {
     return (
       <div>
-        <section>
+        <section className="header-padd">
           <div className="container">
             <div className="row">
               <div className="col-lg-12 text-center">

@@ -117,7 +117,9 @@ class EventList extends Component {
                              
                             </div>
                             <Link
-                              to="/detail"
+                              to={{
+                                pathname: `/ticket-detail/${item.id}`
+                              }}
                               className="tim-btn tim-btn-bgt read-more-btn"
                             >
                               Buy Ticket

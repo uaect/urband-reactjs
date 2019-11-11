@@ -1,0 +1,57 @@
+.user-content {
+    background: #fff;
+    padding: 55px 24px;
+}
+h2.account-head {
+    font-size: 2.5em;
+    font-weight: 500;
+}
+.hero-acct-wrap .sec-txt {
+    color: #77838f;
+    line-height: 1.7;
+    margin-top: 0.4em;
+    font-weight: 300;
+    font-size: 1em;
+}
+.hero-acct-wrap form input[type='text'], .hero-acct-wrap form input[type='password'] {
+    border: 1px solid #d4d7dd;
+    border-radius: 60px;
+    padding: 0.575rem 0.95rem;
+    color: #191919;
+    font-weight: 500;
+    font-size: 14px;
+    min-height: 43.38px;
+}
+.forgot-pass {
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+}
+.hero-acct-wrap .btn {
+    width: 100%;
+    max-width: 175px;
+    font-size: 18px;
+    font-weight: 500;
+    font-family: "Changa", sans-serif;
+    text-transform: uppercase;
+    height: 45px;
+    background-color: #f60038;
+    border-radius: 60px;
+    float: right;
+    transition: all ease-in-out .3s;
+    color: #ffff;
+}
+.dont-u {
+    font-size: 14px;
+    font-weight: 300;
+    margin-top: 1em;
+}
+.dont-u a {
+    padding-left: 0.3em;
+    font-size: 14px;
+    font-weight: 500;
+    color: #f60038;
+}
+.btn.register{
+    max-width: 100%;
+}

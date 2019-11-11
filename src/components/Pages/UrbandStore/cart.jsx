@@ -1,31 +1,24 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faTimes,faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { faTimes, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import BannerHero from "../../Banners/bannerHero";
 
-library.add(faTimes,faArrowLeft);
+library.add(faTimes, faArrowLeft);
 
 class cart extends Component {
   render() {
     return (
       <div>
-        <section className="page-header store-banner">
+        <section className="header-padd cart-product mt-5">
           <div className="tim-container">
-            <div className="page-header-title text-center">
+            <div className="store-top-head m-0">
+              <Link to="/cart">
+                <FontAwesomeIcon icon={faArrowLeft} className="ico" />
+              </Link>
               <h2>Cart</h2>
             </div>
-
-            <div className="breadcrumbs">
-              <Link to="/">Home</Link>
-              <span>/</span>
-              <span>Cart</span>
-            </div>
-          </div>
-        </section>
-
-        <section className="cart-product">
-          <div className="tim-container">
             <div className="row cart-item">
               <div className="col-sm-6 d-flex">
                 <div className="cart-image">
@@ -33,7 +26,8 @@ class cart extends Component {
                     {" "}
                     <img
                       src={require("../../../media/gallery/shop.jpg")}
-                      alt="album thumb" className="fit-it"
+                      alt="album thumb"
+                      className="fit-it"
                     />
                   </Link>
                 </div>
@@ -47,12 +41,12 @@ class cart extends Component {
                   </div>
                 </div>
               </div>
-              <div class="col-sm-2 d-flex price-name-line">
-                <div class="product-price">
+              <div className="col-sm-2 d-flex price-name-line">
+                <div className="product-price">
                   <span>AED 230</span>
                 </div>
               </div>
-              <div class="col-sm-2 d-flex price-name-line">
+              <div className="col-sm-2 d-flex price-name-line">
                 <div className="quantity-input">
                   <button className="quantity-input__modifier quantity-input__modifier--left">
                     —
@@ -78,11 +72,11 @@ class cart extends Component {
             <div className="row cart-item">
               <div className="col-sm-6 d-flex">
                 <div className="cart-image">
-                  <Link to="">
-                    {" "}
+                  <Link to="/">
                     <img
                       src={require("../../../media/gallery/shop2.png")}
-                      alt="album thumb" className="fit-it"
+                      alt="album thumb"
+                      className="fit-it"
                     />
                   </Link>
                 </div>
@@ -96,13 +90,13 @@ class cart extends Component {
                   </div>
                 </div>
               </div>
-              <div class="col-sm-2 d-flex price-name-line">
-                <div class="product-price">
+              <div className="col-sm-2 d-flex price-name-line">
+                <div className="product-price">
                   {/* <i>Total</i> */}
                   <span>AED 200</span>
                 </div>
               </div>
-              <div class="col-sm-2 d-flex price-name-line">
+              <div className="col-sm-2 d-flex price-name-line">
                 <div className="quantity-input">
                   <button className="quantity-input__modifier quantity-input__modifier--left">
                     —
@@ -120,15 +114,28 @@ class cart extends Component {
                 </div>
               </div>
 
-              <div class="col-sm-2 d-flex price-name-line delet-line">
+              <div className="col-sm-2 d-flex price-name-line delet-line">
                 <FontAwesomeIcon icon={faTimes} className="remove" />
               </div>
             </div>
-            
-            <div className="cart-total">
-                <div className="goback"><Link to=""><FontAwesomeIcon icon={faArrowLeft} className="ico" />Continue Shopping</Link></div>
-            </div>
 
+            <div className="cart-total right-push">
+              {/* <div className="goback">
+                <Link to="">
+                  <FontAwesomeIcon icon={faArrowLeft} className="ico" />
+                  Continue Shopping
+                </Link>
+              </div> */}
+              <div className="d-flex price align-items-center">
+                Total<span className="ml-2 mr-4">430 AED</span>
+                <Link
+                  to="/checkout"
+                  className="checkout-btn-big bg-red-hover tim-btn"
+                >
+                  check out
+                </Link>
+              </div>
+            </div>
           </div>
         </section>
       </div>
