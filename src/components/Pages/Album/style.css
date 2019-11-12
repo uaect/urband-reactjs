@@ -74,6 +74,7 @@
     position: absolute;
     right: 350px;
     margin-top: 54px;
+    z-index: 1;
   }
   
   .three-d-album .more-album a {
@@ -81,6 +82,7 @@
     color: #959595;
     font-family: "Changa", sans-serif;
     font-weight: 500;
+    
   }
   
   .three-d-album .more-album a:hover .play {
