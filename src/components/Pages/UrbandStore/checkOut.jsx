@@ -3,11 +3,28 @@ import { Link } from "react-router-dom";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import { connect } from "react-redux";
+import * as actionCreators from "../../../../src/store/actions/";
 library.add(faArrowLeft);
 
 class storeCheckOut extends Component {
+  componentDidMount() {
+    this.props.getfromcart();
+  }
   render() {
+    const image_url = "https://admin.urbandmusic.com/storage/";
+    var cartItems = this.props.cartitems;
+    console.log("ttttlitty", cartItems);
+    var totalcost = 0;
+    if (cartItems !== "emtey cart") {
+      var cartflag = true;
+      for (let i = 0; i < cartItems.length; i++) {
+        if (cartItems[i].price) {
+          totalcost = totalcost + (parseFloat(cartItems[i].price) * (parseInt(cartItems[i].quantity)));
+        }
+      }
+    } else var cartflag = false;
+
     return (
       <div>
         <section className="header-padd cart-product mt-5">
@@ -168,57 +185,38 @@ class storeCheckOut extends Component {
 
               <div className="col-md-5 checkout-block checkout-list-wrap">
                 <div className="head">ORDER SUMMARY</div>
+
                 <div className="ticket-box checkout-list mt-4">
                   <ul>
-                    <li>
-                      <div className="order-box-wrap">
-                        <Link to="" className="img-box">
-                          <img
-                            src={require("../../../media/gallery/shop.jpg")}
-                            alt="album thumb"
-                          />
-                        </Link>
-                        <div className="right justify-content-between">
-                          <div className="sections">
-                            <div className="title">Guns N Roses</div>
-                            <div className="quantity">
-                              QTY: <span>2</span>
+                    {cartflag && cartItems.map(item => {
+                      return (
+                        <li key={item.id}>
+                          <div className="order-box-wrap">
+                            <Link to="" className="img-box">
+                            <img src={image_url + item.files[0].image} alt="album thumb"/>
+                            </Link>
+                            <div className="right justify-content-between">
+                              <div className="sections">
+                                <div className="title">{item.title}</div>
+                                <div className="quantity">
+                                  QTY: <span>{item.quantity}</span>
+                                </div>
+                              </div>
+                              <div className="sections">
+                                <div className="price">{item.price} AED</div>
+                              </div>
                             </div>
                           </div>
-                          <div className="sections">
-                            <div className="price">100 AED</div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="order-box-wrap">
-                        <Link to="" className="img-box">
-                          <img
-                            src={require("../../../media/gallery/shop.jpg")}
-                            alt="album thumb"
-                          />
-                        </Link>
-                        <div className="right justify-content-between">
-                          <div className="sections">
-                            <div className="title">Guns N Roses</div>
-                            <div className="quantity">
-                              QTY: <span>2</span>
-                            </div>
-                          </div>
-                          <div className="sections">
-                            <div className="price">100 AED</div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
+                        </li>);
+                    })}
                   </ul>
                   <div className="full-wrap checkout-block mt-4">
                     <div className="total-block mt-4 text-right">
                       <span className="mb-1">Total (Incl. of Vat)</span>
-                      421.00 AED
+                      {totalcost} AED
                     </div>
                   </div>
+
                 </div>
               </div>
             </div>
@@ -229,4 +227,25 @@ class storeCheckOut extends Component {
   }
 }
 
-export default storeCheckOut;
+
+const mapDispatchToProps = dispatch => {
+  // call action functions
+  return {
+    getfromcart: () => dispatch(actionCreators.getfromcart()),
+
+  };
+};
+
+const mapStateToProps = state => {
+  return {
+    cartitems: state.cartitems.items,
+    // in this state list is array name as stored  API  from defined in eventListReducer
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(storeCheckOut);
+
+

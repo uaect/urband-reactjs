@@ -12,32 +12,38 @@ import * as actionCreators from "../../../../src/store/actions";
 library.add(faCartPlus);
 
 class ShopDetail extends Component {
+
   constructor(props) {
     super(props);
     this.state = { showText: false };
+    this.state = { addcartflag: false };
     this.handleClick = this.handleClick.bind(this);
   }
   componentDidMount() {
     let storeid = this.props.location.pathname.split("/").pop();
     this.props.fetchStoreDetails(storeid);
+
+
   }
   handleClick(id) {
-    console.log("ttttt", id);
-
-    this.props.addtocart(id);
+    this.props.addtocart(id)
+    this.setState({addcartflag: true});
   }
 
   render() {
     var image_url = "https://admin.urbandmusic.com/storage/";
     var images = [];
     const storedetails = this.props.storedetails;
-    console.log("ttttt", storedetails);
+    if (this.state.addcartflag && this.props.addcart.success)
+      alert("item added to cart")
     if (storedetails.files) {
       for (var i = 0; i < storedetails.files.length; i++) {
         var image = [
           {
-            original: image_url + storedetails.files[i].image,
-            thumbnail: image_url + storedetails.files[i].image
+            original:
+              image_url + storedetails.files[i].image,
+            thumbnail:
+              image_url + storedetails.files[i].image
           }
         ];
         if (images[0]) {
@@ -61,9 +67,8 @@ class ShopDetail extends Component {
         ) : (
           ""
         )}
-        {storedetails ? (
           <section className="single-product">
-            <div className="tim-container">
+            <div className="container">
               <div className="single-product-wrapper">
                 <div className="row">
                   <div className="col-md-5 col-sm-6 detail-left">
@@ -97,21 +102,7 @@ class ShopDetail extends Component {
                       </p>
 
                       <div className="product-cart">
-                        <div className="quantity-input">
-                          <button className="quantity-input__modifier quantity-input__modifier--left">
-                            —
-                          </button>
-                          <input
-                            type="text"
-                            className="quantity-input__screen"
-                            value="0"
-                            defaultValue="0"
-                            onChange={this.handleChange}
-                          />
-                          <button className="quantity-input__modifier quantity-input__modifier--right">
-                            ＋
-                          </button>
-                        </div>
+                        
 
                         <button
                           type="submit"
@@ -137,9 +128,7 @@ class ShopDetail extends Component {
               </div>
             </div>
           </section>
-        ) : (
-          ""
-        )}
+        ) 
       </div>
     );
   }

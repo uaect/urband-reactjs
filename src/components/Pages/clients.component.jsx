@@ -48,7 +48,7 @@ class Clients extends Component {
           <div>
             {data ? (
               <section className="header-padd">
-                  <div className="tim-container">
+                  <div className="container">
                     <div className="row">
                       <div className="text-center page-head">
                         What our clients say

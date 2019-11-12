@@ -16,7 +16,7 @@ class ShopHome extends Component {
       <div>
         <BannerHero title="Store Home" />
         <section className="shop header-padd">
-          <div className="tim-container">
+          <div className="container">
             <div className="row">
               <div className="col-xl-3 col-lg-4 col-md-4">
                 <aside className="widget widget-shop widget_price">

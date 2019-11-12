@@ -2,14 +2,14 @@ import React, { Component } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
-  faUserAlt
+  faUserAlt,faCartPlus
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../header/header.component.css";
 import Logo from "../../assets/img/logo_5.png";
 import BurgerMenu from "../header/burgerMenu.component";
 
-library.add(faUserAlt);
+library.add(faUserAlt,faCartPlus);
 
 class Header extends Component {
   render() {
@@ -129,7 +129,7 @@ class Header extends Component {
                     <Link to="/cart">
                         <span>Cart</span> 
                         <FontAwesomeIcon
-                                    icon={faUserAlt}
+                                    icon={faCartPlus}
                                     className="ico-user"
                                   />
                     </Link>

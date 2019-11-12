@@ -61,7 +61,7 @@
     vertical-align: top;
     width: 100%;
     text-align: center;
-    /* margin-bottom: 30px; */
+    margin-bottom: 30px;
   }
   .store-products .product .thumb-box{
     height:281px;
@@ -754,7 +754,7 @@
   
   .single-product-details .woocommerce-product-details__short-description {
     margin-bottom: 30px;
-    margin-top: 3em;
+    margin-top: 1.8em;
   }
   
   .quantity-input {
@@ -1144,6 +1144,9 @@
   background-color: #757575;
   border: 1px solid #757575;
   color: #FFF;
+}
+.price-range {
+  max-width: 254px;
 }
 .price-range .field-control {
   padding: .475em;

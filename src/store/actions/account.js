@@ -1,10 +1,15 @@
 
 import {REGISTER,LOGIN} from "./types";
 
-export const register = () => {
+export const register = (params) => {
     return dispatch => {
         const body = {
-            page: 1
+            email: params.email,
+            password:params.password,
+            c_password:params.confirmpassword,
+            name:params.firstname,
+            lastname:params.lastname
+
         };
         fetch("https://admin.urbandmusic.com/api/register", {
             method: "POST",
@@ -22,10 +27,11 @@ export const register = () => {
     };
 };
 
-export const login = () => {
+export const login = (params) => {
     return dispatch => {
         const body = {
-            page: 1
+            email: params.email,
+            password:params.password
         };
         fetch("https://admin.urbandmusic.com/api/login", {
             method: "POST",
