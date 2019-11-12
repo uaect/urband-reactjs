@@ -18,7 +18,7 @@ import cartReducer from './cartReducer';
 import addtocartReducer from './addtocartReducer';
 import loginReducer from './loginReducer';
 import deletecartReducer from './deletecartReducer';
-
+import eventTicketReducer from './eventTicketReducer';
 
 export default combineReducers({
     posts: postReducer, // choose any name
@@ -39,6 +39,7 @@ export default combineReducers({
     addtocart: addtocartReducer,
     cartitems: cartReducer,
     login:loginReducer,
-    deletecart:deletecartReducer
+    deletecart:deletecartReducer,
+    ticketlist:eventTicketReducer
 
 })

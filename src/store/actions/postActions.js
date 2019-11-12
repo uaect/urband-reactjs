@@ -1,4 +1,4 @@
-import { FETCH_POSTS, FETCH_CONTACT, FETCH_CLIENTS, FETCH_CLIENTSLIST, FETCH_EVENTLIST, FETCH_EVENTDETAIL } from "./types";
+import { FETCH_EVENTTICKET,FETCH_POSTS, FETCH_CONTACT, FETCH_CLIENTS, FETCH_CLIENTSLIST, FETCH_EVENTLIST, FETCH_EVENTDETAIL } from "./types";
 
 export const fetchPosts = () => {
     return dispatch => {
@@ -24,12 +24,12 @@ export const fetchPosts = () => {
 
 export const fetchContact = () => {
     return dispatch => {
-      
+
         fetch("https://admin.urbandmusic.com/api/aboutus", {
             method: "POST"
         })
             .then(res => res.json())
-            .then(res =>  {
+            .then(res => {
                 dispatch({
                     type: FETCH_CONTACT,
                     value: res.result
@@ -112,7 +112,29 @@ export const fetchEvent = () => {
     };
 };
 
-export const fetchEventDetail = (id) => {
+export const fetchEventDetail = (page) => {
+    return dispatch => {
+        const body = {
+            "page": page
+        };
+
+        fetch("https://admin.urbandmusic.com/api/ticketevents", {
+            method: "POST",
+            body: JSON.stringify(body)
+        })
+            .then(res => res.json())
+            .then(res => {
+                dispatch({
+                    type: FETCH_EVENTDETAIL,
+                    value: res
+                });
+            })
+            .catch(error => {
+                //console.log("error" + JSON.stringify(error));
+            });
+    };
+};
+export const fetcheventtickets = (id) => {
     return dispatch => {
         const body = {
             "eventid": id
@@ -125,7 +147,7 @@ export const fetchEventDetail = (id) => {
             .then(res => res.json())
             .then(res => {
                 dispatch({
-                    type: FETCH_EVENTDETAIL,
+                    type: FETCH_EVENTTICKET,
                     value: res
                 });
             })

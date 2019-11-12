@@ -12,19 +12,24 @@ class cart extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      incrementquantity: 0,
-      decrementquantity: 0,
       cartData: [],
       removeflag: false
     }
     this.handleClick = this.handleClick.bind(this);
+    this.incrementQuantity = this.incrementQuantity.bind(this);
+    this.decrementQuantity = this.decrementQuantity.bind(this);
+  }
+  decrementQuantity(item){
+    console.log("quantity", item.quantity);
   }
   handleClick(item) {
     this.props.deletecart(item.product_id);
     this.setState({ removeflag: true });
     this.cartItems = []
   }
-
+  incrementQuantity(item) {
+    console.log("quantity", item);
+  }
   componentDidMount() {
     this.props.getfromcart();
   }
@@ -84,7 +89,7 @@ class cart extends Component {
                   </div>
                   <div className="col-sm-2 d-flex price-name-line">
                     <div className="quantity-input">
-                      <button className="quantity-input__modifier quantity-input__modifier--left">
+                      <button disabled={item.quantity==1} className="quantity-input__modifier quantity-input__modifier--left" onClick={() => this.decrementQuantity(item)}>
                         —
                   </button>
                       <input
@@ -92,9 +97,8 @@ class cart extends Component {
                         className="quantity-input__screen"
                         value={item.quantity}
                         defaultValue="0"
-
                       />
-                      <button className="quantity-input__modifier quantity-input__modifier--right">
+                      <button className="quantity-input__modifier quantity-input__modifier--right" onClick={() => this.incrementQuantity(item)}>
                         ＋
                   </button>
                     </div>

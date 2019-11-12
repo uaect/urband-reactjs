@@ -17,4 +17,6 @@ export const LOGIN = 'LOGIN';
 export const ADD_CART = 'ADD_CART';
 export const GET_CART = 'GET_CART';
 export const DELETE_CART = 'DELETE_CART';
+export const FETCH_EVENTTICKET = 'FETCH_EVENTTICKET';
+
 
