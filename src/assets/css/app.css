@@ -1952,12 +1952,19 @@ h6 {
   background: transparent;
 }
 
-
-@media (max-width: 1440px) {
-  #header-menu-magic-line li {
-    margin: 0 14px;
+@media (max-width: 1250px) {
+ 
+  #header-menu-magic-line li a {
+    font-size: 15px;
   }
+  #header-menu-magic-line li {
+    margin: 0 9px;
 }
+#header-menu-magic-line li {
+  font-size: 15px;
+}
+}
+
 
 @media (max-width: 1199px) {
   #header-menu-magic-line>li::before {
@@ -1968,13 +1975,9 @@ h6 {
     bottom: 28px;
   }
 
-  #header-menu-magic-line li {
-    padding: 0;
-    margin: 0;
-  }
 
   #header-menu-magic-line li a {
-    font-size: 15px;
+    font-size: 14px;
 
   }
 

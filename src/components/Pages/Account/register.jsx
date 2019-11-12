@@ -10,9 +10,9 @@ class register extends Component {
               <div className="row">
                 <div className="col-md-5 mx-auto hero-acct-wrap">
                   <div className="user-content">
-                    <div class="mb-7">
-                      <h2 class="account-head mb-0">CREATE AN ACCOUNT</h2>
-                      <p class="sec-txt">Let'us start</p>
+                    <div className="mb-7">
+                      <h2 className="account-head mb-0">CREATE AN ACCOUNT</h2>
+                      <p className="sec-txt">Let'us start</p>
                     </div>
 
                     <form className="mt-5">
