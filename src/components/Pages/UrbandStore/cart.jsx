@@ -12,17 +12,18 @@ class cart extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      incrementquantity:0,
-      decrementquantity:0
+      incrementquantity: 0,
+      decrementquantity: 0,
+      cartData: [],
+      removeflag: false
     }
     this.handleClick = this.handleClick.bind(this);
-}
-handleClick(item) {
-  this.setState({ incrementquantity: item+1 });
-  console.log("iiiiii", item);
-  
-  this.props.deletecart(item.product_id);
-}
+  }
+  handleClick(item) {
+    this.props.deletecart(item.product_id);
+    this.setState({ removeflag: true });
+    this.cartItems = []
+  }
 
   componentDidMount() {
     this.props.getfromcart();
@@ -30,17 +31,19 @@ handleClick(item) {
 
   render() {
     const image_url = "https://admin.urbandmusic.com/storage/";
-    const cartItems = this.props.cartitems;
-    if(cartItems){
-      var totalcost = 0;
-      for (let i = 0; i < cartItems.length; i++) {
-        if(cartItems[i].price){
-        totalcost = totalcost + (parseFloat(cartItems[i].price)*(parseInt(cartItems[i].quantity)));
-      }
+    var cartItems = this.props.cartitems;
+    if (this.state.removeflag && this.props.delete.success) {
+      alert("item deleted from cart")
     }
-  }
-  
-
+    var totalcost = 0;
+    if (cartItems !== "emtey cart") {
+      var cartflag = true;
+      for (let i = 0; i < cartItems.length; i++) {
+        if (cartItems[i].price) {
+          totalcost = totalcost + (parseFloat(cartItems[i].price) * (parseInt(cartItems[i].quantity)));
+        }
+      }
+    } else var cartflag = false;
 
     return (
       <div>
@@ -52,55 +55,55 @@ handleClick(item) {
               </Link>
               <h2>Cart</h2>
             </div>
-            {cartItems && cartItems.map(item => {
+            {cartflag && cartItems.map(item => {
               return (
-            <div className="row cart-item" key={item.id}>
-              <div className="col-sm-6 d-flex">
-                <div className="cart-image">
-                  <Link to="">
-                    {" "}
-                    <img className="fit-it store-img" src={image_url + item.files[0].image}  alt="album thumb"
-                      className="fit-it" />
-                  
-                  </Link>
-                </div>
-                <div className="cart-description">
-                  <h2>{item.title}</h2>
-                  <div className="style-fullwidth">
-                    <div className="short-desc">Size: S</div>
-                    <div className="short-desc">Color: Black</div>
-                    <div className="short-desc">Qunatity: {item.quantity}</div>
-                    <div className="short-desc">Price: AED {item.price}</div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-sm-2 d-flex price-name-line">
-                <div className="product-price">
-                  <span>AED {item.price}</span>
-                </div>
-              </div>
-              <div className="col-sm-2 d-flex price-name-line">
-                <div className="quantity-input">
-                  <button className="quantity-input__modifier quantity-input__modifier--left">
-                    —
-                  </button>
-                  <input
-                    type="text"
-                    className="quantity-input__screen"
-                    value={item.quantity}
-                    defaultValue="0"
-                  
-                  />
-                  <button className="quantity-input__modifier quantity-input__modifier--right">
-                    ＋
-                  </button>
-                </div>
-              </div>
+                <div className="row cart-item" key={item.id}>
+                  <div className="col-sm-6 d-flex">
+                    <div className="cart-image">
+                      <Link to="">
+                        {" "}
+                        <img className="fit-it store-img" src={image_url + item.files[0].image} alt="album thumb"
+                          className="fit-it" />
 
-              <div class="col-sm-2 d-flex price-name-line delet-line">
-                <FontAwesomeIcon icon={faTimes} className="remove" onClick={() => this.handleClick(item)}/>
-              </div>
-            </div>);
+                      </Link>
+                    </div>
+                    <div className="cart-description">
+                      <h2>{item.title}</h2>
+                      <div className="style-fullwidth">
+                        <div className="short-desc">Size: S</div>
+                        <div className="short-desc">Color: Black</div>
+                        <div className="short-desc">Qunatity: {item.quantity}</div>
+                        <div className="short-desc">Price: AED {item.price}</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-sm-2 d-flex price-name-line">
+                    <div className="product-price">
+                      <span>AED {item.price}</span>
+                    </div>
+                  </div>
+                  <div className="col-sm-2 d-flex price-name-line">
+                    <div className="quantity-input">
+                      <button className="quantity-input__modifier quantity-input__modifier--left">
+                        —
+                  </button>
+                      <input
+                        type="text"
+                        className="quantity-input__screen"
+                        value={item.quantity}
+                        defaultValue="0"
+
+                      />
+                      <button className="quantity-input__modifier quantity-input__modifier--right">
+                        ＋
+                  </button>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-2 d-flex price-name-line delet-line">
+                    <FontAwesomeIcon icon={faTimes} className="remove" onClick={() => this.handleClick(item)} />
+                  </div>
+                </div>);
             })}
 
             <div className="cart-total right-push">
@@ -132,7 +135,7 @@ const mapDispatchToProps = dispatch => {
   return {
     getfromcart: () => dispatch(actionCreators.getfromcart()),
     deletecart: (id) => dispatch(actionCreators.deletecart(id))
-    
+
   };
 };
 

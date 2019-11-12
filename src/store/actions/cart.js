@@ -53,7 +53,7 @@ export const deletecart = (id) => {
     return dispatch => {
         const body = {
             token:1,
-            cartid:id
+            productid:id
         };
         fetch("https://admin.urbandmusic.com/api/removecart", {
             method: "POST",
