@@ -563,14 +563,22 @@
     font-size: 16px;
   }
   
-  .tim-btn.go-cart {
-    padding: 4px 15px;
-    border: 2px solid #000;
-    font-size: 16px;
+  .product-cart .tim-cart-btn {
+    background: #f60038;
+    padding: 5px 17px;
+    color: #fff;
+    border-radius: 4px;
+    -webkit-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+    font-size: 18px;
+    font-weight: 500;
+    border: 0;
+    font-family: Changa,sans-serif;
+    cursor: pointer;
   }
   
   .product-cart .tim-cart-btn .cart-icon {
-    margin-right: 5px;
+    margin-right: 9px;
   }
   
   .product-cart .tim-cart-btn:hover {
