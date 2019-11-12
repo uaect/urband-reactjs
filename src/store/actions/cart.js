@@ -23,9 +23,13 @@ export const addtocart = (id) => {
     };
 };
 
+
+
 export const getfromcart = () => {
     return dispatch => {
         const body = {
+            userid:1,
+            quantity:1,
             token: 1
         };
         fetch("https://admin.urbandmusic.com/api/getcart", {
@@ -34,21 +38,24 @@ export const getfromcart = () => {
         })
             .then(res => res.json())
             .then(res => {
+                console.log("iiiiiiii", res.result);
                 dispatch({
                     type: GET_CART,
-                    value: res
+                    value: res.result
                 });
             })
             .catch(error => {
             });
     };
 };
-export const deletecart = () => {
+
+export const deletecart = (id) => {
     return dispatch => {
         const body = {
-            page: 1
+            token:1,
+            cartid:id
         };
-        fetch("https://admin.urbandmusic.com/api/login", {
+        fetch("https://admin.urbandmusic.com/api/removecart", {
             method: "POST",
             body: JSON.stringify(body)
         })

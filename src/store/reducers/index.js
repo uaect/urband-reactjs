@@ -1,4 +1,4 @@
-import {combineReducers} from 'redux'; 
+import { combineReducers } from 'redux';
 import postReducer from './postReducer'; // here postReducer is like State includes return some objects 
 import clientReducer from './clientReducer';
 import clientsListReducer from './clientsListReducer';
@@ -14,26 +14,31 @@ import storeListReducer from './storeListReducer';
 import storeDetailsReducer from './storeDetailsReducer';
 import storeCategoryReducer from './storeCategoryReducer';
 import registerReducer from './registerReducer';
-import getcartReducer from './getcartReducer';
+import cartReducer from './cartReducer';
 import addtocartReducer from './addtocartReducer';
+import loginReducer from './loginReducer';
+import deletecartReducer from './deletecartReducer';
+
 
 export default combineReducers({
     posts: postReducer, // choose any name
     clients: clientReducer,
     clientslist: clientsListReducer,
     events: eventListReducer,
-    albums:albumReducer,
-    albumdetails:albumdetailsReducer,
-    banners:BannerReducer,
-    whoweare:whoWeAreReducer,
-    gallerypics:gallerypics,
-    contact:contactReducer,
-    eventdetails:eventDetailReducer,
-    storelist:storeListReducer,
-    storedetails:storeDetailsReducer,
-    storecategory:storeCategoryReducer,
-    register:registerReducer,
-    cart:getcartReducer,
-    addtocart:addtocartReducer
+    albums: albumReducer,
+    albumdetails: albumdetailsReducer,
+    banners: BannerReducer,
+    whoweare: whoWeAreReducer,
+    gallerypics: gallerypics,
+    contact: contactReducer,
+    eventdetails: eventDetailReducer,
+    storelist: storeListReducer,
+    storedetails: storeDetailsReducer,
+    storecategory: storeCategoryReducer,
+    register: registerReducer,
+    addtocart: addtocartReducer,
+    cartitems: cartReducer,
+    login:loginReducer,
+    deletecart:deletecartReducer
 
 })

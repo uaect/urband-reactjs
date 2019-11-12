@@ -9,18 +9,39 @@ import * as actionCreators from "../../../../src/store/actions/";
 library.add(faTimes, faArrowLeft);
 
 class cart extends Component {
-  
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state = { showText: false};
-  }
+    this.state = {
+      incrementquantity:0,
+      decrementquantity:0
+    }
+    this.handleClick = this.handleClick.bind(this);
+}
+handleClick(item) {
+  this.setState({ incrementquantity: item+1 });
+  console.log("iiiiii", item);
+  
+  this.props.deletecart(item.product_id);
+}
+
   componentDidMount() {
     this.props.getfromcart();
-    console.log("ttttt", this.props);
-    
   }
 
   render() {
+    const image_url = "https://admin.urbandmusic.com/storage/";
+    const cartItems = this.props.cartitems;
+    if(cartItems){
+      var totalcost = 0;
+      for (let i = 0; i < cartItems.length; i++) {
+        if(cartItems[i].price){
+        totalcost = totalcost + (parseFloat(cartItems[i].price)*(parseInt(cartItems[i].quantity)));
+      }
+    }
+  }
+  
+
+
     return (
       <div>
         <section className="header-padd cart-product mt-5">
@@ -31,31 +52,31 @@ class cart extends Component {
               </Link>
               <h2>Cart</h2>
             </div>
-            <div className="row cart-item">
+            {cartItems && cartItems.map(item => {
+              return (
+            <div className="row cart-item" key={item.id}>
               <div className="col-sm-6 d-flex">
                 <div className="cart-image">
                   <Link to="">
                     {" "}
-                    <img
-                      src={require("../../../media/gallery/shop.jpg")}
-                      alt="album thumb"
-                      className="fit-it"
-                    />
+                    <img className="fit-it store-img" src={image_url + item.files[0].image}  alt="album thumb"
+                      className="fit-it" />
+                  
                   </Link>
                 </div>
                 <div className="cart-description">
-                  <h2>Guns N Roses</h2>
+                  <h2>{item.title}</h2>
                   <div className="style-fullwidth">
                     <div className="short-desc">Size: S</div>
                     <div className="short-desc">Color: Black</div>
-                    <div className="short-desc">Qunatity: 1</div>
-                    <div className="short-desc">Price: AED 230</div>
+                    <div className="short-desc">Qunatity: {item.quantity}</div>
+                    <div className="short-desc">Price: AED {item.price}</div>
                   </div>
                 </div>
               </div>
               <div className="col-sm-2 d-flex price-name-line">
                 <div className="product-price">
-                  <span>AED 230</span>
+                  <span>AED {item.price}</span>
                 </div>
               </div>
               <div className="col-sm-2 d-flex price-name-line">
@@ -66,9 +87,9 @@ class cart extends Component {
                   <input
                     type="text"
                     className="quantity-input__screen"
-                    value="0"
+                    value={item.quantity}
                     defaultValue="0"
-                    onChange={this.handleChange}
+                  
                   />
                   <button className="quantity-input__modifier quantity-input__modifier--right">
                     ＋
@@ -77,59 +98,10 @@ class cart extends Component {
               </div>
 
               <div class="col-sm-2 d-flex price-name-line delet-line">
-                <FontAwesomeIcon icon={faTimes} className="remove" />
+                <FontAwesomeIcon icon={faTimes} className="remove" onClick={() => this.handleClick(item)}/>
               </div>
-            </div>
-
-            <div className="row cart-item">
-              <div className="col-sm-6 d-flex">
-                <div className="cart-image">
-                  <Link to="/">
-                    <img
-                      src={require("../../../media/gallery/shop2.png")}
-                      alt="album thumb"
-                      className="fit-it"
-                    />
-                  </Link>
-                </div>
-                <div className="cart-description">
-                  <h2>Guns N Roses</h2>
-                  <div className="style-fullwidth">
-                    <div className="short-desc">Size: S</div>
-                    <div className="short-desc">Color: Black</div>
-                    <div className="short-desc">Qunatity: 2</div>
-                    <div className="short-desc">Price: AED 100</div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-sm-2 d-flex price-name-line">
-                <div className="product-price">
-                  {/* <i>Total</i> */}
-                  <span>AED 200</span>
-                </div>
-              </div>
-              <div className="col-sm-2 d-flex price-name-line">
-                <div className="quantity-input">
-                  <button className="quantity-input__modifier quantity-input__modifier--left">
-                    —
-                  </button>
-                  <input
-                    type="text"
-                    className="quantity-input__screen"
-                    value="0"
-                    defaultValue="0"
-                    onChange={this.handleChange}
-                  />
-                  <button className="quantity-input__modifier quantity-input__modifier--right">
-                    ＋
-                  </button>
-                </div>
-              </div>
-
-              <div className="col-sm-2 d-flex price-name-line delet-line">
-                <FontAwesomeIcon icon={faTimes} className="remove" />
-              </div>
-            </div>
+            </div>);
+            })}
 
             <div className="cart-total right-push">
               {/* <div className="goback">
@@ -139,7 +111,7 @@ class cart extends Component {
                 </Link>
               </div> */}
               <div className="d-flex price align-items-center">
-                Total<span className="ml-2 mr-4">430 AED</span>
+                Total<span className="ml-2 mr-4">{totalcost} AED</span>
                 <Link
                   to="/checkout"
                   className="checkout-btn-big bg-red-hover tim-btn"
@@ -158,13 +130,16 @@ class cart extends Component {
 const mapDispatchToProps = dispatch => {
   // call action functions
   return {
-    getfromcart: () => dispatch(actionCreators.getfromcart())
+    getfromcart: () => dispatch(actionCreators.getfromcart()),
+    deletecart: (id) => dispatch(actionCreators.deletecart(id))
+    
   };
 };
 
 const mapStateToProps = state => {
   return {
-    cart: state.cart.items // in this state list is array name as stored  API  from defined in eventListReducer
+    cartitems: state.cartitems.items,
+    delete: state.deletecart.items // in this state list is array name as stored  API  from defined in eventListReducer
   };
 };
 

@@ -1,7 +1,25 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
+import { connect } from "react-redux";
+import * as actionCreators from "../../../../src/store/actions/";
 class logIn extends Component {
+  state = {
+    email:"",
+    password:""
+  }
+  handleChange = event => {
+    const isCheckbox = event.target.type === "checkbox";
+    this.setState({
+      [event.target.name]: isCheckbox ?
+      event.target.checked : event.target.value
+    })
+  }
+  handleSubmit = event => {
+    event.preventDefault();
+    console.log("this.state", this.state);
+    this.props.login(this.state);
+  }
   render() {
     return (
       <div>
@@ -15,18 +33,16 @@ class logIn extends Component {
                       <p className="sec-txt">Login to manage your account.</p>
                     </div>
 
-                    <form className="mt-5">
+                    <form onSubmit={this.handleSubmit} className="mt-5">
                       <div className="row">
                         <div className="col-md-12 mb-3">
                           <div className="form-group">
                             <input
-                              required=""
                               name="email"
-                              type="text"
-                              value=""
+                              value={this.state.email}
+                              onChange={this.handleChange}
                               title="Please enter your Email"
                               className="form-control field-control email"
-                              id="email"
                               placeholder="Email"
                             />
                           </div>
@@ -37,6 +53,8 @@ class logIn extends Component {
                               type="password"
                               className="form-control field-control password"
                               name="password"
+                              value={this.state.password}
+                              onChange={this.handleChange}
                               title="Please enter your Password"
                               placeholder="Password"
                             />
@@ -54,7 +72,7 @@ class logIn extends Component {
                           </p>
                         </div>
                         <div className="col-md-6">
-                          <button className="btn">Log In</button>
+                          <button className="btn" type="submit">Log In</button>
                         </div>
                       </div>
                     </form>
@@ -68,4 +86,23 @@ class logIn extends Component {
   }
 }
 
-export default logIn;
+
+const mapDispatchToProps = dispatch => {
+  // call action functions
+  return {
+    login: (state) => dispatch(actionCreators.login(state))
+  };
+};
+
+const mapStateToProps = state => {
+  return {
+    login: state.login.items // in this state list is array name as stored  API  from defined in eventListReducer
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(logIn);
+
+
