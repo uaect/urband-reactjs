@@ -81,14 +81,14 @@ class checkOut extends Component {
                     
                       <div className="payment-method">
                       <div className="payment-header d-flex align-items-center">
-                        <div class="custom-control custom-radio">
+                        <div className="custom-control custom-radio">
                           <input
                             type="radio"
                             id="Paypal"
                             name="customRadio"
-                            class="custom-control-input"
+                            className="custom-control-input"
                           />
-                          <label class="custom-control-label" for="Paypal">
+                          <label className="custom-control-label" htmlFor="Paypal">
                             PayPal
                           </label>
                         </div>
@@ -111,12 +111,11 @@ class checkOut extends Component {
                       <span className="mb-1">Total (Incl. of Vat)</span>
                       421.00 AED
                     </div>
-                    <button
-                      type="submit"
+                    <Link to="/ticket-summary"
                       className="tim-btn mt-4 ticket-btn-lg"
                     >
                       Pay Securly
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>

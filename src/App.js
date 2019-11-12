@@ -1,5 +1,4 @@
 import React , { Component } from 'react'
-// import ReactDOM from "react-dom";
 import { BrowserRouter as Router,Route, Switch} from 'react-router-dom'
 import { withRouter } from 'react-router';
 import { Provider } from 'react-redux';
@@ -26,9 +25,12 @@ import ShopHome from './components/Pages/UrbandStore/home.component'
 import ShopDetail from './components/Pages/UrbandStore/detail.component'
 import ShopCart from './components/Pages/UrbandStore/cart'
 import ShopCheckout from './components/Pages/UrbandStore/checkOut'
+///ticketBook
 import EventTickets from './components/Pages/TicketBook/eventTickets.jsx'
 import TicketDetail from './components/Pages/TicketBook/ticketDetail'
 import TicketCheckout from './components/Pages/TicketBook/checkOut'
+import TicketSummary from './components/Pages/TicketBook/ticketSummary'
+///ComingSoon
 import ComingSoon from './components/Pages/comingsoon.component'
 import './assets/intro/css/intro.css';
 import './assets/css/app.css';
@@ -80,6 +82,7 @@ class App extends Component{
                 <Route path={"/event-tickets"} component={ EventTickets} />
                 <Route path={"/ticket-detail"} component={ TicketDetail} />
                 <Route path={"/ticket-checkout"} component={ TicketCheckout} />
+                <Route path={"/ticket-summary"} component={ TicketSummary} />
                 <Route exact path="/login" component={LogIn} />
                 <Route exact path="/register" component={Register} />
               

@@ -54,7 +54,7 @@ class eventTickets extends Component {
                         </td>
                       </tr>
                       <tr>
-                        <td class="show-date">
+                        <td className="show-date">
                           <span className="date">25 Dec</span>
                           <span className="day">Wedbesday</span>
                         </td>

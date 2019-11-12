@@ -2,17 +2,35 @@ import React, { Component } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
-  faUserAlt
+  faUserAlt, faCartPlus
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../header/header.component.css";
 import Logo from "../../assets/img/logo_5.png";
 import BurgerMenu from "../header/burgerMenu.component";
 
-library.add(faUserAlt);
+library.add(faUserAlt, faCartPlus);
 
 class Header extends Component {
+  state = {
+    log: ""
+  }
+
+  gotologout = () => {
+    console.log("tttttttt");
+    localStorage.removeItem('urbandtoken');
+    // this.setState({ log: "Log Out" });
+ 
+
+  }
   render() {
+    var token = (localStorage.getItem('urbandtoken'))
+    console.log("headerpage", token)
+    if (!token) {
+      // this.setState({ log: "Log In" });
+    } else {
+      // this.setState({ log: "Log Out" });
+    }
     return (
       <div className="AppHeader">
         <header className="header header-magic-line headroom headroom--not-bottom headroom--pinned headroom--top">
@@ -117,24 +135,32 @@ class Header extends Component {
 
                 <ul className="d-inline-flex avathar-sec">
                   <li className="d-flex mr-4">
-                    <Link to="/login">
-                        <span>Log In</span> 
-                        <FontAwesomeIcon
-                                    icon={faUserAlt}
-                                    className="ico-user"
-                                  />
-                    </Link>
+                    {!token ? <Link to="/login">
+                      <span>Log In</span>
+                      <FontAwesomeIcon
+                        icon={faUserAlt}
+                        className="ico-user"
+                      />
+                    </Link> : ""}
+                    {token ? <Link onClick={this.gotologout}>
+                      <span>Log Out</span>
+                      <FontAwesomeIcon
+                        icon={faUserAlt}
+                        className="ico-user"
+                      />
+                    </Link> : ""}
+
                   </li>
                   <li className="d-flex">
                     <Link to="/cart">
-                        <span>Cart</span> 
-                        <FontAwesomeIcon
-                                    icon={faUserAlt}
-                                    className="ico-user"
-                                  />
+                      <span>Cart</span>
+                      <FontAwesomeIcon
+                        icon={faCartPlus}
+                        className="ico-user"
+                      />
                     </Link>
                   </li>
-                 
+
                 </ul>
               </div>
             </div>

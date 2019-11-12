@@ -47,8 +47,7 @@ class Clients extends Component {
         <div className="fullWrap">
           <div>
             {data ? (
-              <section>
-                <div className="page-padd">
+              <section className="header-padd">
                   <div className="container">
                     <div className="row">
                       <div className="text-center page-head">
@@ -103,7 +102,6 @@ class Clients extends Component {
                       </div>
                     </div>
                   </div>
-                </div>
               </section>
             ) : (
               <div>

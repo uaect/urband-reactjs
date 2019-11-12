@@ -21,6 +21,10 @@ class cart extends Component {
   }
   decrementQuantity(item){
     console.log("quantity", item.quantity);
+    // let data = (cartItems).map((item) => {
+    //   item.imageurl = this.imageUrl + item.image.file;
+    //   return item;
+    // });
   }
   handleClick(item) {
     this.props.deletecart(item.product_id);
@@ -109,6 +113,8 @@ class cart extends Component {
                   </div>
                 </div>);
             })}
+
+            
 
             <div className="cart-total right-push">
               {/* <div className="goback">
