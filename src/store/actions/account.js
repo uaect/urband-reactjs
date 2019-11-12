@@ -4,12 +4,10 @@ import {REGISTER,LOGIN} from "./types";
 export const register = (params) => {
     return dispatch => {
         const body = {
-            email: params.email,
-            password:params.password,
-            c_password:params.confirmpassword,
             name:params.firstname,
-            lastname:params.lastname
-
+            lastname:params.lastname,
+            email: params.email,
+            password:params.password
         };
         fetch("https://admin.urbandmusic.com/api/register", {
             method: "POST",
