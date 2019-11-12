@@ -13,6 +13,10 @@ import eventDetailReducer from './eventDetailReducer';
 import storeListReducer from './storeListReducer';
 import storeDetailsReducer from './storeDetailsReducer';
 import storeCategoryReducer from './storeCategoryReducer';
+import registerReducer from './registerReducer';
+import getcartReducer from './getcartReducer';
+import addtocartReducer from './addtocartReducer';
+
 export default combineReducers({
     posts: postReducer, // choose any name
     clients: clientReducer,
@@ -27,6 +31,9 @@ export default combineReducers({
     eventdetails:eventDetailReducer,
     storelist:storeListReducer,
     storedetails:storeDetailsReducer,
-    storecategory:storeCategoryReducer
+    storecategory:storeCategoryReducer,
+    register:registerReducer,
+    cart:getcartReducer,
+    addtocart:addtocartReducer
 
 })

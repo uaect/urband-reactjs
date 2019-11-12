@@ -3,26 +3,21 @@ import { Link } from "react-router-dom";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faTimes, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import BannerHero from "../../Banners/bannerHero";
+import { connect } from "react-redux";
+import * as actionCreators from "../../../../src/store/actions/";
 library.add(faTimes, faArrowLeft);
 
 class cart extends Component {
-
-  constructor(props) {
+  
+  constructor(props){
     super(props);
-    this.state = {value: ''};
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.state = { showText: false};
   }
-
-  handleChange(event) {
-    this.setState({value: event.target.value});
-  }
-
-  handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
-    event.preventDefault();
+  componentDidMount() {
+    this.props.getfromcart();
+    console.log("ttttt", this.props);
+    
   }
 
   render() {
@@ -113,4 +108,21 @@ class cart extends Component {
   }
 }
 
-export default cart;
+const mapDispatchToProps = dispatch => {
+  // call action functions
+  return {
+    getfromcart: () => dispatch(actionCreators.getfromcart())
+  };
+};
+
+const mapStateToProps = state => {
+  return {
+    cart: state.cart.items // in this state list is array name as stored  API  from defined in eventListReducer
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(cart);
+

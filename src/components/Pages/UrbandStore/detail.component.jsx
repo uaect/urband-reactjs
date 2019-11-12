@@ -12,16 +12,30 @@ import * as actionCreators from "../../../../src/store/actions";
 library.add(faCartPlus);
 
 class ShopDetail extends Component {
+ 
+    constructor(props){
+      super(props);
+      this.state = { showText: false};
+      this.handleClick = this.handleClick.bind(this);
+    }
   componentDidMount() {
     let storeid = this.props.location.pathname.split('/').pop();
     this.props.fetchStoreDetails(storeid);
+   
+   
+  }
+  handleClick(id) {
+    console.log("ttttt", id);
+    
+    this.props.addtocart(id)
+    
   }
 
   render() {
     var image_url = "https://admin.urbandmusic.com/storage/";
     var images=[];
     const storedetails = this.props.storedetails;
-   
+    console.log("ttttt",  storedetails);
     if(storedetails.files){
      
       
@@ -120,7 +134,7 @@ class ShopDetail extends Component {
                           name="add-to-cart"
                           value="0"
                           className="tim-cart-btn"
-                        >
+                          onClick={() => this.handleClick(storedetails.id)} >
                           <FontAwesomeIcon
                             icon={faCartPlus}
                             className="cart-icon"
@@ -158,12 +172,14 @@ const mapDispatchToProps = dispatch => {
   // call action functions
   return {
     fetchStoreDetails: (storeid) => dispatch(actionCreators.fetchStoreDetails(storeid)),
+    addtocart: (storeid) => dispatch(actionCreators.addtocart(storeid)),
   };
 };
 
 const mapStateToProps = state => {
   return {
-    storedetails: state.storedetails.items
+    storedetails: state.storedetails.items,
+    addcart:state.addtocart.items
   };
 };
 
