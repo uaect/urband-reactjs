@@ -108,7 +108,7 @@ class ShopDetail extends Component {
                           type="submit"
                           name="add-to-cart"
                           value="0"
-                          className="tim-btn go-cart"
+                          className="tim-cart-btn"
                           onClick={() => this.handleClick(storedetails.id)}
                         >
                           <FontAwesomeIcon
