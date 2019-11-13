@@ -1,13 +1,13 @@
 
-import {REGISTER,LOGIN} from "./types";
+import { REGISTER, LOGIN } from "./types";
 
 export const register = (params) => {
     return dispatch => {
         const body = {
-            name:params.firstname,
-            lastname:params.lastname,
+            name: params.firstname,
+            lastname: params.lastname,
             email: params.email,
-            password:params.password
+            password: params.password
         };
         fetch("https://admin.urbandmusic.com/api/register", {
             method: "POST",
@@ -28,30 +28,30 @@ export const register = (params) => {
 export const login = (params) => {
     return dispatch => {
         return new Promise((resolve, reject) => {
-        const body = {
-            email: params.email,
-            password:params.password
-        };
-        fetch("https://admin.urbandmusic.com/api/login", {
-            method: "POST",
-            body: JSON.stringify(body)
-        })
-            .then(res => res.json())
-            .then(res => {
-                if(res.success){
-                    localStorage.setItem('urbandtoken', JSON.stringify(res.token));
-                    dispatch({
-                        type: LOGIN,
-                        value: res
-                    });
-                    resolve()
-                }else{
-                    reject(res)
-                }
+            const body = {
+                email: params.email,
+                password: params.password
+            };
+            fetch("https://admin.urbandmusic.com/api/login", {
+                method: "POST",
+                body: JSON.stringify(body)
             })
-            .catch(error => {
-                reject(error)
-            });
+                .then(res => res.json())
+                .then(res => {
+                    if (res.success) {
+                        localStorage.setItem('urbandtoken', JSON.stringify(res.token));
+                        dispatch({
+                            type: LOGIN,
+                            value: res
+                        });
+                        resolve()
+                    } else {
+                        reject(res)
+                    }
+                })
+                .catch(error => {
+                    reject(error)
+                });
         })
     };
 };

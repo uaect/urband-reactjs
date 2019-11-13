@@ -27,36 +27,17 @@ class logIn extends Component {
     })
   }
 
-  handleSubmit = event => {
-    // event.preventDefault();
-    // if (this.state.password.length < 1) {
-    //   this.setState({
-    //     errpassword: 'Please enter password'
-    //   })
-    // } else if (this.state.email.length < 1) {
-    //   this.setState({
-    //     erremail: 'Please enter email'
-    //   })
-    // } else if (new RegExp(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}/g).test(this.state.email)) {
-    //   this.props.login(this.state);
-    //   this.setState({ loginflag: true });
-    // } else {
-    //   this.setState({
-    //     erremail: 'Please enter valid email'
-    //   })
-    // }
-  }
-
   gotoLogin = () => {
-
     const { email, password } = this.state;
     let flag = 0;
-
     if (email.length < 1) {
       flag = 1;
       this.setState({
         erremail: 'Please enter email address'
       })
+    } else if (!new RegExp(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}/g).test(email)) {
+      flag = 1;
+      this.setState({ erremail: 'Please enter valid email address' });
     }
 
     if (password.length < 1) {
@@ -68,19 +49,19 @@ class logIn extends Component {
 
     if (flag == 0) {
       this.props.login(this.state)
-      .then(() => {
-        this.setState({
-          isToken:true
-        })
-        this.props.history.push('HomeStack');
-      })
-      .catch((error) => {
-        if(error.error == 'Unauthorised'){
+        .then(() => {
           this.setState({
-            errpassword: 'Invalid credential check username or passsord'
+            isToken: true
           })
-        }
-      })
+          this.props.history.push('HomeStack');
+        })
+        .catch((error) => {
+          if (error.error == 'Unauthorised') {
+            this.setState({
+              errpassword: 'Invalid credential check username or passsord'
+            })
+          }
+        })
     }
 
   }

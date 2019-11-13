@@ -37,7 +37,7 @@ class sliderHero extends React.Component {
           <Slider>
           {getbanner && getbanner.map(item => {
               return (
-            <Slide index={0}>
+            <Slide index={0} key={item.id}>
               <section className="banner-five" style={{ backgroundImage: `url(${image_url + item.image})` }}>
                 <div className="tim-container">
                   <div className="baneer-five-content">
@@ -46,8 +46,8 @@ class sliderHero extends React.Component {
                         <div className="sp-globe"></div>
                         <h2 className="frame-1">{item.title}</h2>
                         <h2 className="frame-2">{item.title}</h2>
-                        <h2 className="frame-2">{item.title}</h2>
-                        <h2 className="frame-2">{item.title}</h2>
+                        <h2 className="frame-3">{item.title}</h2>
+                        <h2 className="frame-4">{item.title}</h2>
                       </div>
                       <h3>{item.sub_title}</h3>
                       <a className="tim-slide-btn" href="index.html#">

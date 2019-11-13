@@ -20,8 +20,6 @@ class register extends Component {
   }
 
   gotoSignUp = () => {
-    console.warn("ommm");
-
     const { firstname, lastname, email, password } = this.state;
     let flag = 0;
 
@@ -44,6 +42,9 @@ class register extends Component {
       this.setState({
         errEmail: 'Please enter email'
       })
+    }else if (!new RegExp(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}/g).test(email)) {
+      flag = 1;
+      this.setState({ errEmail: 'Please enter valid email address' });
     }
     if (password.length < 1) {
       flag = 1;
