@@ -38,7 +38,6 @@ export const getfromcart = () => {
         })
             .then(res => res.json())
             .then(res => {
-                console.log("iiiiiiii", res.result);
                 dispatch({
                     type: GET_CART,
                     value: res.result
@@ -51,6 +50,7 @@ export const getfromcart = () => {
 
 export const deletecart = (id) => {
     return dispatch => {
+        return new Promise((resolve, reject) => {
         const body = {
             token:1,
             productid:id
@@ -61,12 +61,20 @@ export const deletecart = (id) => {
         })
             .then(res => res.json())
             .then(res => {
-                dispatch({
-                    type: DELETE_CART,
-                    value: res
-                });
+                if (res.success) {
+                    dispatch({
+                        type: GET_CART,
+                        value: res.result
+                    });
+                    resolve()
+                } else {
+                    reject(false)
+                }
             })
             .catch(error => {
+                reject(false)
             });
+        })
     };
+    
 };
