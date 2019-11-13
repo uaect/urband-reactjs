@@ -15,10 +15,11 @@ class cart extends Component {
       cartData: [],
       removeflag: false
     }
-    this.handleClick = this.handleClick.bind(this);
+    this.deleteItem = this.deleteItem.bind(this);
     this.incrementQuantity = this.incrementQuantity.bind(this);
     this.decrementQuantity = this.decrementQuantity.bind(this);
   }
+
   decrementQuantity(item){
     console.log("quantity", item.quantity);
     // let data = (cartItems).map((item) => {
@@ -26,14 +27,15 @@ class cart extends Component {
     //   return item;
     // });
   }
-  handleClick(item) {
-    this.props.deletecart(item.product_id);
-    this.setState({ removeflag: true });
-    this.cartItems = []
+
+  deleteItem(productid) {
+    this.props.deletecart(productid)
   }
+
   incrementQuantity(item) {
     console.log("quantity", item);
   }
+
   componentDidMount() {
     this.props.getfromcart();
   }
@@ -41,9 +43,8 @@ class cart extends Component {
   render() {
     const image_url = "https://admin.urbandmusic.com/storage/";
     var cartItems = this.props.cartitems;
-    if (this.state.removeflag && this.props.delete.success) {
-      alert("item deleted from cart")
-    }
+    console.log("qqqqqqqqq :",cartItems);
+    
     var totalcost = 0;
     if (cartItems !== "emtey cart") {
       var cartflag = true;
@@ -109,7 +110,7 @@ class cart extends Component {
                   </div>
 
                   <div class="col-sm-2 d-flex price-name-line delet-line">
-                    <FontAwesomeIcon icon={faTimes} className="remove" onClick={() => this.handleClick(item)} />
+                    <FontAwesomeIcon icon={faTimes} className="remove" onClick={() => this.deleteItem(item.product_id)} />
                   </div>
                 </div>);
             })}
@@ -151,8 +152,7 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
   return {
-    cartitems: state.cartitems.items,
-    delete: state.deletecart.items // in this state list is array name as stored  API  from defined in eventListReducer
+    cartitems: state.cartitems.items
   };
 };
 
