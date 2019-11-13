@@ -200,6 +200,7 @@ h6 {
   position: relative;
   min-height: 100vh;
   overflow: hidden;
+  margin-top: 82px;
 }
 .hero-conatiner{
   padding-bottom:653px;
@@ -1886,7 +1887,7 @@ h6 {
 
 
 .banner-five {
-  height: 750px;
+  height: 100%;
   background-position: center;
   background-size: cover;
   position: relative;
@@ -2802,9 +2803,9 @@ h6 {
     transform: rotate(35deg) scale(1.5);
   }
 
-  .banner-five {
+  /* .banner-five {
     height: 760px;
-  }
+  } */
 
   .paralax {
     top: 22%;
@@ -2838,9 +2839,9 @@ h6 {
     transform: rotate(35deg) scale(1.5);
   }
 
-  .banner-five {
+  /* .banner-five {
     height: 660px;
-  }
+  } */
 
   .banner-five .baneer-five-content h3 {
     font-size: 14px;
@@ -2866,9 +2867,9 @@ h6 {
     background-repeat: no-repeat;
   }
 
-  .banner-five {
+  /* .banner-five {
     height: 460px;
-  }
+  } */
 
   .sp-container {
     top: -28px;
