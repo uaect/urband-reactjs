@@ -11,10 +11,9 @@ export const fetchBanner = (id) => {
         })
             .then(res => res.json())
             .then(res => {
-                console.log("response", res.result);
-                
                 dispatch({
-                    type: FETCH_HOMEBANNER,
+                    
+                    type:FETCH_BANNER ,
                     value: res.result[0]   
                 });
             })
@@ -34,10 +33,8 @@ export const fetchHomeBanner = (id) => {
         })
             .then(res => res.json())
             .then(res => {
-                console.log("response", res.result);
-                
                 dispatch({
-                    type: FETCH_BANNER,
+                    type: FETCH_HOMEBANNER,
                     value: res.result  
                 });
             })

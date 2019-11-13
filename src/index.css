@@ -11,3 +11,87 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+.profileDashBoardBox {
+  padding: 10px 0px;
+  min-height: 80vh;
+  font-family: "Changa", sans-serif;
+}
+.ProfileBoardContent {
+}
+.DsplayFlexBoxTp1 {
+  display: flex;
+}
+.DsplayFlexBoxTp1 .LftBox {
+  flex: 0 0 250px;
+  width: 250px;
+}
+.DsplayFlexBoxTp1 .RgtBox {
+  flex: 1;
+}
+.lftPrfDesc1 {
+  background-color: transparent;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  border-bottom: 1px solid #e2e5f1;
+}
+.AddressBoxTp1 {
+  padding: 0px 20px;
+  border: 1px solid #ced4da;
+  border-radius: 3px;
+  height: 180px;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  margin-bottom: 25px;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+}
+.AddressBoxTp1:hover,
+.AddressBoxTp1.selectedBox {
+  border: 1px solid #f60038;
+  background: #f9f9f9;
+}
+.fullWidth {
+  width: 100%;
+}
+.AddressBoxTp1 .head {
+  font-size: 14px !important;
+  margin-bottom: 12px !important;
+}
+.AddressBoxTp1 .head img {
+  position: relative;
+  top: -3px;
+}
+.ItemListingStl1 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.ItemListingStl1 > div {
+  width: 50%;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.3;
+  margin-bottom: 10px;
+}
+.ItemListingStl1 .RghtBoxTp1 {
+  max-height: 33px;
+  overflow: hidden;
+}
+.BoldTp1 {
+  font-weight: 600 !important;
+}
+.ItemListingStl1 > div:first-child {
+  padding-right: 10px;
+}
+.AddNEwButtonBox {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.CancelBtnTp1 {
+  background: #121217 !important;
+}
