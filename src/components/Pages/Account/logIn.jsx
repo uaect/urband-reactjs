@@ -9,7 +9,8 @@ class logIn extends Component {
     password: "",
     erremail: "",
     errpassword: "",
-    loginflag:false
+    loginflag:false,
+    isToken:localStorage.getItem('urbandtoken')?true:false
   }
 
   handleChange = event => {
@@ -19,6 +20,7 @@ class logIn extends Component {
         event.target.checked : event.target.value
     })
   }
+  
   handleSubmit = event => {
     event.preventDefault();
     if (this.state.password.length < 1) {
@@ -40,15 +42,16 @@ class logIn extends Component {
   }
   render() {
     const log = this.props.log;
-    if(this.state.loginflag && !log.success){
-     alert("please enter valid details")
-    }else if(this.state.loginflag && log.success){
-      localStorage.setItem('urbandtoken', JSON.stringify(log.success));
-  
-    }
-  
-    var token = (localStorage.getItem('urbandtoken'))
-    console.log("gggggggg",token)
+    console.log("login: ",log.length);
+
+    // if(this.state.loginflag && !log.success){
+    //  alert("please enter valid details")
+    // }else if(this.state.loginflag && log.success){
+    //   localStorage.setItem('urbandtoken', JSON.stringify(log.success));
+    //   this.setState({ isToken: true });
+    //   this.props.history.push('HomePage');
+    // }
+    
     return (
      
       <div>
