@@ -13,17 +13,21 @@ library.add(faUserAlt, faCartPlus);
 
 class Header extends Component {
   state = {
-    isToken:localStorage.getItem('urbandtoken')?localStorage.getItem('urbandtoken'):false
+    isToken:localStorage.getItem('urbandtoken')?true:false
   }
 
   gotologout = () => {
     localStorage.removeItem('urbandtoken')
     this.setState({
-      isToken:localStorage.getItem('urbandtoken')?localStorage.getItem('urbandtoken'):false
+      isToken:localStorage.getItem('urbandtoken')?true:false
     })
   }
 
   render() {
+   const isToken = this.state.isToken;
+   console.log("header----  :",isToken);
+   
+
     return (
       <div className="AppHeader">
         <header className="header header-magic-line headroom headroom--not-bottom headroom--pinned headroom--top">
@@ -128,14 +132,14 @@ class Header extends Component {
 
                 <ul className="d-inline-flex avathar-sec">
                   <li className="d-flex mr-4">
-                    {!this.state.isToken ? <Link to="/login">
+                    {!isToken ? <Link to="/login">
                       <span>Log In</span>
                       <FontAwesomeIcon
                         icon={faUserAlt}
                         className="ico-user"
                       />
                     </Link> : ""}
-                    {this.state.isToken ? <Link onClick={this.gotologout}>
+                    {isToken ? <Link onClick={this.gotologout}>
                       <span>Log Out</span>
                       <FontAwesomeIcon
                         icon={faUserAlt}

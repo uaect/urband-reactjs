@@ -27,6 +27,7 @@ export const register = (params) => {
 
 export const login = (params) => {
     return dispatch => {
+        return new Promise((resolve, reject) => {
         const body = {
             email: params.email,
             password:params.password
@@ -37,14 +38,20 @@ export const login = (params) => {
         })
             .then(res => res.json())
             .then(res => {
-                console.log("rrrrrr", res);
-                
-                dispatch({
-                    type: LOGIN,
-                    value: res
-                });
+                if(res.success){
+                    localStorage.setItem('urbandtoken', JSON.stringify(res.token));
+                    dispatch({
+                        type: LOGIN,
+                        value: res
+                    });
+                    resolve()
+                }else{
+                    reject(res)
+                }
             })
             .catch(error => {
+                reject(error)
             });
+        })
     };
 };
