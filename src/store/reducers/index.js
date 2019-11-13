@@ -19,6 +19,7 @@ import addtocartReducer from './addtocartReducer';
 import loginReducer from './loginReducer';
 import deletecartReducer from './deletecartReducer';
 import eventTicketReducer from './eventTicketReducer';
+import homwBannerReducer from './homwBannerReducer';
 
 export default combineReducers({
     posts: postReducer, // choose any name
@@ -40,6 +41,7 @@ export default combineReducers({
     cartitems: cartReducer,
     login:loginReducer,
     deletecart:deletecartReducer,
-    ticketlist:eventTicketReducer
+    ticketlist:eventTicketReducer,
+    homebanner:homwBannerReducer
 
 })
