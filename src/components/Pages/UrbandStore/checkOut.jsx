@@ -12,7 +12,7 @@ class storeCheckOut extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      formActiveOrNot: true,
+      formActiveOrNot: this.props.formActiveOrNot,
       first_name: "",
       errfirstname: "",
       last_name: "",
@@ -29,35 +29,46 @@ class storeCheckOut extends Component {
       mobile: "",
       errmobile: "",
       type: "",
-      errtype: ""
-
+      errtype: "",
+      area: "",
+      errarea: "",
+      street: "",
+      errstreet: "",
+      emirate: "",
+      emiratearea: ""
     };
     this.ShowFormHadler = this.ShowFormHadler.bind(this);
     this.GobackToAddressHandler = this.GobackToAddressHandler.bind(this);
+    this.handleChangeemirates = this.handleChangeemirates.bind(this)
   }
 
   componentDidMount() {
     this.props.getfromcart();
     this.props.getaddress();
-    var getaddress = this.props.address;
-    if (!getaddress.length) {
-      this.setState({
-        formActiveOrNot: false
-      });
-    }
+    this.props.getemirates(1)
 
   }
 
 
   addaddress = (value) => {
-    console.log("stateeeeeeee", this.state, value.target.value);
-
-    const { first_name, last_name, location, city, appartment, address, mobile, type } = this.state;
+    const { first_name, last_name, appartment, address, mobile, type, area, street } = this.state;
     let flag = 0;
     if (first_name.length < 1) {
       flag = 1;
       this.setState({
         errfirstname: 'Please enter First name'
+      })
+    }
+    if (area.length < 1) {
+      flag = 1;
+      this.setState({
+        errfirstname: 'Please enter area name'
+      })
+    }
+    if (street.length < 1) {
+      flag = 1;
+      this.setState({
+        errfirstname: 'Please enter street name'
       })
     }
     if (type.length < 1) {
@@ -72,16 +83,10 @@ class storeCheckOut extends Component {
         errlastname: 'Please enter last name'
       })
     }
-    if (location.length < 1) {
+    if (this.state.emirate.length < 1) {
       flag = 1;
       this.setState({
-        errlocation: 'Please enter location name'
-      })
-    }
-    if (city.length < 1) {
-      flag = 1;
-      this.setState({
-        errcity: 'Please enter city name'
+        errlocation: 'Please enter location '
       })
     }
     if (appartment.length < 1) {
@@ -108,6 +113,7 @@ class storeCheckOut extends Component {
     }
   }
   ShowFormHadler() {
+    localStorage.removeItem('address');
     this.setState({
       formActiveOrNot: false
     });
@@ -115,6 +121,17 @@ class storeCheckOut extends Component {
   GobackToAddressHandler() {
     this.setState({
       formActiveOrNot: true
+    });
+  }
+  handleChangeemirates(event) {
+    this.setState({
+      emirate: event.target.value
+    });
+    this.props.getarea(event.target.value)
+  }
+  handleChangeemirates1(event) {
+    this.setState({
+      emiratearea: event.target.value
     });
   }
   handleChange(state, errState, evt) {
@@ -126,12 +143,16 @@ class storeCheckOut extends Component {
     this.setState({
       ..._state
     })
-    console.log("evy", this.state.location);
   }
   render() {
     const image_url = "https://admin.urbandmusic.com/storage/";
     var cartItems = this.props.cartitems;
+    var emirates = this.props.emirateslist;
+    var arealist = this.props.arealist;
+    var getaddress = this.props.address;
+    console.log("ttttttttttttttttt", getaddress);
 
+    var formActiveOrNot = localStorage.getItem('address');
     var totalcost = 0;
     if (cartItems !== "emtey cart") {
       var cartflag = true;
@@ -158,80 +179,49 @@ class storeCheckOut extends Component {
               <div className="col-md-6 checkout-block">
                 <div className="full-wrap">
                   <div className="head">SHIPPING ADDRESS</div>
-                  {this.state.formActiveOrNot === true ? (
+                  {formActiveOrNot || this.state.formActiveOrNot ? (
                     <div className="row mt-3">
-                      <div className="col-md-6">
-                        <div className="AddressBoxWrp fullWidth">
-                          <div className="AddressBoxTp1 selectedBox">
-                            <div className="head">
-                              <img src={SiteMapLogo} alt={SiteMapLogo} />
-                              <span className="ml-2">Work</span>
-                            </div>
-                            <div className="AddressBoxTp1Content">
-                              <div>
-                                <div className="ItemListingStl1">
-                                  <div>Name</div>
-                                  <div className="BoldTp1 RghtBoxTp1">
-                                    Ijas Np
-                                  </div>
+                      {getaddress ? getaddress.map(item => {
+                        return (
+
+                          <div className="col-md-6" key={item.id}>
+                            <div className="AddressBoxWrp fullWidth">
+                              <div className="AddressBoxTp1 selectedBox">
+                                <div className="head">
+                                  <img src={SiteMapLogo} alt={SiteMapLogo} />
+                                  <span className="ml-2">{item.type}</span>
                                 </div>
-                              </div>
-                              <div>
-                                <div className="ItemListingStl1">
-                                  <div>Address</div>
-                                  <div className="RghtBoxTp1">
-                                    Nechipparamban house, palippadi,pookkottur
+                                <div className="AddressBoxTp1Content">
+                                  <div>
+                                    <div className="ItemListingStl1">
+                                      <div>Name</div>
+                                      <div className="BoldTp1 RghtBoxTp1">
+                                        {item.first_name}
+                                      </div>
+                                    </div>
                                   </div>
-                                </div>
-                              </div>
-                              <div>
-                                <div className="ItemListingStl1">
-                                  <div>Phone</div>
-                                  <div className="RghtBoxTp1">
-                                    +971-525995503
+                                  <div>
+                                    <div className="ItemListingStl1">
+                                      <div>Address</div>
+                                      <div className="RghtBoxTp1">
+                                        {item.street},{item.area}
+                                      </div>
+                                    </div>
                                   </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-md-6">
-                        <div className="AddressBoxWrp fullWidth">
-                          <div className="AddressBoxTp1">
-                            <div className="head">
-                              <img src={SiteMapLogo} alt={SiteMapLogo} />
-                              <span className="ml-2">Work</span>
-                            </div>
-                            <div className="AddressBoxTp1Content">
-                              <div>
-                                <div className="ItemListingStl1">
-                                  <div>Name</div>
-                                  <div className="BoldTp1 RghtBoxTp1">
-                                    Ijas Np
-                                  </div>
-                                </div>
-                              </div>
-                              <div>
-                                <div className="ItemListingStl1">
-                                  <div>Address</div>
-                                  <div className="RghtBoxTp1">
-                                    Nechipparamban house, palippadi,pookkottur
-                                  </div>
-                                </div>
-                              </div>
-                              <div>
-                                <div className="ItemListingStl1">
-                                  <div>Phone</div>
-                                  <div className="RghtBoxTp1">
-                                    +971-525995503
+                                  <div>
+                                    <div className="ItemListingStl1">
+                                      <div>Phone</div>
+                                      <div className="RghtBoxTp1">
+                                        {item.mobile}
+                                      </div>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
                             </div>
                           </div>
-                        </div>
-                      </div>
+                        )
+                      }) : ""}
                       <div className="col-md-6">
                         <div className="AddressBoxWrp fullWidth">
                           <div
@@ -270,40 +260,62 @@ class storeCheckOut extends Component {
                             </div>
                           </div>
                           {this.state.errlastname && <div class="text-danger">{this.state.errlastname}</div>}
-                          <div className="col-md-6">
-                            <div className="form-group">
-                              <select
-                                title="Select Current Location"
-                                value={this.state.location}
-                                onChange={this.handleChange.bind(this, 'location', 'errlocation')}
-                              >
-                                <option value="">Select Location</option>
-                                <option value="Dubai" >Dubai</option>
-                                <option value="Sharjah">Sharjah</option>
-                                <option value="Abu Dhabi">Abu Dhabi</option>
-                                <option value="Ras Al Khaimah">Ras Al Khaimah</option>
-                                <option value="Fujairah">Fujairah</option>
-                                <option value="Ajman">Ajman</option>
-                                <option value="Umm Al Qawain">Umm Al Qawain</option>
-                                <option value="Al Ain">Al Ain</option>
-                              </select>
-                            </div>
-                          </div>
-                          {this.state.errlocation && <div class="text-danger">{this.state.errlocation}</div>}
-                          <div className="col-md-6">
-                            <div className="form-group">
-                              <select
 
-                                value={this.state.city}
-                                onChange={this.handleChange.bind(this, 'city', 'errcity')}
-                              >
-                                <option value="">Select City</option>
-                                <option value="54903">City centre</option>
-                                <option value="181636102">Al Barsha Dubai</option>
-                              </select>
+                          {emirates ?
+                            <div className="col-md-6">
+                              <div className="form-group">
+
+                                <select
+                                  onChange={this.handleChangeemirates.bind(this)}>
+                                  {emirates.map(value =>
+                                    <option key={value.id} value={value.id}>{value.location}</option>
+                                  )};
+
+
+                                </select>
+                              </div>
+                            </div> : ""}
+                          {this.state.emirate ?
+                            <div className="col-md-6">
+                              <div className="form-group">
+
+                                <select
+                                  onChange={this.handleChangeemirates1.bind(this)}>
+                                  {arealist.map(data =>
+                                    <option key={data.id} value={data.id}>{data.location}</option>
+                                  )};
+
+
+                                </select>
+                              </div>
+                            </div> : ""}
+
+                          <div className="col-md-12">
+                            <div className="form-group">
+                              <input
+                                type="text"
+                                className="form-control field-control"
+                                name=""
+                                placeholder="Area"
+                                value={this.state.area}
+                                onChange={this.handleChange.bind(this, 'area', 'errarea')}
+                              />
                             </div>
                           </div>
-                          {this.state.errcity && <div class="text-danger">{this.state.errcity}</div>}
+                          {this.state.errarea && <div class="text-danger">{this.state.errarea}</div>}
+                          <div className="col-md-12">
+                            <div className="form-group">
+                              <input
+                                type="text"
+                                className="form-control field-control"
+                                name=""
+                                placeholder="Street"
+                                value={this.state.street}
+                                onChange={this.handleChange.bind(this, 'street', 'errstreet')}
+                              />
+                            </div>
+                          </div>
+                          {this.state.errstreet && <div class="text-danger">{this.state.errstreet}</div>}
                           <div className="col-md-12">
                             <div className="form-group">
                               <input
@@ -317,13 +329,14 @@ class storeCheckOut extends Component {
                             </div>
                           </div>
                           {this.state.errappartment && <div class="text-danger">{this.state.errappartment}</div>}
+
                           <div className="col-md-12">
                             <div className="form-group">
                               <textarea
                                 className="form-control field-control"
                                 type="text"
                                 name="description[]"
-                                placeholder="Address"
+                                placeholder="Full Address"
                                 value={this.state.address}
                                 onChange={this.handleChange.bind(this, 'address', 'erraddress')}
                                 rows="3"
@@ -344,6 +357,9 @@ class storeCheckOut extends Component {
                             </div>
                           </div>
                           {this.state.errtype && <div class="text-danger">{this.state.errtype}</div>}
+
+
+
                           <div className="col-md-6">
                             <div className="form-group">
                               <input
@@ -493,14 +509,20 @@ const mapDispatchToProps = dispatch => {
   return {
     getfromcart: () => dispatch(actionCreators.getfromcart()),
     getaddress: () => dispatch(actionCreators.getaddress()),
+    getemirates: () => dispatch(actionCreators.getemirates()),
+    getarea: (id) => dispatch(actionCreators.getemirates1(id)),
     addaddress: (param) => dispatch(actionCreators.addaddress(param))
   };
 };
 
 const mapStateToProps = state => {
+
   return {
+
     cartitems: state.cartitems.items,
-    address: state.getaddress.address
+    address: state.getaddress.address,
+    emirateslist: state.emirateslist.emirates,
+    arealist: state.area.emirates
     // in this state list is array name as stored  API  from defined in eventListReducer
   };
 };

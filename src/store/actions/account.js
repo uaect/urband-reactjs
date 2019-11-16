@@ -1,5 +1,5 @@
 
-import { REGISTER, LOGIN, GETADDRESS,ADDADDRESS } from "./types";
+import { REGISTER, LOGIN, GETADDRESS,ADDADDRESS,GETEMIRATES,GETEMIRATES1 } from "./types";
 
 export const register = (params) => {
     return dispatch => {
@@ -57,7 +57,9 @@ export const login = (params) => {
 };
 
 export const getaddress = (params) => {
+    localStorage.removeItem('address');
     return dispatch => {
+        return new Promise((resolve, reject) => {
         const body = {
             "token": 1
         };
@@ -67,9 +69,66 @@ export const getaddress = (params) => {
         })
             .then(res => res.json())
             .then(res => {
+            
+               
+                if (res.result) {
+                    console.log("ttttt222222222222ttt", res.result[0]);
+                    
+                    localStorage.setItem('address', true);
+                    dispatch({
+                        type: GETADDRESS,
+                        value: res.result
+                    });
+                    resolve()
+                } else {
+                    reject(res)
+                }
+               
+                 
+                  
+            })
+            .catch(error => {
+            });
+        })
+    };
+};
+export const getemirates = (id) => {
+    return dispatch => {
+        const body = {
+            id:id
+        };
+        fetch("https://admin.urbandmusic.com/api/countries", {
+            method: "POST",
+            body: JSON.stringify(body)
+        })
+            .then(res => res.json())
+            .then(res => {
+               
                 dispatch({
-                    type: GETADDRESS,
-                    value: res
+                    type: GETEMIRATES,
+                    value: res.result
+                });
+            })
+            .catch(error => {
+            });
+    };
+};
+
+export const getemirates1 = (id) => {
+    return dispatch => {
+        const body = {
+            id:id
+        };
+        fetch("https://admin.urbandmusic.com/api/countries", {
+            method: "POST",
+            body: JSON.stringify(body)
+        })
+            .then(res => res.json())
+            .then(res => {
+               
+                dispatch({
+                    type: GETEMIRATES1,
+                    value: res.result
                 });
             })
             .catch(error => {
@@ -89,7 +148,9 @@ export const addaddress = (params) => {
             "emirate":"1",
            "address":params.address,
             "latitude":"1",
-            "longitude":"1"
+            "longitude":"1",
+            "area":params.area,
+            "street":params.street
         };
     
         fetch("https://admin.urbandmusic.com/api/addaddress", {
