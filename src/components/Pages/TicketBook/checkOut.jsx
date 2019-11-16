@@ -8,7 +8,15 @@ import { Link } from "react-router-dom";
 library.add(faCalendarWeek, faArrowLeft);
 
 class checkOut extends Component {
+  componentDidMount() {
+    let ticketDetails = this.props.location.state;
+    console.log("ticketDetails :", ticketDetails);
+  }
+
   render() {
+    const eventDetail = this.props.location.state.eventDetail;
+    const ticketDetail = this.props.location.state.ticketDetail;
+
     return (
       <div>
         <section className="page-padd ticket-wrap">
@@ -29,37 +37,18 @@ class checkOut extends Component {
                     <ul>
                       <li>
                         <div className="block-line">
-                          <div className="ticket-head">Diamond West</div>
+                          <div className="ticket-head">{ticketDetail && ticketDetail.packageName}</div>
                           <div className="time-foot mt-2">
                             <FontAwesomeIcon
                               icon={faCalendarWeek}
                               className="mr-1 ico"
                             />
-                            <span> Friday 22nd Nov</span>
-                            <span>18.00</span>
+                            <span> {eventDetail && eventDetail.date_from}</span>
                           </div>
                         </div>
                         <div className="block-line">
                           <div className="rate">
-                            <span>200</span> AED
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div className="block-line">
-                          <div className="ticket-head">Gold West</div>
-                          <div className="time-foot mt-2">
-                            <FontAwesomeIcon
-                              icon={faCalendarWeek}
-                              className="mr-1 ico"
-                            />
-                            <span> Friday 22nd Nov</span>
-                            <span>18.00</span>
-                          </div>
-                        </div>
-                        <div className="block-line">
-                          <div className="rate">
-                            <span>300</span> AED
+                            <span>{ticketDetail && ticketDetail.ticketPrice}</span> AED
                           </div>
                         </div>
                       </li>
@@ -100,16 +89,19 @@ class checkOut extends Component {
                   <div className="full-wrap checkout-block mt-4">
                     <div className="head">SUMMARY</div>
                     <div className="bg-block">
+                    <div className="d-flex justify-content-between block-item mb-1">
+                        <div>Num of Ticket</div> <span>{ticketDetail && ticketDetail.totalPerson}</span>
+                      </div>
                       <div className="d-flex justify-content-between block-item mb-1">
-                        <div>Tickets</div> <span>400.00 AED</span>
+                        <div>Ticket Price</div> <span>{ticketDetail && ticketDetail.grandTotal} AED</span>
                       </div>
-                      <div className="d-flex justify-content-between block-item">
+                      {/* <div className="d-flex justify-content-between block-item">
                         <div>VAT 5%</div> <span>20.5 AED</span>
-                      </div>
+                      </div> */}
                     </div>
                     <div className="total-block mt-4">
-                      <span className="mb-1">Total (Incl. of Vat)</span>
-                      421.00 AED
+                      <span className="mb-1">Grand Total </span>
+                      {ticketDetail && ticketDetail.grandTotal}
                     </div>
                     <Link to="/ticket-summary"
                       className="tim-btn mt-4 ticket-btn-lg"
