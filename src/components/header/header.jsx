@@ -90,11 +90,11 @@ class Header extends Component {
                       </NavLink>
                     </li>
 
-                    <li>
+                    {/* <li>
                       <NavLink exact to="/vlog" className="in-array">
                         Vlog
                       </NavLink>
-                    </li>
+                    </li> */}
                     <li>
                       <NavLink
                         to="/gallery"
