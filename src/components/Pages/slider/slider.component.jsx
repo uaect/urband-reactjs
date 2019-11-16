@@ -22,7 +22,7 @@ class sliderHero extends React.Component {
       <div className="heroCarouselBox">
         <CarouselProvider
           naturalSlideWidth={100}
-          naturalSlideHeight={55}
+          naturalSlideHeight={45}
           totalSlides={total}
           orientation="horizontal"
           playDirection="forward"

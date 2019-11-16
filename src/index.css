@@ -56,6 +56,14 @@ code {
   position: relative;
   top: -3px;
 }
+.positionRelativeBox{
+  position: relative;
+}
+.positionAbsTopRight{
+  position: absolute;
+  top: 0;
+  right: 0;
+}
 .ItemListingStl1 {
   display: flex;
   align-items: center;
@@ -71,6 +79,9 @@ code {
 .ItemListingStl1 .RghtBoxTp1 {
   max-height: 33px;
   overflow: hidden;
+}
+.maxWidth1200{
+  max-width: 1200px;
 }
 
 
@@ -112,19 +123,199 @@ code {
   font-size: 15px;
 }
 .PrfLinkBoxTp1 .ProfileNavItem{
-  padding: 12px 15px;
+
 }
 .PrfLinkBoxTp1 .ProfileNavItem:hover{
   background: #f9f9f9;
-    box-shadow: 0 2px 10px 0 rgba(173,193,207,0.25);
+
 }
 .PrfLinkBoxTp1 .ProfileNavItem a{
+  padding: 12px 15px;
   display: block;
   color: #404553 !important;
   font-size: 16px;
+  box-shadow: 0 2px 10px 0 rgba(173,193,207,0.25);
 }
+.PrfLinkBoxTp1 .ProfileNavItem a.selected{
+  background: #e4e4e4;
+    box-shadow: 0 2px 10px 0 rgba(173,193,207,0.25);
+}
+
 .PrfLinkBoxTp1 .ProfileNavItem a .prfIcnTp1{
   font-size: 18px;
   margin-right: 10px;
   color: #f60038;
+}
+.MangeEmptyBox{
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+.MangeEmptyBox img{
+  min-width: 750px;
+}
+.ProfileHeaderBoxTp1{
+
+}
+.ProfileHeaderBoxTp1 .txt1{
+  color: #404553;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 2;
+}
+.ProfileHeaderBoxTp1 .txt2{
+  color: rgb(126, 133, 155);
+  margin-bottom: 20px;
+}
+.checkout-btn-big.profileBtn {
+  width: 200px;
+  vertical-align: top;
+  text-align: center;
+  background-color: #f60038;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 17px;
+  padding: 10px;
+}
+.profileBoxTp1{
+  box-shadow: rgba(173, 193, 207, 0.15) 0px 2px 6px 0px;
+    background: rgb(255, 255, 255);
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(226, 229, 241);
+  
+}
+.profileBoxTp1 .profileBoxHeader1{
+  font-weight: 500;
+    padding: 10px 15px 9px;
+    background: rgb(252, 251, 244);
+    border-bottom: 1px solid rgb(226, 229, 241);
+    font-size:15px;
+}
+.profileBoxTp1 .profileBoxContent{
+  padding: 18px 15px 20px;
+}
+.RowType1{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.BtnBoxType2 .btnType1{
+  box-shadow: rgba(173, 193, 207, 0.15) 0px 2px 6px 0px;
+  background: rgb(255, 255, 255);
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(226, 229, 241);
+  text-align: center;
+  margin-bottom: 10px;
+  min-width: 150px !important;
+  padding: 1px;
+  cursor: pointer;
+}
+.HdrTp101{
+  color: #404553;
+  font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 0.4em;
+    line-height: 1.4;
+}
+.HdrTp101 img{
+  position: relative;
+  top: -3px;
+  margin-right: 10px;
+}
+.AddNewBox101{
+}
+.AddNewBox101 button{
+  float:none !important;
+  color: #fff !important;
+}
+.OrderShowingBoxTp1{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.OrderStatusShowingBoxTp1{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  line-height: 2;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgb(226, 229, 241);
+  margin-bottom: 10px;
+}
+.StatusNavigator{
+
+}
+.StatusNavigator li{
+  float: left;
+  display: inline-block;
+  padding: 5px;
+  text-transform: uppercase;
+    background-color: rgb(112, 212, 4);
+    color: rgb(255, 255, 255);
+    padding: 1px 10px;
+    font-weight: 400;
+    font-size: 13px;
+}
+.StatusNavigator li:first-child{
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.StatusNavigator li:last-child{
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.StatusBox101{
+
+}
+.StatusBox101 svg{
+  margin-right: 10px;
+}
+.DateBoxTp1{
+  color: rgb(126, 133, 155);
+  font-size: 12px;
+  margin-left: 5px;
+}
+.PrdctIcn101{
+  width: 80px;
+  height: 80px;
+}
+.TxtSt101{
+  color: rgb(126, 133, 155);
+    font-size: 0.91666rem;
+    margin-bottom: 1px;
+    line-height: 1;
+}
+.TxtSt102{
+  line-height: 1;
+  font-weight: 600;
+  font-size: 14px;
+  margin-top: 7px;
+}
+.TxtSt103{
+  color: rgb(126, 133, 155);
+    font-size: 0.91666rem;
+    margin-bottom: 1px;
+    line-height: 1;
+}
+.TxtSt104{
+  line-height: 1;
+  font-weight: 600;
+  font-size: 19px;
+  margin-top: 15px;
+}
+.MangeEmptyBoxge101{
+  color: rgb(126, 133, 155);
+  font-size: 30px;
+  margin-bottom: 5px;
+}
+.MangeEmptyBox a{
+  float: none !important;
+  color: #fff;
 }
