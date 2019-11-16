@@ -119,7 +119,7 @@ class ticketDetail extends Component {
                             </Link>
                           </div>
                         </div>
-                        <Link to="/ticket-checkout" className="ticket-office__button tim-btn">
+                        <Link to="/ticket-checkout" disable={true} className="ticket-office__button tim-btn">
                           check out
                         </Link>
                       </div>

@@ -55,7 +55,7 @@ class cart extends Component {
               </Link>
               <h2>Cart</h2>
             </div>
-            {cartflag && cartItems.map(item => {
+            {cartflag ? cartItems.map(item => {
               return (
                 <div className="row cart-item" key={item.id}>
                   <div className="col-sm-6 d-flex">
@@ -102,8 +102,8 @@ class cart extends Component {
                   <div class="col-sm-2 d-flex price-name-line delet-line">
                     <FontAwesomeIcon icon={faTimes} className="remove" onClick={() => this.deleteItem(item.product_id)} />
                   </div>
-                </div>);
-            })}
+                </div>)
+            }):<div>no items</div>}
 
             
 
@@ -115,9 +115,9 @@ class cart extends Component {
                 </Link>
               </div> */}
               <div className="d-flex price align-items-center">
-                Total<span className="ml-2 mr-4">{totalcost} AED</span>
-                <Link
-                  to="/checkout"
+                Total<span className="ml-2 mr-4">{totalcost?totalcost:0} AED</span>
+                <Link 
+                  to={cartflag ? "/checkout" : '#'}
                   className="checkout-btn-big bg-red-hover tim-btn"
                 >
                   check out
