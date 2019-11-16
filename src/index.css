@@ -28,14 +28,7 @@ code {
 .DsplayFlexBoxTp1 .RgtBox {
   flex: 1;
 }
-.lftPrfDesc1 {
-  background-color: transparent;
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
-  align-items: flex-start;
-  border-bottom: 1px solid #e2e5f1;
-}
+
 .AddressBoxTp1 {
   padding: 0px 20px;
   border: 1px solid #ced4da;
@@ -79,6 +72,8 @@ code {
   max-height: 33px;
   overflow: hidden;
 }
+
+
 .BoldTp1 {
   font-weight: 600 !important;
 }
@@ -94,4 +89,42 @@ code {
 }
 .CancelBtnTp1 {
   background: #121217 !important;
+}
+
+
+.lftPrfDesc1 {
+  background-color: transparent;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  border-bottom: 1px solid #e2e5f1;
+}
+.lftPrfDesc1 .DescTxtTp1{
+  color: #404553;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 2.5;
+
+}
+.lftPrfDesc1 .DescTxtTp2{
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+.PrfLinkBoxTp1 .ProfileNavItem{
+  padding: 12px 15px;
+}
+.PrfLinkBoxTp1 .ProfileNavItem:hover{
+  background: #f9f9f9;
+    box-shadow: 0 2px 10px 0 rgba(173,193,207,0.25);
+}
+.PrfLinkBoxTp1 .ProfileNavItem a{
+  display: block;
+  color: #404553 !important;
+  font-size: 16px;
+}
+.PrfLinkBoxTp1 .ProfileNavItem a .prfIcnTp1{
+  font-size: 18px;
+  margin-right: 10px;
+  color: #f60038;
 }
