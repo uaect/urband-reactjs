@@ -35,7 +35,7 @@ import ComingSoon from "./components/Pages/comingsoon.component";
 import "./assets/intro/css/intro.css";
 import "./assets/css/app.css";
 
-import ProfileDashboard from "./components/profileDashboard/profileDashboardHandler/index";
+import ProfileDashboard from "./components/profileDashboard/index";
 
 class ScrollToTop extends Component {
   componentDidUpdate(prevProps) {
@@ -82,7 +82,12 @@ class App extends Component {
                   <Route path={"/ticket-summary"} component={TicketSummary} />
                   <Route exact path="/login" component={LogIn} />
                   <Route exact path="/register" component={Register} />
-                  <Route exact path="/profile" component={ProfileDashboard} />
+                  
+
+                  <Route path="/profile" component={ProfileDashboard} />
+
+
+                  
 
                   <HomePage />
                   <SectionHero />
