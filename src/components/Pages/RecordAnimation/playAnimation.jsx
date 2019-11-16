@@ -47,15 +47,16 @@ class playAnimation extends Component {
 										</div>
 
 									</div>
+									{events[0].tracks && events[0].tracks[0].file ? (
 									<div className="col-sm-4 col-md-3 col-lg-4">
 										<div className="latest-album-right">
 											<h6>LISTEN DEMO NOW</h6>
 											<div className="latest-album-btn">
-												<Link to="/" className="sm2_button"><FontAwesomeIcon icon={faPlay} /></Link>
+												<Link to="/image_url+events[0].tracks && events[0].tracks[0].file" className="sm2_button"><FontAwesomeIcon icon={faPlay} /></Link>
 											</div>
 
 										</div>
-									</div>
+									</div>):""}
 									<div className="col-xl-12">
 										<div className="record-player">
 											<div className="player-main">
