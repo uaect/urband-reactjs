@@ -8,7 +8,6 @@ import AlbumListHome from './Album/album3d'
 import PreviousShowHome from './PreviousShows/previousShow'
 import UpcomingShowHome from './UpcomingShows/upcomingShows'
 import SpotLight from './SpotLight/spotLight'
-
 class HomePage extends Component{
 
 
@@ -19,6 +18,7 @@ class HomePage extends Component{
           <div>
             <SliderHero/>
             <H5AudioPlayer src="https://ia802508.us.archive.org/5/items/testmp3testfile/mpthreetest.mp3" onPlay={e => console.log("onPlay")}/>
+            
             <MultiCarousel/>
             <MultiCarouselHero/>
             <PlayAnimation/>

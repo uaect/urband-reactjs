@@ -16141,3 +16141,8 @@ input[type].field-control::-webkit-input-placeholder {
   font-size:1.1em;
 }
 
+/* ijas fixes */
+
+.maxWidth195{
+  max-width:195px !important;
+}
