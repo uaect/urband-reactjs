@@ -11685,12 +11685,12 @@ div.jp-seeking-bg {
   ##   Page Header
   --------------------------------------------------------------*/
 .page-header {
-  padding: 280px 0 30px;
+  padding: 130px 0 30px;
   background-position: center !important;
   background-repeat: no-repeat !important;
   background-size: cover !important;
   position: relative;
-  height: 484px !important;
+  height: 350px !important;
 }
 
 .page-header.event-header {

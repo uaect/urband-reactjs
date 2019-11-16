@@ -79,11 +79,22 @@ export const getaddress = (params) => {
 export const addaddress = (params) => {
     return dispatch => {
       
-            params.token = 1
+        const body = {
+            "token":"1",
+            "type":params.type,
+            "first_name":params.first_name,
+            "last_name":params.last_name,
+            "mobile":params.mobile,
+            "phone":params.phone,
+            "emirate":"1",
+           "address":params.address,
+            "latitude":"1",
+            "longitude":"1"
+        };
     
         fetch("https://admin.urbandmusic.com/api/addaddress", {
             method: "POST",
-            body: JSON.stringify(params)
+            body: JSON.stringify(body)
         })
             .then(res => res.json())
             .then(res => {
