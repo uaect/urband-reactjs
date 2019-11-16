@@ -90,11 +90,11 @@ class Header extends Component {
                       </NavLink>
                     </li>
 
-                    <li>
+                    {/* <li>
                       <NavLink exact to="/vlog" className="in-array">
                         Vlog
                       </NavLink>
-                    </li>
+                    </li> */}
                     <li>
                       <NavLink
                         to="/gallery"
@@ -149,13 +149,13 @@ class Header extends Component {
 
                   </li>
                   <li className="d-flex">
-                    <Link to="/cart">
+                  {isToken ?<Link to="/cart">
                       <span>Cart</span>
                       <FontAwesomeIcon
                         icon={faCartPlus}
                         className="ico-user"
                       />
-                    </Link>
+                    </Link>: ""}
                   </li>
 
                 </ul>

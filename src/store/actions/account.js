@@ -1,5 +1,5 @@
 
-import { REGISTER, LOGIN } from "./types";
+import { REGISTER, LOGIN, GETADDRESS,ADDADDRESS } from "./types";
 
 export const register = (params) => {
     return dispatch => {
@@ -53,5 +53,57 @@ export const login = (params) => {
                     reject(error)
                 });
         })
+    };
+};
+
+export const getaddress = (params) => {
+    return dispatch => {
+        const body = {
+            "token": 1
+        };
+        fetch("https://admin.urbandmusic.com/api/address", {
+            method: "POST",
+            body: JSON.stringify(body)
+        })
+            .then(res => res.json())
+            .then(res => {
+                dispatch({
+                    type: GETADDRESS,
+                    value: res
+                });
+            })
+            .catch(error => {
+            });
+    };
+};
+export const addaddress = (params) => {
+    return dispatch => {
+      
+        const body = {
+            "token":"1",
+            "type":params.type,
+            "first_name":params.first_name,
+            "last_name":params.last_name,
+            "mobile":params.mobile,
+            "phone":params.phone,
+            "emirate":"1",
+           "address":params.address,
+            "latitude":"1",
+            "longitude":"1"
+        };
+    
+        fetch("https://admin.urbandmusic.com/api/addaddress", {
+            method: "POST",
+            body: JSON.stringify(body)
+        })
+            .then(res => res.json())
+            .then(res => {
+                dispatch({
+                    type: ADDADDRESS,
+                    value: res
+                });
+            })
+            .catch(error => {
+            });
     };
 };

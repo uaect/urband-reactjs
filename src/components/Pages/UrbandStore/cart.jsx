@@ -16,25 +16,15 @@ class cart extends Component {
       removeflag: false
     }
     this.deleteItem = this.deleteItem.bind(this);
-    this.incrementQuantity = this.incrementQuantity.bind(this);
-    this.decrementQuantity = this.decrementQuantity.bind(this);
+  
   }
 
-  decrementQuantity(item){
-    console.log("quantity", item.quantity);
-    // let data = (cartItems).map((item) => {
-    //   item.imageurl = this.imageUrl + item.image.file;
-    //   return item;
-    // });
-  }
+ 
 
   deleteItem(productid) {
     this.props.deletecart(productid)
   }
 
-  incrementQuantity(item) {
-    console.log("quantity", item);
-  }
 
   componentDidMount() {
     this.props.getfromcart();

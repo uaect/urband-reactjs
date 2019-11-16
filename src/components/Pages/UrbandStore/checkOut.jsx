@@ -12,13 +12,100 @@ class storeCheckOut extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      formActiveOrNot: true
+      formActiveOrNot: true,
+      first_name: "",
+      errfirstname: "",
+      last_name: "",
+      errlastname: "",
+      location: "",
+      errlocation: "",
+      city: "",
+      errcity: "",
+      appartment: "",
+      errappartment: "",
+      address: "",
+      erraddress: "",
+      phone: "",
+      mobile: "",
+      errmobile: "",
+      type: "",
+      errtype: ""
+
     };
     this.ShowFormHadler = this.ShowFormHadler.bind(this);
     this.GobackToAddressHandler = this.GobackToAddressHandler.bind(this);
   }
+
   componentDidMount() {
     this.props.getfromcart();
+    this.props.getaddress();
+    var getaddress = this.props.address;
+    if (!getaddress.length) {
+      this.setState({
+        formActiveOrNot: false
+      });
+    }
+
+  }
+
+
+  addaddress = (value) => {
+    console.log("stateeeeeeee", this.state, value.target.value);
+
+    const { first_name, last_name, location, city, appartment, address, mobile, type } = this.state;
+    let flag = 0;
+    if (first_name.length < 1) {
+      flag = 1;
+      this.setState({
+        errfirstname: 'Please enter First name'
+      })
+    }
+    if (type.length < 1) {
+      flag = 1;
+      this.setState({
+        errtype: 'Please enter type'
+      })
+    }
+    if (last_name.length < 1) {
+      flag = 1;
+      this.setState({
+        errlastname: 'Please enter last name'
+      })
+    }
+    if (location.length < 1) {
+      flag = 1;
+      this.setState({
+        errlocation: 'Please enter location name'
+      })
+    }
+    if (city.length < 1) {
+      flag = 1;
+      this.setState({
+        errcity: 'Please enter city name'
+      })
+    }
+    if (appartment.length < 1) {
+      flag = 1;
+      this.setState({
+        errappartment: 'Please enter appartment details'
+      })
+    }
+    if (address.length < 1) {
+      flag = 1;
+      this.setState({
+        erraddress: 'Please enter address'
+      })
+    }
+    if (mobile.length < 1) {
+      flag = 1;
+      this.setState({
+        errmobile: 'Please enter mobile number'
+      })
+    }
+    if (flag == 0) {
+      this.props.addaddress(this.state)
+
+    }
   }
   ShowFormHadler() {
     this.setState({
@@ -30,10 +117,21 @@ class storeCheckOut extends Component {
       formActiveOrNot: true
     });
   }
+  handleChange(state, errState, evt) {
+
+
+    let _state = this.state
+    _state[state] = evt.target.value;
+    _state[errState] = '';
+    this.setState({
+      ..._state
+    })
+    console.log("evy", this.state.location);
+  }
   render() {
     const image_url = "https://admin.urbandmusic.com/storage/";
     var cartItems = this.props.cartitems;
-    console.log("ttttlitty", cartItems);
+
     var totalcost = 0;
     if (cartItems !== "emtey cart") {
       var cartflag = true;
@@ -146,119 +244,148 @@ class storeCheckOut extends Component {
                       </div>
                     </div>
                   ) : (
-                    <form className="mt-4">
-                      <div className="row">
-                        <div className="col-md-6">
-                          <div className="form-group">
-                            <input
-                              type="text"
-                              className="form-control field-control"
-                              placeholder="First Name"
-                            />
+                      <div className="mt-4">
+                        <div className="row">
+                          <div className="col-md-6">
+                            <div className="form-group">
+                              <input
+                                type="text"
+                                value={this.state.first_name}
+                                onChange={this.handleChange.bind(this, 'first_name', 'errfirstname')}
+                                className="form-control field-control"
+                                placeholder="First Name"
+                              />
+                            </div>
                           </div>
-                        </div>
-                        <div className="col-md-6">
-                          <div className="form-group">
-                            <input
-                              type="text"
-                              className="form-control field-control"
-                              placeholder="Last Name"
-                            />
+                          {this.state.errfirstname && <div class="text-danger">{this.state.errfirstname}</div>}
+                          <div className="col-md-6">
+                            <div className="form-group">
+                              <input
+                                type="text"
+                                className="form-control field-control"
+                                placeholder="Last Name"
+                                value={this.state.last_name}
+                                onChange={this.handleChange.bind(this, 'last_name', 'errlastname')}
+                              />
+                            </div>
                           </div>
-                        </div>
-                        <div className="col-md-6">
-                          <div className="form-group">
-                            <select
-                              className="form-control field-control"
-                              name="city"
-                              title="Select Current Location"
-                            >
-                              <option value="">Select Location</option>
-                              <option value="Dubai">Dubai</option>
-                              <option value="Sharjah">Sharjah</option>
-                              <option value="Abu Dhabi">Abu Dhabi</option>
-                              <option value="Ras Al Khaimah">
-                                Ras Al Khaimah
-                              </option>
-                              <option value="Fujairah">Fujairah</option>
-                              <option value="Ajman">Ajman</option>
-                              <option value="Umm Al Qawain">
-                                Umm Al Qawain
-                              </option>
-                              <option value="Al Ain">Al Ain</option>
-                            </select>
+                          {this.state.errlastname && <div class="text-danger">{this.state.errlastname}</div>}
+                          <div className="col-md-6">
+                            <div className="form-group">
+                              <select
+                                title="Select Current Location"
+                                value={this.state.location}
+                                onChange={this.handleChange.bind(this, 'location', 'errlocation')}
+                              >
+                                <option value="">Select Location</option>
+                                <option value="Dubai" >Dubai</option>
+                                <option value="Sharjah">Sharjah</option>
+                                <option value="Abu Dhabi">Abu Dhabi</option>
+                                <option value="Ras Al Khaimah">Ras Al Khaimah</option>
+                                <option value="Fujairah">Fujairah</option>
+                                <option value="Ajman">Ajman</option>
+                                <option value="Umm Al Qawain">Umm Al Qawain</option>
+                                <option value="Al Ain">Al Ain</option>
+                              </select>
+                            </div>
                           </div>
-                        </div>
-                        <div className="col-md-6">
-                          <div className="form-group">
-                            <select
-                              className="form-control field-control"
-                              name="city"
-                              title="Select Current Location"
-                            >
-                              <option value="">Select City</option>
-                              <option value="54903">City centre</option>
-                              <option value="181636102">Al Barsha Dubai</option>
-                            </select>
+                          {this.state.errlocation && <div class="text-danger">{this.state.errlocation}</div>}
+                          <div className="col-md-6">
+                            <div className="form-group">
+                              <select
+
+                                value={this.state.city}
+                                onChange={this.handleChange.bind(this, 'city', 'errcity')}
+                              >
+                                <option value="">Select City</option>
+                                <option value="54903">City centre</option>
+                                <option value="181636102">Al Barsha Dubai</option>
+                              </select>
+                            </div>
                           </div>
-                        </div>
-                        <div className="col-md-12">
-                          <div className="form-group">
-                            <input
-                              type="text"
-                              className="form-control field-control"
-                              name=""
-                              placeholder="Apartment, villa no, etc."
-                            />
+                          {this.state.errcity && <div class="text-danger">{this.state.errcity}</div>}
+                          <div className="col-md-12">
+                            <div className="form-group">
+                              <input
+                                type="text"
+                                className="form-control field-control"
+                                name=""
+                                placeholder="Apartment, villa no, etc."
+                                value={this.state.appartment}
+                                onChange={this.handleChange.bind(this, 'appartment', 'errappartment')}
+                              />
+                            </div>
                           </div>
-                        </div>
-                        <div className="col-md-12">
-                          <div className="form-group">
-                            <textarea
-                              className="form-control field-control"
-                              type="text"
-                              name="description[]"
-                              placeholder="Address"
-                              rows="3"
-                            ></textarea>
+                          {this.state.errappartment && <div class="text-danger">{this.state.errappartment}</div>}
+                          <div className="col-md-12">
+                            <div className="form-group">
+                              <textarea
+                                className="form-control field-control"
+                                type="text"
+                                name="description[]"
+                                placeholder="Address"
+                                value={this.state.address}
+                                onChange={this.handleChange.bind(this, 'address', 'erraddress')}
+                                rows="3"
+                              ></textarea>
+                            </div>
                           </div>
-                        </div>
-                        <div className="col-md-6">
-                          <div className="form-group">
-                            <input
-                              type="text"
-                              className="form-control field-control"
-                              name=""
-                              placeholder="Landline Number"
-                            />
+                          {this.state.erraddress && <div class="text-danger">{this.state.erraddress}</div>}
+                          <div className="col-md-6">
+                            <div className="form-group">
+                              <select
+                                value={this.state.type}
+                                onChange={this.handleChange.bind(this, 'type', 'errtype')}>
+                                <option value="">Select Type</option>
+                                <option value="Home">Home</option>
+                                <option value="Office">Office</option>
+                                <option value="Other">Other</option>
+                              </select>
+                            </div>
                           </div>
-                        </div>
-                        <div className="col-md-6">
-                          <div className="form-group">
-                            <input
-                              type="text"
-                              className="form-control field-control"
-                              name=""
-                              placeholder="Mobile Number"
-                            />
+                          {this.state.errtype && <div class="text-danger">{this.state.errtype}</div>}
+                          <div className="col-md-6">
+                            <div className="form-group">
+                              <input
+                                type="text"
+                                className="form-control field-control"
+                                name=""
+                                placeholder="Landline Number"
+                                value={this.state.phone}
+                                onChange={this.handleChange.bind(this, 'phone', "")}
+                              />
+                            </div>
                           </div>
+
+                          <div className="col-md-6">
+                            <div className="form-group">
+                              <input
+                                type="text"
+                                className="form-control field-control"
+                                name=""
+                                placeholder="Mobile Number"
+                                value={this.state.mobile}
+                                onChange={this.handleChange.bind(this, 'mobile', 'errmobile')}
+                              />
+                            </div>
+                          </div>
+                          {this.state.errmobile && <div class="text-danger">{this.state.errmobile}</div>}
                         </div>
+                        <button
+                          type="btn"
+                          className="tim-btn mt-4 ticket-btn-lg place-order CancelBtnTp1"
+                          onClick={this.GobackToAddressHandler}
+                        >
+                          Cancel
+                      </button>
+                        <button
+                          type="submit"
+                          className="tim-btn mt-4 ticket-btn-lg place-order"
+                          onClick={this.addaddress}>
+                          Save
+                      </button>
                       </div>
-                      <button
-                        type="btn"
-                        className="tim-btn mt-4 ticket-btn-lg place-order CancelBtnTp1"
-                        onClick={this.GobackToAddressHandler}
-                      >
-                        Cancel
-                      </button>
-                      <button
-                        type="submit"
-                        className="tim-btn mt-4 ticket-btn-lg place-order"
-                      >
-                        Save
-                      </button>
-                    </form>
-                  )}
+                    )}
                 </div>
                 {this.state.formActiveOrNot === true ? (
                   <div className="full-wrap mt-5">
@@ -309,8 +436,8 @@ class storeCheckOut extends Component {
                     </button>
                   </div>
                 ) : (
-                  ""
-                )}
+                    ""
+                  )}
               </div>
 
               <div className="col-md-5 checkout-block checkout-list-wrap">
@@ -364,13 +491,16 @@ class storeCheckOut extends Component {
 const mapDispatchToProps = dispatch => {
   // call action functions
   return {
-    getfromcart: () => dispatch(actionCreators.getfromcart())
+    getfromcart: () => dispatch(actionCreators.getfromcart()),
+    getaddress: () => dispatch(actionCreators.getaddress()),
+    addaddress: (param) => dispatch(actionCreators.addaddress(param))
   };
 };
 
 const mapStateToProps = state => {
   return {
-    cartitems: state.cartitems.items
+    cartitems: state.cartitems.items,
+    address: state.getaddress.address
     // in this state list is array name as stored  API  from defined in eventListReducer
   };
 };

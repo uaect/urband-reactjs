@@ -20,6 +20,8 @@ import loginReducer from './loginReducer';
 import deletecartReducer from './deletecartReducer';
 import eventTicketReducer from './eventTicketReducer';
 import homwBannerReducer from './homwBannerReducer';
+import getaddressReducer from './getaddressReducer';
+import addaddressReducer from './addaddressReducer';
 
 export default combineReducers({
     posts: postReducer, // choose any name
@@ -42,6 +44,8 @@ export default combineReducers({
     login:loginReducer,
     deletecart:deletecartReducer,
     ticketlist:eventTicketReducer,
-    homebanner:homwBannerReducer
+    homebanner:homwBannerReducer,
+    getaddress:getaddressReducer,
+    addressadd:addaddressReducer
 
 })
