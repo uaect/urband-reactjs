@@ -12,33 +12,45 @@ library.add(faClock, faArrowLeft, faMapMarkerAlt);
 
 
 class ticketDetail extends Component {
+
   state = {
-    selectedOption: null
+    eventid: null,
+    eventDate: null,
+    ticketid: null,
+    packageName: null,
+    ticketPrice: null,
+    errTicket: null,
+    errQuanity: null,
+    grandTotal: null,
+    totalPerson: 0
   };
-  handleChange = selectedOption => {
-    this.setState({ selectedOption });
-    console.log(`Option selected:`, selectedOption);
-  };
+
   componentDidMount() {
     let eventid = this.props.location.pathname.split('/').pop();
     this.props.fetcheventtickets(eventid);
+    this.setState({ eventid: eventid});
   }
+
+
+  handleChange = (event) => {
+    this.setState({ ticketid: event.target.value });
+    const _pkg = this.props.eventsDetails.packages.filter(pk => pk.id == event.target.value)
+    this.setState({ packageName: _pkg[0].package_name });
+    this.setState({ grandTotal: _pkg[0].price });
+    this.setState({ ticketPrice: _pkg[0].price });
+    this.setState({ totalPerson: 1});
+  };
+
+  handleChangeQuanity = (event) => {
+    const ticketPrice = this.state.ticketPrice;
+    this.setState({ grandTotal: ticketPrice * event.target.value });
+    this.setState({ totalPerson: event.target.value });
+  };
+  
   render() {
-    const eventsDetails = this.props.eventsDetails;
-
-    if (eventsDetails) {
-      var eventResult = eventsDetails.result;
-      var packageResult = eventsDetails.packages;
-    }
-    if (packageResult)
-      console.log("uuuuuuuu", packageResult);
-    const options = [
-      { value: "1", label: "1" },
-      { value: "2", label: "2" },
-      { value: "3", label: "3" }
-    ];
-    const { selectedOption } = this.state;
-
+    const eventResult = this.props.eventsDetails.result;
+    const packageResult = this.props.eventsDetails.packages;
+     console.log("ticketid:",this.state.ticketid);
     return (
       <div>
 
@@ -73,58 +85,77 @@ class ticketDetail extends Component {
 
                 <div className="ticket-offer mt-5">
                   <div className="title">Select Your Ticket</div>
+                  {packageResult ? <ul>
+                        <select onChange={this.handleChange} >
+                          <option>Select Class</option>
+                          {packageResult ? packageResult.map(ticket =>{
+                            return ( <option key={ticket.id} value={ticket.id}>{ticket.package_name} - {ticket.price}</option> );
+                          }
+                          ):""};
+                        </select>
+                  </ul>:<div className="title text-danger">Ticket not available</div>}
+
+                  {this.state.ticketid && 
+                  <div>
+                  <div className="title">Select Number of Ticket</div>
                   <ul>
-                    {packageResult ? packageResult.map(item => {
-                      return (
-                        <li key={item.id}>
-                          <div className="block">
-                            <div className="type">{item.package_name}</div>
-                          </div>
-                          <div className="block">
-                            <div className="rate">{item.price} AED</div>
-                          </div>
-                          <div className="block ticket-opt urband-select-custom">
-                            <Select
-                              value={selectedOption}
-                              onChange={this.handleChange}
-                              options={options}
-                            />
-                          </div>
-                        </li>);
-                    }):""}
+                        <select onChange={this.handleChangeQuanity} >
+                          <option value={this.state.totalPerson}>{this.state.totalPerson}</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                          <option value="7">7</option>
+                          <option value="8">8</option>
+                          <option value="9">9</option>
+                          <option value="10">10</option>
+                          <option value="11">11</option>
+                          <option value="12">12</option>
+                        </select>
                   </ul>
+                  </div>}
+
                   {packageResult ?
-                  <div className="ticket-office__footer">
-                    <div className="container">
-                      <div className="ticket-office__counter">
-                        <div className="ticket-office__person-count no-mobile">
-                          Persons:{" "}
-                          <span className="ticket-office__person-count-number">
-                            1
+                    <div className="ticket-office__footer">
+                      <div className="container">
+                        <div className="ticket-office__counter">
+                          <div className="ticket-office__person-count no-mobile">
+                            Persons:{" "}
+                            <span className="ticket-office__person-count-number">
+                              {this.state.totalPerson?this.state.totalPerson:'0'}
                           </span>
-                        </div>
-                      </div>
-                      <div className="ticket-office__checkout">
-                        <div className="ticket-office__price no-mobile">
-                          <div className="ticket-office__total">
-                            <span>500.00</span> AED
                           </div>
-                          <div className="cancel clearfix">
-                            <span
-                              className="ticket-office__fee"
-                              data-ticket-office-fee=""
-                            ></span>
-                            <Link to="/">
-                              cancel
+                        </div>
+                        <div className="ticket-office__checkout">
+                          <div className="ticket-office__price no-mobile">
+                            <div className="ticket-office__total">
+                              <span>{this.state.grandTotal?this.state.grandTotal:'0'}</span> AED
+                          </div>
+                            <div className="cancel clearfix">
+                              <span
+                                className="ticket-office__fee"
+                                data-ticket-office-fee=""
+                              ></span>
+                              <Link to="/">
+                                cancel
                             </Link>
+                            </div>
                           </div>
+                          {this.state.ticketid ?<Link to={{
+                                pathname: `/ticket-checkout`,
+                                state: {
+                                  ticketDetail: this.state,
+                                  eventDetail:eventResult
+                                }
+                              }} className="ticket-office__button tim-btn disabled-link">
+                            check out
+                        </Link>:<Link className="ticket-office__button tim-btn disabled-link">
+                            check out
+                        </Link>}
                         </div>
-                        <Link to="/ticket-checkout" className="ticket-office__button tim-btn">
-                          check out
-                        </Link>
                       </div>
-                    </div>
-                  </div>:""}
+                    </div> : ""}
                 </div>
               </div>
             </div>
