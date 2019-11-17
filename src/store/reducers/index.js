@@ -24,6 +24,7 @@ import getaddressReducer from './getaddressReducer';
 import addaddressReducer from './addaddressReducer';
 import emiratesReducer from './emiratesReducer';
 import emirates1Reducer from './emirates1Reducer';
+import previousShowReducer from './previousShowReducer';
 export default combineReducers({
     posts: postReducer, // choose any name
     clients: clientReducer,
@@ -49,6 +50,7 @@ export default combineReducers({
     getaddress:getaddressReducer,
     addressadd:addaddressReducer,
     emirateslist:emiratesReducer,
-    area:emirates1Reducer
+    area:emirates1Reducer,
+    previousshow:previousShowReducer
 
 })

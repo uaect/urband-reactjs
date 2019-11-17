@@ -1,4 +1,4 @@
-import { FETCH_EVENTTICKET,FETCH_POSTS, FETCH_CONTACT, FETCH_CLIENTS, FETCH_CLIENTSLIST, FETCH_EVENTLIST, FETCH_EVENTDETAIL } from "./types";
+import { PREVIOUSSHOW,FETCH_EVENTTICKET,FETCH_POSTS, FETCH_CONTACT, FETCH_CLIENTS, FETCH_CLIENTSLIST, FETCH_EVENTLIST, FETCH_EVENTDETAIL } from "./types";
 
 export const fetchPosts = () => {
     return dispatch => {
@@ -148,6 +148,29 @@ export const fetcheventtickets = (id) => {
             .then(res => {
                 dispatch({
                     type: FETCH_EVENTTICKET,
+                    value: res
+                });
+            })
+            .catch(error => {
+                //console.log("error" + JSON.stringify(error));
+            });
+    };
+};
+
+export const previousshow = (id) => {
+    return dispatch => {
+        const body = {
+            "eventid": id
+        };
+
+        fetch("https://admin.urbandmusic.com/api/previousshow", {
+            method: "POST",
+            body: JSON.stringify(body)
+        })
+            .then(res => res.json())
+            .then(res => {
+                dispatch({
+                    type: PREVIOUSSHOW,
                     value: res
                 });
             })

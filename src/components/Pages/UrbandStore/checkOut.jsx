@@ -109,7 +109,7 @@ class storeCheckOut extends Component {
     }
     if (flag == 0) {
       this.props.addaddress(this.state)
-
+      
     }
   }
   ShowFormHadler() {
