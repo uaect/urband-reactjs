@@ -148,13 +148,9 @@ export const addaddress = (params) => {
             "emirate":"1",
            "address":params.address,
             "latitude":"1",
-<<<<<<< HEAD
-            "longitude":"1"
-=======
             "longitude":"1",
             "area":params.area,
             "street":params.street
->>>>>>> 261b972717dc87497e1b6253090f0922f9f6e62c
         };
     
         fetch("https://admin.urbandmusic.com/api/addaddress", {

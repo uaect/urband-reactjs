@@ -29,10 +29,6 @@ class storeCheckOut extends Component {
       mobile: "",
       errmobile: "",
       type: "",
-<<<<<<< HEAD
-      errtype: ""
-
-=======
       errtype: "",
       area: "",
       errarea: "",
@@ -40,7 +36,6 @@ class storeCheckOut extends Component {
       errstreet: "",
       emirate: "",
       emiratearea: ""
->>>>>>> 261b972717dc87497e1b6253090f0922f9f6e62c
     };
     this.ShowFormHadler = this.ShowFormHadler.bind(this);
     this.GobackToAddressHandler = this.GobackToAddressHandler.bind(this);
@@ -56,13 +51,7 @@ class storeCheckOut extends Component {
 
 
   addaddress = (value) => {
-<<<<<<< HEAD
-    console.log("stateeeeeeee", this.state, value.target.value);
-
-    const { first_name, last_name, location, city, appartment, address, mobile, type } = this.state;
-=======
     const { first_name, last_name, appartment, address, mobile, type, area, street } = this.state;
->>>>>>> 261b972717dc87497e1b6253090f0922f9f6e62c
     let flag = 0;
     if (first_name.length < 1) {
       flag = 1;
@@ -70,17 +59,7 @@ class storeCheckOut extends Component {
         errfirstname: 'Please enter First name'
       })
     }
-<<<<<<< HEAD
-    if (type.length < 1) {
-      flag = 1;
-      this.setState({
-        errtype: 'Please enter type'
-      })
-    }
-    if (last_name.length < 1) {
-=======
     if (area.length < 1) {
->>>>>>> 261b972717dc87497e1b6253090f0922f9f6e62c
       flag = 1;
       this.setState({
         errfirstname: 'Please enter area name'
@@ -130,11 +109,19 @@ class storeCheckOut extends Component {
     }
     if (flag == 0) {
       this.props.addaddress(this.state)
-<<<<<<< HEAD
-
-=======
-      
->>>>>>> 261b972717dc87497e1b6253090f0922f9f6e62c
+      .then(() => {
+        this.setState({
+          isToken: true
+        })
+        this.props.history.push('HomeStack');
+      })
+      .catch((error) => {
+        if (error.error == 'Unauthorised') {
+          this.setState({
+            errpassword: 'Invalid credential check username or passsord'
+          })
+        }
+      })
     }
   }
   ShowFormHadler() {

@@ -61,10 +61,12 @@ class App extends Component {
 
   handlePlayPause = () => {
     this.setState({ playing: !this.state.playing });
+    this.props.action();
   };
 
   handleStop = () => {
     this.setState({ url: null, playing: false });
+    this.props.action();
   };
 
   handleToggleControls = () => {
