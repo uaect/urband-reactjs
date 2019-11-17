@@ -130,7 +130,8 @@ class Header extends Component {
                   </ul>
                 </div>
 
-                <ul className="d-inline-flex avathar-sec">
+
+                <ul className="d-inline-flex avathar-sec DNone768">
                   <li className="d-flex mr-4">
                     {!isToken ? <Link to="/login">
                       <span>Log In</span>
