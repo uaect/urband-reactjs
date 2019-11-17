@@ -1,4 +1,4 @@
-import { PREVIOUSSHOW,FETCH_EVENTTICKET,FETCH_POSTS, FETCH_CONTACT, FETCH_CLIENTS, FETCH_CLIENTSLIST, FETCH_EVENTLIST, FETCH_EVENTDETAIL } from "./types";
+import { FETCH_SPOTLIGHT,PREVIOUSSHOW,FETCH_EVENTTICKET,FETCH_POSTS, FETCH_CONTACT, FETCH_CLIENTS, FETCH_CLIENTSLIST, FETCH_EVENTLIST, FETCH_EVENTDETAIL } from "./types";
 
 export const fetchPosts = () => {
     return dispatch => {
@@ -169,6 +169,24 @@ export const previousshow = () => {
                 dispatch({
                     type: PREVIOUSSHOW,
                     value: res
+                });
+            })
+            .catch(error => {
+                //console.log("error" + JSON.stringify(error));
+            });
+    };
+};
+export const spotlight = () => {
+    return dispatch => {
+
+        fetch("https://admin.urbandmusic.com/api/spotlight", {
+            method: "POST"
+        })
+            .then(res => res.json())
+            .then(res => {
+                dispatch({
+                    type: FETCH_SPOTLIGHT,
+                    value: res.result
                 });
             })
             .catch(error => {

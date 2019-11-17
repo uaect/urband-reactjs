@@ -34,7 +34,7 @@ class sliderHero extends React.Component {
             {getbanner &&
               getbanner.map(item => {
                 return (
-                  <Slide index={0}>
+                  <Slide index={0} key={item.id}>
                     <section
                       className="banner-five"
                       style={{

@@ -1,11 +1,17 @@
 import React, { Component } from 'react'
 import ModalVideo from '../../VideoModal/video-modal.component';
 import './style.css'
+import { connect } from "react-redux";
+import * as actionCreators from "../../../../src/store/actions/";
 class spotLight extends Component {
- 
+	componentDidMount() {
+		this.props.spotlight();
+	  }
    
    
     render () {
+		console.log("spotlight", this.props.spotlight);
+		
       return (
         <section className="section-padding-two wide_line_bg">
 			<div className="container">
@@ -54,17 +60,25 @@ class spotLight extends Component {
 			</div>
 			
 		</section>
-        
-          
-	
-	
-			
-	
-         
-       
-          
-        
+
       )
     }
   }
-  export default spotLight;
+
+  const mapDispatchToProps = dispatch => {
+	// call action functions
+	return {
+		spotlight: () => dispatch(actionCreators.spotlight())
+	};
+  };
+  
+  const mapStateToProps = state => {
+	return {
+	  spotlight: state.spotlight.items
+	};
+  };
+  
+  export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+  )(spotLight);

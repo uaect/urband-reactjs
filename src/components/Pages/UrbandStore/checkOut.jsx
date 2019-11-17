@@ -111,9 +111,8 @@ class storeCheckOut extends Component {
       this.props.addaddress(this.state)
       .then(() => {
         this.setState({
-          isToken: true
-        })
-        this.props.history.push('HomeStack');
+          formActiveOrNot: true
+        });
       })
       .catch((error) => {
         if (error.error == 'Unauthorised') {
@@ -162,7 +161,10 @@ class storeCheckOut extends Component {
     var emirates = this.props.emirateslist;
     var arealist = this.props.arealist;
     var getaddress = this.props.address;
-    console.log("ttttttttttttttttt", getaddress);
+    if(getaddress == "no address added"){
+      var noaddress = false;
+    }else  var noaddress = true;
+    console.log("ttttttttttttttttt", noaddress);
 
     var formActiveOrNot = localStorage.getItem('address');
     var totalcost = 0;
@@ -193,7 +195,7 @@ class storeCheckOut extends Component {
                   <div className="head">SHIPPING ADDRESS</div>
                   {formActiveOrNot || this.state.formActiveOrNot ? (
                     <div className="row mt-3">
-                      {getaddress ? getaddress.map(item => {
+                      {noaddress ? getaddress.map(item => {
                         return (
 
                           <div className="col-md-6" key={item.id}>
