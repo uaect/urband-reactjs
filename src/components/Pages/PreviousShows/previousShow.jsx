@@ -5,7 +5,14 @@ import './style.css'
 import { connect } from "react-redux";
 import * as actionCreators from "../../../../src/store/actions/";
 class previousShowHome extends Component{
+	
+	componentDidMount() {
+		this.props.previousshow();
+	
+	  }
     render(){
+		console.log("tttttttokkkkkkkkkkkkkkkkkt", this.props);
+		
         return (
         
             <section className="show-archive">
@@ -70,16 +77,13 @@ class previousShowHome extends Component{
 const mapDispatchToProps = dispatch => {
 	// call action functions
 	return {
-	  fetchStoreDetails: storeid =>
-		dispatch(actionCreators.fetchStoreDetails(storeid)),
-	  addtocart: storeid => dispatch(actionCreators.addtocart(storeid))
+		previousshow: () => dispatch(actionCreators.previousshow())
 	};
   };
   
   const mapStateToProps = state => {
 	return {
-	  storedetails: state.storedetails.items,
-	  addcart: state.addtocart.items
+	  previousshow: state.previousshow.items
 	};
   };
   

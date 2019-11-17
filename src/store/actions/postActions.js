@@ -169,6 +169,8 @@ export const previousshow = (id) => {
         })
             .then(res => res.json())
             .then(res => {
+                console.log("previous show", res);
+                
                 dispatch({
                     type: PREVIOUSSHOW,
                     value: res
