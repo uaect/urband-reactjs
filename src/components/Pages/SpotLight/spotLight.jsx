@@ -28,8 +28,6 @@ class spotLight extends Component {
 			});
 		}
 
-		console.log("spotlight", spotlight);
-
 		return (
 			<section className="section-padding-two wide_line_bg">
 				<div className="container">
@@ -49,8 +47,8 @@ class spotLight extends Component {
 
 
 												<div className="text">
-													<p>Show Stoppers Time</p>
-													<span>(Live in Tokyo, 2017)</span>
+													<p>{spotlight.title}</p>
+													{/* <span>(Live in Tokyo, 2017)</span> */}
 												</div>
 											</div>
 										</div>

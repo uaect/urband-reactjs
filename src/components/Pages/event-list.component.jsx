@@ -13,7 +13,7 @@ import ComingSoon from "../Pages/comingsoon.component";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actionCreators from "../../../src/store/actions/";
-
+import Moment from 'moment';
 library.add(faCalendarCheck, faClock, faTheaterMasks, faMapMarkerAlt);
 
 class EventList extends Component {
@@ -31,8 +31,8 @@ class EventList extends Component {
   render() {
     const image_url = "https://admin.urbandmusic.com/storage/";
     const events = this.props.events;
-    // const desc = events.description;
-    // function createMarkup(desc) { return {__html: desc}; };
+   console.log("ttttttt", events);
+   
    
     
     return (
@@ -63,7 +63,7 @@ class EventList extends Component {
                             </Link>
                           </div>
                           <div className="post-type-icon">
-                            <span>6 Oct</span>
+                            <span>{Moment(item.date_to).format('d MMM')}</span>
                           </div>
                           <div className="entry-content-wrapper">
                             <div className="event-title">
