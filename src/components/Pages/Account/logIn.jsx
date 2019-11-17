@@ -53,7 +53,7 @@ class logIn extends Component {
           this.setState({
             isToken: true
           })
-          this.props.history.push('HomeStack');
+          window.location.href = "/";
         })
         .catch((error) => {
           if (error.error == 'Unauthorised') {

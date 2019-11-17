@@ -1,4 +1,4 @@
-import { FETCH_SPOTLIGHT,PREVIOUSSHOW,FETCH_EVENTTICKET,FETCH_POSTS, FETCH_CONTACT, FETCH_CLIENTS, FETCH_CLIENTSLIST, FETCH_EVENTLIST, FETCH_EVENTDETAIL } from "./types";
+import { FETCH_SPOTLIGHT,PREVIOUSSHOW,FETCH_EVENTTICKET,FETCH_POSTS, FETCH_CONTACT, FETCH_CLIENTS, FETCH_CLIENTSLIST, FETCH_EVENTLIST, FETCH_EVENTDETAIL, FETCH_MENUES } from "./types";
 
 export const fetchPosts = () => {
     return dispatch => {
@@ -191,6 +191,24 @@ export const spotlight = () => {
             })
             .catch(error => {
                 //console.log("error" + JSON.stringify(error));
+            });
+    };
+};
+
+export const fetchMenues = () => {
+    return dispatch => {
+        fetch("https://admin.urbandmusic.com/api/menues", {
+            method: "POST"
+        })
+            .then(res => res.json())
+            .then(res => {
+                dispatch({
+                    type: FETCH_MENUES,
+                    value: res.result
+                });
+            })
+            .catch(error => {
+                console.log("error :" + JSON.stringify(error));
             });
     };
 };

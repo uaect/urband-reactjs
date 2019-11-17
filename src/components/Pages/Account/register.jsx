@@ -55,6 +55,14 @@ class register extends Component {
 
     if (flag == 0) {
       this.props.register(this.state)
+      .then(() => {
+        this.props.history.push('login');
+      })
+      .catch((error) => {
+          this.setState({
+            errpassword: 'Error in registration. try again'
+          })
+      })
 
     }
   }
