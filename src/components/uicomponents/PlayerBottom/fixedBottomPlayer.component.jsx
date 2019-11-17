@@ -66,6 +66,7 @@ class App extends Component {
 
   handleStop = () => {
     this.setState({ url: null, playing: false });
+    this.props.action();
   };
 
   handleToggleControls = () => {
