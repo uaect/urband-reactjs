@@ -36,9 +36,9 @@ class ticketDetail extends Component {
     this.setState({ ticketid: event.target.value });
     const _pkg = this.props.eventsDetails.packages.filter(pk => pk.id == event.target.value)
     this.setState({ packageName: _pkg[0].package_name });
-    this.setState({ grandTotal: _pkg[0].price });
     this.setState({ ticketPrice: _pkg[0].price });
-    this.setState({ totalPerson: 1});
+    this.setState({ totalPerson:this.state.totalPerson?this.state.totalPerson: 1});
+    this.setState({ grandTotal: _pkg[0].price * this.state.totalPerson });
   };
 
   handleChangeQuanity = (event) => {
@@ -100,7 +100,7 @@ class ticketDetail extends Component {
                   <div className="title">Select Number of Ticket</div>
                   <ul>
                         <select onChange={this.handleChangeQuanity} >
-                          <option value={this.state.totalPerson}>{this.state.totalPerson}</option>
+                          <option value="1">1</option>
                           <option value="2">2</option>
                           <option value="3">3</option>
                           <option value="4">4</option>
