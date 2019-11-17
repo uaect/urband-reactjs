@@ -16,15 +16,11 @@ class cart extends Component {
       removeflag: false
     }
     this.deleteItem = this.deleteItem.bind(this);
-  
   }
-
- 
 
   deleteItem(productid) {
     this.props.deletecart(productid)
   }
-
 
   componentDidMount() {
     this.props.getfromcart();
@@ -33,8 +29,6 @@ class cart extends Component {
   render() {
     const image_url = "https://admin.urbandmusic.com/storage/";
     var cartItems = this.props.cartitems;
-    console.log("qqqqqqqqq :",cartItems);
-    
     var totalcost = 0;
     if (cartItems !== "emtey cart") {
       var cartflag = true;
@@ -84,7 +78,7 @@ class cart extends Component {
                   </div>
                   <div className="col-sm-2 d-flex price-name-line">
                     <div className="quantity-input">
-                      <button disabled={item.quantity==1} className="quantity-input__modifier quantity-input__modifier--left" onClick={() => this.decrementQuantity(item)}>
+                      <button disabled={item.quantity == 1} className="quantity-input__modifier quantity-input__modifier--left" onClick={() => this.decrementQuantity(item)}>
                         —
                   </button>
                       <input
@@ -103,9 +97,9 @@ class cart extends Component {
                     <FontAwesomeIcon icon={faTimes} className="remove" onClick={() => this.deleteItem(item.product_id)} />
                   </div>
                 </div>)
-            }):<div>no items</div>}
+            }) : <div>no items</div>}
 
-            
+
 
             <div className="cart-total right-push">
               {/* <div className="goback">
@@ -115,8 +109,8 @@ class cart extends Component {
                 </Link>
               </div> */}
               <div className="d-flex price align-items-center">
-                Total<span className="ml-2 mr-4">{totalcost?totalcost:0} AED</span>
-                <Link 
+                Total<span className="ml-2 mr-4">{totalcost ? totalcost : 0} AED</span>
+                <Link
                   to={cartflag ? "/checkout" : '#'}
                   className="checkout-btn-big bg-red-hover tim-btn"
                 >
