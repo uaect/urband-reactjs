@@ -16163,3 +16163,23 @@ input[type].field-control::-webkit-input-placeholder {
 .bubble-wrap.active{
   opacity:1  !important;
 }
+
+
+/* ResponsiveFixes Ijas */
+@media (max-width: 769px) {
+  .DNone768{
+    display: none !important;
+  }
+  .sp-container h2.frame-1,.sp-container h2.frame-2, .sp-container h2.frame-3, .sp-container h2.frame-4{
+    font-size:50px ;
+    margin-top:0px;
+  }
+  .banner-five .baneer-five-content h3{
+    font-size:30px;
+    margin-top:80px;
+  }
+  .banner-five .baneer-five-content .tim-slide-btn {
+    margin-top: 10px;
+    padding: 7px 49px;
+}
+}
