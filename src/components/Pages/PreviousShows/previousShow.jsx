@@ -2,8 +2,17 @@
 import React, { Component } from 'react'
 import ModalVideo from '../../VideoModal/video-modal.component';
 import './style.css'
+import { connect } from "react-redux";
+import * as actionCreators from "../../../../src/store/actions/";
 class previousShowHome extends Component{
+	
+	componentDidMount() {
+		this.props.previousshow();
+	
+	  }
     render(){
+		console.log("tttttttokkkkkkkkkkkkkkkkkt", this.props);
+		
         return (
         
             <section className="show-archive">
@@ -58,16 +67,31 @@ class previousShowHome extends Component{
 			</div>
 			<ModalVideo/> 
 	</section>
-
-
-    
-          
-        
         );
-
-       
     }
 }
-export default previousShowHome;
+
+
+
+
+const mapDispatchToProps = dispatch => {
+	// call action functions
+	return {
+		previousshow: () => dispatch(actionCreators.previousshow())
+	};
+  };
+  
+  const mapStateToProps = state => {
+	return {
+	  previousshow: state.previousshow.items
+	};
+  };
+  
+  export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+  )(previousShowHome);
+  
+
 
 

@@ -10,7 +10,7 @@ const getaddressReducer = (state = initialState, action) => {
           return{
               ...state,
            
-              list: action.value
+              address: action.value
           }
     default:
         return state; 
