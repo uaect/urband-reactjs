@@ -9,25 +9,31 @@ import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { connect } from "react-redux";
 import * as actionCreators from "../../../../src/store/actions";
+import AddedToCartAnimation from "../../../components/hoc/AddedTocartAnimation/index";
 library.add(faCartPlus);
 
 class ShopDetail extends Component {
-
   constructor(props) {
     super(props);
     this.state = { showText: false };
     this.state = { addcartflag: false };
     this.handleClick = this.handleClick.bind(this);
+    this.state = { AddedToCartIcon: false };
   }
   componentDidMount() {
     let storeid = this.props.location.pathname.split("/").pop();
     this.props.fetchStoreDetails(storeid);
-
-
   }
   handleClick(id) {
-    this.props.addtocart(id)
-    this.setState({addcartflag: true});
+    this.props.addtocart(id);
+    this.setState({ addcartflag: true });
+    this.setState({ AddedToCartIcon: true });
+    setTimeout(
+      function() {
+        this.setState({ AddedToCartIcon: false });
+      }.bind(this),
+      2000
+    );
   }
 
   render() {
@@ -35,26 +41,25 @@ class ShopDetail extends Component {
     var images = [];
     const storedetails = this.props.storedetails;
     if (this.state.addcartflag && this.props.addcart.success)
-      alert("item added to cart")
-    if (storedetails.files) {
-      for (var i = 0; i < storedetails.files.length; i++) {
-        var image = [
-          {
-            original:
-              image_url + storedetails.files[i].image,
-            thumbnail:
-              image_url + storedetails.files[i].image
+      if (storedetails.files) {
+        // alert("item added to cart");
+        for (var i = 0; i < storedetails.files.length; i++) {
+          var image = [
+            {
+              original: image_url + storedetails.files[i].image,
+              thumbnail: image_url + storedetails.files[i].image
+            }
+          ];
+          if (images[0]) {
+            images[0].push(image[0]);
+          } else {
+            images.push(image);
           }
-        ];
-        if (images[0]) {
-          images[0].push(image[0]);
-        } else {
-          images.push(image);
         }
       }
-    }
     return (
       <div>
+        <AddedToCartAnimation isActive={this.state.AddedToCartIcon} />
         {storedetails ? (
           <section className="page-header store-banner">
             <div className="tim-container">
@@ -67,68 +72,66 @@ class ShopDetail extends Component {
         ) : (
           ""
         )}
-          <section className="single-product">
-            <div className="container">
-              <div className="single-product-wrapper">
-                <div className="row">
-                  <div className="col-md-5 col-sm-6 detail-left">
-                    <ImageGallery
-                      items={images[0]}
-                      showPlayButton={false}
-                      showFullscreenButton={false}
-                    />
-                  </div>
+        <section className="single-product">
+          <div className="container">
+            <div className="single-product-wrapper">
+              <div className="row">
+                <div className="col-md-5 col-sm-6 detail-left">
+                  <ImageGallery
+                    items={images[0]}
+                    showPlayButton={false}
+                    showFullscreenButton={false}
+                  />
+                </div>
 
-                  <div className="col-md-7 col-sm-6">
-                    <div className="single-product-details">
-                      <h2 className="product-title">{storedetails.title}</h2>
+                <div className="col-md-7 col-sm-6">
+                  <div className="single-product-details">
+                    <h2 className="product-title">{storedetails.title}</h2>
 
-                      <p className="price">
-                        <ins>
-                          <span className="woocommerce-Price-amount amount">
-                            <span className="woocommerce-Price-currencySymbol">
-                              AED
-                            </span>
-                            {storedetails.price}
+                    <p className="price">
+                      <ins>
+                        <span className="woocommerce-Price-amount amount">
+                          <span className="woocommerce-Price-currencySymbol">
+                            AED
                           </span>
-                        </ins>
+                          {storedetails.price}
+                        </span>
+                      </ins>
 
-                        <del>
-                          <span>
-                            <span>AED</span>
-                            200
-                          </span>
-                        </del>
-                      </p>
+                      <del>
+                        <span>
+                          <span>AED</span>
+                          200
+                        </span>
+                      </del>
+                    </p>
 
-                      <div className="product-cart">
-                        
-
-                        <button
-                          type="submit"
-                          name="add-to-cart"
-                          value="0"
-                          className="tim-cart-btn"
-                          onClick={() => this.handleClick(storedetails.id)}
-                        >
-                          <FontAwesomeIcon
-                            icon={faCartPlus}
-                            className="cart-icon"
-                          />
-                          Add to cart
-                        </button>
-                      </div>
-                      <div className="woocommerce-product-details__short-description">
-                        <h4>Product Details</h4>
-                        <p>{storedetails.description}</p>
-                      </div>
+                    <div className="product-cart">
+                      <button
+                        type="submit"
+                        name="add-to-cart"
+                        value="0"
+                        className="tim-cart-btn"
+                        onClick={() => this.handleClick(storedetails.id)}
+                      >
+                        <FontAwesomeIcon
+                          icon={faCartPlus}
+                          className="cart-icon"
+                        />
+                        Add to cart
+                      </button>
+                    </div>
+                    <div className="woocommerce-product-details__short-description">
+                      <h4>Product Details</h4>
+                      <p>{storedetails.description}</p>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </section>
-        ) 
+          </div>
+        </section>
+        )
       </div>
     );
   }
