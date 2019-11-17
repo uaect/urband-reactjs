@@ -9,24 +9,30 @@ import "../header/header.component.css";
 import Logo from "../../assets/img/logo_5.png";
 import BurgerMenu from "../header/burgerMenu.component";
 
+import { connect } from "react-redux";
+import * as actionCreators from "../../../src/store/actions/";
+
 library.add(faUserAlt, faCartPlus);
 
 class Header extends Component {
+
   state = {
-    isToken:localStorage.getItem('urbandtoken')?true:false
+    isToken: localStorage.getItem('urbandtoken') ? true : false
+  }
+
+  componentDidMount() {
+    this.props.fetchMenues();
   }
 
   gotologout = () => {
     localStorage.removeItem('urbandtoken')
     this.setState({
-      isToken:localStorage.getItem('urbandtoken')?true:false
+      isToken: localStorage.getItem('urbandtoken') ? true : false
     })
   }
 
   render() {
-   const isToken = this.state.isToken;
-   console.log("header----  :",isToken);
-   
+    console.log("menues",this.props.menues);
 
     return (
       <div className="AppHeader">
@@ -41,7 +47,7 @@ class Header extends Component {
               <div className="d-flex full-wrap nav-wrap">
                 <div className="nav">
                   <ul className="group" id="header-menu-magic-line">
-                    <li>
+                    { this.props.menues.some(el => el.title === 'Home') && <li>
                       <NavLink
                         to="/index"
                         activeClassName="selected"
@@ -49,8 +55,8 @@ class Header extends Component {
                       >
                         Home
                       </NavLink>
-                    </li>
-                    <li className="menu-item-has-children in-array">
+                    </li>}
+                    { this.props.menues.some(el => el.title === 'Studio') &&<li className="menu-item-has-children in-array">
                       Studio
                       <ul className="sub-menu">
                         <li>
@@ -60,8 +66,8 @@ class Header extends Component {
                           <Link to="/clients">Clients</Link>
                         </li>
                       </ul>
-                    </li>
-                    <li>
+                    </li>}
+                    { this.props.menues.some(el => el.title === 'Radio') &&<li>
                       <NavLink
                         to="/radio"
                         className="in-array"
@@ -69,8 +75,8 @@ class Header extends Component {
                       >
                         Radio
                       </NavLink>
-                    </li>
-                    <li className="menu-item-has-children">
+                    </li>}
+                    { this.props.menues.some(el => el.title === 'Events') &&<li className="menu-item-has-children">
                       <NavLink
                         to="/event-list"
                         activeClassName="selected"
@@ -78,9 +84,9 @@ class Header extends Component {
                       >
                         Events
                       </NavLink>
-                    </li>
+                    </li>}
 
-                    <li>
+                    { this.props.menues.some(el => el.title === 'About') &&<li>
                       <NavLink
                         to="/who-we-are"
                         activeClassName="selected"
@@ -88,14 +94,14 @@ class Header extends Component {
                       >
                         About
                       </NavLink>
-                    </li>
+                    </li>}
 
                     {/* <li>
                       <NavLink exact to="/vlog" className="in-array">
                         Vlog
                       </NavLink>
                     </li> */}
-                    <li>
+                    { this.props.menues.some(el => el.title === 'Gallery') &&<li>
                       <NavLink
                         to="/gallery"
                         activeClassName="selected"
@@ -103,8 +109,8 @@ class Header extends Component {
                       >
                         Gallery
                       </NavLink>
-                    </li>
-                    <li className="menu-item-has-children in-array">
+                    </li>}
+                    { this.props.menues.some(el => el.title === 'Purchase') &&<li className="menu-item-has-children in-array">
                       Purchase
                       <ul className="sub-menu">
                         <li>
@@ -117,7 +123,7 @@ class Header extends Component {
                           <Link to="/store">Merchandise</Link>
                         </li>
                       </ul>
-                    </li>
+                    </li>}
                     <li>
                       <NavLink
                         to="/contact"
@@ -132,14 +138,14 @@ class Header extends Component {
 
                 <ul className="d-inline-flex avathar-sec">
                   <li className="d-flex mr-4">
-                    {!isToken ? <Link to="/login">
+                    {!this.state.isToken ? <Link to="/login">
                       <span>Log In</span>
                       <FontAwesomeIcon
                         icon={faUserAlt}
                         className="ico-user"
                       />
                     </Link> : ""}
-                    {isToken ? <Link onClick={this.gotologout}>
+                    {this.state.isToken ? <Link onClick={this.gotologout}>
                       <span>Log Out</span>
                       <FontAwesomeIcon
                         icon={faUserAlt}
@@ -149,13 +155,13 @@ class Header extends Component {
 
                   </li>
                   <li className="d-flex">
-                  {isToken ?<Link to="/cart">
+                    {this.state.isToken ? <Link to="/cart">
                       <span>Cart</span>
                       <FontAwesomeIcon
                         icon={faCartPlus}
                         className="ico-user"
                       />
-                    </Link>: ""}
+                    </Link> : ""}
                   </li>
 
                 </ul>
@@ -169,4 +175,16 @@ class Header extends Component {
   }
 }
 
-export default Header;
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchMenues: () => dispatch(actionCreators.fetchMenues())
+  };
+};
+
+const mapStateToProps = state => {
+  return {
+    menues: state.menues.items
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

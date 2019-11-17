@@ -1,4 +1,4 @@
-export {fetchPosts,fetchContact,fetchClients,fetchClientsList,fetchEventDetail,fetchEvent,fetcheventtickets,previousshow,spotlight}  from './postActions.js';
+export {fetchPosts,fetchContact,fetchClients,fetchClientsList,fetchEventDetail,fetchEvent,fetcheventtickets,previousshow,spotlight,fetchMenues}  from './postActions.js';
 export {fetchAlbums,fetchAlbumsDetails,fetchgallerycategory}  from './album.js';
 export {fetchBanner,fetchHomeBanner}  from './Banners.js';
 export {fetchWhoWeAre}  from './whoWeAre.js';
