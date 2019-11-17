@@ -3,25 +3,33 @@ import { REGISTER, LOGIN, GETADDRESS, ADDADDRESS, GETEMIRATES, GETEMIRATES1 } fr
 
 export const register = (params) => {
     return dispatch => {
-        const body = {
-            name: params.firstname,
-            lastname: params.lastname,
-            email: params.email,
-            password: params.password
-        };
-        fetch("https://admin.urbandmusic.com/api/register", {
-            method: "POST",
-            body: JSON.stringify(body)
-        })
-            .then(res => res.json())
-            .then(res => {
-                dispatch({
-                    type: REGISTER,
-                    value: res
-                });
+        return new Promise((resolve, reject) => {
+            const body = {
+                name: params.firstname,
+                lastname: params.lastname,
+                email: params.email,
+                password: params.password
+            };
+            fetch("https://admin.urbandmusic.com/api/register", {
+                method: "POST",
+                body: JSON.stringify(body)
             })
-            .catch(error => {
-            });
+                .then(res => res.json())
+                .then(res => {
+                    if (res.success) {
+                        dispatch({
+                            type: REGISTER,
+                            value: res
+                        });
+                        resolve()
+                    } else {
+                        reject(res)
+                    }
+                })
+                .catch(error => {
+                    reject(error)
+                });
+        })
     };
 };
 

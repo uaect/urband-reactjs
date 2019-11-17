@@ -202,14 +202,13 @@ export const fetchMenues = () => {
         })
             .then(res => res.json())
             .then(res => {
-                console.log("xxxx :", res.result);
                 dispatch({
                     type: FETCH_MENUES,
                     value: res.result
                 });
             })
             .catch(error => {
-                //console.log("xxxxerror" + JSON.stringify(error));
+                console.log("error :" + JSON.stringify(error));
             });
     };
 };

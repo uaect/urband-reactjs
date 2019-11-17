@@ -32,8 +32,6 @@ class Header extends Component {
   }
 
   render() {
-    console.log("menues",this.props.menues);
-
     return (
       <div className="AppHeader">
         <header className="header header-magic-line headroom headroom--not-bottom headroom--pinned headroom--top">
