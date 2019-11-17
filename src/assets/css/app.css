@@ -16163,8 +16163,14 @@ input[type].field-control::-webkit-input-placeholder {
 .bubble-wrap.active{
   opacity:1  !important;
 }
-
-
+.header_player{
+  background: #121217 !important;
+}
+.orderPlacedBoxTp1{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px 0px;
+}
 /* ResponsiveFixes Ijas */
 @media (max-width: 769px) {
   .DNone768{
@@ -16179,7 +16185,7 @@ input[type].field-control::-webkit-input-placeholder {
     margin-top:80px;
   }
   .banner-five .baneer-five-content .tim-slide-btn {
-    margin-top: 10px;
-    padding: 7px 49px;
-}
+      margin-top: 10px;
+      padding: 7px 49px;
+  }
 }

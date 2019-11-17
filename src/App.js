@@ -25,6 +25,7 @@ import ShopHome from "./components/Pages/UrbandStore/home.component";
 import ShopDetail from "./components/Pages/UrbandStore/detail.component";
 import ShopCart from "./components/Pages/UrbandStore/cart";
 import ShopCheckout from "./components/Pages/UrbandStore/checkOut";
+
 ///ticketBook
 import EventTickets from "./components/Pages/TicketBook/eventTickets.jsx";
 import TicketDetail from "./components/Pages/TicketBook/ticketDetail";
@@ -36,6 +37,7 @@ import "./assets/intro/css/intro.css";
 import "./assets/css/app.css";
 
 import ProfileDashboard from "./components/profileDashboard/index";
+import OrderPlaced from "./components/profileDashboard/orderPlaced/orderPlaced";
 
 class ScrollToTop extends Component {
   componentDidUpdate(prevProps) {
@@ -82,12 +84,8 @@ class App extends Component {
                   <Route path={"/ticket-summary"} component={TicketSummary} />
                   <Route exact path="/login" component={LogIn} />
                   <Route exact path="/register" component={Register} />
-                  
-
                   <Route path="/profile" component={ProfileDashboard} />
-
-
-                  
+                  <Route path="/OrderPlaced" component={OrderPlaced} />
 
                   <HomePage />
                   <SectionHero />
