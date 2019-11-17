@@ -80,7 +80,7 @@ class playAnimation extends Component {
 													
 												</span>
 												{
-												this.state.bottomPlayerActivated =='show' ? <FixedBottomPlayer ArtistImage = {image_url + events[0].image} ArtistTittle = {events[0].title} trackUrl="https://admin.urbandmusic.com/storage/audio/track_20191022_5daf01479e597.mp3"/> : ''
+												this.state.bottomPlayerActivated =='show' ? <FixedBottomPlayer action={this.PlayVideoHandler} ArtistImage = {image_url + events[0].image} ArtistTittle = {events[0].title} trackUrl="https://admin.urbandmusic.com/storage/audio/track_20191022_5daf01479e597.mp3"/> : ''
 												}
 												
 												
