@@ -157,15 +157,10 @@ export const fetcheventtickets = (id) => {
     };
 };
 
-export const previousshow = (id) => {
+export const previousshow = () => {
     return dispatch => {
-        const body = {
-            "eventid": id
-        };
-
         fetch("https://admin.urbandmusic.com/api/previousshow", {
-            method: "POST",
-            body: JSON.stringify(body)
+            method: "POST"
         })
             .then(res => res.json())
             .then(res => {

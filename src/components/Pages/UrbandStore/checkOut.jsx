@@ -109,7 +109,19 @@ class storeCheckOut extends Component {
     }
     if (flag == 0) {
       this.props.addaddress(this.state)
-      
+      .then(() => {
+        this.setState({
+          isToken: true
+        })
+        this.props.history.push('HomeStack');
+      })
+      .catch((error) => {
+        if (error.error == 'Unauthorised') {
+          this.setState({
+            errpassword: 'Invalid credential check username or passsord'
+          })
+        }
+      })
     }
   }
   ShowFormHadler() {
