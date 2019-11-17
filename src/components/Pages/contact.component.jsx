@@ -21,26 +21,42 @@ import * as actionCreators from "../../../src/store/actions/";
 library.add(faAt, faMapMarkerAlt, faPhoneAlt);
 
 const MyMapComponent = withScriptjs(
+
+  
   withGoogleMap(props => (
+  
+    
     <GoogleMap defaultZoom={8} defaultCenter={{ lat: -34.397, lng: 150.644 }}>
       {props.isMarkerShown && (
         <Marker position={{ lat: -34.397, lng: 150.644 }} />
       )}
     </GoogleMap>
   ))
+  
 );
 
 class Contact extends Component {
+  constructor() {
+    super()
+    this.state = {
+      lat: "",
+      lng:""
+    }
+  }
   componentDidMount() {
     this.props.fetchContact();
+    
   }
 
   render() {
     var isResponseData = false;
     const detail = this.props.contact;
+    
     const contactus = detail.contactus;
+    if(contactus){
+     
     if (detail.contactus) isResponseData = true;
-
+    }
     return (
 	<div>
 	<BannerHero title={"Contact"}/>

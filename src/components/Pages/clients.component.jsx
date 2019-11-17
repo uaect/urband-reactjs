@@ -16,10 +16,15 @@ class Clients extends Component {
   }
 
   render() {
+    const image_url = "https://admin.urbandmusic.com/storage/"
     const clients = this.props.clients;
     const clientslist = this.props.clientslist;
-    const data = clients.result;
-    const clientdata = clientslist.result;
+    if (clients !== "Emptey table") {
+      var data = clients;
+    }
+    if (clientslist !== "Emptey table")
+      var clientdata = clientslist;
+console.log("fffffff", clientdata);
 
     const responsive = {
       superLargeDesktop: {
@@ -48,66 +53,63 @@ class Clients extends Component {
           <div>
             {data ? (
               <section className="header-padd">
-                  <div className="container">
-                    <div className="row">
-                      <div className="text-center page-head">
-                        What our clients say
+                <div className="container">
+                  <div className="row">
+                    <div className="text-center page-head">
+                      What our clients say
                       </div>
-                      <div className="client-Wrapper">
-                        <FontAwesomeIcon
-                          icon={faQuoteLeft}
-                          className="quote left"
-                        />
-                        <FontAwesomeIcon
-                          icon={faQuoteRight}
-                          className="quote right"
-                        />
-                        <div className="col-md-12">
-                          {data && data.length > 0 ? (
-                            <Carousel
-                              responsive={responsive}
-                              showDots={true}
-                              arrows={false}
-                              dotListClass="custom-dot-list-style"
-                            >
-                              {data.map(item => {
-                                return (
-                                  <div className="client-avathar" key={item.id}>
-                                    <figure>
-                                      <img
-                                        src={
-                                          clients.image_url + "/" + item.image
-                                        }
-                                        alt="thumb"
-                                        className="rounded-circle fit-it"
-                                      />
-                                    </figure>
-                                    <p>
-                                      Lorem ipsum dolor sit amet consectetur,
-                                      adipisicing elit.Eos expedita, doloremque
-                                      sequi blanditiis perspiciatis rerum velit
-                                      maiores omnis modi voluptate est veniam
-                                    </p>
-                                    <div className="name">
-                                      <span>-</span> {item.title}
-                                    </div>
+                    <div className="client-Wrapper">
+                      <FontAwesomeIcon
+                        icon={faQuoteLeft}
+                        className="quote left"
+                      />
+                      <FontAwesomeIcon
+                        icon={faQuoteRight}
+                        className="quote right"
+                      />
+                      <div className="col-md-12">
+                        {data && data.length > 0 ? (
+                          <Carousel
+                            responsive={responsive}
+                            showDots={true}
+                            arrows={false}
+                            dotListClass="custom-dot-list-style"
+                          >
+                            {data.map(item => {
+                              return (
+                                <div className="client-avathar" key={item.id}>
+                                  <figure>
+                                    <img
+                                      src={
+                                        image_url + "/" + item.image
+                                      }
+                                      alt="thumb"
+                                      className="rounded-circle fit-it"
+                                    />
+                                  </figure>
+                                  <p>
+                                    {item.description}
+                                  </p>
+                                  <div className="name">
+                                    <span>-</span> {item.title}
                                   </div>
-                                );
-                              })}
-                            </Carousel>
-                          ) : (
+                                </div>
+                              );
+                            })}
+                          </Carousel>
+                        ) : (
                             " "
                           )}
-                        </div>
                       </div>
                     </div>
                   </div>
+                </div>
               </section>
             ) : (
-              <div>
-                <ComingSoon />
-              </div>
-            )}
+                <div>
+                  <ComingSoon />
+                </div>
+              )}
 
             {clientdata ? (
               <section className="partners-area">
@@ -118,12 +120,7 @@ class Clients extends Component {
                         <div className=" col-md-5">
                           <div className="section-title style-five float-left">
                             <h2>OUR Clients</h2>
-                            <p>
-                              There are many variations of passages of Lorem
-                              Ipsum available but the majority. We are proud
-                              there are many variations of passages of Lorem
-                              Ipsum available.
-                            </p>
+                        
                           </div>
                         </div>
                         <div className="col-md-7">
@@ -131,14 +128,16 @@ class Clients extends Component {
                             <ul className="client-list">
                               {clientdata.map(item => {
                                 return (
+                                  
                                   <li key={item.id}>
                                     <img
                                       src={
-                                        clientslist.image_url + "/" + item.image
+                                        image_url + "/" + item.image
                                       }
                                       alt="thumb"
                                       className="fit-it"
                                     />
+                                   
                                   </li>
                                 );
                               })}
@@ -151,10 +150,10 @@ class Clients extends Component {
                 </div>
               </section>
             ) : (
-              <div>
-                <ComingSoon />
-              </div>
-            )}
+                <div>
+                  <ComingSoon />
+                </div>
+              )}
           </div>
         </div>
       </div>

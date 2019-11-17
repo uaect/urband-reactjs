@@ -56,7 +56,7 @@ export const fetchClients = () => {
                 //console.log("resssssssssss", res.result[0]);
                 dispatch({
                     type: FETCH_CLIENTS,
-                    value: res
+                    value: res.result
                 });
             })
             .catch(error => {
@@ -80,7 +80,7 @@ export const fetchClientsList = () => {
                 //console.log("resssssssssss", res.result[0]);
                 dispatch({
                     type: FETCH_CLIENTSLIST,
-                    value: res
+                    value: res.result
                 });
             })
             .catch(error => {
@@ -168,7 +168,7 @@ export const previousshow = () => {
                 
                 dispatch({
                     type: PREVIOUSSHOW,
-                    value: res
+                    value: res.result
                 });
             })
             .catch(error => {
