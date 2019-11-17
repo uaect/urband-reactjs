@@ -1,6 +1,6 @@
 import React , {Component} from 'react';
 import SliderHero from '../Pages/slider/slider.component'
-import H5AudioPlayer from '../AudioPlayer/audioplayer.component'
+// import H5AudioPlayer from '../AudioPlayer/audioplayer.component'
 import MultiCarousel from '../Urband-MultiCarousel/artist-lineup.component'
 import MultiCarouselHero from '../Urband-MultiCarousel/multi-carousel'
 import PlayAnimation from './RecordAnimation/playAnimation'
@@ -17,7 +17,7 @@ class HomePage extends Component{
 
           <div>
             <SliderHero/>
-            <H5AudioPlayer src="https://ia802508.us.archive.org/5/items/testmp3testfile/mpthreetest.mp3" onPlay={e => console.log("onPlay")}/>
+            {/* <H5AudioPlayer src="https://ia802508.us.archive.org/5/items/testmp3testfile/mpthreetest.mp3" onPlay={e => console.log("onPlay")}/> */}
             
             <MultiCarousel/>
             <MultiCarouselHero/>

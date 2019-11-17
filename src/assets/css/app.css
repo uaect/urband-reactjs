@@ -16146,3 +16146,20 @@ input[type].field-control::-webkit-input-placeholder {
 .maxWidth195{
   max-width:195px !important;
 }
+.bubble-wrap{
+  z-index:-9 !important;
+  opacity:0 !important;
+  top:20%;
+
+}
+.bubble-wrap-right{
+  z-index:-9 !important;
+  opacity:0 !important;
+  top:20%;
+  left:auto;
+  right:20%;
+}
+.bubble-wrap-right.active,
+.bubble-wrap.active{
+  opacity:1  !important;
+}

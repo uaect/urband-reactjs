@@ -149,13 +149,13 @@ class Header extends Component {
 
                   </li>
                   <li className="d-flex">
-                    <Link to="/cart">
+                  {isToken ?<Link to="/cart">
                       <span>Cart</span>
                       <FontAwesomeIcon
                         icon={faCartPlus}
                         className="ico-user"
                       />
-                    </Link>
+                    </Link>: ""}
                   </li>
 
                 </ul>

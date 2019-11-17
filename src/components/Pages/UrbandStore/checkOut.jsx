@@ -25,9 +25,11 @@ class storeCheckOut extends Component {
       errappartment: "",
       address: "",
       erraddress: "",
-      landphone: "",
+      phone: "",
       mobile: "",
       errmobile: "",
+      type: "",
+      errtype: ""
 
     };
     this.ShowFormHadler = this.ShowFormHadler.bind(this);
@@ -48,14 +50,20 @@ class storeCheckOut extends Component {
 
 
   addaddress = (value) => {
-    console.log("stateeeeeeee", this.state.location, value.target.value);
+    console.log("stateeeeeeee", this.state, value.target.value);
 
-    const { first_name, last_name, location, city, appartment, address, mobile } = this.state;
+    const { first_name, last_name, location, city, appartment, address, mobile, type } = this.state;
     let flag = 0;
     if (first_name.length < 1) {
       flag = 1;
       this.setState({
         errfirstname: 'Please enter First name'
+      })
+    }
+    if (type.length < 1) {
+      flag = 1;
+      this.setState({
+        errtype: 'Please enter type'
       })
     }
     if (last_name.length < 1) {
@@ -94,22 +102,10 @@ class storeCheckOut extends Component {
         errmobile: 'Please enter mobile number'
       })
     }
-    // if (flag == 0) {
-    //   this.props.addaddress(this.state)
-    //     .then(() => {
-    //       this.setState({
-    //         isToken: true
-    //       })
-    //       this.props.history.push('HomeStack');
-    //     })
-    //     .catch((error) => {
-    //       if (error.error == 'Unauthorised') {
-    //         this.setState({
-    //           errpassword: 'Invalid credential check username or passsord'
-    //         })
-    //       }
-    //     })
-    // }
+    if (flag == 0) {
+      this.props.addaddress(this.state)
+
+    }
   }
   ShowFormHadler() {
     this.setState({
@@ -122,7 +118,7 @@ class storeCheckOut extends Component {
     });
   }
   handleChange(state, errState, evt) {
- 
+
 
     let _state = this.state
     _state[state] = evt.target.value;
@@ -255,7 +251,7 @@ class storeCheckOut extends Component {
                               <input
                                 type="text"
                                 value={this.state.first_name}
-                                onChange={this.handleChange.bind(this, 'firstname', 'errfirstname')}
+                                onChange={this.handleChange.bind(this, 'first_name', 'errfirstname')}
                                 className="form-control field-control"
                                 placeholder="First Name"
                               />
@@ -269,7 +265,7 @@ class storeCheckOut extends Component {
                                 className="form-control field-control"
                                 placeholder="Last Name"
                                 value={this.state.last_name}
-                                onChange={this.handleChange.bind(this, 'lastname', 'errlastname')}
+                                onChange={this.handleChange.bind(this, 'last_name', 'errlastname')}
                               />
                             </div>
                           </div>
@@ -277,14 +273,12 @@ class storeCheckOut extends Component {
                           <div className="col-md-6">
                             <div className="form-group">
                               <select
-                                className="form-control field-control"
-                                name="location"
                                 title="Select Current Location"
                                 value={this.state.location}
                                 onChange={this.handleChange.bind(this, 'location', 'errlocation')}
                               >
                                 <option value="">Select Location</option>
-                                <option value="Dubai">Dubai</option>
+                                <option value="Dubai" >Dubai</option>
                                 <option value="Sharjah">Sharjah</option>
                                 <option value="Abu Dhabi">Abu Dhabi</option>
                                 <option value="Ras Al Khaimah">Ras Al Khaimah</option>
@@ -299,9 +293,7 @@ class storeCheckOut extends Component {
                           <div className="col-md-6">
                             <div className="form-group">
                               <select
-                                className="form-control field-control"
-                                name="city"
-                                title="Select Current Location"
+
                                 value={this.state.city}
                                 onChange={this.handleChange.bind(this, 'city', 'errcity')}
                               >
@@ -341,13 +333,26 @@ class storeCheckOut extends Component {
                           {this.state.erraddress && <div class="text-danger">{this.state.erraddress}</div>}
                           <div className="col-md-6">
                             <div className="form-group">
+                              <select
+                                value={this.state.type}
+                                onChange={this.handleChange.bind(this, 'type', 'errtype')}>
+                                <option value="">Select Type</option>
+                                <option value="Home">Home</option>
+                                <option value="Office">Office</option>
+                                <option value="Other">Other</option>
+                              </select>
+                            </div>
+                          </div>
+                          {this.state.errtype && <div class="text-danger">{this.state.errtype}</div>}
+                          <div className="col-md-6">
+                            <div className="form-group">
                               <input
                                 type="text"
                                 className="form-control field-control"
                                 name=""
                                 placeholder="Landline Number"
-                                value={this.state.landphone}
-                                onChange={this.handleChange.bind(this, 'landphone')}
+                                value={this.state.phone}
+                                onChange={this.handleChange.bind(this, 'phone', "")}
                               />
                             </div>
                           </div>
@@ -487,7 +492,8 @@ const mapDispatchToProps = dispatch => {
   // call action functions
   return {
     getfromcart: () => dispatch(actionCreators.getfromcart()),
-    getaddress: () => dispatch(actionCreators.getaddress())
+    getaddress: () => dispatch(actionCreators.getaddress()),
+    addaddress: (param) => dispatch(actionCreators.addaddress(param))
   };
 };
 
