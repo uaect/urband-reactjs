@@ -127,7 +127,7 @@ class burgerMenu extends Component {
         </NavLink>
         <NavLink
           exact
-          to="/event"
+          to="/event-list"
           className="in-array"
           onClick={() => this.closeMenu()}
         >

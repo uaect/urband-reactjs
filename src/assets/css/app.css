@@ -9018,6 +9018,8 @@ div.jp-seeking-bg {
   -webkit-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
+  height: 250px;
+    object-fit: fill;
 }
 
 .tim-isotope.tim-isotope-2 .tim-album-item .popup-modal {
@@ -16344,6 +16346,26 @@ input[type].field-control::-webkit-input-placeholder {
   }
   .single-show-ticket p {
     margin-bottom: 0;
+  }
+  .single-show-ticket{
+        margin-bottom: 15px;
+  }
+  .section-padding {
+      padding: 15px 0;
+  }
+  .artist-timeline {
+      display: block;
+      grid-gap: 0;
+      grid-template-areas:
+          ". entry1"
+          "entry2 .";
+  }
+  .artist-timeline .artist-about{
+    padding: 0 !important;
+  }
+  .shop .col-md-4 {
+        flex: 0 0 50%;
+    max-width: 50%;
   }
 }
 
