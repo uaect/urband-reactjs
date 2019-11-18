@@ -45,6 +45,8 @@ function Gallery() {
 
    
     const categories =category.categories.result;
+    console.log("categoriescategoriescategories", categories);
+    
 
     return ( 
         <div>
