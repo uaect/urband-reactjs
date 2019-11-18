@@ -1,4 +1,4 @@
-import { FETCH_SPOTLIGHT,PREVIOUSSHOW,FETCH_EVENTTICKET,FETCH_POSTS, FETCH_CONTACT, FETCH_CLIENTS, FETCH_CLIENTSLIST, FETCH_EVENTLIST, FETCH_EVENTDETAIL, FETCH_MENUES } from "./types";
+import { EVENTDETAIL,FETCH_SPOTLIGHT,PREVIOUSSHOW,FETCH_EVENTTICKET,FETCH_POSTS, FETCH_CONTACT, FETCH_CLIENTS, FETCH_CLIENTSLIST, FETCH_EVENTLIST, FETCH_EVENTDETAIL, FETCH_MENUES } from "./types";
 
 export const fetchPosts = () => {
     return dispatch => {
@@ -127,6 +127,28 @@ export const fetchEventDetail = (page) => {
                 dispatch({
                     type: FETCH_EVENTDETAIL,
                     value: res.result
+                });
+            })
+            .catch(error => {
+                //console.log("error" + JSON.stringify(error));
+            });
+    };
+};
+
+export const EventDetail = (id) => {
+    return dispatch => {
+        const body = {
+            "eventid": id
+        };
+        fetch("https://admin.urbandmusic.com/api/eventdetails", {
+            method: "POST",
+            body: JSON.stringify(body)
+        })
+            .then(res => res.json())
+            .then(res => {
+                dispatch({
+                    type: EVENTDETAIL,
+                    value: res
                 });
             })
             .catch(error => {

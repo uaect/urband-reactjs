@@ -11,8 +11,10 @@ class upcomingShowHome extends Component {
   }
 
   render() {
-    const events = this.props.events;
-    console.log("events", events);
+    const event = this.props.events;
+    if(event)
+    var events = event.result
+    console.log("events", event);
 
     return (
 
@@ -59,7 +61,7 @@ class upcomingShowHome extends Component {
 const mapDispatchToProps = dispatch => {
   // call action functions
   return {
-    fetchEventDetail: () => dispatch(actionCreators.fetchEventDetail())
+    fetchEventDetail: () => dispatch(actionCreators.fetchEventDetail(""))
   };
 };
 

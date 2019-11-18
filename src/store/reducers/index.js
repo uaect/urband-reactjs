@@ -27,6 +27,7 @@ import emirates1Reducer from './emirates1Reducer';
 import previousShowReducer from './previousShowReducer';
 import spotlightReducer from './spotlightReducer';
 import fetchMenues from './fetchMenues';
+import eventDetailsReducer from './eventDetailsReducer';
 
 export default combineReducers({
     posts: postReducer, // choose any name
@@ -56,5 +57,7 @@ export default combineReducers({
     area:emirates1Reducer,
     previousshow:previousShowReducer,
     spotlight:spotlightReducer,
-    menues:fetchMenues
+    menues:fetchMenues,
+    event_details:eventDetailsReducer
+
 })
