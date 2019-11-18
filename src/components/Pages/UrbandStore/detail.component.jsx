@@ -44,9 +44,7 @@ class ShopDetail extends Component {
     var image_url = "https://admin.urbandmusic.com/storage/";
     var images = [];
     const storedetails = this.props.storedetails;
-    if (this.state.addcartflag && this.props.addcart.success)
       if (storedetails.files) {
-        // alert("item added to cart");
         for (var i = 0; i < storedetails.files.length; i++) {
           var image = [
             {
@@ -59,7 +57,7 @@ class ShopDetail extends Component {
           } else {
             images.push(image);
           }
-        }
+        } 
       }
     return (
       <div>
