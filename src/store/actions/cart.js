@@ -78,10 +78,18 @@ export const deletecart = (id) => {
                         });
                         resolve()
                     } else {
+                        dispatch({
+                            type: GET_CART,
+                            value: []
+                        });
                         reject(false)
                     }
                 })
                 .catch(error => {
+                    dispatch({
+                        type: GET_CART,
+                        value: []
+                    });
                     reject(false)
                 });
         })
