@@ -5,7 +5,10 @@ import BannerHero from "../Banners/bannerHero";
 import ReadMoreAndLess from "react-read-more-less";
 import { connect } from "react-redux";
 import * as actionCreators from "../../../src/store/actions/";
-
+// import {
+//   LazyLoadImage,
+//   trackWindowScroll
+// } from "react-lazy-load-image-component";
 class Artist extends Component {
   componentDidMount() {
     this.props.fetchPosts();
@@ -68,11 +71,21 @@ class Artist extends Component {
 
                           <div className="col-lg-6">
                             <div className="album-feature right">
-                              <img
-                                src={image_url + "/" + item.image}
-                                className="ink-pattern"
-                                alt="Album"
-                              />
+                              {
+                                // <LazyLoadImage
+                                //   effect="blur"
+                                //   src={image_url + "/" + item.image}
+                                //   visibleByDefault={
+                                //     (image_url + "/" + item.image).src ===
+                                //     "https://picsum.photos/200/300"
+                                //   }
+                                // />
+                                <img
+                                  src={image_url + "/" + item.image}
+                                  className="ink-pattern"
+                                  alt="Album"
+                                />
+                              }
                             </div>
                           </div>
                         </div>
@@ -83,9 +96,14 @@ class Artist extends Component {
               </section>
             </div>
           ) : (
+            ""
+          )}
+          {posts.length < 0 ? (
             <div>
               <ComingSoon />
             </div>
+          ) : (
+            ""
           )}
         </div>
       </div>

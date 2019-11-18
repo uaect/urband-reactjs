@@ -20,7 +20,7 @@ class sliderHero extends React.Component {
     }
 
     return (
-      <div className="heroCarouselBox">
+      <div className="heroCarouselBox ani-slideInDown">
         <CarouselProvider
           naturalSlideWidth={100}
           naturalSlideHeight={45}
@@ -28,7 +28,7 @@ class sliderHero extends React.Component {
           orientation="horizontal"
           playDirection="forward"
           touchEnabled={true}
-          isPlaying={true}
+          // isPlaying={true}
           interval={7000}
         >
           <Slider>
@@ -59,7 +59,7 @@ class sliderHero extends React.Component {
                               }}
                               className="tim-slide-btn"
                             >
-                             TICKETS
+                              TICKETS
                             </Link>
                             {/* <a className="tim-slide-btn" href="event-tickets#">
                               
@@ -97,7 +97,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(sliderHero);
+export default connect(mapStateToProps, mapDispatchToProps)(sliderHero);

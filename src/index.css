@@ -482,3 +482,4 @@ input[type="range"]:focus::-ms-fill-upper {
 .ImageTyp101.hgtTp3 {
   height: 350px;
 }
+@import "./assets/scss/main.scss";

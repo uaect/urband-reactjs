@@ -16189,3 +16189,150 @@ input[type].field-control::-webkit-input-placeholder {
       padding: 7px 49px;
   }
 }
+.EmptyHeaderTextTp1 {
+  color: rgb(126, 133, 155);
+  font-size: 23px;
+  font-weight: 500;
+  line-height: 2;
+}
+.EmptySubHeaderTextTp1 {
+  color: rgb(126, 133, 155);
+  font-size: 13px;
+}
+.EmptyLink1 {
+  padding: 10px 41px;
+  border: 1px solid #e4e4e4;
+  display: inline-block;
+  font-size: 20px;
+  font-weight: 500;
+  font-family: "Changa", sans-serif;
+  border-radius: 5px;
+  width: 255px;
+  vertical-align: top;
+  text-align: center;
+  background-color: #f60038;
+  color: #fff !important;
+  text-transform: uppercase;
+}
+.minHgt60 {
+  min-height: 60vh;
+}
+@-webkit-keyframes blink {
+  0% {
+    background: rgba(97, 91, 91, 0.5);
+  }
+  50% {
+    background: rgba(97, 91, 91, 0);
+  }
+  100% {
+    background: rgba(97, 91, 91, 0.5);
+  }
+}
+
+@keyframes blink {
+  0% {
+    background: rgba(97, 91, 91, 0.5);
+  }
+  50% {
+    background: rgba(97, 91, 91, 0);
+  }
+  100% {
+    background: rgba(97, 91, 91, 0.5);
+  }
+}
+
+.skeltonBox {
+  height: 100px;
+  width: 100px;
+  background: rgba(97, 91, 91, 1);
+  margin: 0 auto;
+}
+
+.skeltonBox {
+  -webkit-animation-direction: normal;
+  -webkit-animation-duration: 5s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-name: blink;
+  -webkit-animation-timing-function: ease;
+  animation-direction: normal;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-name: blink;
+  animation-timing-function: ease;
+}
+@media (max-width: 420px) {
+  .urband-col-xs-6 {
+    width: 50% !important;
+  }
+  .three-d-album {
+    padding: 0px 0 0;
+  }
+  .album-box-wrap {
+    padding-bottom: 0px;
+  }
+  .banner-five .baneer-five-content h3 {
+    font-size: 15px;
+    margin-top: 80px;
+  }
+  .banner-five .baneer-five-content {
+    top: 10%;
+  }
+  .banner-five .baneer-five-content .tim-slide-btn {
+    padding: 3px 10px;
+    font-size: 12px;
+    margin-top: 15px !important;
+  }
+  .section-title h2 {
+    font-size: 25px;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+  }
+  .sp-container h2.frame-1,
+  .sp-container h2.frame-2,
+  .sp-container h2.frame-3,
+  .sp-container h2.frame-4 {
+    font-size: 37px;
+    margin-top: 0px;
+  }
+  section-title.style-four p {
+    font-size: 14px;
+    line-height: 19px;
+  }
+  .section-padding-two {
+    padding: 30px 0;
+  }
+  .section-padding {
+    padding: 35px 0;
+  }
+  .show-archive {
+    padding-top: 0px;
+  }
+  .album-box {
+    margin-bottom: 0;
+  }
+  .album-box.album-box-two .album-details {
+    padding: 15px 0;
+  }
+  .section-title.style-five {
+    text-align: left;
+    margin-bottom: 35px;
+  }
+  .ImageTyp101 {
+    height: auto !important;
+  }
+  .ImageTyp101.hgtTp1 {
+    height: 183px !important;
+  }
+  .bm-item-list a {
+    padding: 5px 0 !important;
+    font-size: 17px !important;
+  }
+  .page-header {
+    height: 120px !important;
+    padding-top: 35px !important;
+  }
+  .in-array:hover::before {
+    border-bottom-color: transparent;
+  }
+}
+

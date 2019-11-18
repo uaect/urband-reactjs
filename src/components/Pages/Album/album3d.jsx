@@ -50,7 +50,7 @@ class albumListHome extends Component {
                       ? albums.map(item => {
                           return (
                             <div
-                              className="col-xl-2 col-lg-3 col-sm-6 col-md-4"
+                              className="col-xl-2 col-lg-3 col-md-4 col-sm-6 urband-col-xs-6 "
                               key={item.id}
                             >
                               <div className="album-box album-box-two">
@@ -103,7 +103,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(albumListHome);
+export default connect(mapStateToProps, mapDispatchToProps)(albumListHome);
