@@ -16345,5 +16345,8 @@ input[type].field-control::-webkit-input-placeholder {
   .single-show-ticket p {
     margin-bottom: 0;
   }
+  .single-show-ticket{
+        margin-bottom: 15px;
+  }
 }
 
