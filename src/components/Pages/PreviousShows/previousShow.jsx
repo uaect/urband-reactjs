@@ -141,7 +141,7 @@ class previousShowHome extends Component {
         ) : (
           ""
         )}
-        {this.state.videoArray[1] ? <ModalVideo title={this.state.videoArray[1]} /> : ""}
+        {this.state.videoArray.length ? <ModalVideo title={this.state.videoArray} /> : ""}
       </section>
     );
   }

@@ -1,4 +1,4 @@
-import { EVENTDETAIL,FETCH_SPOTLIGHT,PREVIOUSSHOW,FETCH_EVENTTICKET,FETCH_POSTS, FETCH_CONTACT, FETCH_CLIENTS, FETCH_CLIENTSLIST, FETCH_EVENTLIST, FETCH_EVENTDETAIL, FETCH_MENUES } from "./types";
+import { EVENTDETAIL, FETCH_SPOTLIGHT, PREVIOUSSHOW, FETCH_EVENTTICKET, FETCH_POSTS, FETCH_CONTACT, FETCH_CLIENTS, FETCH_CLIENTSLIST, FETCH_EVENTLIST, FETCH_EVENTDETAIL, FETCH_MENUES } from "./types";
 
 export const fetchPosts = () => {
     return dispatch => {
@@ -182,46 +182,52 @@ export const fetcheventtickets = (id) => {
 export const previousshow = () => {
     return dispatch => {
         return new Promise((resolve, reject) => {
-        fetch("https://admin.urbandmusic.com/api/previousshow", {
-            method: "POST"
-        })
-            .then(res => res.json())
-            .then(res => {
-                if (res.success) {
-                    dispatch({
-                        type: PREVIOUSSHOW,
-                        value: res.result
-                    });
-                    resolve()
-                } else {
-                    reject(res)
-                }
-                
-               
+            fetch("https://admin.urbandmusic.com/api/previousshow", {
+                method: "POST"
             })
-            .catch(error => {
-                //console.log("error" + JSON.stringify(error));
-            });
+                .then(res => res.json())
+                .then(res => {
+                    if (res.success) {
+                        dispatch({
+                            type: PREVIOUSSHOW,
+                            value: res.result
+                        });
+                        resolve()
+                    } else {
+                        reject(res)
+                    }
+
+
+                })
+                .catch(error => {
+                    //console.log("error" + JSON.stringify(error));
+                });
         })
     };
 };
 export const spotlight = () => {
     return dispatch => {
-
-        fetch("https://admin.urbandmusic.com/api/spotlight", {
-            method: "POST"
-        })
-            .then(res => res.json())
-            .then(res => {
-                dispatch({
-                    type: FETCH_SPOTLIGHT,
-                    value: res.result
-                });
+        return new Promise((resolve, reject) => {
+            fetch("https://admin.urbandmusic.com/api/spotlight", {
+                method: "POST"
             })
-            .catch(error => {
-                //console.log("error" + JSON.stringify(error));
-            });
-            
+                .then(res => res.json())
+                .then(res => {
+                    if (res.success) {
+                        dispatch({
+                            type: FETCH_SPOTLIGHT,
+                            value: res.result
+                        });
+                        resolve()
+                    } else {
+                        reject(res)
+                    }
+
+                })
+                .catch(error => {
+                    //console.log("error" + JSON.stringify(error));
+                });
+        })
     };
 };
 

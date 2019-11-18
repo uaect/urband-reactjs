@@ -14,7 +14,7 @@ class upcomingShowHome extends Component {
     const event = this.props.events;
     if(event)
     var events = event.result
-    console.log("events", event);
+    console.log("eventsdddddddddddddddddddddd", event);
 
     return (
 
