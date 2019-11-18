@@ -4,18 +4,67 @@ import "./style.css";
 import BannerHero from "../../Banners/bannerHero";
 import { connect } from "react-redux";
 import * as actionCreators from "../../../../src/store/actions";
+
 class ShopHome extends Component {
-  componentDidMount() {
-    this.props.fetchStoreList();
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      page: 0,
+      category: "",
+      priceMin: "",
+      priceMax: "",
+      sort: ""
+    };
   }
+
+  componentDidMount() {
+    this.props.fetchStoreList(this.state);
+    this.props.fetchStoreCategory();
+  }
+
+  handleScroll = (e) => {
+    console.log("scroll");
+    let element = e.target
+    if (element.scrollHeight - element.scrollTop === element.clientHeight) {
+      this.setState({
+        page: this.state.page++
+      })
+      this.props.fetchStoreList(this.state);
+    }
+  }
+
+  handleChange(state,evt ) {
+    let _state = this.state
+    _state[state] = evt.target.value;
+    this.setState({
+      ..._state
+    })
+      this.props.fetchStoreList(this.state);
+  }
+
+  handleCategory(state, evt ) {
+    if(evt.target.value == this.state.category){
+      this.setState({
+        category: ""
+      })
+    }else{
+      this.setState({
+        category: evt.target.value
+      })
+    }
+    this.props.fetchStoreList(this.state);
+  }
+
   render() {
     const image_url = "https://admin.urbandmusic.com/storage/";
     const storelist = this.props.storelist;
-
+    console.log(storelist);
+    
     return (
       <div>
         <BannerHero title="Store Home" />
-        <section className="shop header-padd">
+        <section className="shop header-padd"  onScroll={this.handleScroll}>
           <div className="container">
             <div className="row">
               <div className="col-xl-3 col-lg-4 col-md-4">
@@ -23,60 +72,41 @@ class ShopHome extends Component {
                   <h3 className="widget-title-shop">Filter by</h3>
                   <div className="filter-left-type">
                     <h3 className="title">By Category</h3>
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        value=""
-                        id="defaultCheck1"
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="defaultCheck1"
-                      >
-                        Popular
-                      </label>
-                    </div>
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        value=""
-                        id="defaultCheck1"
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="defaultCheck1"
-                      >
-                        Charts
-                      </label>
-                    </div>
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        value=""
-                        id="defaultCheck1"
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="defaultCheck1"
-                      >
-                        New Releases
-                      </label>
-                    </div>
+
+                    {this.props.storecategory &&
+                      this.props.storecategory.map(cat => {
+
+                        return (<div className="form-check">
+                          <input
+                            className="form-check-input"
+                            type="checkbox"
+                            value={cat.id}
+                            id="defaultCheck1"
+                            onChange={this.handleCategory.bind(this, 'category')}
+                          />
+                          <label
+                            className="form-check-label"
+                            htmlFor="defaultCheck1"
+                          >
+                            {cat.title}
+                          </label>
+                        </div>);
+
+                      })
+                    }
+
                   </div>
                   <div className="filter-left-type">
                     <h3 className="title">By Price</h3>
                     <div className="input-group price-range">
-                        <div className="input-group-prepend price-group">
-                            <span className="input-group-text">Min-Max</span>
-                        </div>
-                        <input type="text" aria-label="First name" className="form-control field-control"/>
-                        <input type="text" aria-label="Last name" className="form-control field-control"/>
-                        </div>
+                      <div className="input-group-prepend price-group">
+                        <span className="input-group-text">Min-Max</span>
+                      </div>
+                      <input type="text" aria-label="First name" onChange={this.handleChange.bind(this, 'priceMin')} className="form-control field-control" />
+                      <input type="text" aria-label="Last name" onChange={this.handleChange.bind(this, 'priceMax')} className="form-control field-control" />
+                    </div>
                   </div>
-                  
+
                 </aside>
               </div>
 
@@ -84,14 +114,14 @@ class ShopHome extends Component {
                 <div className="product-top-menu">
                   <div className="product-menu-wrapper">
                     <span>Short By</span>
-                    <select id="product-short" className="product-select">
-                      <option value="">Featured</option>
-                      <option value="january">Best Selling</option>
-                      <option value="march">Price, high to low</option>
+                    <select id="product-short" className="product-select" onChange={this.handleChange.bind(this, 'sort')}>
+                      <option value="">Sorting</option>
+                      <option value="new">Newest</option>
+                      <option value="old">Oldest</option>
                     </select>
                   </div>
                 </div>
-                {storelist.length ? (
+                {storelist.length &&
                   <div className="row store-products">
                     {storelist.map(item => {
                       return (
@@ -120,9 +150,7 @@ class ShopHome extends Component {
                       );
                     })}
                   </div>
-                ) : (
-                  ""
-                )}
+                }
               </div>
             </div>
           </div>
@@ -135,13 +163,15 @@ class ShopHome extends Component {
 const mapDispatchToProps = dispatch => {
   // call action functions
   return {
-    fetchStoreList: () => dispatch(actionCreators.fetchStoreList())
+    fetchStoreList: (state) => dispatch(actionCreators.fetchStoreList(state)),
+    fetchStoreCategory: () => dispatch(actionCreators.fetchStoreCategory())
   };
 };
 
 const mapStateToProps = state => {
   return {
-    storelist: state.storelist.items
+    storelist: state.storelist.items,
+    storecategory: state.storecategory.items
   };
 };
 
