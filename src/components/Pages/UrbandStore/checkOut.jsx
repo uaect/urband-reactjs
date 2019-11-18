@@ -170,8 +170,6 @@ class storeCheckOut extends Component {
     if (getaddress == "no address added") {
       var noaddress = false;
     } else var noaddress = true;
-    console.log("ttttttttttttttttt", noaddress);
-
     var formActiveOrNot = localStorage.getItem("address");
     var totalcost = 0;
     if (cartItems !== "emtey cart") {
@@ -203,55 +201,55 @@ class storeCheckOut extends Component {
                     <div className="row mt-3">
                       {noaddress
                         ? getaddress.map(item => {
-                            return (
-                              <div className="col-md-6" key={item.id}>
-                                <div className="AddressBoxWrp fullWidth">
-                                  <div
-                                    className={
-                                      "AddressBoxTp1 " +
-                                      (item.is_default == 1
-                                        ? "selectedBox"
-                                        : "")
-                                    }
-                                  >
-                                    <div className="head">
-                                      <img
-                                        src={SiteMapLogo}
-                                        alt={SiteMapLogo}
-                                      />
-                                      <span className="ml-2">{item.type}</span>
+                          return (
+                            <div className="col-md-6" key={item.id}>
+                              <div className="AddressBoxWrp fullWidth">
+                                <div
+                                  className={
+                                    "AddressBoxTp1 " +
+                                    (item.is_default == 1
+                                      ? "selectedBox"
+                                      : "")
+                                  }
+                                >
+                                  <div className="head">
+                                    <img
+                                      src={SiteMapLogo}
+                                      alt={SiteMapLogo}
+                                    />
+                                    <span className="ml-2">{item.type}</span>
+                                  </div>
+                                  <div className="AddressBoxTp1Content">
+                                    <div>
+                                      <div className="ItemListingStl1">
+                                        <div>Name</div>
+                                        <div className="BoldTp1 RghtBoxTp1">
+                                          {item.first_name}
+                                        </div>
+                                      </div>
                                     </div>
-                                    <div className="AddressBoxTp1Content">
-                                      <div>
-                                        <div className="ItemListingStl1">
-                                          <div>Name</div>
-                                          <div className="BoldTp1 RghtBoxTp1">
-                                            {item.first_name}
-                                          </div>
+                                    <div>
+                                      <div className="ItemListingStl1">
+                                        <div>Address</div>
+                                        <div className="RghtBoxTp1">
+                                          {item.street},{item.area}
                                         </div>
                                       </div>
-                                      <div>
-                                        <div className="ItemListingStl1">
-                                          <div>Address</div>
-                                          <div className="RghtBoxTp1">
-                                            {item.street},{item.area}
-                                          </div>
-                                        </div>
-                                      </div>
-                                      <div>
-                                        <div className="ItemListingStl1">
-                                          <div>Phone</div>
-                                          <div className="RghtBoxTp1">
-                                            {item.mobile}
-                                          </div>
+                                    </div>
+                                    <div>
+                                      <div className="ItemListingStl1">
+                                        <div>Phone</div>
+                                        <div className="RghtBoxTp1">
+                                          {item.mobile}
                                         </div>
                                       </div>
                                     </div>
                                   </div>
                                 </div>
                               </div>
-                            );
-                          })
+                            </div>
+                          );
+                        })
                         : ""}
                       <div className="col-md-6">
                         <div className="AddressBoxWrp fullWidth">
@@ -265,240 +263,240 @@ class storeCheckOut extends Component {
                       </div>
                     </div>
                   ) : (
-                    <div className="mt-4">
-                      <div className="row">
-                        <div className="col-md-6">
-                          <div className="form-group">
-                            <input
-                              type="text"
-                              value={this.state.first_name}
-                              onChange={this.handleChange.bind(
-                                this,
-                                "first_name",
-                                "errfirstname"
-                              )}
-                              className="form-control field-control"
-                              placeholder="First Name"
-                            />
+                      <div className="mt-4">
+                        <div className="row">
+                          <div className="col-md-6">
+                            <div className="form-group">
+                              <input
+                                type="text"
+                                value={this.state.first_name}
+                                onChange={this.handleChange.bind(
+                                  this,
+                                  "first_name",
+                                  "errfirstname"
+                                )}
+                                className="form-control field-control"
+                                placeholder="First Name"
+                              />
+                            </div>
                           </div>
-                        </div>
-                        {this.state.errfirstname && (
-                          <div class="text-danger">
-                            {this.state.errfirstname}
+                          {this.state.errfirstname && (
+                            <div class="text-danger">
+                              {this.state.errfirstname}
+                            </div>
+                          )}
+                          <div className="col-md-6">
+                            <div className="form-group">
+                              <input
+                                type="text"
+                                className="form-control field-control"
+                                placeholder="Last Name"
+                                value={this.state.last_name}
+                                onChange={this.handleChange.bind(
+                                  this,
+                                  "last_name",
+                                  "errlastname"
+                                )}
+                              />
+                            </div>
                           </div>
-                        )}
-                        <div className="col-md-6">
-                          <div className="form-group">
-                            <input
-                              type="text"
-                              className="form-control field-control"
-                              placeholder="Last Name"
-                              value={this.state.last_name}
-                              onChange={this.handleChange.bind(
-                                this,
-                                "last_name",
-                                "errlastname"
-                              )}
-                            />
-                          </div>
-                        </div>
-                        {this.state.errlastname && (
-                          <div class="text-danger">
-                            {this.state.errlastname}
-                          </div>
-                        )}
+                          {this.state.errlastname && (
+                            <div class="text-danger">
+                              {this.state.errlastname}
+                            </div>
+                          )}
 
-                        {emirates ? (
+                          {emirates ? (
+                            <div className="col-md-6">
+                              <div className="form-group">
+                                <select
+                                  onChange={this.handleChangeemirates.bind(this)}
+                                >
+                                  {emirates.map(value => (
+                                    <option key={value.id} value={value.id}>
+                                      {value.location}
+                                    </option>
+                                  ))}
+                                  ;
+                              </select>
+                              </div>
+                            </div>
+                          ) : (
+                              ""
+                            )}
+                          {this.state.emirate ? (
+                            <div className="col-md-6">
+                              <div className="form-group">
+                                <select
+                                  onChange={this.handleChangeemirates1.bind(this)}
+                                >
+                                  {arealist.map(data => (
+                                    <option key={data.id} value={data.id}>
+                                      {data.location}
+                                    </option>
+                                  ))}
+                                  ;
+                              </select>
+                              </div>
+                            </div>
+                          ) : (
+                              ""
+                            )}
+
+                          <div className="col-md-12">
+                            <div className="form-group">
+                              <input
+                                type="text"
+                                className="form-control field-control"
+                                name=""
+                                placeholder="Area"
+                                value={this.state.area}
+                                onChange={this.handleChange.bind(
+                                  this,
+                                  "area",
+                                  "errarea"
+                                )}
+                              />
+                            </div>
+                          </div>
+                          {this.state.errarea && (
+                            <div class="text-danger">{this.state.errarea}</div>
+                          )}
+                          <div className="col-md-12">
+                            <div className="form-group">
+                              <input
+                                type="text"
+                                className="form-control field-control"
+                                name=""
+                                placeholder="Street"
+                                value={this.state.street}
+                                onChange={this.handleChange.bind(
+                                  this,
+                                  "street",
+                                  "errstreet"
+                                )}
+                              />
+                            </div>
+                          </div>
+                          {this.state.errstreet && (
+                            <div class="text-danger">{this.state.errstreet}</div>
+                          )}
+                          <div className="col-md-12">
+                            <div className="form-group">
+                              <input
+                                type="text"
+                                className="form-control field-control"
+                                name=""
+                                placeholder="Apartment, villa no, etc."
+                                value={this.state.appartment}
+                                onChange={this.handleChange.bind(
+                                  this,
+                                  "appartment",
+                                  "errappartment"
+                                )}
+                              />
+                            </div>
+                          </div>
+                          {this.state.errappartment && (
+                            <div class="text-danger">
+                              {this.state.errappartment}
+                            </div>
+                          )}
+
+                          <div className="col-md-12">
+                            <div className="form-group">
+                              <textarea
+                                className="form-control field-control"
+                                type="text"
+                                name="description[]"
+                                placeholder="Full Address"
+                                value={this.state.address}
+                                onChange={this.handleChange.bind(
+                                  this,
+                                  "address",
+                                  "erraddress"
+                                )}
+                                rows="3"
+                              ></textarea>
+                            </div>
+                          </div>
+                          {this.state.erraddress && (
+                            <div class="text-danger">{this.state.erraddress}</div>
+                          )}
                           <div className="col-md-6">
                             <div className="form-group">
                               <select
-                                onChange={this.handleChangeemirates.bind(this)}
+                                value={this.state.type}
+                                onChange={this.handleChange.bind(
+                                  this,
+                                  "type",
+                                  "errtype"
+                                )}
                               >
-                                {emirates.map(value => (
-                                  <option key={value.id} value={value.id}>
-                                    {value.location}
-                                  </option>
-                                ))}
-                                ;
+                                <option value="">Select Type</option>
+                                <option value="Home">Home</option>
+                                <option value="Office">Office</option>
+                                <option value="Other">Other</option>
                               </select>
                             </div>
                           </div>
-                        ) : (
-                          ""
-                        )}
-                        {this.state.emirate ? (
+                          {this.state.errtype && (
+                            <div class="text-danger">{this.state.errtype}</div>
+                          )}
+
                           <div className="col-md-6">
                             <div className="form-group">
-                              <select
-                                onChange={this.handleChangeemirates1.bind(this)}
-                              >
-                                {arealist.map(data => (
-                                  <option key={data.id} value={data.id}>
-                                    {data.location}
-                                  </option>
-                                ))}
-                                ;
-                              </select>
+                              <input
+                                type="text"
+                                className="form-control field-control"
+                                name=""
+                                placeholder="Landline Number"
+                                value={this.state.phone}
+                                onChange={this.handleChange.bind(
+                                  this,
+                                  "phone",
+                                  ""
+                                )}
+                              />
                             </div>
                           </div>
-                        ) : (
-                          ""
-                        )}
 
-                        <div className="col-md-12">
-                          <div className="form-group">
-                            <input
-                              type="text"
-                              className="form-control field-control"
-                              name=""
-                              placeholder="Area"
-                              value={this.state.area}
-                              onChange={this.handleChange.bind(
-                                this,
-                                "area",
-                                "errarea"
-                              )}
-                            />
+                          <div className="col-md-6">
+                            <div className="form-group">
+                              <input
+                                type="text"
+                                className="form-control field-control"
+                                name=""
+                                placeholder="Mobile Number"
+                                value={this.state.mobile}
+                                onChange={this.handleChange.bind(
+                                  this,
+                                  "mobile",
+                                  "errmobile"
+                                )}
+                              />
+                            </div>
                           </div>
+                          {this.state.errmobile && (
+                            <div class="text-danger">{this.state.errmobile}</div>
+                          )}
                         </div>
-                        {this.state.errarea && (
-                          <div class="text-danger">{this.state.errarea}</div>
-                        )}
-                        <div className="col-md-12">
-                          <div className="form-group">
-                            <input
-                              type="text"
-                              className="form-control field-control"
-                              name=""
-                              placeholder="Street"
-                              value={this.state.street}
-                              onChange={this.handleChange.bind(
-                                this,
-                                "street",
-                                "errstreet"
-                              )}
-                            />
-                          </div>
-                        </div>
-                        {this.state.errstreet && (
-                          <div class="text-danger">{this.state.errstreet}</div>
-                        )}
-                        <div className="col-md-12">
-                          <div className="form-group">
-                            <input
-                              type="text"
-                              className="form-control field-control"
-                              name=""
-                              placeholder="Apartment, villa no, etc."
-                              value={this.state.appartment}
-                              onChange={this.handleChange.bind(
-                                this,
-                                "appartment",
-                                "errappartment"
-                              )}
-                            />
-                          </div>
-                        </div>
-                        {this.state.errappartment && (
-                          <div class="text-danger">
-                            {this.state.errappartment}
-                          </div>
-                        )}
-
-                        <div className="col-md-12">
-                          <div className="form-group">
-                            <textarea
-                              className="form-control field-control"
-                              type="text"
-                              name="description[]"
-                              placeholder="Full Address"
-                              value={this.state.address}
-                              onChange={this.handleChange.bind(
-                                this,
-                                "address",
-                                "erraddress"
-                              )}
-                              rows="3"
-                            ></textarea>
-                          </div>
-                        </div>
-                        {this.state.erraddress && (
-                          <div class="text-danger">{this.state.erraddress}</div>
-                        )}
-                        <div className="col-md-6">
-                          <div className="form-group">
-                            <select
-                              value={this.state.type}
-                              onChange={this.handleChange.bind(
-                                this,
-                                "type",
-                                "errtype"
-                              )}
-                            >
-                              <option value="">Select Type</option>
-                              <option value="Home">Home</option>
-                              <option value="Office">Office</option>
-                              <option value="Other">Other</option>
-                            </select>
-                          </div>
-                        </div>
-                        {this.state.errtype && (
-                          <div class="text-danger">{this.state.errtype}</div>
-                        )}
-
-                        <div className="col-md-6">
-                          <div className="form-group">
-                            <input
-                              type="text"
-                              className="form-control field-control"
-                              name=""
-                              placeholder="Landline Number"
-                              value={this.state.phone}
-                              onChange={this.handleChange.bind(
-                                this,
-                                "phone",
-                                ""
-                              )}
-                            />
-                          </div>
-                        </div>
-
-                        <div className="col-md-6">
-                          <div className="form-group">
-                            <input
-                              type="text"
-                              className="form-control field-control"
-                              name=""
-                              placeholder="Mobile Number"
-                              value={this.state.mobile}
-                              onChange={this.handleChange.bind(
-                                this,
-                                "mobile",
-                                "errmobile"
-                              )}
-                            />
-                          </div>
-                        </div>
-                        {this.state.errmobile && (
-                          <div class="text-danger">{this.state.errmobile}</div>
-                        )}
+                        <button
+                          type="btn"
+                          className="tim-btn mt-4 ticket-btn-lg place-order CancelBtnTp1"
+                          onClick={this.GobackToAddressHandler}
+                        >
+                          Cancel
+                      </button>
+                        <button
+                          type="submit"
+                          className="tim-btn mt-4 ticket-btn-lg place-order"
+                          onClick={this.addaddress}
+                        >
+                          Save
+                      </button>
                       </div>
-                      <button
-                        type="btn"
-                        className="tim-btn mt-4 ticket-btn-lg place-order CancelBtnTp1"
-                        onClick={this.GobackToAddressHandler}
-                      >
-                        Cancel
-                      </button>
-                      <button
-                        type="submit"
-                        className="tim-btn mt-4 ticket-btn-lg place-order"
-                        onClick={this.addaddress}
-                      >
-                        Save
-                      </button>
-                    </div>
-                  )}
+                    )}
                 </div>
                 <div className="full-wrap mt-5">
                   <div className="head">SELECT A PAYMENT METHOD</div>
@@ -538,12 +536,26 @@ class storeCheckOut extends Component {
                       </div>
                     </div>
                   </div>
-                  <button
-                    type="submit"
+                  {/* {this.state.ticketid ?<Link to={{
+                                pathname: `/ticket-checkout`,
+                                state: {
+                                  ticketDetail: this.state,
+                                  eventDetail:eventResult
+                                }
+                              }} */}
+                  {cartflag ?<Link
+                  to={{
+                    pathname: `/orderPlaced`,
+                    state: {
+                      cart: cartItems,
+                      total:totalcost
+                    }
+                  }}
                     className="tim-btn mt-4 ticket-btn-lg place-order"
                   >
                     Place Order
-                  </button>
+                </Link>:""}
+
                 </div>
               </div>
 
