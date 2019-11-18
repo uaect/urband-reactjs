@@ -181,21 +181,28 @@ export const fetcheventtickets = (id) => {
 
 export const previousshow = () => {
     return dispatch => {
+        return new Promise((resolve, reject) => {
         fetch("https://admin.urbandmusic.com/api/previousshow", {
             method: "POST"
         })
             .then(res => res.json())
             .then(res => {
-                console.log("previous show", res);
+                if (res.success) {
+                    dispatch({
+                        type: PREVIOUSSHOW,
+                        value: res.result
+                    });
+                    resolve()
+                } else {
+                    reject(res)
+                }
                 
-                dispatch({
-                    type: PREVIOUSSHOW,
-                    value: res.result
-                });
+               
             })
             .catch(error => {
                 //console.log("error" + JSON.stringify(error));
             });
+        })
     };
 };
 export const spotlight = () => {
@@ -214,6 +221,7 @@ export const spotlight = () => {
             .catch(error => {
                 //console.log("error" + JSON.stringify(error));
             });
+            
     };
 };
 
@@ -234,3 +242,45 @@ export const fetchMenues = () => {
             });
     };
 };
+
+
+
+// export const addaddress = (params) => {
+//     return dispatch => {
+//         return new Promise((resolve, reject) => {
+//             const body = {
+//                 "token": "1",
+//                 "type": params.type,
+//                 "first_name": params.first_name,
+//                 "last_name": params.last_name,
+//                 "mobile": params.mobile,
+//                 "phone": params.phone,
+//                 "emirate": "1",
+//                 "address": params.address,
+//                 "latitude": "1",
+//                 "longitude": "1",
+//                 "area": params.area,
+//                 "street": params.street
+//             };
+
+//             fetch("https://admin.urbandmusic.com/api/addaddress", {
+//                 method: "POST",
+//                 body: JSON.stringify(body)
+//             })
+//                 .then(res => res.json())
+//                 .then(res => {
+//                     if (res.success) {
+//                         dispatch({
+//                             type: ADDADDRESS,
+//                             value: res
+//                         });
+//                         resolve()
+//                     } else {
+//                         reject(res)
+//                     }
+//                 })
+//                 .catch(error => {
+//                 });
+//         })
+//     };
+// };
