@@ -18,14 +18,19 @@ class Clients extends Component {
   render() {
     const image_url = "https://admin.urbandmusic.com/storage/"
     const clients = this.props.clients;
+  
     const clientslist = this.props.clientslist;
-    if (clients !== "Emptey table") {
+  
+    if (clients !== "Emptey table" || !clients ) {
+      
       var data = clients;
+     
     }
-    if (clientslist !== "Emptey table")
+    if (clientslist !== "Emptey table" || !clientslist)
       var clientdata = clientslist;
-console.log("fffffff", clientdata);
-
+      console.log("fffffff1111", clients);
+      console.log("clientslist", clientslist);
+      console.log("fffffff2", data);
     const responsive = {
       superLargeDesktop: {
         // the naming can be any, depends on you.
@@ -68,14 +73,9 @@ console.log("fffffff", clientdata);
                         className="quote right"
                       />
                       <div className="col-md-12">
-                        {data && data.length > 0 ? (
-                          <Carousel
-                            responsive={responsive}
-                            showDots={true}
-                            arrows={false}
-                            dotListClass="custom-dot-list-style"
-                          >
-                            {data.map(item => {
+                      
+                       
+                            {data && data.map(item => {
                               return (
                                 <div className="client-avathar" key={item.id}>
                                   <figure>
@@ -96,10 +96,8 @@ console.log("fffffff", clientdata);
                                 </div>
                               );
                             })}
-                          </Carousel>
-                        ) : (
-                            " "
-                          )}
+                      
+
                       </div>
                     </div>
                   </div>
