@@ -13,7 +13,7 @@ class spotLight extends Component {
 
 		}
 	}
- 
+
 	componentDidMount() {
 		this.props.spotlight()
 			.then(() => {
@@ -35,8 +35,6 @@ class spotLight extends Component {
 						imageArray: imagess
 					})
 				}
-				console.log("spotlighttttttttttt", this.state.videoArray);
-				
 			})
 			.catch((error) => {
 				if (error) {
@@ -94,7 +92,7 @@ class spotLight extends Component {
 						</div>
 
 					</div>
-					{this.state.videoArray.length?(<ModalVideo  title={this.state.videoArray}/>):""}
+					{this.state.videoArray.length ? (<ModalVideo title={this.state.videoArray} />) : ""}
 
 				</div>
 

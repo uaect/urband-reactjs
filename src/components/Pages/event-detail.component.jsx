@@ -18,8 +18,6 @@ class EventDetail extends Component {
       var event = events.result;
       var artists = events.artists;
     }
-    console.log("tttttttt", events);
-    
     const image_url = "https://admin.urbandmusic.com/storage/";
     const responsive = {
       superLargeDesktop: {

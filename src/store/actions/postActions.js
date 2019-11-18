@@ -114,24 +114,33 @@ export const fetchEvent = () => {
 
 export const fetchEventDetail = (page) => {
     return dispatch => {
-        const body = {
-            "page": page
-        };
+        return new Promise((resolve, reject) => {
+            const body = {
+                "page": page
+            };
 
-        fetch("https://admin.urbandmusic.com/api/ticketevents", {
-            method: "POST",
-            body: JSON.stringify(body)
-        })
-            .then(res => res.json())
-            .then(res => {
-                dispatch({
-                    type: FETCH_EVENTDETAIL,
-                    value: res.result
-                });
+            fetch("https://admin.urbandmusic.com/api/ticketevents", {
+                method: "POST",
+                body: JSON.stringify(body)
             })
-            .catch(error => {
-                //console.log("error" + JSON.stringify(error));
-            });
+                .then(res => res.json())
+                .then(res => {
+                    if (res.result) {
+                        localStorage.setItem('address', true);
+                        dispatch({
+                            type: FETCH_EVENTDETAIL,
+                            value: res.result
+                        });
+                        resolve()
+                    } else {
+                        reject(res)
+                    }
+
+                })
+                .catch(error => {
+                    //console.log("error" + JSON.stringify(error));
+                });
+        })
     };
 };
 

@@ -80,8 +80,6 @@ export const getaddress = (params) => {
 
 
                     if (res.result) {
-                        console.log("ttttt222222222222ttt", res.result[0]);
-
                         localStorage.setItem('address', true);
                         dispatch({
                             type: GETADDRESS,
