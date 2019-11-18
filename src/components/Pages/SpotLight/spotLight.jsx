@@ -4,7 +4,6 @@ import "./style.css";
 import { connect } from "react-redux";
 import * as actionCreators from "../../../../src/store/actions/";
 class spotLight extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -62,7 +61,11 @@ class spotLight extends Component {
                 {this.state.spotlight ? (
                   <div className="grid-60">
                     <div className="spotlight-inner">
-                      <img src={image_url + this.state.imageArray[0]} alt="" />
+                      <img
+                        className="SpotLightImg "
+                        src={image_url + this.state.imageArray[0]}
+                        alt=""
+                      />
                       <div className="video-player-three">
                         <div className="text">
                           <p>{this.state.spotlight.title}</p>
