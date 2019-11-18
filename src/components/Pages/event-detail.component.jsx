@@ -59,7 +59,7 @@ class EventDetail extends Component {
                 <div className="col-lg-6">
                   <div className="event-content">
                     <h2>
-                      {/* Optimization <span>Is Important</span><br/> To <em>Business Succes.</em> */}
+                      {event.title}
                     </h2>
 
                     <p>
@@ -68,8 +68,8 @@ class EventDetail extends Component {
 
                     <div className="event-details">
                       <p>
-                        <span>Date & Time:</span> {event.date_from} To
-                      {event.date_to}, {event.time_from} To {event.time_to}
+                        <span>Date & Time:</span> {Moment(event.date_from).format('d MMM YYYY')}&nbsp; To 
+                        {Moment(event.date_to).format('d MMM YYYY')} & {event.time_from} To {event.time_to}
                       </p>
 
                       <p>
@@ -109,10 +109,14 @@ class EventDetail extends Component {
                   If You Can Drem It,
                 <br /> You Cane Live It
               </h3>
-
-                <Link to="/" className="tim-btn">
+              <Link to={{
+                      pathname: `/ticket-detail/${event.id}`
+                    }} className="tim-btn">
+                      Buy Tickets
+                  </Link>
+                {/* <Link to="/" className="tim-btn">
                   Buy Ticket
-              </Link>
+              </Link> */}
               </div>
             </div>) : ""}
           {artists ? (
