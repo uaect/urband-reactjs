@@ -68,17 +68,17 @@ class EventList extends Component {
                           <div className="entry-content-wrapper">
                             <div className="event-title">
                               <span>{item.title}</span>
-                              <span className="event-status">Upcoming</span>
+                              {/* <span className="event-status">Upcoming</span> */}
                             </div>
                             <div className="entry-meta entry-meta-footer">
                               <ul className="event-shortdetails">
-                                <li>
+                                {/* <li>
                                   <FontAwesomeIcon
                                     icon={faCalendarCheck}
                                     className="ico"
                                   />
                                   {item.date_on}
-                                </li>
+                                </li> */}
                                 <li>
                                   <FontAwesomeIcon
                                     icon={faClock}
@@ -93,13 +93,13 @@ class EventList extends Component {
                                   />
                                   {item.location}
                                 </li>
-                                <li>
+                                {/* <li>
                                   <FontAwesomeIcon
                                     icon={faTheaterMasks}
                                     className="ico"
                                   />
                                   Beatless
-                                </li>
+                                </li> */}
                               </ul>
                             </div>
                             <div className="entry-content">

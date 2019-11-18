@@ -15,15 +15,19 @@ library.add(faCartPlus);
 class ShopDetail extends Component {
   constructor(props) {
     super(props);
-    this.state = { showText: false };
-    this.state = { addcartflag: false };
+    this.state = { 
+      showText: false,
+      addcartflag: false
+    };
     this.handleClick = this.handleClick.bind(this);
     this.state = { AddedToCartIcon: false };
   }
+
   componentDidMount() {
     let storeid = this.props.location.pathname.split("/").pop();
     this.props.fetchStoreDetails(storeid);
   }
+
   handleClick(id) {
     this.props.addtocart(id);
     this.setState({ addcartflag: true });

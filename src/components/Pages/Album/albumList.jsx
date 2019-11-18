@@ -22,52 +22,53 @@ class AlbumHome extends Component {
 
     return (
       <div>
-        <BannerHero/>
+        <BannerHero />
 
         <section className="section-hero">
           <div className="container">
             <div className="row album-listing">
-              <StoreHeader />
+              {/* <StoreHeader /> */}
 
-              { albums ? albums.length > 0
+              {albums ? albums.length > 0
                 ? albums.map(item => {
-                    return (
-                      <div
-                        className="col-lg-3 col-md-3 col-sm-6 col-full-width"
-                        key={item.id}
-                      >
-                        <div className="product">
+                  return (
+                    <div
+                      className="col-lg-3 col-md-3 col-sm-6 col-full-width"
+                      key={item.id}
+                    >
+                      <div className="product">
+                        <Link
+                          to={{
+                            pathname: `/albums/detail/${item.id}`
+                          }}
+
+                        >
                           <div className="product-thumb album-thumb">
                             <img
                               className=" fit-it img-responsive"
                               src={image_url + item.image}
                               alt="Product Thumb"
                             />
-                            <Link
-                              to={{
-                                pathname: `/albums/detail/${item.id}`
-                              }}
-                              className="play-btn-round"
-                            >
-                              <FontAwesomeIcon icon={faPlay} />
-                            </Link>
+                            <div className="play-btn-round"> <FontAwesomeIcon icon={faPlay} /></div>
+
                           </div>
-                          <div className="product-detail">
-                            <h4 className="product-name">Music Album</h4>
-                            <div>
-                              By <b>{item.title}</b>
-                            </div>
-                            <div>
-                              Released on <b>{item.created_at}</b>
-                            </div>
+                        </Link>
+                        <div className="product-detail">
+                          <h4 className="product-name">Music Album</h4>
+                          <div>
+                            By <b>{item.title}</b>
+                          </div>
+                          <div>
+                            Released on <b>{item.created_at}</b>
                           </div>
                         </div>
                       </div>
-                    );
-                  })
-                :<ComingSoon/> 
+                    </div>
+                  );
+                })
+                : <ComingSoon />
                 : ""
-                }
+              }
             </div>
           </div>
         </section>

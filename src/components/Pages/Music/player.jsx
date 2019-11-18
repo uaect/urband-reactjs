@@ -21,14 +21,14 @@ class PlayerHero extends Component {
         this.state = {
             currentPlayList: {},
             playsong: false,
-            song:{}
+            song: {}
         }
         this.handleClick = this.handleClick.bind(this);
     }
     handleClick(item) {
         this.setState({ playsong: true });
         this.setState({ song: item });
-     
+
         this.setState({
             currentPlayList: {
                 playlistCoverUrl: 'https://e-cdns-images.dzcdn.net/images/playlist/ab4e61f7c223dbd66e06465bc0452b01/264x264-000000-80-0-0.jpg',
@@ -38,23 +38,24 @@ class PlayerHero extends Component {
                     {
                         position: '1',
                         songName: item.name,
-                        songUrl: 'https://admin.urbandmusic.com/storage/'+item.file
+                        songUrl: 'https://admin.urbandmusic.com/storage/' + item.file
                     },
-                 
+
                 ],
                 type: 'album'
             },
 
 
         })
-   //console.log(this.state.currentPlayList);
-   
+        //console.log(this.state.currentPlayList);
+
     }
     componentDidMount() {
-       
+
     }
 
     render() {
+        const image_url = "https://admin.urbandmusic.com/storage/";
         const playsong = this.state.playsong;
         //const image_url = "https://admin.urbandmusic.com/storage/"
         const album = this.props.value;
@@ -129,34 +130,25 @@ class PlayerHero extends Component {
                                     <h2>RELATED <span>ALBUM</span></h2>
                                 </div>
                                 <Carousel responsive={responsive}>
-                                    <div className="clearfix swiper-slide">
-                                        <div className="single-related-album">
+                                    {track ? track.map(item => {
+                                        return (
+                                            <div key={item.id} className="clearfix swiper-slide">
+                                                <div className="single-related-album">
 
-                                            <img src={require('../../../media/album/ra1.jpg')} alt="" />
+                                                    <img  src={image_url + item.image} alt="" />
 
-                                            <div className="single-related-prod-bottom">
-                                                <div className="left">
-                                                    <Link to="/">Funny Litle World</Link>
-                                                    <p>6 Tracks</p>
+                                                    <div className="single-related-prod-bottom">
+                                                        <div className="left">
+                                                            <Link to="/">{item.title}</Link>
+                                                            {/* <p>6 Tracks</p> */}
+                                                        </div>
+                                                        <div className="play-bottom" onClick={() => this.handleClick(item)} > <FontAwesomeIcon icon={faPlay} /></div>
+                                                    </div>
                                                 </div>
-                                                <Link to="/" className="play-bottom"> <FontAwesomeIcon icon={faPlay} /></Link>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className=" clearfix swiper-slide ">
-                                        <div className="single-related-album">
+                                            </div>);
+                                    })
+                                        : ""}
 
-                                            <img src={require('../../../media/album/ra2.jpg')} alt="" />
-
-                                            <div className="single-related-prod-bottom">
-                                                <div className="left">
-                                                    <Link to="/">Funny Litle World</Link>
-                                                    <p>6 Tracks</p>
-                                                </div>
-                                                <Link to="/" className="play-bottom"> <FontAwesomeIcon icon={faPlay} /></Link>
-                                            </div>
-                                        </div>
-                                    </div>
 
                                 </Carousel>
                             </div>

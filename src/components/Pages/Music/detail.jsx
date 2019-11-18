@@ -6,6 +6,8 @@ class DetailHero extends Component {
 	render() {
 		const image_url = "https://admin.urbandmusic.com/storage/"
 		const album = this.props.value;
+		console.log("album", album);
+		
 		if (album.tracks) {
 			var tracks = album.tracks.length;
 		} else {
@@ -29,8 +31,8 @@ class DetailHero extends Component {
 							<div className="col-md-6 padding-remove album-detail">
 								<div className="single-album-details">
 									<div className="details-top">
-										<h6>Life itself! The way</h6>
-										<p>Established fact that a reader will be distracted by readable content of a page when looking at its lay poin usin Ipsum is tmore-or-less.</p>
+										<h6>{album.title?album.title:""}</h6>
+										<p>{album.description?album.description:""}</p>
 									</div>
 
 									<ul>
