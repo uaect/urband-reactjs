@@ -133,7 +133,7 @@ class cart extends Component {
                 />
               </div>
             )}
-            {cartItems.legth <= 0 ? (
+            {cartflag ? (
               <div className="cart-total right-push">
                 <div className="d-flex price align-items-center">
                   Total
