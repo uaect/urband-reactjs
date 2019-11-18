@@ -26,6 +26,8 @@ export const GETEMIRATES1 = 'GETEMIRATES1';
 export const PREVIOUSSHOW = 'PREVIOUSSHOW';
 export const FETCH_SPOTLIGHT = 'FETCH_SPOTLIGHT';
 export const FETCH_MENUES = 'FETCH_MENUES';
+export const EVENTDETAIL = 'EVENTDETAIL';
+
 
 
 

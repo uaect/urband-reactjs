@@ -59,7 +59,13 @@ class playAnimation extends Component {
 									<div className="col-sm-8 col-md-9 col-lg-8">
 										<div className="latest-album-left">
 											<div className="cover-img">
+											<Link
+                                    to={{
+                                      pathname: `/albums/detail/${events[0].id}`
+                                    }}
+                                  >
 												<img className="maxWidth195" src={image_url + events[0].image} alt="" />
+												</Link>
 											</div>
 											<div className="albun-details">
 												<h6>{events[0].title}</h6>
@@ -80,7 +86,7 @@ class playAnimation extends Component {
 													
 												</span>
 												{
-												this.state.bottomPlayerActivated =='show' ? <FixedBottomPlayer action={this.PlayVideoHandler} ArtistImage = {image_url + events[0].image} ArtistTittle = {events[0].title} trackUrl="https://admin.urbandmusic.com/storage/audio/track_20191022_5daf01479e597.mp3"/> : ''
+												this.state.bottomPlayerActivated =='show' ? <FixedBottomPlayer action={this.PlayVideoHandler} ArtistImage = {image_url + events[0].image} ArtistTittle = {events[0].title} trackUrl={image_url +events[0].tracks[1].file}/> : ''
 												}
 												
 												

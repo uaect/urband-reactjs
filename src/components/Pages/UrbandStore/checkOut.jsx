@@ -39,92 +39,100 @@ class storeCheckOut extends Component {
     };
     this.ShowFormHadler = this.ShowFormHadler.bind(this);
     this.GobackToAddressHandler = this.GobackToAddressHandler.bind(this);
-    this.handleChangeemirates = this.handleChangeemirates.bind(this)
+    this.handleChangeemirates = this.handleChangeemirates.bind(this);
   }
 
   componentDidMount() {
     this.props.getfromcart();
     this.props.getaddress();
-    this.props.getemirates(1)
-
+    this.props.getemirates(1);
   }
 
-
-  addaddress = (value) => {
-    const { first_name, last_name, appartment, address, mobile, type, area, street } = this.state;
+  addaddress = value => {
+    const {
+      first_name,
+      last_name,
+      appartment,
+      address,
+      mobile,
+      type,
+      area,
+      street
+    } = this.state;
     let flag = 0;
     if (first_name.length < 1) {
       flag = 1;
       this.setState({
-        errfirstname: 'Please enter First name'
-      })
+        errfirstname: "Please enter First name"
+      });
     }
     if (area.length < 1) {
       flag = 1;
       this.setState({
-        errfirstname: 'Please enter area name'
-      })
+        errfirstname: "Please enter area name"
+      });
     }
     if (street.length < 1) {
       flag = 1;
       this.setState({
-        errfirstname: 'Please enter street name'
-      })
+        errfirstname: "Please enter street name"
+      });
     }
     if (type.length < 1) {
       flag = 1;
       this.setState({
-        errtype: 'Please enter type'
-      })
+        errtype: "Please enter type"
+      });
     }
     if (last_name.length < 1) {
       flag = 1;
       this.setState({
-        errlastname: 'Please enter last name'
-      })
+        errlastname: "Please enter last name"
+      });
     }
     if (this.state.emirate.length < 1) {
       flag = 1;
       this.setState({
-        errlocation: 'Please enter location '
-      })
+        errlocation: "Please enter location "
+      });
     }
     if (appartment.length < 1) {
       flag = 1;
       this.setState({
-        errappartment: 'Please enter appartment details'
-      })
+        errappartment: "Please enter appartment details"
+      });
     }
     if (address.length < 1) {
       flag = 1;
       this.setState({
-        erraddress: 'Please enter address'
-      })
+        erraddress: "Please enter address"
+      });
     }
     if (mobile.length < 1) {
       flag = 1;
       this.setState({
-        errmobile: 'Please enter mobile number'
-      })
+        errmobile: "Please enter mobile number"
+      });
     }
     if (flag == 0) {
-      this.props.addaddress(this.state)
-      .then(() => {
-        this.setState({
-          formActiveOrNot: true
-        });
-      })
-      .catch((error) => {
-        if (error.error == 'Unauthorised') {
+      this.props
+        .addaddress(this.state)
+        .then(() => {
           this.setState({
-            errpassword: 'Invalid credential check username or passsord'
-          })
-        }
-      })
+            formActiveOrNot: true
+          });
+        })
+        .catch(error => {
+          if (error.error == "Unauthorised") {
+            this.setState({
+              errpassword: "Invalid credential check username or passsord"
+            });
+          }
+        });
     }
-  }
+  };
   ShowFormHadler() {
-    localStorage.removeItem('address');
+    localStorage.removeItem("address");
     this.setState({
       formActiveOrNot: false
     });
@@ -138,7 +146,7 @@ class storeCheckOut extends Component {
     this.setState({
       emirate: event.target.value
     });
-    this.props.getarea(event.target.value)
+    this.props.getarea(event.target.value);
   }
   handleChangeemirates1(event) {
     this.setState({
@@ -146,14 +154,12 @@ class storeCheckOut extends Component {
     });
   }
   handleChange(state, errState, evt) {
-
-
-    let _state = this.state
+    let _state = this.state;
     _state[state] = evt.target.value;
-    _state[errState] = '';
+    _state[errState] = "";
     this.setState({
       ..._state
-    })
+    });
   }
   render() {
     const image_url = "https://admin.urbandmusic.com/storage/";
@@ -161,12 +167,12 @@ class storeCheckOut extends Component {
     var emirates = this.props.emirateslist;
     var arealist = this.props.arealist;
     var getaddress = this.props.address;
-    if(getaddress == "no address added"){
+    if (getaddress == "no address added") {
       var noaddress = false;
-    }else  var noaddress = true;
+    } else var noaddress = true;
     console.log("ttttttttttttttttt", noaddress);
 
-    var formActiveOrNot = localStorage.getItem('address');
+    var formActiveOrNot = localStorage.getItem("address");
     var totalcost = 0;
     if (cartItems !== "emtey cart") {
       var cartflag = true;
@@ -195,47 +201,58 @@ class storeCheckOut extends Component {
                   <div className="head">SHIPPING ADDRESS</div>
                   {formActiveOrNot || this.state.formActiveOrNot ? (
                     <div className="row mt-3">
-                      {noaddress ? getaddress.map(item => {
-                        return (
-
-                          <div className="col-md-6" key={item.id}>
-                            <div className="AddressBoxWrp fullWidth">
-                              <div className="AddressBoxTp1 selectedBox">
-                                <div className="head">
-                                  <img src={SiteMapLogo} alt={SiteMapLogo} />
-                                  <span className="ml-2">{item.type}</span>
-                                </div>
-                                <div className="AddressBoxTp1Content">
-                                  <div>
-                                    <div className="ItemListingStl1">
-                                      <div>Name</div>
-                                      <div className="BoldTp1 RghtBoxTp1">
-                                        {item.first_name}
-                                      </div>
+                      {noaddress
+                        ? getaddress.map(item => {
+                            return (
+                              <div className="col-md-6" key={item.id}>
+                                <div className="AddressBoxWrp fullWidth">
+                                  <div
+                                    className={
+                                      "AddressBoxTp1 " +
+                                      (item.is_default == 1
+                                        ? "selectedBox"
+                                        : "")
+                                    }
+                                  >
+                                    <div className="head">
+                                      <img
+                                        src={SiteMapLogo}
+                                        alt={SiteMapLogo}
+                                      />
+                                      <span className="ml-2">{item.type}</span>
                                     </div>
-                                  </div>
-                                  <div>
-                                    <div className="ItemListingStl1">
-                                      <div>Address</div>
-                                      <div className="RghtBoxTp1">
-                                        {item.street},{item.area}
+                                    <div className="AddressBoxTp1Content">
+                                      <div>
+                                        <div className="ItemListingStl1">
+                                          <div>Name</div>
+                                          <div className="BoldTp1 RghtBoxTp1">
+                                            {item.first_name}
+                                          </div>
+                                        </div>
                                       </div>
-                                    </div>
-                                  </div>
-                                  <div>
-                                    <div className="ItemListingStl1">
-                                      <div>Phone</div>
-                                      <div className="RghtBoxTp1">
-                                        {item.mobile}
+                                      <div>
+                                        <div className="ItemListingStl1">
+                                          <div>Address</div>
+                                          <div className="RghtBoxTp1">
+                                            {item.street},{item.area}
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div>
+                                        <div className="ItemListingStl1">
+                                          <div>Phone</div>
+                                          <div className="RghtBoxTp1">
+                                            {item.mobile}
+                                          </div>
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                          </div>
-                        )
-                      }) : ""}
+                            );
+                          })
+                        : ""}
                       <div className="col-md-6">
                         <div className="AddressBoxWrp fullWidth">
                           <div
@@ -248,226 +265,286 @@ class storeCheckOut extends Component {
                       </div>
                     </div>
                   ) : (
-                      <div className="mt-4">
-                        <div className="row">
-                          <div className="col-md-6">
-                            <div className="form-group">
-                              <input
-                                type="text"
-                                value={this.state.first_name}
-                                onChange={this.handleChange.bind(this, 'first_name', 'errfirstname')}
-                                className="form-control field-control"
-                                placeholder="First Name"
-                              />
-                            </div>
+                    <div className="mt-4">
+                      <div className="row">
+                        <div className="col-md-6">
+                          <div className="form-group">
+                            <input
+                              type="text"
+                              value={this.state.first_name}
+                              onChange={this.handleChange.bind(
+                                this,
+                                "first_name",
+                                "errfirstname"
+                              )}
+                              className="form-control field-control"
+                              placeholder="First Name"
+                            />
                           </div>
-                          {this.state.errfirstname && <div class="text-danger">{this.state.errfirstname}</div>}
-                          <div className="col-md-6">
-                            <div className="form-group">
-                              <input
-                                type="text"
-                                className="form-control field-control"
-                                placeholder="Last Name"
-                                value={this.state.last_name}
-                                onChange={this.handleChange.bind(this, 'last_name', 'errlastname')}
-                              />
-                            </div>
+                        </div>
+                        {this.state.errfirstname && (
+                          <div class="text-danger">
+                            {this.state.errfirstname}
                           </div>
-                          {this.state.errlastname && <div class="text-danger">{this.state.errlastname}</div>}
-
-                          {emirates ?
-                            <div className="col-md-6">
-                              <div className="form-group">
-
-                                <select
-                                  onChange={this.handleChangeemirates.bind(this)}>
-                                  {emirates.map(value =>
-                                    <option key={value.id} value={value.id}>{value.location}</option>
-                                  )};
-
-
-                                </select>
-                              </div>
-                            </div> : ""}
-                          {this.state.emirate ?
-                            <div className="col-md-6">
-                              <div className="form-group">
-
-                                <select
-                                  onChange={this.handleChangeemirates1.bind(this)}>
-                                  {arealist.map(data =>
-                                    <option key={data.id} value={data.id}>{data.location}</option>
-                                  )};
-
-
-                                </select>
-                              </div>
-                            </div> : ""}
-
-                          <div className="col-md-12">
-                            <div className="form-group">
-                              <input
-                                type="text"
-                                className="form-control field-control"
-                                name=""
-                                placeholder="Area"
-                                value={this.state.area}
-                                onChange={this.handleChange.bind(this, 'area', 'errarea')}
-                              />
-                            </div>
+                        )}
+                        <div className="col-md-6">
+                          <div className="form-group">
+                            <input
+                              type="text"
+                              className="form-control field-control"
+                              placeholder="Last Name"
+                              value={this.state.last_name}
+                              onChange={this.handleChange.bind(
+                                this,
+                                "last_name",
+                                "errlastname"
+                              )}
+                            />
                           </div>
-                          {this.state.errarea && <div class="text-danger">{this.state.errarea}</div>}
-                          <div className="col-md-12">
-                            <div className="form-group">
-                              <input
-                                type="text"
-                                className="form-control field-control"
-                                name=""
-                                placeholder="Street"
-                                value={this.state.street}
-                                onChange={this.handleChange.bind(this, 'street', 'errstreet')}
-                              />
-                            </div>
+                        </div>
+                        {this.state.errlastname && (
+                          <div class="text-danger">
+                            {this.state.errlastname}
                           </div>
-                          {this.state.errstreet && <div class="text-danger">{this.state.errstreet}</div>}
-                          <div className="col-md-12">
-                            <div className="form-group">
-                              <input
-                                type="text"
-                                className="form-control field-control"
-                                name=""
-                                placeholder="Apartment, villa no, etc."
-                                value={this.state.appartment}
-                                onChange={this.handleChange.bind(this, 'appartment', 'errappartment')}
-                              />
-                            </div>
-                          </div>
-                          {this.state.errappartment && <div class="text-danger">{this.state.errappartment}</div>}
+                        )}
 
-                          <div className="col-md-12">
-                            <div className="form-group">
-                              <textarea
-                                className="form-control field-control"
-                                type="text"
-                                name="description[]"
-                                placeholder="Full Address"
-                                value={this.state.address}
-                                onChange={this.handleChange.bind(this, 'address', 'erraddress')}
-                                rows="3"
-                              ></textarea>
-                            </div>
-                          </div>
-                          {this.state.erraddress && <div class="text-danger">{this.state.erraddress}</div>}
+                        {emirates ? (
                           <div className="col-md-6">
                             <div className="form-group">
                               <select
-                                value={this.state.type}
-                                onChange={this.handleChange.bind(this, 'type', 'errtype')}>
-                                <option value="">Select Type</option>
-                                <option value="Home">Home</option>
-                                <option value="Office">Office</option>
-                                <option value="Other">Other</option>
+                                onChange={this.handleChangeemirates.bind(this)}
+                              >
+                                {emirates.map(value => (
+                                  <option key={value.id} value={value.id}>
+                                    {value.location}
+                                  </option>
+                                ))}
+                                ;
                               </select>
                             </div>
                           </div>
-                          {this.state.errtype && <div class="text-danger">{this.state.errtype}</div>}
-
-
-
+                        ) : (
+                          ""
+                        )}
+                        {this.state.emirate ? (
                           <div className="col-md-6">
                             <div className="form-group">
-                              <input
-                                type="text"
-                                className="form-control field-control"
-                                name=""
-                                placeholder="Landline Number"
-                                value={this.state.phone}
-                                onChange={this.handleChange.bind(this, 'phone', "")}
-                              />
+                              <select
+                                onChange={this.handleChangeemirates1.bind(this)}
+                              >
+                                {arealist.map(data => (
+                                  <option key={data.id} value={data.id}>
+                                    {data.location}
+                                  </option>
+                                ))}
+                                ;
+                              </select>
                             </div>
                           </div>
+                        ) : (
+                          ""
+                        )}
 
-                          <div className="col-md-6">
-                            <div className="form-group">
-                              <input
-                                type="text"
-                                className="form-control field-control"
-                                name=""
-                                placeholder="Mobile Number"
-                                value={this.state.mobile}
-                                onChange={this.handleChange.bind(this, 'mobile', 'errmobile')}
-                              />
-                            </div>
+                        <div className="col-md-12">
+                          <div className="form-group">
+                            <input
+                              type="text"
+                              className="form-control field-control"
+                              name=""
+                              placeholder="Area"
+                              value={this.state.area}
+                              onChange={this.handleChange.bind(
+                                this,
+                                "area",
+                                "errarea"
+                              )}
+                            />
                           </div>
-                          {this.state.errmobile && <div class="text-danger">{this.state.errmobile}</div>}
                         </div>
-                        <button
-                          type="btn"
-                          className="tim-btn mt-4 ticket-btn-lg place-order CancelBtnTp1"
-                          onClick={this.GobackToAddressHandler}
-                        >
-                          Cancel
-                      </button>
-                        <button
-                          type="submit"
-                          className="tim-btn mt-4 ticket-btn-lg place-order"
-                          onClick={this.addaddress}>
-                          Save
-                      </button>
+                        {this.state.errarea && (
+                          <div class="text-danger">{this.state.errarea}</div>
+                        )}
+                        <div className="col-md-12">
+                          <div className="form-group">
+                            <input
+                              type="text"
+                              className="form-control field-control"
+                              name=""
+                              placeholder="Street"
+                              value={this.state.street}
+                              onChange={this.handleChange.bind(
+                                this,
+                                "street",
+                                "errstreet"
+                              )}
+                            />
+                          </div>
+                        </div>
+                        {this.state.errstreet && (
+                          <div class="text-danger">{this.state.errstreet}</div>
+                        )}
+                        <div className="col-md-12">
+                          <div className="form-group">
+                            <input
+                              type="text"
+                              className="form-control field-control"
+                              name=""
+                              placeholder="Apartment, villa no, etc."
+                              value={this.state.appartment}
+                              onChange={this.handleChange.bind(
+                                this,
+                                "appartment",
+                                "errappartment"
+                              )}
+                            />
+                          </div>
+                        </div>
+                        {this.state.errappartment && (
+                          <div class="text-danger">
+                            {this.state.errappartment}
+                          </div>
+                        )}
+
+                        <div className="col-md-12">
+                          <div className="form-group">
+                            <textarea
+                              className="form-control field-control"
+                              type="text"
+                              name="description[]"
+                              placeholder="Full Address"
+                              value={this.state.address}
+                              onChange={this.handleChange.bind(
+                                this,
+                                "address",
+                                "erraddress"
+                              )}
+                              rows="3"
+                            ></textarea>
+                          </div>
+                        </div>
+                        {this.state.erraddress && (
+                          <div class="text-danger">{this.state.erraddress}</div>
+                        )}
+                        <div className="col-md-6">
+                          <div className="form-group">
+                            <select
+                              value={this.state.type}
+                              onChange={this.handleChange.bind(
+                                this,
+                                "type",
+                                "errtype"
+                              )}
+                            >
+                              <option value="">Select Type</option>
+                              <option value="Home">Home</option>
+                              <option value="Office">Office</option>
+                              <option value="Other">Other</option>
+                            </select>
+                          </div>
+                        </div>
+                        {this.state.errtype && (
+                          <div class="text-danger">{this.state.errtype}</div>
+                        )}
+
+                        <div className="col-md-6">
+                          <div className="form-group">
+                            <input
+                              type="text"
+                              className="form-control field-control"
+                              name=""
+                              placeholder="Landline Number"
+                              value={this.state.phone}
+                              onChange={this.handleChange.bind(
+                                this,
+                                "phone",
+                                ""
+                              )}
+                            />
+                          </div>
+                        </div>
+
+                        <div className="col-md-6">
+                          <div className="form-group">
+                            <input
+                              type="text"
+                              className="form-control field-control"
+                              name=""
+                              placeholder="Mobile Number"
+                              value={this.state.mobile}
+                              onChange={this.handleChange.bind(
+                                this,
+                                "mobile",
+                                "errmobile"
+                              )}
+                            />
+                          </div>
+                        </div>
+                        {this.state.errmobile && (
+                          <div class="text-danger">{this.state.errmobile}</div>
+                        )}
                       </div>
-                    )}
+                      <button
+                        type="btn"
+                        className="tim-btn mt-4 ticket-btn-lg place-order CancelBtnTp1"
+                        onClick={this.GobackToAddressHandler}
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        type="submit"
+                        className="tim-btn mt-4 ticket-btn-lg place-order"
+                        onClick={this.addaddress}
+                      >
+                        Save
+                      </button>
+                    </div>
+                  )}
                 </div>
-                {this.state.formActiveOrNot === true ? (
-                  <div className="full-wrap mt-5">
-                    <div className="head">SELECT A PAYMENT METHOD</div>
-                    <div className="full-wrap mt-4">
-                      <div className="payment-method">
-                        <div className="payment-header d-flex align-items-center">
-                          <div className="custom-control custom-radio">
-                            <input
-                              type="radio"
-                              id="Paypal"
-                              name="customRadio"
-                              className="custom-control-input"
-                            />
-                            <label
-                              className="custom-control-label"
-                              htmlFor="Paypal"
-                            >
-                              PayPal
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="payment-method">
-                        <div className="payment-header d-flex align-items-center">
-                          <div className="custom-control custom-radio">
-                            <input
-                              type="radio"
-                              id="COD"
-                              name="customRadio"
-                              className="custom-control-input"
-                            />
-                            <label
-                              className="custom-control-label"
-                              htmlFor="COD"
-                            >
-                              Cash on delivery
-                            </label>
-                          </div>
+                <div className="full-wrap mt-5">
+                  <div className="head">SELECT A PAYMENT METHOD</div>
+                  <div className="full-wrap mt-4">
+                    <div className="payment-method">
+                      <div className="payment-header d-flex align-items-center">
+                        <div className="custom-control custom-radio">
+                          <input
+                            type="radio"
+                            id="Paypal"
+                            name="customRadio"
+                            className="custom-control-input"
+                          />
+                          <label
+                            className="custom-control-label"
+                            htmlFor="Paypal"
+                          >
+                            PayPal
+                          </label>
                         </div>
                       </div>
                     </div>
-                    <button
-                      type="submit"
-                      className="tim-btn mt-4 ticket-btn-lg place-order"
-                    >
-                      Place Order
-                    </button>
+                    <div className="payment-method">
+                      <div className="payment-header d-flex align-items-center">
+                        <div className="custom-control custom-radio">
+                          <input
+                            type="radio"
+                            id="COD"
+                            name="customRadio"
+                            className="custom-control-input"
+                            checked
+                          />
+                          <label className="custom-control-label" htmlFor="COD">
+                            Cash on delivery
+                          </label>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                ) : (
-                    ""
-                  )}
+                  <button
+                    type="submit"
+                    className="tim-btn mt-4 ticket-btn-lg place-order"
+                  >
+                    Place Order
+                  </button>
+                </div>
               </div>
 
               <div className="col-md-5 checkout-block checkout-list-wrap">
@@ -524,15 +601,13 @@ const mapDispatchToProps = dispatch => {
     getfromcart: () => dispatch(actionCreators.getfromcart()),
     getaddress: () => dispatch(actionCreators.getaddress()),
     getemirates: () => dispatch(actionCreators.getemirates()),
-    getarea: (id) => dispatch(actionCreators.getemirates1(id)),
-    addaddress: (param) => dispatch(actionCreators.addaddress(param))
+    getarea: id => dispatch(actionCreators.getemirates1(id)),
+    addaddress: param => dispatch(actionCreators.addaddress(param))
   };
 };
 
 const mapStateToProps = state => {
-
   return {
-
     cartitems: state.cartitems.items,
     address: state.getaddress.address,
     emirateslist: state.emirateslist.emirates,

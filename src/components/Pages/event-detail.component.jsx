@@ -4,25 +4,21 @@ import Carousel from "react-multi-carousel";
 import { connect } from "react-redux";
 import BannerHero from "../Banners/bannerHero";
 import * as actionCreators from "../../../src/store/actions/";
+import Moment from 'moment';
 class EventDetail extends Component {
   componentDidMount() {
     let eventid = this.props.location.pathname.split('/').pop();
-    this.props.fetchEventDetail(eventid);
+    this.props.EventDetail(eventid);
   }
 
   render() {
 
-    const events = this.props.event;
+    const events = this.props.events;
     if (events) {
       var event = events.result;
       var artists = events.artists;
-      console.log("ffffffffffffff", events);
-
     }
     const image_url = "https://admin.urbandmusic.com/storage/";
-
-
-
     const responsive = {
       superLargeDesktop: {
         // the naming can be any, depends on you.
@@ -45,7 +41,7 @@ class EventDetail extends Component {
 
     return (
       <div>
-      <BannerHero title={"Events"} />
+        <BannerHero title={"Events"} />
         {event ? (
           <section id="event-about">
             <div className="container">
@@ -55,7 +51,6 @@ class EventDetail extends Component {
                     <img
                       src={
                         image_url +
-                        "/" +
                         event.image
                       } alt="Thumb" />
                   </div>
@@ -92,9 +87,9 @@ class EventDetail extends Component {
                     available, but the majority.
                   </p> */}
 
-                    <Link  to={{
-                                pathname: `/ticket-detail/${event.id}`
-                              }} className="tim-btn">
+                    <Link to={{
+                      pathname: `/ticket-detail/${event.id}`
+                    }} className="tim-btn">
                       Buy Tickets
                   </Link>
                   </div>
@@ -104,21 +99,22 @@ class EventDetail extends Component {
           </section>
         ) : ""}
         <section id="event-schedule" className="clearfix">
-          <div className="schedule-ticket">
-            <img src={require("../../media/background/10.jpg")} alt="thum" />
+          {event ? (
+            <div className="schedule-ticket">
+              <img src={require("../../media/background/10.jpg")} alt="thum" />
 
-            <div className="content">
-              <p className="schedule-date">August 19, 2018 @ 11 - 30 am</p>
-              <h3>
-                If You Can Drem It,
+              <div className="content">
+                <p className="schedule-date">{Moment(event.date_from).format('d MMM YYYY')} -{Moment(event.date_to).format('d MMM YYYY')}</p>
+                <h3>
+                  If You Can Drem It,
                 <br /> You Cane Live It
               </h3>
 
-              <Link to="/" className="tim-btn">
-                Buy Ticket
+                <Link to="/" className="tim-btn">
+                  Buy Ticket
               </Link>
-            </div>
-          </div>
+              </div>
+            </div>) : ""}
           {artists ? (
             <div className="schedule clearfix">
               <div className="swiper-container">
@@ -133,17 +129,16 @@ class EventDetail extends Component {
                                 <img
                                   src={
                                     image_url +
-                                    "/" +
                                     item.image
                                   } alt="Thumb" />
                               </div>
                               <h4 className="sch-time">{item.from} - {item.to}</h4>
                               <h3 className="band-name">{item.name}</h3>
                               <h3 className="band-name">{item.band_name}</h3>
-                              
-                              <p className="duration">
+
+                              {item.duration ? (<p className="duration">
                                 Durations: {item.duration}
-                        </p>
+                              </p>) : ""}
                             </div>
                           </div>
                         )
@@ -165,13 +160,14 @@ class EventDetail extends Component {
 const mapDispatchToProps = dispatch => {
   // call action functions
   return {
-    fetchEventDetail: (eventid) => dispatch(actionCreators.fetchEventDetail(eventid))
+    EventDetail: (eventid) => dispatch(actionCreators.EventDetail(eventid))
   };
 };
 
 const mapStateToProps = state => {
+  
   return {
-    event: state.eventdetails.eventdetails
+    events: state.event_details.eventdetails
   };
 };
 

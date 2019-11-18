@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import * as actionCreators from "../../../../src/store/actions/";
 import { CarouselProvider, Slider, Slide } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
+import { Link } from "react-router-dom";
 class sliderHero extends React.Component {
   state = {
     backgroundImage: []
@@ -52,9 +53,17 @@ class sliderHero extends React.Component {
                               <h2 className="frame-4">{item.title}</h2>
                             </div>
                             <h3>{item.sub_title}</h3>
-                            <a className="tim-slide-btn" href="index.html#">
-                              TICKETS
-                            </a>
+                            <Link
+                              to={{
+                                pathname: `/event-tickets`
+                              }}
+                              className="tim-slide-btn"
+                            >
+                             TICKETS
+                            </Link>
+                            {/* <a className="tim-slide-btn" href="event-tickets#">
+                              
+                            </a> */}
                           </div>
                         </div>
                       </div>

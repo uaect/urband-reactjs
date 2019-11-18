@@ -5,17 +5,34 @@ import { connect } from "react-redux";
 import * as actionCreators from "../../../../src/store/actions/";
 import Moment from 'moment';
 class upcomingShowHome extends Component {
+  constructor(props) {
+		super(props)
+		this.state = {
+			event: []
 
-  componentDidMount() {
-    this.props.fetchEventDetail();
+		}
   }
+  
+  componentDidMount() {
+    this.props.fetchEventDetail()
+			.then(() => {
+        const events = this.props.events;
+        var event = events.slice(0, 2)
+				if (event) {
+					this.setState({
+						event: event
+					})
+				}
+			})
+			.catch((error) => {
+				if (error) {
+				}
+			})
+	}
+
 
   render() {
-    const events = this.props.events;
-    console.log("events", events);
-
     return (
-
       <section className="section-padding show-archive">
         <div className="container">
           <div className="d-flex justify-content-center row">
@@ -23,7 +40,7 @@ class upcomingShowHome extends Component {
               <div className="section-title style-four">
                 <h2>UPCOMING SHOWS</h2>
               </div>
-              {events && events.map(item => {
+              {this.state.event && this.state.event.map(item => {
                 return (
                   <div key={item.id} className="single-show-ticket row no-guters">
                     <div className="col-sm-3 col-md-3 col-lg-3">
@@ -42,7 +59,7 @@ class upcomingShowHome extends Component {
                         <Link className="tim-btn" to={{
                           pathname: `/ticket-detail/${item.id}`
                         }}>
-                        Ticket
+                          Ticket
                                 </Link>
                       </div>
                     </div>
@@ -59,7 +76,7 @@ class upcomingShowHome extends Component {
 const mapDispatchToProps = dispatch => {
   // call action functions
   return {
-    fetchEventDetail: () => dispatch(actionCreators.fetchEventDetail())
+    fetchEventDetail: () => dispatch(actionCreators.fetchEventDetail(1))
   };
 };
 

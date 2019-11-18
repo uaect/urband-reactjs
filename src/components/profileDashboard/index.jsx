@@ -10,19 +10,19 @@ import {
 } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faUserAlt, faBabyCarriage, faBreadSlice,faShoppingCart
+  faUserAlt,
+  faBabyCarriage,
+  faBreadSlice,
+  faShoppingCart
 } from "@fortawesome/free-solid-svg-icons";
 
-import ProfileEntryBox from './profileEntryBox/profileEntryBox';
-import profileData from './profileData/profileData';
-import profileOrders from './profileOrders/profileOrders';
-import profileAddress from './profileAddresses/profileAddresses';
+import ProfileEntryBox from "./profileEntryBox/profileEntryBox";
+import profileData from "./profileData/profileData";
+import profileOrders from "./profileOrders/profileOrders";
+import profileAddress from "./profileAddresses/profileAddresses";
 const ProfileDashboard = ({ match }) => {
-
-
   return (
     <div>
-
       <div className="profileDashBoardBox">
         <div>
           <div className="tim-container clearfix">
@@ -36,18 +36,39 @@ const ProfileDashboard = ({ match }) => {
                     </div>
                     <div className="PrfLinkBoxTp1">
                       <div className="ProfileNavItem">
-                        <NavLink to={`${match.url}/profileData`} activeClassName="selected">
-                          <FontAwesomeIcon icon={faUserAlt} className="prfIcnTp1" />Profile
+                        <NavLink
+                          to={`${match.url}/profileData`}
+                          activeClassName="selected"
+                        >
+                          <FontAwesomeIcon
+                            icon={faUserAlt}
+                            className="prfIcnTp1"
+                          />
+                          Profile
                         </NavLink>
                       </div>
                       <div className="ProfileNavItem">
-                        <NavLink to={`${match.url}/profileAddress`} activeClassName="selected">
-                          <FontAwesomeIcon icon={faBreadSlice} className="prfIcnTp1" />Addresses
+                        <NavLink
+                          to={`${match.url}/profileAddress`}
+                          activeClassName="selected"
+                        >
+                          <FontAwesomeIcon
+                            icon={faBreadSlice}
+                            className="prfIcnTp1"
+                          />
+                          Addresses
                         </NavLink>
                       </div>
                       <div className="ProfileNavItem">
-                        <NavLink to={`${match.url}/profileOrders`} activeClassName="selected">
-                          <FontAwesomeIcon icon={faShoppingCart} className="prfIcnTp1" />orders
+                        <NavLink
+                          to={`${match.url}/profileOrders`}
+                          activeClassName="selected"
+                        >
+                          <FontAwesomeIcon
+                            icon={faShoppingCart}
+                            className="prfIcnTp1"
+                          />
+                          orders
                         </NavLink>
                       </div>
                     </div>
@@ -55,10 +76,23 @@ const ProfileDashboard = ({ match }) => {
                 </div>
                 <div className="RgtBox pl-4 pt-3">
                   <div className="maxWidth1200">
-                    <Route exact path={`${match.path}`} render= {ProfileEntryBox}/>
-                    <Route path={`${match.path}/profileData`} render= {profileData}/>
-                    <Route path={`${match.path}/profileOrders`} render= {profileOrders}/>
-                    <Route path={`${match.path}/profileAddress`} render= {profileAddress}/>
+                    <Route
+                      exact
+                      path={`${match.path}`}
+                      render={ProfileEntryBox}
+                    />
+                    <Route
+                      path={`${match.path}/profileData`}
+                      render={profileData}
+                    />
+                    <Route
+                      path={`${match.path}/profileOrders`}
+                      render={profileOrders}
+                    />
+                    <Route
+                      path={`${match.path}/profileAddress`}
+                      render={profileAddress}
+                    />
                   </div>
                 </div>
               </div>
@@ -67,9 +101,9 @@ const ProfileDashboard = ({ match }) => {
         </div>
       </div>
     </div>
-  )
+  );
 };
-export default ProfileDashboard; 
+export default ProfileDashboard;
 // import React from 'react';
 // import { Link, Route } from 'react-router-dom';
 
@@ -79,9 +113,7 @@ export default ProfileDashboard;
 //     <li><Link to={`${match.url}/boots`}>Boots</Link></li>
 //     <li><Link to={`${match.url}/footwear`}>Footwear</Link></li>
 
-  
 //   </ul>
-
 
 //   </div>)
 // }

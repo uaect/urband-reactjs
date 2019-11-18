@@ -3,7 +3,7 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { connect } from "react-redux";
 import * as actionCreators from "../../store/actions";
-
+import { Link } from "react-router-dom";
 
 class multiCarouselHero extends Component {
 
@@ -46,15 +46,22 @@ class multiCarouselHero extends Component {
                         {posts.map(item => {
                           return (
                             <div className="artist-single home-page" key={item.id}>
+								  <Link
+                                    to={{
+                                      pathname: `/artist`
+                                    }}
+                                  >
 								<img
 									src={image_url + "/" + item.image}
 									className="ink-pattern"
 									alt="Album"
 								/>
+								
 								<div className="artist-single-content">
 									<h6>{item.name}</h6>
 									<p>Band: Metallica</p>
 								</div>
+								</Link>
 								</div>
                           );
                         })}
