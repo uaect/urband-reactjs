@@ -43,7 +43,7 @@ function Gallery() {
             });
     }, []);
 
-   
+    const image_url = "https://admin.urbandmusic.com/storage/";
     const categories =category.categories.result;
     console.log("categoriescategoriescategories", categories);
     
@@ -75,11 +75,12 @@ function Gallery() {
                                {categories && categories.map(item => {
                                     return (<TabPanel tabId={item.title}>
                                     <ul class="tim-filter-items tim-album-items grid">
-                                    {item.gallery && item.gallery.map(gal => {
-                                        return (<li className="tim-album-item grid-item">
+                                    {item.gallery[0].files && item.gallery[0].files.map(gal => {
+                                        return (
+                                           <li className="tim-album-item grid-item">
                                             <div className="tim-isotope-grid__img effect-active">
-                                                <Link onClick={() => openLightboxOnSourceIndex(1,gal.image_url +'/'+ gal.files.image)}>
-                                                    <img src={gal.image_url +'/'+ gal.files.image} alt={gal.title} />
+                                                <Link onClick={() => openLightboxOnSourceIndex(1,image_url +'/'+ gal.image)}>
+                                                    <img src={image_url +'/'+ gal.image} alt={gal.title} />
                                                 </Link>
                                             </div>
                                             <div className="gallery_details_wrap">
