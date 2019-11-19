@@ -16386,5 +16386,37 @@ input[type].field-control::-webkit-input-placeholder {
   .product-detail.bottom {
     margin-top: 10px;
 }
+.TicketWrpTp1 .col-auto{
+  width: 100%;
+}
+.ticket-office__footer{
+  height: auto;
+  padding: 10px;
+  padding-bottom: 25px;
+}
+.ticket-office__footer .ticket-office__counter{
+  width: 100%;
+}
+.ticket-office__footer .ticket-office__checkout{
+  width: 100%;
+  text-align: center;
+}
+.selectBoxType1{
+  margin-bottom: 10px;
+}
+.checkout-wrap .checkout-block{
+  padding: 0;
+  margin: 0;
+}
+.checkout-wrap{
+  padding: 0px 15px;
+}
+.checkout-wrap .row{
+  margin: 0;
+}
+.page-padd {
+    padding: 20px 0;
+    margin: 0;
+}
 }
 
