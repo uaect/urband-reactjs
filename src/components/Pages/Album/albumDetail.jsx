@@ -40,7 +40,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(AlbumDetail);
+export default connect(mapStateToProps, mapDispatchToProps)(AlbumDetail);

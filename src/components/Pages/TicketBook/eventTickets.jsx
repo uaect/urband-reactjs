@@ -6,7 +6,7 @@ import { faCalendarWeek, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actionCreators from "../../../../src/store/actions/";
-import Moment from 'moment';
+import Moment from "moment";
 library.add(faCalendarWeek, faArrowLeft);
 
 class eventTickets extends Component {
@@ -22,36 +22,41 @@ class eventTickets extends Component {
           <div className="container">
             <div className="row">
               <div className="col-12">
-                <div className="table-responsive">
-                  <table className="show-table table-borderless">
-                    <tbody>
-                      {events && events.map(item => {
-                        return (
-                          <tr key={item.id}>
-                            <td className="show-date">
-                              <span className="date">{Moment(item.date_to).format('DD-MM-YYYY')}</span>
-                              <span className="day">{Moment(item.date_to).format('dddd')}</span>
-                            </td>
-                            <td className="show-hall">
-                              <span className="hall-name">
-                                {item.location}
-                              </span>
-                            </td>
-                            <td className="show-name">{item.title}</td>
-                            <td className="show-ticket">
-                            <Link className="tim-btn" to={{
-                                pathname: `/ticket-detail/${item.id}` 
-                              }}>
-                                Buy Ticket
-                                </Link>
-                              {/* <Link to="/ticket-detail" className="tim-btn">
-                                Buy Ticket
-                          </Link> */}
-                            </td>
-                          </tr>);
-                      })}
-                    </tbody>
-                  </table>
+                <div>
+                  {events &&
+                    events.map(item => {
+                      return (
+                        <div
+                          key={item.id}
+                          className="single-show-ticket row no-guters"
+                        >
+                          <div className="col-sm-3 col-md-3 col-lg-3">
+                            <div className="date-time">
+                              <h6>
+                                {Moment(item.date_to).format("DD-MM-YYYY")}
+                              </h6>
+                              <p>{Moment(item.date_to).format("DD-MM-YYYY")}</p>
+                            </div>
+                          </div>
+                          <div className="col-sm-6 col-md-6 col-lg-7">
+                            <h5>{item.title}</h5>
+                            <p> {item.location}</p>
+                          </div>
+                          <div className="col-sm-3 col-md-3 col-lg-2">
+                            <div className="a_hover">
+                              <Link
+                                className="tim-btn"
+                                to={{
+                                  pathname: `/ticket-detail/${item.id}`
+                                }}
+                              >
+                                Buy
+                              </Link>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
                 </div>
               </div>
             </div>
@@ -62,7 +67,6 @@ class eventTickets extends Component {
   }
 }
 
-
 const mapDispatchToProps = dispatch => {
   // call action functions
   return {
@@ -72,12 +76,8 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
   return {
-    events: state.eventdetails.eventdetails,
+    events: state.eventdetails.eventdetails
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(eventTickets);
-
+export default connect(mapStateToProps, mapDispatchToProps)(eventTickets);
