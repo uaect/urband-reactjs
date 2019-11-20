@@ -24,7 +24,6 @@ class ShopHome extends Component {
   }
 
   handleScroll = (e) => {
-    console.log("scroll");
     let element = e.target
     if (element.scrollHeight - element.scrollTop === element.clientHeight) {
       this.setState({
@@ -59,7 +58,6 @@ class ShopHome extends Component {
   render() {
     const image_url = "https://admin.urbandmusic.com/storage/";
     const storelist = this.props.storelist;
-    console.log(storelist);
     
     return (
       <div>

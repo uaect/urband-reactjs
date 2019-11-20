@@ -14,7 +14,7 @@ class OrderPlaced extends Component {
     if (ticketDetails.cart) {
       this.setState({
         cart: ticketDetails.cart,
-        total:ticketDetails
+        total:ticketDetails,
       })
     }
 

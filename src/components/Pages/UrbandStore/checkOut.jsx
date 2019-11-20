@@ -54,6 +54,7 @@ class storeCheckOut extends Component {
   }
 
   componentDidMount() {
+    
     this.props.getfromcart()
       .then(() => {
         var cartItems = this.props.cartitems;
@@ -69,14 +70,12 @@ class storeCheckOut extends Component {
           for (let i = 0; i < cartItems.length; i++) {
             if (cartItems[i].price) {
               this.setState({
-
                 vat: (this.state.totalcost +
                   parseFloat(cartItems[i].price) * parseInt(cartItems[i].quantity)) * 5 / 100,
                 totalcost: (this.state.totalcost +
                   parseFloat(cartItems[i].price) * parseInt(cartItems[i].quantity)) * 5 / 100 +
                   parseFloat(cartItems[i].price) * parseInt(cartItems[i].quantity),
               });
-
             }
           }
         } else this.setState({
@@ -87,9 +86,11 @@ class storeCheckOut extends Component {
         if (error) {
         }
       });
+    this.getInitialAddress();
+    this.props.getemirates(1);
+  }
 
-
-
+  getInitialAddress() {
     this.props.getaddress()
       .then(() => {
         var getaddress = this.props.address;
@@ -102,6 +103,11 @@ class storeCheckOut extends Component {
               this.setState({
                 addressdata: getaddress[i],
                 addressid: getaddress[i].id
+              });
+            } else {
+              this.setState({
+                addressdata: getaddress[i],
+                addressid: getaddress[0].id
               });
             }
           }
@@ -124,7 +130,6 @@ class storeCheckOut extends Component {
         if (error) {
         }
       });
-    this.props.getemirates(1);
   }
 
   addaddress = value => {
@@ -132,7 +137,6 @@ class storeCheckOut extends Component {
       first_name,
       last_name,
       appartment,
-      address,
       mobile,
       type,
       area,
@@ -181,25 +185,21 @@ class storeCheckOut extends Component {
         errappartment: "Please enter appartment details"
       });
     }
-    if (address.length < 1) {
-      flag = 1;
-      this.setState({
-        erraddress: "Please enter address"
-      });
-    }
+
     if (mobile.length < 1) {
       flag = 1;
       this.setState({
         errmobile: "Please enter mobile number"
       });
     }
-    if (flag == 0) {
+    if (flag === 0) {
       this.props
         .addaddress(this.state)
         .then(() => {
           this.setState({
             formActiveOrNot: true
           });
+          this.getInitialAddress();
         })
         .catch(error => {
           if (error.error == "Unauthorised") {
@@ -210,35 +210,53 @@ class storeCheckOut extends Component {
         });
     }
   };
+
   ShowFormHadler() {
     localStorage.removeItem("address");
     this.setState({
       formActiveOrNot: false
     });
   }
+
+  deleteAddress(item) {
+    this.props.deleteaddress(item.id)
+      .then(() => {
+        this.getInitialAddress();
+      })
+      .catch(error => {
+        if (error.error == "Unauthorised") {
+          this.setState({
+            errpassword: "Invalid credential check username or passsord"
+          });
+        }
+      });
+  }
+
   GobackToAddressHandler() {
     this.setState({
       formActiveOrNot: true
     });
   }
-  handleOptionChange(event) {
-    console.log("eventtttttttt", event.target.value);
 
+  handleOptionChange(event) {
     this.setState({
       selectedOption: event.target.value
     });
   }
+
   handleChangeemirates(event) {
     this.setState({
       emirate: event.target.value
     });
     this.props.getarea(event.target.value);
   }
+
   handleChangeemirates1(event) {
     this.setState({
       emiratearea: event.target.value
     });
   }
+
   handleChange(state, errState, evt) {
     let _state = this.state;
     _state[state] = evt.target.value;
@@ -247,34 +265,35 @@ class storeCheckOut extends Component {
       ..._state
     });
   }
+
   addressclick(item) {
     this.setState({
       addressdata: item,
       addressid: item.id
     });
   }
-  placeorder = () => {
 
-    console.log("ttttttt", this.state);
+  placeorder = () => {
     this.props.placeOrder(this.state)
       .then(() => {
-        console.log("ttttttt", this.state);
+        this.props.history.push({
+          pathname: '/orderPlaced',
+          state: {
+            cart: this.state.cartItems,
+            total: this.state.totalcost,
+            ticketDetail: this.state.vat
+          }
+        })
       })
       .catch((error) => {
-
       })
-
-
-
   }
-  render() {
-    const image_url = "https://admin.urbandmusic.com/storage/";
 
+  render() {
+    
+    const image_url = "https://admin.urbandmusic.com/storage/";
     var emirates = this.props.emirateslist;
     var arealist = this.props.arealist;
-
-
-
     return (
       <div>
         <section className="header-padd cart-product mt-5">
@@ -296,6 +315,7 @@ class storeCheckOut extends Component {
                           return (
                             <div className="col-md-6" key={item.id} onClick={() => this.addressclick(item)}>
                               <div className="AddressBoxWrp fullWidth" >
+
                                 <div
                                   className={
                                     "AddressBoxTp1 " +
@@ -304,6 +324,7 @@ class storeCheckOut extends Component {
                                       : "")
                                   }
                                 >
+                                  <button onClick={() => this.deleteAddress(item)}>delete</button>
                                   <div className="head">
                                     <img
                                       src={SiteMapLogo}
@@ -494,27 +515,6 @@ class storeCheckOut extends Component {
                               {this.state.errappartment}
                             </div>
                           )}
-
-                          <div className="col-md-12">
-                            <div className="form-group">
-                              <textarea
-                                className="form-control field-control"
-                                type="text"
-                                name="description[]"
-                                placeholder="Full Address"
-                                value={this.state.address}
-                                onChange={this.handleChange.bind(
-                                  this,
-                                  "address",
-                                  "erraddress"
-                                )}
-                                rows="3"
-                              ></textarea>
-                            </div>
-                          </div>
-                          {this.state.erraddress && (
-                            <div class="text-danger">{this.state.erraddress}</div>
-                          )}
                           <div className="col-md-6">
                             <div className="form-group">
                               <select
@@ -539,7 +539,7 @@ class storeCheckOut extends Component {
                           <div className="col-md-6">
                             <div className="form-group">
                               <input
-                                type="text"
+                                type="number"
                                 className="form-control field-control"
                                 name=""
                                 placeholder="Landline Number"
@@ -556,7 +556,7 @@ class storeCheckOut extends Component {
                           <div className="col-md-6">
                             <div className="form-group">
                               <input
-                                type="text"
+                                type="number"
                                 className="form-control field-control"
                                 name=""
                                 placeholder="Mobile Number"
@@ -590,73 +590,54 @@ class storeCheckOut extends Component {
                       </div>
                     )}
                 </div>
-                <div className="full-wrap mt-5">
-                  <div className="head">SELECT A PAYMENT METHOD</div>
+                {this.state.formActiveOrNot ? (
+                  <div className="full-wrap mt-5">
+                    <div className="head">SELECT A PAYMENT METHOD</div>
 
-                  <div className="full-wrap mt-4">
-                    <div className="payment-method">
-                      <div className="payment-header d-flex align-items-center">
-                        <div className="custom-control custom-radio">
-                          <input
-                            type="radio"
-                            id="Paypal"
-                            name="customRadio"
-                            value="PayPal"
-                            checked={this.state.selectedOption === 'PayPal'}
-                            onChange={this.handleOptionChange}
-                            className="custom-control-input"
-                          />
-                          <label
-                            className="custom-control-label"
-                            htmlFor="Paypal"
-                          >
-                            PayPal
+                    <div className="full-wrap mt-4">
+                      <div className="payment-method">
+                        <div className="payment-header d-flex align-items-center">
+                          <div className="custom-control custom-radio">
+                            <input
+                              type="radio"
+                              id="Paypal"
+                              name="customRadio"
+                              value="PayPal"
+                              checked={this.state.selectedOption === 'PayPal'}
+                              onChange={this.handleOptionChange}
+                              className="custom-control-input"
+                            />
+                            <label
+                              className="custom-control-label"
+                              htmlFor="Paypal"
+                            >
+                              PayPal
                           </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="payment-method">
+                        <div className="payment-header d-flex align-items-center">
+                          <div className="custom-control custom-radio">
+                            <input
+                              type="radio"
+                              id="COD"
+                              name="customRadio"
+                              className="custom-control-input"
+                              value="cash on delivery"
+                              checked={this.state.selectedOption === 'cash on delivery'}
+                              onChange={this.handleOptionChange}
+                            />
+                            <label className="custom-control-label" htmlFor="COD">
+                              Cash on delivery
+                          </label>
+                          </div>
                         </div>
                       </div>
                     </div>
-                    <div className="payment-method">
-                      <div className="payment-header d-flex align-items-center">
-                        <div className="custom-control custom-radio">
-                          <input
-                            type="radio"
-                            id="COD"
-                            name="customRadio"
-                            className="custom-control-input"
-                            value="cash on delivery"
-                            checked={this.state.selectedOption === 'cash on delivery'}
-                            onChange={this.handleOptionChange}
-                          />
-                          <label className="custom-control-label" htmlFor="COD">
-                            Cash on delivery
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
 
-                  <button className="tim-btn mt-4 ticket-btn-lg place-order" onClick={this.placeorder}>Place Order</button>
-                  {/* {this.state.ticketid ?<Link to={{
-                                pathname: `/ticket-checkout`,
-                                state: {
-                                  ticketDetail: this.state,
-                                  eventDetail:eventResult
-                                }
-                              }} */}
-                  {/* {cartflag ? <Link
-                      to={{
-                        pathname: `/orderPlaced`,
-                        state: {
-                          cart: cartItems,
-                          total: totalcost
-                        }
-                      }}
-                      className="tim-btn mt-4 ticket-btn-lg place-order"
-                    >
-                      Place Order
-                </Link> : ""} */}
-
-                </div>
+                    <button className="tim-btn mt-4 ticket-btn-lg place-order" onClick={this.placeorder}>Place Order</button>
+                  </div>) : ""}
               </div>
 
               <div className="col-md-5 checkout-block checkout-list-wrap">
@@ -702,18 +683,17 @@ class storeCheckOut extends Component {
             </div>
           </div>
         </section>
-      </div>
-    );
+      </div>);
   }
 }
 
 const mapDispatchToProps = dispatch => {
-  // call action functions
   return {
     getfromcart: () => dispatch(actionCreators.getfromcart()),
     getaddress: () => dispatch(actionCreators.getaddress()),
     getemirates: () => dispatch(actionCreators.getemirates()),
     getarea: id => dispatch(actionCreators.getemirates1(id)),
+    deleteaddress: id => dispatch(actionCreators.deleteaddress(id)),
     placeOrder: id => dispatch(actionCreators.placeOrder(id)),
     addaddress: param => dispatch(actionCreators.addaddress(param))
   };
@@ -725,7 +705,6 @@ const mapStateToProps = state => {
     address: state.getaddress.address,
     emirateslist: state.emirateslist.emirates,
     arealist: state.area.emirates
-    // in this state list is array name as stored  API  from defined in eventListReducer
   };
 };
 

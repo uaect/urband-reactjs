@@ -28,6 +28,13 @@ export const FETCH_SPOTLIGHT = 'FETCH_SPOTLIGHT';
 export const FETCH_MENUES = 'FETCH_MENUES';
 export const EVENTDETAIL = 'EVENTDETAIL';
 export const PLACEORDER = 'PLACEORDER';
+export const REMOVEADDRESS = 'REMOVEADDRESS';
+export const GETORDEREDLIST = 'REMOVEADDRESS';
+export const EDITUSER = 'REMOVEADDRESS';
+export const GETUSER = 'REMOVEADDRESS';
+
+
+
 
 
 

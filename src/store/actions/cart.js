@@ -69,7 +69,7 @@ export const placeOrder = (id) => {
                 note:"hi order fast",
                 delivery_charge:id.delivery_charge,
                 order_items:id.cartItems,
-                tax:id.vat
+                vat:id.vat
             };
             fetch("https://admin.urbandmusic.com/api/proceedorder", {
                 method: "POST",

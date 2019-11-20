@@ -1,5 +1,5 @@
 
-import { REGISTER, LOGIN, GETADDRESS, ADDADDRESS, GETEMIRATES, GETEMIRATES1 } from "./types";
+import { REGISTER, LOGIN, GETADDRESS, ADDADDRESS, GETEMIRATES, GETEMIRATES1, REMOVEADDRESS, GETUSER, EDITUSER, GETORDEREDLIST } from "./types";
 
 export const register = (params) => {
     return dispatch => {
@@ -151,8 +151,7 @@ export const addaddress = (params) => {
                 "last_name": params.last_name,
                 "mobile": params.mobile,
                 "phone": params.phone,
-                "emirate": "1",
-                "address": params.address,
+                "emirate": params.emirate,
                 "latitude": "1",
                 "longitude": "1",
                 "area": params.area,
@@ -168,6 +167,125 @@ export const addaddress = (params) => {
                     if (res.success) {
                         dispatch({
                             type: ADDADDRESS,
+                            value: res
+                        });
+                        resolve()
+                    } else {
+                        reject(res)
+                    }
+                })
+                .catch(error => {
+                });
+        })
+    };
+};
+
+export const deleteaddress = (params) => {
+    return dispatch => {
+        return new Promise((resolve, reject) => {
+            const body = {
+                "token": "1",
+                "addressid": params
+            };
+
+            fetch("https://admin.urbandmusic.com/api/removeaddress", {
+                method: "POST",
+                body: JSON.stringify(body)
+            })
+                .then(res => res.json())
+                .then(res => {
+                    if (res.success) {
+                        dispatch({
+                            type: REMOVEADDRESS,
+                            value: res
+                        });
+                        resolve()
+                    } else {
+                        reject(res)
+                    }
+                })
+                .catch(error => {
+                });
+        })
+    };
+};
+
+export const getuser = () => {
+    return dispatch => {
+        return new Promise((resolve, reject) => {
+            const body = {
+                "token": "1"
+            };
+
+            fetch("https://admin.urbandmusic.com/api/getuser", {
+                method: "POST",
+                body: JSON.stringify(body)
+            })
+                .then(res => res.json())
+                .then(res => {
+                    if (res.success) {
+                        dispatch({
+                            type: GETUSER,
+                            value: res
+                        });
+                        resolve()
+                    } else {
+                        reject(res)
+                    }
+                })
+                .catch(error => {
+                });
+        })
+    };
+};
+export const edituser = (params) => {
+    return dispatch => {
+        return new Promise((resolve, reject) => {
+            const body = {
+                "token": "1",
+                "name": "ishan",
+                "email": "ishan@gmail.com",
+                "image": "file.png"
+            };
+
+            fetch("https://admin.urbandmusic.com/api/edituser", {
+                method: "POST",
+                body: JSON.stringify(body)
+            })
+                .then(res => res.json())
+                .then(res => {
+                    if (res.success) {
+                        dispatch({
+                            type: EDITUSER,
+                            value: res
+                        });
+                        resolve()
+                    } else {
+                        reject(res)
+                    }
+                })
+                .catch(error => {
+                });
+        })
+    };
+};
+
+export const getorderedlist = () => {
+    return dispatch => {
+        return new Promise((resolve, reject) => {
+            const body = {
+                "token": "1"
+            };
+
+            fetch("https://admin.urbandmusic.com/api/getorderedlist", {
+                method: "POST",
+                body: JSON.stringify(body)
+            })
+                .then(res => res.json())
+                .then(res => {
+                    if (res.success) {
+                        dispatch({
+                            type: GETORDEREDLIST,
                             value: res
                         });
                         resolve()
