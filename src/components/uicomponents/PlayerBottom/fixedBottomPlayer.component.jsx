@@ -1,16 +1,13 @@
-
 import React, { Component } from "react";
 import { findDOMNode } from "react-dom";
 import { hot } from "react-hot-loader";
-import StopButton from '../../../assets/img/stopButton.png';
-import PlayButton from '../../../assets/img/urbandPlay.png';
-import PauseButton from '../../../assets/img/urbandPause.png';
+import StopButton from "../../../assets/img/stopButton.png";
+import PlayButton from "../../../assets/img/urbandPlay.png";
+import PauseButton from "../../../assets/img/urbandPause.png";
 import ReactPlayer from "react-player";
 import Duration from "./Duration";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-    faVolumeUp
-  } from "@fortawesome/free-solid-svg-icons";
+import { faVolumeUp } from "@fortawesome/free-solid-svg-icons";
 
 const MULTIPLE_SOURCES = [
   {
@@ -27,14 +24,12 @@ const MULTIPLE_SOURCES = [
   }
 ];
 
-
-
 class App extends Component {
-    constructor(props){
-        super(props)
-    }
+  constructor(props) {
+    super(props);
+  }
   state = {
-    url:"",
+    url: "",
     pip: false,
     playing: true,
     controls: false,
@@ -47,8 +42,8 @@ class App extends Component {
     playbackRate: 1.0,
     loop: false
   };
-  componentDidMount(){
-      this.setState({url:this.props.trackUrl});
+  componentDidMount() {
+    this.setState({ url: this.props.trackUrl });
   }
   load = url => {
     this.setState({
@@ -186,25 +181,41 @@ class App extends Component {
 
     return (
       <div className="BottomPlayerTp1 ">
-        <div  className="BottomPlayerTp1Cnt header_player ">
+        <div className="BottomPlayerTp1Cnt header_player ">
           <div className="row d-flex align-items-center">
-          <div className="col-auto">
-                    <div className="">
-                        <img className="ArtistImgTp1" src={this.props.ArtistImage} alt=""/>
-                    </div>
-              </div>
-              <div className="col-auto">
-                    <div className="">
-                        <h4 className="track-name">{this.props.ArtistTittle}</h4>
-                        <span className="artist-name">Latest Release</span>
-                    </div>
-              </div>
             <div className="col-auto">
-                {
-                    playing ? <img className="PlayerIconTp1" onClick={this.handlePlayPause} src={PauseButton} alt=""/> :<img className="PlayerIconTp1" onClick={this.handlePlayPause} src={PlayButton} alt=""/>
-                }
+              <div className="">
+                <img
+                  className="ArtistImgTp1"
+                  src={this.props.ArtistImage}
+                  alt=""
+                />
+              </div>
             </div>
-            
+            <div className="col-auto d-none-mobile">
+              <div className="">
+                <h4 className="track-name">{this.props.ArtistTittle}</h4>
+                <span className="artist-name">Latest Release</span>
+              </div>
+            </div>
+            <div className="col-auto">
+              {playing ? (
+                <img
+                  className="PlayerIconTp1"
+                  onClick={this.handlePlayPause}
+                  src={PauseButton}
+                  alt=""
+                />
+              ) : (
+                <img
+                  className="PlayerIconTp1"
+                  onClick={this.handlePlayPause}
+                  src={PlayButton}
+                  alt=""
+                />
+              )}
+            </div>
+
             <div className="col">
               <div>
                 <input
@@ -217,7 +228,7 @@ class App extends Component {
                   onChange={this.handleSeekChange}
                   onMouseUp={this.handleSeekMouseUp}
                 />
-                
+
                 <ReactPlayer
                   ref={this.ref}
                   className="react-player"
@@ -247,19 +258,27 @@ class App extends Component {
                 />
               </div>
             </div>
-            <div className="col-auto">
-                <div>
-                    <div className="volumeControllerBox d-flex align-items-center">
-                    <FontAwesomeIcon
-                        icon={faVolumeUp}
-                        className="mr-4"
-                      />
-                        <input type='range' min={0} max={1} step='any' value={volume} onChange={this.handleVolumeChange} />
-                    </div>
+            <div className="col-auto d-none-mobile">
+              <div>
+                <div className="volumeControllerBox d-flex align-items-center">
+                  <FontAwesomeIcon icon={faVolumeUp} className="mr-4" />
+                  <input
+                    type="range"
+                    min={0}
+                    max={1}
+                    step="any"
+                    value={volume}
+                    onChange={this.handleVolumeChange}
+                  />
                 </div>
+              </div>
             </div>
             <div className="col-auto">
-                <img className="PlayerIconTp1" src={StopButton} onClick={this.handleStop}/>
+              <img
+                className="PlayerIconTp1"
+                src={StopButton}
+                onClick={this.handleStop}
+              />
             </div>
           </div>
         </div>

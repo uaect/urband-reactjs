@@ -3725,18 +3725,18 @@ h6 {
   .jp-playlist {
     display: none;
   }
-
+/* 
   .album-detail {
     display: none;
-  }
+  } */
 
   #mobile-nav-wrap .user-link {
     display: none;
   }
 
-  .related-album-single {
+  /* .related-album-single {
     display: none;
-  }
+  } */
 }
 
 @media (max-width: 500px) {
@@ -16366,6 +16366,103 @@ input[type].field-control::-webkit-input-placeholder {
   .shop .col-md-4 {
         flex: 0 0 50%;
     max-width: 50%;
+    padding-left: 2px;
+    padding-right: 2px;
   }
+  .store-products .product{
+        padding: 5px;
+    border: 1px solid #e4e4e4;
+     max-height: 270px;
+         margin-bottom: 5px;
+  }
+  .store-products .product .thumb-box {
+      height: 140px;
+     
+  }
+  .store-products .product .product-name{
+    height: 50px;
+    overflow: hidden;
+  }
+  .product-detail.bottom {
+    margin-top: 10px;
+}
+.TicketWrpTp1 .col-auto{
+  width: 100%;
+}
+.ticket-office__footer{
+  height: auto;
+  padding: 10px;
+  padding-bottom: 25px;
+}
+.ticket-office__footer .ticket-office__counter{
+  width: 100%;
+}
+.ticket-office__footer .ticket-office__checkout{
+  width: 100%;
+  text-align: center;
+}
+.selectBoxType1{
+  margin-bottom: 10px;
+}
+.checkout-wrap .checkout-block{
+  padding: 0;
+  margin: 0;
+}
+.checkout-wrap{
+  padding: 0px 15px;
+}
+.checkout-wrap .row{
+  margin: 0;
+}
+.page-padd {
+    padding: 20px 0;
+    margin: 0;
+}
+.Radio-Column-1{
+  text-align: center;
+}
+.Radio-Column-1 img{
+  max-width: 100px;
+}
+.Radio-Column-3 img{
+  max-width: 100px;
+}
+/* .Radio-Column-2{
+  width: 60% !important;
+} */
+.Radio-Column-2 video{
+  width: 100% !important; 
+  object-fit: cover;
+  bottom: auto;
+  right: auto;
+  left: auto;
+  top: auto;
+  position: relative;
+}
+.Radio-Column-3{
+  text-align: center !important;
+}
+.Radio-Column-2 .radio-live-wrap{
+    position: relative;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+    width: 100%;
+    margin-top: 0;
+}
+.radio-go .page-head {
+    font-size: 15px;
+}
+.BottomPlayerTp1 .ArtistImgTp1 {
+    width: 40px;
+    height: 38px;
+}
+.d-none-mobile{
+  display: none;
+}
+.BottomPlayerTp1 .PlayerIconTp1 {
+    width: 35px;
+    height: 35px;
+}
 }
 

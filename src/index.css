@@ -482,6 +482,31 @@ input[type="range"]:focus::-ms-fill-upper {
 .ImageTyp101.hgtTp3 {
   height: 350px;
 }
+.fullWidthHeight {
+  height: 100%;
+  width: 100%;
+}
+.TicketWrpTp1 {
+  box-shadow: -1px 5px 10px 1px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  background: #fff;
+}
+.TicketWrpTp1 .title {
+  font-size: 18px !important;
+  width: 230px;
+}
+.selectBoxType1 {
+  border: 1px dashed #acacac;
+  background: transparent;
+  font-family: "Changa", sans-serif;
+  font-size: 16px;
+  line-height: 16px;
+  color: #7a7979;
+  outline: 0;
+  padding: 0 10px;
+  max-width: 350px;
+  width: 100%;
+}
 .clr-type-1{
   color: #959595 !important;
 }
