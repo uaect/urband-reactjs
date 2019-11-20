@@ -12,12 +12,12 @@ class Radio extends Component {
         <BannerHero title={"radio"} />
         <div className="section-padding full-wrap">
           <div className="row no-gutters">
-            <div className="col-md-2">
+            <div className="col-md-2 Radio-Column-1">
               <img
                 src={require("../../media/background/tracks-left.png")}
                 alt="thum"
               />
-              <div class="bubble-wrap-right">
+              <div class="bubble-wrap-right active">
                 <div className="bubble icon-1"></div>
                 <div className="bubble icon-2 "></div>
                 <div className="bubble icon-3"></div>
@@ -51,7 +51,7 @@ class Radio extends Component {
               </div>
             </div>
 
-            <div className="col-md-8 radio-go">
+            <div className="col-md-8 radio-go Radio-Column-2">
               <div className="text-center page-head hero-color">
                 Music Never Ends
               </div>
@@ -70,7 +70,7 @@ class Radio extends Component {
               </div>
             </div>
 
-            <div className="col-md-2 text-right">
+            <div className="col-md-2 text-right  Radio-Column-3">
               <img
                 src={require("../../media/background/tracks-right.png")}
                 alt="thum"
