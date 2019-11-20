@@ -35,16 +35,95 @@ class storeCheckOut extends Component {
       street: "",
       errstreet: "",
       emirate: "",
-      emiratearea: ""
+      emiratearea: "",
+      selectedOption: 'cash on delivery',
+      cartItems: [],
+      totalcost: 0,
+      delivery_charge: 0,
+      cartflag: "",
+      addressid: "",
+      noaddress: "",
+      getaddress: [],
+      addressdata: [],
+      vat: 0
     };
     this.ShowFormHadler = this.ShowFormHadler.bind(this);
     this.GobackToAddressHandler = this.GobackToAddressHandler.bind(this);
     this.handleChangeemirates = this.handleChangeemirates.bind(this);
+    this.handleOptionChange = this.handleOptionChange.bind(this);
   }
 
   componentDidMount() {
-    this.props.getfromcart();
-    this.props.getaddress();
+    this.props.getfromcart()
+      .then(() => {
+        var cartItems = this.props.cartitems;
+        if (cartItems) {
+          this.setState({
+            cartItems: cartItems
+          });
+        }
+        if (cartItems !== "emtey cart") {
+          this.setState({
+            cartflag: true
+          });
+          for (let i = 0; i < cartItems.length; i++) {
+            if (cartItems[i].price) {
+              this.setState({
+
+                vat: (this.state.totalcost +
+                  parseFloat(cartItems[i].price) * parseInt(cartItems[i].quantity)) * 5 / 100,
+                totalcost: (this.state.totalcost +
+                  parseFloat(cartItems[i].price) * parseInt(cartItems[i].quantity)) * 5 / 100 +
+                  parseFloat(cartItems[i].price) * parseInt(cartItems[i].quantity),
+              });
+
+            }
+          }
+        } else this.setState({
+          cartflag: false
+        });
+      })
+      .catch(error => {
+        if (error) {
+        }
+      });
+
+
+
+    this.props.getaddress()
+      .then(() => {
+        var getaddress = this.props.address;
+        if (getaddress) {
+          this.setState({
+            getaddress: getaddress
+          });
+          for (let i = 0; i < getaddress.length; i++) {
+            if (getaddress[i].is_default === 1) {
+              this.setState({
+                addressdata: getaddress[i],
+                addressid: getaddress[i].id
+              });
+            }
+          }
+        }
+        if (getaddress === "no address added") {
+          this.setState({
+            noaddress: false
+          });
+        } else this.setState({
+          noaddress: true
+        });
+        var formActiveOrNot = localStorage.getItem("address");
+        if (formActiveOrNot) {
+          this.setState({
+            formActiveOrNot: true
+          });
+        }
+      })
+      .catch(error => {
+        if (error) {
+        }
+      });
     this.props.getemirates(1);
   }
 
@@ -142,6 +221,13 @@ class storeCheckOut extends Component {
       formActiveOrNot: true
     });
   }
+  handleOptionChange(event) {
+    console.log("eventtttttttt", event.target.value);
+
+    this.setState({
+      selectedOption: event.target.value
+    });
+  }
   handleChangeemirates(event) {
     this.setState({
       emirate: event.target.value
@@ -161,27 +247,33 @@ class storeCheckOut extends Component {
       ..._state
     });
   }
+  addressclick(item) {
+    this.setState({
+      addressdata: item,
+      addressid: item.id
+    });
+  }
+  placeorder = () => {
+
+    console.log("ttttttt", this.state);
+    this.props.placeOrder(this.state)
+      .then(() => {
+        console.log("ttttttt", this.state);
+      })
+      .catch((error) => {
+
+      })
+
+
+
+  }
   render() {
     const image_url = "https://admin.urbandmusic.com/storage/";
-    var cartItems = this.props.cartitems;
+
     var emirates = this.props.emirateslist;
     var arealist = this.props.arealist;
-    var getaddress = this.props.address;
-    if (getaddress == "no address added") {
-      var noaddress = false;
-    } else var noaddress = true;
-    var formActiveOrNot = localStorage.getItem("address");
-    var totalcost = 0;
-    if (cartItems !== "emtey cart") {
-      var cartflag = true;
-      for (let i = 0; i < cartItems.length; i++) {
-        if (cartItems[i].price) {
-          totalcost =
-            totalcost +
-            parseFloat(cartItems[i].price) * parseInt(cartItems[i].quantity);
-        }
-      }
-    } else var cartflag = false;
+
+
 
     return (
       <div>
@@ -197,17 +289,17 @@ class storeCheckOut extends Component {
               <div className="col-md-6 checkout-block">
                 <div className="full-wrap">
                   <div className="head">SHIPPING ADDRESS</div>
-                  {formActiveOrNot || this.state.formActiveOrNot ? (
+                  {this.state.formActiveOrNot ? (
                     <div className="row mt-3">
-                      {noaddress
-                        ? getaddress.map(item => {
+                      {this.state.noaddress
+                        ? this.state.getaddress.map(item => {
                           return (
-                            <div className="col-md-6" key={item.id}>
-                              <div className="AddressBoxWrp fullWidth">
+                            <div className="col-md-6" key={item.id} onClick={() => this.addressclick(item)}>
+                              <div className="AddressBoxWrp fullWidth" >
                                 <div
                                   className={
                                     "AddressBoxTp1 " +
-                                    (item.is_default == 1
+                                    (this.state.addressid === item.id
                                       ? "selectedBox"
                                       : "")
                                   }
@@ -500,6 +592,7 @@ class storeCheckOut extends Component {
                 </div>
                 <div className="full-wrap mt-5">
                   <div className="head">SELECT A PAYMENT METHOD</div>
+
                   <div className="full-wrap mt-4">
                     <div className="payment-method">
                       <div className="payment-header d-flex align-items-center">
@@ -508,6 +601,9 @@ class storeCheckOut extends Component {
                             type="radio"
                             id="Paypal"
                             name="customRadio"
+                            value="PayPal"
+                            checked={this.state.selectedOption === 'PayPal'}
+                            onChange={this.handleOptionChange}
                             className="custom-control-input"
                           />
                           <label
@@ -527,7 +623,9 @@ class storeCheckOut extends Component {
                             id="COD"
                             name="customRadio"
                             className="custom-control-input"
-                            checked
+                            value="cash on delivery"
+                            checked={this.state.selectedOption === 'cash on delivery'}
+                            onChange={this.handleOptionChange}
                           />
                           <label className="custom-control-label" htmlFor="COD">
                             Cash on delivery
@@ -536,6 +634,8 @@ class storeCheckOut extends Component {
                       </div>
                     </div>
                   </div>
+
+                  <button className="tim-btn mt-4 ticket-btn-lg place-order" onClick={this.placeorder}>Place Order</button>
                   {/* {this.state.ticketid ?<Link to={{
                                 pathname: `/ticket-checkout`,
                                 state: {
@@ -543,18 +643,18 @@ class storeCheckOut extends Component {
                                   eventDetail:eventResult
                                 }
                               }} */}
-                  {cartflag ?<Link
-                  to={{
-                    pathname: `/orderPlaced`,
-                    state: {
-                      cart: cartItems,
-                      total:totalcost
-                    }
-                  }}
-                    className="tim-btn mt-4 ticket-btn-lg place-order"
-                  >
-                    Place Order
-                </Link>:""}
+                  {/* {cartflag ? <Link
+                      to={{
+                        pathname: `/orderPlaced`,
+                        state: {
+                          cart: cartItems,
+                          total: totalcost
+                        }
+                      }}
+                      className="tim-btn mt-4 ticket-btn-lg place-order"
+                    >
+                      Place Order
+                </Link> : ""} */}
 
                 </div>
               </div>
@@ -564,8 +664,8 @@ class storeCheckOut extends Component {
 
                 <div className="ticket-box checkout-list mt-4">
                   <ul>
-                    {cartflag &&
-                      cartItems.map(item => {
+                    {this.state.cartflag &&
+                      this.state.cartItems.map(item => {
                         return (
                           <li key={item.id}>
                             <div className="order-box-wrap">
@@ -593,8 +693,8 @@ class storeCheckOut extends Component {
                   </ul>
                   <div className="full-wrap checkout-block mt-4">
                     <div className="total-block mt-4 text-right">
-                      <span className="mb-1">Total (Incl. of Vat)</span>
-                      {totalcost} AED
+                      <span className="mb-1">Total (Incl. 5% of Vat)</span>
+                      {this.state.totalcost} AED
                     </div>
                   </div>
                 </div>
@@ -614,6 +714,7 @@ const mapDispatchToProps = dispatch => {
     getaddress: () => dispatch(actionCreators.getaddress()),
     getemirates: () => dispatch(actionCreators.getemirates()),
     getarea: id => dispatch(actionCreators.getemirates1(id)),
+    placeOrder: id => dispatch(actionCreators.placeOrder(id)),
     addaddress: param => dispatch(actionCreators.addaddress(param))
   };
 };
