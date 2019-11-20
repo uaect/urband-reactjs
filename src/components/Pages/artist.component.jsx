@@ -36,21 +36,22 @@ class Artist extends Component {
                             <div className="artist-about pr__30">
                               <h3 className="artist-name">{item.name}</h3>
                               <h6>{item.genre}</h6>
-                              <span className="genere">
-                                Album: Rockstar, first rain, Love Song (More)
-                              </span>
+                              {/*  <span className="genere">
+                                 Album: Rockstar, first rain, Love Song (More)
+                               </span>*/}
 
                               <div className="content">
                                 <ReadMoreAndLess
                                   ref={this.ReadMore}
                                   className="read-more-content"
-                                  charLimit={250}
+                                  charLimit={300}
                                   readMoreText="Read more"
                                   readLessText="Read less"
                                 >
                                   {item.about}
                                 </ReadMoreAndLess>
                               </div>
+                              {/* 
                               <h4 className="alb-title">Album & Single</h4>
                               <div className="alb-single">
                                 <Link to="" className="single-items">
@@ -65,7 +66,7 @@ class Artist extends Component {
                                     alt="album"
                                   />
                                 </Link>
-                              </div>
+                              </div>*/}
                             </div>
                           </div>
 

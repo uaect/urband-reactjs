@@ -120,19 +120,26 @@ class Header extends Component {
                     {this.props.menues.some(el => el.title === "Purchase") && (
                       <li className="menu-item-has-children in-array">
                         Purchase
-                        <ul className="sub-menu">
+                        <ul className="sub-menu">                        
+                          {this.props.menues.some(el => el.title === "Event Tickets") && (
                           <li>
                             <Link to="/event-tickets">Event Tickets</Link>
                           </li>
+                          )}
+                          {this.props.menues.some(el => el.title === "Studio Bookings") && (
                           <li>
                             <Link to="/coming-soon">Studio Bookings</Link>
                           </li>
+                          )}
+                          {this.props.menues.some(el => el.title === "Merchandise") && (
                           <li>
                             <Link to="/store">Merchandise</Link>
                           </li>
+                          )}
                         </ul>
                       </li>
                     )}
+                    {this.props.menues.some(el => el.title === "Contact") && (
                     <li>
                       <NavLink
                         to="/contact"
@@ -142,6 +149,7 @@ class Header extends Component {
                         Contact
                       </NavLink>
                     </li>
+                    )}
                   </ul>
                 </div>
 

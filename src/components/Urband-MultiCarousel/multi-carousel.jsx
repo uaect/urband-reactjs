@@ -40,12 +40,12 @@ class multiCarouselHero extends Component {
             <Carousel responsive={responsive} arrows={true}>
               {posts.map(item => {
                 return (
+                  <Link
+                    to={{
+                      pathname: `/artist`
+                    }}
+                  >
                   <div className="artist-single home-page" key={item.id}>
-                    <Link
-                      to={{
-                        pathname: `/artist`
-                      }}
-                    >
                       <img
                         src={image_url + "/" + item.image}
                         className="ink-pattern"
@@ -56,8 +56,8 @@ class multiCarouselHero extends Component {
                         <h6>{item.name}</h6>
                         <p>Band: Metallica</p>
                       </div>
-                    </Link>
                   </div>
+                  </Link>
                 );
               })}
             </Carousel>

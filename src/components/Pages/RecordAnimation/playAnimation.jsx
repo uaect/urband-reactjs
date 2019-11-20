@@ -69,7 +69,12 @@ class playAnimation extends Component {
                           </Link>
                         </div>
                         <div className="albun-details">
-                          <h6>{events[0].title}</h6>
+                        <Link
+                        to={{
+                          pathname: `/albums/detail/${events[0].id}`
+                        }}
+                      ><h6>{events[0].title}</h6>
+                      </Link>
                           <p>{events[0].description}</p>
                         </div>
                       </div>

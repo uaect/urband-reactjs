@@ -507,4 +507,7 @@ input[type="range"]:focus::-ms-fill-upper {
   max-width: 350px;
   width: 100%;
 }
+.clr-type-1{
+  color: #959595 !important;
+}
 @import "./assets/scss/main.scss";

@@ -64,7 +64,7 @@ class WhoWeAre extends Component {
           <InfoHero />
         </section>
 
-        <section className="black-bg side-img-section what-we-do-section">
+       {/* <section className="black-bg side-img-section what-we-do-section">
           <div className="col-sm-6 col-sm-offset-6 side-img d-none d-md-block"></div>
           <div className="container">
             <div className="row">
@@ -116,7 +116,7 @@ class WhoWeAre extends Component {
               </div>
             </div>
           </div>
-        </section>
+            </section>*/}
 
         <WhatweDo />
         <Gang />
