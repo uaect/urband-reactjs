@@ -100,12 +100,12 @@ class ShopDetail extends Component {
                         </span>
                       </ins>
 
-                      <del>
+                      {/*<del>
                         <span>
                           <span>AED</span>
                           200
                         </span>
-                      </del>
+                      </del>*/}
                     </p>
 
                     <div className="product-cart">

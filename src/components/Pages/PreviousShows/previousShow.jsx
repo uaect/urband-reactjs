@@ -119,10 +119,6 @@ class previousShowHome extends Component {
                           alt=""
                         />
                         <div className="video-player">
-                          <div className="text">
-                            <p>{this.state.previous.title}</p>
-                            <span>(Live in Tokyo, 2017)</span>
-                          </div>
                         </div>
                       </div>
                     </div>

@@ -69,7 +69,12 @@ class albumListHome extends Component {
 
                                 <div className="album-details clearfix">
                                   <div className="content">
-                                    <h3 className="album-name">{item.title}</h3>
+                                    
+                                  <Link className="clr-type-1"
+                                    to={{
+                                      pathname: `/albums/detail/${item.id}`
+                                    }}
+                                  ><h3 className="album-name">{item.title}</h3></Link>
                                     <p>{item.tracks.name}</p>
                                   </div>
                                 </div>

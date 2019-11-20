@@ -482,4 +482,7 @@ input[type="range"]:focus::-ms-fill-upper {
 .ImageTyp101.hgtTp3 {
   height: 350px;
 }
+.clr-type-1{
+  color: #959595 !important;
+}
 @import "./assets/scss/main.scss";
