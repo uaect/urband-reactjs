@@ -6,13 +6,14 @@ import {
   faBreadSlice,
   faShoppingCart
 } from "@fortawesome/free-solid-svg-icons";
-
+import { Link } from "react-router-dom";
 import ProfileEntryBox from "./profileEntryBox/profileEntryBox";
 import profileData from "./profileData/profileData";
 import profileOrders from "./profileOrders/profileOrders";
 import profileAddress from "./profileAddresses/profileAddresses";
 const ProfileDashboard = ({ match }) => {
-  console.log("ijas");
+  var userData = JSON.parse(localStorage.getItem("urbandData"));
+  console.log("ijas", JSON.parse(localStorage.getItem("urbandData")));
   return (
     <div>
       <div className="profileDashBoardBox">
@@ -23,8 +24,8 @@ const ProfileDashboard = ({ match }) => {
                 <div className="LftBox">
                   <div>
                     <div className="lftPrfDesc1">
-                      <div className="DescTxtTp1">Hala Ijas!</div>
-                      <div className="DescTxtTp2">Sign Out</div>
+                      <div className="DescTxtTp1">{userData.name}</div>
+                      <div className="DescTxtTp2"> <Link to="/logout">Sign Out</Link></div>
                     </div>
                     <div className="PrfLinkBoxTp1">
                       <div className="ProfileNavItem">

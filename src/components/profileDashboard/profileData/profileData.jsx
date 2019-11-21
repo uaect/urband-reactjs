@@ -12,6 +12,7 @@ const ProfileData = () => {
         <div>
           <BoxTypeOne boxHeader="General Information">
             <div>
+              
               <ProfileBox/>
             </div>
           </BoxTypeOne>

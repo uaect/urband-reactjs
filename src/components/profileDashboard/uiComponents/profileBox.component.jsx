@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 const ProfileBox = ({buttonText }) => {
+  var userData = JSON.parse(localStorage.getItem("urbandData"));
+  console.log("ijas", JSON.parse(localStorage.getItem("urbandData")));
     return(
         <div>
             <div className="AddNewBox101">
@@ -11,7 +13,7 @@ const ProfileBox = ({buttonText }) => {
                           <input
                             type="text"
                             className="form-control field-control"
-                            placeholder="Ijas"
+                            placeholder={userData.name}
                           />
                         </div>
                       </div>

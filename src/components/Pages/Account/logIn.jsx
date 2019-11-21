@@ -50,10 +50,10 @@ class logIn extends Component {
     if (flag == 0) {
       this.props.login(this.state)
         .then(() => {
-          this.setState({
-            isToken: true
-          })
-          window.location.href = "/";
+          // this.setState({
+          //   isToken: true
+          // })
+          // window.location.href = "/";
         })
         .catch((error) => {
           if (error.error == 'Unauthorised') {
