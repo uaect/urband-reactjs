@@ -10,6 +10,7 @@ import icon1 from "../../assets/img/icn1.png";
 import icon2 from "../../assets/img/icn2.png";
 import icon3 from "../../assets/img/icn3.png";
 import { connect } from "react-redux";
+import { Redirect } from 'react-router-dom';
 import * as actionCreators from "../../../src/store/actions/";
 
 library.add(faUserAlt, faCartPlus);
@@ -19,7 +20,8 @@ class Header extends Component {
     super(props);
     this.state = {
       isToken: localStorage.getItem("urbandtoken") ? true : false,
-      activeBox: "hide"
+      activeBox: "hide",
+      redirect: false
     };
     this.ToggleBox = this.ToggleBox.bind(this);
   }
@@ -43,14 +45,16 @@ class Header extends Component {
   gotologout = () => {
     localStorage.removeItem("urbandtoken");
     localStorage.removeItem("urbandData");
-
+    window.location.href = "/";
     this.setState({
+      redirect:true,
       isToken: localStorage.getItem("urbandtoken") ? true : false
     });
-    window.location.href = "/";
+   
   };
 
   render() {
+  
     return (
       <div className="AppHeader">
         <div
