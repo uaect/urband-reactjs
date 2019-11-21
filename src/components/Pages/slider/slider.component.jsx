@@ -28,8 +28,9 @@ class sliderHero extends React.Component {
           orientation="horizontal"
           playDirection="forward"
           touchEnabled={true}
-          // isPlaying={true}
+          isPlaying={true}
           interval={7000}
+          infinite={true}
         >
           <Slider>
             {getbanner &&

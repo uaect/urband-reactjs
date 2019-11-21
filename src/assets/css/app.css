@@ -16265,12 +16265,28 @@ input[type].field-control::-webkit-input-placeholder {
 .pos-relative{
   position: relative;
 }
+.overlayBoxTp1{
+  z-index: 4;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  height: 0;
+  opacity: 0;
+}
+.overlayBoxTp1.show{
+  height: 100%;
+  opacity: 1;
+}
 .BoxStyleTp105{
   position: absolute;
  top: 100%;
   right: 0;
   height: 0;
   opacity: 0;
+  z-index: 5;
   width: 150px;
   background-color: rgb(255, 255, 255);
     white-space: nowrap;
