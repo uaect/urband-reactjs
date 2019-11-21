@@ -1,17 +1,8 @@
-import React, { Component } from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  NavLink,
-  useParams,
-  useRouteMatch
-} from "react-router-dom";
+import React from "react";
+import { Route, NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUserAlt,
-  faBabyCarriage,
   faBreadSlice,
   faShoppingCart
 } from "@fortawesome/free-solid-svg-icons";
@@ -21,6 +12,7 @@ import profileData from "./profileData/profileData";
 import profileOrders from "./profileOrders/profileOrders";
 import profileAddress from "./profileAddresses/profileAddresses";
 const ProfileDashboard = ({ match }) => {
+  console.log("ijas");
   return (
     <div>
       <div className="profileDashBoardBox">
