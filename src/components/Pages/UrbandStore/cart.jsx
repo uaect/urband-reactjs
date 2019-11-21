@@ -72,8 +72,8 @@ class cart extends Component {
                       <div className="cart-description">
                         <h2>{item.title}</h2>
                         <div className="style-fullwidth">
-                          <div className="short-desc">Size: S</div>
-                          <div className="short-desc">Color: Black</div>
+                          {/*<div className="short-desc">Size: S</div>
+                          <div className="short-desc">Color: Black</div>*/}
                           <div className="short-desc">
                             Qunatity: {item.quantity}
                           </div>
