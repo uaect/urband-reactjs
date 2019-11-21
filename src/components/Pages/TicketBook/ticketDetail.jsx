@@ -24,7 +24,7 @@ class ticketDetail extends Component {
     errTicket: null,
     errQuanity: null,
     grandTotal: null,
-    totalPerson: 0
+    totalPerson: 1
   };
 
   componentDidMount() {
@@ -55,7 +55,6 @@ class ticketDetail extends Component {
   render() {
     const eventResult = this.props.eventsDetails.result;
     const packageResult = this.props.eventsDetails.packages;
-    console.log("ticketid:", this.state.ticketid);
     return (
       <div>
         <section className="page-padd ticket-wrap">

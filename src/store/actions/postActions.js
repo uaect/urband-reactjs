@@ -1,4 +1,5 @@
 import { EVENTDETAIL, FETCH_SPOTLIGHT, PREVIOUSSHOW, FETCH_EVENTTICKET, FETCH_POSTS, FETCH_CONTACT, FETCH_CLIENTS, FETCH_CLIENTSLIST, FETCH_EVENTLIST, FETCH_EVENTDETAIL, FETCH_MENUES } from "./types";
+var urbandtoken = JSON.parse(localStorage.getItem("urbandtoken"));
 
 export const fetchPosts = () => {
     return dispatch => {
@@ -255,6 +256,38 @@ export const fetchMenues = () => {
             .catch(error => {
                 console.log("error :" + JSON.stringify(error));
             });
+    };
+};
+
+export const bookTicket = (state) => {
+    return () => {
+        return new Promise((resolve, reject) => {
+            const body = {
+                "token": urbandtoken,
+                "eventid": state.eventid,
+                "packageid": state.ticketid,
+                "quantity": state.totalPerson,
+                "total": state.grandTotal,
+                "payment_option": "",
+                "price": state.ticketPrice
+            };
+
+            fetch("https://admin.urbandmusic.com/api/eventbooking", {
+                method: "POST",
+                body: JSON.stringify(body)
+            })
+                .then(res => res.json())
+                .then(res => {
+                    if (res.success) {
+                        resolve()
+                    } else {
+                        reject(res)
+                    }
+                })
+                .catch(error => {
+                    reject(error)
+                });
+        })
     };
 };
 
