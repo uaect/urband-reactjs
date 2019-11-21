@@ -48,6 +48,7 @@ export const login = (params) => {
                 .then(res => {
                     if (res.success) {
                         localStorage.setItem('urbandtoken', JSON.stringify(res.token));
+                        localStorage.setItem('urbandData', JSON.stringify(res.user));
                         dispatch({
                             type: LOGIN,
                             value: res

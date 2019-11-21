@@ -1,6 +1,7 @@
 
 
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import EmptyMessage from '../../../assets/img/profileDashbord.png';
 const profileEntryBox = () => {
 
@@ -11,7 +12,7 @@ const profileEntryBox = () => {
                     <img src={EmptyMessage} alt=""/>
                     <div className="MangeEmptyBoxge101">Manage Your Orders, Profiles & Addresses</div>
                     <div className="MangeEmptyBoxge102">Need To Purchase Something ? Go Merchandise</div>
-                    <a href="#" className="tim-btn mt-4 ticket-btn-lg place-order">Go to Products</a>
+                    <Link className="tim-btn mt-4 ticket-btn-lg place-order" to="/cart">Go to Products</Link>
                 </div>
             </div>
         </div>

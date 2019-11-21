@@ -180,8 +180,8 @@ class Header extends Component {
                       ""
                     )}
                     {this.state.isToken ? (
-                      <Link onClick={this.gotologout}>
-                        <span>Log Out</span>
+                      <Link to="/profile">
+                        <span>Profile</span>
                         <FontAwesomeIcon
                           icon={faUserAlt}
                           className="ico-user"
