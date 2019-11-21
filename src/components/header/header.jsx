@@ -6,19 +6,38 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../header/header.component.css";
 import Logo from "../../assets/img/logo_5.png";
 import BurgerMenu from "../header/burgerMenu.component";
-
+import icon1 from "../../assets/img/icn1.png";
+import icon2 from "../../assets/img/icn2.png";
+import icon3 from "../../assets/img/icn3.png";
 import { connect } from "react-redux";
 import * as actionCreators from "../../../src/store/actions/";
 
 library.add(faUserAlt, faCartPlus);
 
 class Header extends Component {
-  state = {
-    isToken: localStorage.getItem("urbandtoken") ? true : false
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      isToken: localStorage.getItem("urbandtoken") ? true : false,
+      activeBox: "hide"
+    };
+    this.ToggleBox = this.ToggleBox.bind(this);
+  }
 
   componentDidMount() {
     this.props.fetchMenues();
+  }
+  ToggleBox() {
+    let show = this.state.activeBox;
+    let index = show.indexOf("show");
+
+    if (index != -1) {
+      show = "hide";
+    } else {
+      show = "show";
+    }
+
+    this.setState({ activeBox: show });
   }
 
   gotologout = () => {
@@ -120,35 +139,41 @@ class Header extends Component {
                     {this.props.menues.some(el => el.title === "Purchase") && (
                       <li className="menu-item-has-children in-array">
                         Purchase
-                        <ul className="sub-menu">                        
-                          {this.props.menues.some(el => el.title === "Event Tickets") && (
-                          <li>
-                            <Link to="/event-tickets">Event Tickets</Link>
-                          </li>
+                        <ul className="sub-menu">
+                          {this.props.menues.some(
+                            el => el.title === "Event Tickets"
+                          ) && (
+                            <li>
+                              <Link to="/event-tickets">Event Tickets</Link>
+                            </li>
                           )}
-                          {this.props.menues.some(el => el.title === "Studio Bookings") && (
-                          <li>
-                            <Link to="/coming-soon">Studio Bookings</Link>
-                          </li>
+                          {this.props.menues.some(
+                            el => el.title === "Studio Bookings"
+                          ) && (
+                            <li>
+                              <Link to="/coming-soon">Studio Bookings</Link>
+                            </li>
                           )}
-                          {this.props.menues.some(el => el.title === "Merchandise") && (
-                          <li>
-                            <Link to="/store">Merchandise</Link>
-                          </li>
+                          {this.props.menues.some(
+                            el => el.title === "Merchandise"
+                          ) && (
+                            <li>
+                              <Link to="/store">Merchandise</Link>
+                            </li>
                           )}
                         </ul>
                       </li>
                     )}
                     {this.props.menues.some(el => el.title === "Contact") && (
-                    <li>
-                      <NavLink
-                        to="/contact"
-                        className="in-array"
-                        activeClassName="selected"
-                      >
-                        Contact
-                      </NavLink>
-                    </li>
+                      <li>
+                        <NavLink
+                          to="/contact"
+                          className="in-array"
+                          activeClassName="selected"
+                        >
+                          Contact
+                        </NavLink>
+                      </li>
                     )}
                   </ul>
                 </div>
@@ -167,7 +192,7 @@ class Header extends Component {
                       ""
                     )}
                   </li>
-                  <li className="d-flex">
+                  <li className="d-flex pos-relative">
                     {!this.state.isToken ? (
                       <Link to="/login">
                         <span>Log In</span>
@@ -180,12 +205,36 @@ class Header extends Component {
                       ""
                     )}
                     {this.state.isToken ? (
-                      <Link to="/profile">
+                      <Link onClick={this.ToggleBox}>
                         <span>Profile</span>
                         <FontAwesomeIcon
                           icon={faUserAlt}
                           className="ico-user"
                         />
+                        <div
+                          className={
+                            "BoxStyleTp105 " +
+                            (this.state.activeBox == "show" ? "show" : "hidden")
+                          }
+                        >
+                          <div>
+                            <Link to="/login">
+                              <img src={icon1} alt="" />
+                              <span>Profile</span>
+                            </Link>
+                            <Link to="/login">
+                              <img src={icon2} alt="" />
+                              <span>Address</span>
+                            </Link>
+                            <Link to="/login">
+                              <img src={icon3} alt="" />
+                              <span>Orders</span>
+                            </Link>
+                            <Link to="/login" className="LogoutBtn">
+                              <span>Log Out</span>
+                            </Link>
+                          </div>
+                        </div>
                       </Link>
                     ) : (
                       ""
@@ -214,7 +263,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
