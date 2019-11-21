@@ -31,7 +31,7 @@ class Header extends Component {
     let show = this.state.activeBox;
     let index = show.indexOf("show");
 
-    if (index != -1) {
+    if (index !== -1) {
       show = "hide";
     } else {
       show = "show";
@@ -42,9 +42,12 @@ class Header extends Component {
 
   gotologout = () => {
     localStorage.removeItem("urbandtoken");
+    localStorage.removeItem("urbandData");
+
     this.setState({
       isToken: localStorage.getItem("urbandtoken") ? true : false
     });
+    window.location.href = "/";
   };
 
   render() {
@@ -218,19 +221,19 @@ class Header extends Component {
                           }
                         >
                           <div>
-                            <Link to="/login">
+                            <Link to="/profile">
                               <img src={icon1} alt="" />
                               <span>Profile</span>
                             </Link>
-                            <Link to="/login">
+                            <Link to="/profile/profileAddress">
                               <img src={icon2} alt="" />
                               <span>Address</span>
                             </Link>
-                            <Link to="/login">
+                            <Link to="/profile/profileOrders">
                               <img src={icon3} alt="" />
                               <span>Orders</span>
                             </Link>
-                            <Link to="/login" className="LogoutBtn">
+                            <Link onClick={this.gotologout} className="LogoutBtn">
                               <span>Log Out</span>
                             </Link>
                           </div>
