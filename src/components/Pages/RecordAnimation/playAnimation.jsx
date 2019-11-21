@@ -60,6 +60,7 @@ class playAnimation extends Component {
                             to={{
                               pathname: `/albums/detail/${events[0].id}`
                             }}
+                            onClick={this.ToggleBox}
                           >
                             <img
                               className="maxWidth195"
@@ -69,12 +70,13 @@ class playAnimation extends Component {
                           </Link>
                         </div>
                         <div className="albun-details">
-                        <Link
-                        to={{
-                          pathname: `/albums/detail/${events[0].id}`
-                        }}
-                      ><h6>{events[0].title}</h6>
-                      </Link>
+                          <Link
+                            to={{
+                              pathname: `/albums/detail/${events[0].id}`
+                            }}
+                          >
+                            <h6>{events[0].title}</h6>
+                          </Link>
                           <p>{events[0].description}</p>
                         </div>
                       </div>
@@ -301,7 +303,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(playAnimation);
+export default connect(mapStateToProps, mapDispatchToProps)(playAnimation);

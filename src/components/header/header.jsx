@@ -10,6 +10,7 @@ import icon1 from "../../assets/img/icn1.png";
 import icon2 from "../../assets/img/icn2.png";
 import icon3 from "../../assets/img/icn3.png";
 import { connect } from "react-redux";
+import { Redirect } from 'react-router-dom';
 import * as actionCreators from "../../../src/store/actions/";
 
 library.add(faUserAlt, faCartPlus);
@@ -19,7 +20,8 @@ class Header extends Component {
     super(props);
     this.state = {
       isToken: localStorage.getItem("urbandtoken") ? true : false,
-      activeBox: "hide"
+      activeBox: "hide",
+      redirect: false
     };
     this.ToggleBox = this.ToggleBox.bind(this);
   }
@@ -31,7 +33,7 @@ class Header extends Component {
     let show = this.state.activeBox;
     let index = show.indexOf("show");
 
-    if (index != -1) {
+    if (index !== -1) {
       show = "hide";
     } else {
       show = "show";
@@ -42,14 +44,28 @@ class Header extends Component {
 
   gotologout = () => {
     localStorage.removeItem("urbandtoken");
+    localStorage.removeItem("urbandData");
+    window.location.href = "/";
     this.setState({
+      redirect:true,
       isToken: localStorage.getItem("urbandtoken") ? true : false
     });
+   
   };
 
   render() {
+  
     return (
       <div className="AppHeader">
+        <div
+          onClick={this.ToggleBox}
+          className={
+            "overlayBoxTp1 " +
+            (this.state.activeBox == "show" ? "show" : "hidden")
+          }
+        >
+          &nbsp;
+        </div>
         <header className="header header-magic-line headroom headroom--not-bottom headroom--pinned headroom--top">
           <div className="tim-container clearfix">
             <div className="header-magic-line-inner clearfix d-flex full-wrap">
@@ -218,19 +234,19 @@ class Header extends Component {
                           }
                         >
                           <div>
-                            <Link to="/login">
+                            <Link to="/profile">
                               <img src={icon1} alt="" />
                               <span>Profile</span>
                             </Link>
-                            <Link to="/login">
+                            <Link to="/profile/profileAddress">
                               <img src={icon2} alt="" />
                               <span>Address</span>
                             </Link>
-                            <Link to="/login">
+                            <Link to="/profile/profileOrders">
                               <img src={icon3} alt="" />
                               <span>Orders</span>
                             </Link>
-                            <Link to="/login" className="LogoutBtn">
+                            <Link onClick={this.gotologout} className="LogoutBtn">
                               <span>Log Out</span>
                             </Link>
                           </div>
