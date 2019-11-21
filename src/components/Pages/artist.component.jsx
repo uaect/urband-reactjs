@@ -9,6 +9,9 @@ import * as actionCreators from "../../../src/store/actions/";
 //   LazyLoadImage,
 //   trackWindowScroll
 // } from "react-lazy-load-image-component";
+function createMarkup(item) {
+  return {__html: item};
+}
 class Artist extends Component {
   componentDidMount() {
     this.props.fetchPosts();

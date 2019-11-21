@@ -11,7 +11,9 @@ import { connect } from "react-redux";
 import * as actionCreators from "../../../../src/store/actions";
 import AddedToCartAnimation from "../../../components/hoc/AddedTocartAnimation/index";
 library.add(faCartPlus);
-
+function createMarkup(item) {
+  return {__html: item};
+}
 class ShopDetail extends Component {
   constructor(props) {
     super(props);
@@ -22,7 +24,7 @@ class ShopDetail extends Component {
     this.handleClick = this.handleClick.bind(this);
     this.state = { AddedToCartIcon: false };
   }
-
+ 
   componentDidMount() {
     let storeid = this.props.location.pathname.split("/").pop();
     this.props.fetchStoreDetails(storeid);
@@ -125,7 +127,7 @@ class ShopDetail extends Component {
                     </div>
                     <div className="woocommerce-product-details__short-description">
                       <h4>Product Details</h4>
-                      <p>{storedetails.description}</p>
+                      <div dangerouslySetInnerHTML={createMarkup(storedetails.description)}/>
                     </div>
                   </div>
                 </div>
