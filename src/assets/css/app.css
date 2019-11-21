@@ -16262,6 +16262,41 @@ input[type].field-control::-webkit-input-placeholder {
   animation-name: blink;
   animation-timing-function: ease;
 }
+.pos-relative{
+  position: relative;
+}
+.BoxStyleTp105{
+  position: absolute;
+ top: 100%;
+  right: 0;
+  height: 0;
+  opacity: 0;
+  width: 150px;
+  background-color: rgb(255, 255, 255);
+    white-space: nowrap;
+    box-shadow: rgba(0, 0, 0, 0.18) 0px 5px 4px 0px;
+}
+.BoxStyleTp105.show{
+  height: auto;
+  opacity: 1;
+}
+.BoxStyleTp105 a {
+  display: block;
+      color: #494848 !important; 
+         padding: 6px 10px;
+}
+.BoxStyleTp105 a img{
+      position: relative;
+    top: -3px;
+}
+.BoxStyleTp105 a.LogoutBtn{
+  text-align: center;
+  border-top: 1px solid #e4e4e4;
+}
+.BoxStyleTp105 a span{
+color: #494848 !important; 
+margin-left: 10px;
+}
 @media (max-width: 420px) {
   .urband-col-xs-6 {
     width: 50% !important;
