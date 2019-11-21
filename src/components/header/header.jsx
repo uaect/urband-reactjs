@@ -50,6 +50,15 @@ class Header extends Component {
   render() {
     return (
       <div className="AppHeader">
+        <div
+          onClick={this.ToggleBox}
+          className={
+            "overlayBoxTp1 " +
+            (this.state.activeBox == "show" ? "show" : "hidden")
+          }
+        >
+          &nbsp;
+        </div>
         <header className="header header-magic-line headroom headroom--not-bottom headroom--pinned headroom--top">
           <div className="tim-container clearfix">
             <div className="header-magic-line-inner clearfix d-flex full-wrap">
