@@ -5,18 +5,33 @@ import { faCalendarWeek, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 
+import { connect } from "react-redux";
+import * as actionCreators from "../../../../src/store/actions/";
+
 library.add(faCalendarWeek, faArrowLeft);
 
 class checkOut extends Component {
+
   componentDidMount() {
     let ticketDetails = this.props.location.state;
     console.log("ticketDetails :", ticketDetails);
   }
 
+  bookTicket = () => {
+    this.props.bookTicket(this.props.location.state.ticketDetail)
+      .then(() => {
+        this.props.history.push({
+          pathname: '/profile'
+        })
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }
+
   render() {
     const eventDetail = this.props.location.state.eventDetail;
     const ticketDetail = this.props.location.state.ticketDetail;
-
     return (
       <div>
         <section className="page-padd ticket-wrap">
@@ -103,11 +118,11 @@ class checkOut extends Component {
                       <span className="mb-1">Grand Total </span>
                       {ticketDetail && ticketDetail.grandTotal}
                     </div>
-                    <Link to="/ticket-summary"
+                    <button onClick={this.bookTicket}
                       className="tim-btn mt-4 ticket-btn-lg"
                     >
                       Pay Securly
-                    </Link>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -119,4 +134,10 @@ class checkOut extends Component {
   }
 }
 
-export default checkOut;
+const mapDispatchToProps = dispatch => {
+  return {
+    bookTicket: (value) => dispatch(actionCreators.bookTicket(value))
+  };
+};
+
+export default connect(null, mapDispatchToProps)(checkOut);
