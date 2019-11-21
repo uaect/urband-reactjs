@@ -13,7 +13,6 @@ import profileOrders from "./profileOrders/profileOrders";
 import profileAddress from "./profileAddresses/profileAddresses";
 const ProfileDashboard = ({ match }) => {
   var userData = JSON.parse(localStorage.getItem("urbandData"));
-  console.log("ijas", JSON.parse(localStorage.getItem("urbandData")));
   return (
     <div>
       <div className="profileDashBoardBox">

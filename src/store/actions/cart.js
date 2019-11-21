@@ -1,10 +1,11 @@
 
 import { ADD_CART, GET_CART, DELETE_CART, PLACEORDER } from "./types";
+var urbandtoken = JSON.parse(localStorage.getItem("urbandtoken"));
 export const addtocart = (id) => {
     return dispatch => {
         const body = {
             productid: id,
-            userid: 1,
+            token:urbandtoken,
             quantity: 1
         };
         fetch("https://admin.urbandmusic.com/api/addtocart", {
@@ -31,7 +32,7 @@ export const getfromcart = () => {
             const body = {
                 userid: 1,
                 quantity: 1,
-                token: 1
+                token: urbandtoken
             };
             fetch("https://admin.urbandmusic.com/api/getcart", {
                 method: "POST",
@@ -62,7 +63,7 @@ export const placeOrder = (id) => {
     return dispatch => {
         return new Promise((resolve, reject) => {
             const body = {
-                token:1,
+                token:urbandtoken,
                 address_id:id.addressid,
                 payment_option:id.selectedOption,
                 grand_total:id.totalcost,
@@ -99,7 +100,7 @@ export const deletecart = (id) => {
     return dispatch => {
         return new Promise((resolve, reject) => {
             const body = {
-                token: 1,
+                token: urbandtoken,
                 productid: id
             };
             fetch("https://admin.urbandmusic.com/api/removecart", {

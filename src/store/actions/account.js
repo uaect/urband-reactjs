@@ -1,6 +1,6 @@
 
 import { REGISTER, LOGIN, GETADDRESS, ADDADDRESS, GETEMIRATES, GETEMIRATES1, REMOVEADDRESS, GETUSER, EDITUSER, GETORDEREDLIST } from "./types";
-
+var urbandtoken = JSON.parse(localStorage.getItem("urbandtoken"));
 export const register = (params) => {
     return dispatch => {
         return new Promise((resolve, reject) => {
@@ -70,7 +70,7 @@ export const getaddress = (params) => {
     return dispatch => {
         return new Promise((resolve, reject) => {
             const body = {
-                "token": 1
+                "token": urbandtoken
             };
             fetch("https://admin.urbandmusic.com/api/address", {
                 method: "POST",
@@ -146,7 +146,7 @@ export const addaddress = (params) => {
     return dispatch => {
         return new Promise((resolve, reject) => {
             const body = {
-                "token": "1",
+                "token": urbandtoken,
                 "type": params.type,
                 "first_name": params.first_name,
                 "last_name": params.last_name,
@@ -185,7 +185,7 @@ export const deleteaddress = (params) => {
     return dispatch => {
         return new Promise((resolve, reject) => {
             const body = {
-                "token": "1",
+                "token": urbandtoken,
                 "addressid": params
             };
 
@@ -215,7 +215,7 @@ export const getuser = () => {
     return dispatch => {
         return new Promise((resolve, reject) => {
             const body = {
-                "token": "1"
+                "token": urbandtoken
             };
 
             fetch("https://admin.urbandmusic.com/api/getuser", {
@@ -275,7 +275,7 @@ export const getorderedlist = () => {
     return dispatch => {
         return new Promise((resolve, reject) => {
             const body = {
-                "token": "1"
+                "token": urbandtoken
             };
 
             fetch("https://admin.urbandmusic.com/api/getorderedlist", {
