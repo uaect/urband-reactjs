@@ -14,34 +14,98 @@ class cart extends Component {
     super(props);
     this.state = {
       cartData: [],
-      removeflag: false
+      removeflag: false,
+      cartid: "",
+      quantity: "",
+      cartflag: "",
+      totalcost: "",
+      cartItems: []
     };
     this.deleteItem = this.deleteItem.bind(this);
   }
 
   deleteItem(productid) {
-    this.props.deletecart(productid);
+    this.props.deletecart(productid)
+      .then(() => {
+        this.initialload();
+      })
+      .catch(error => {
+        if (error.error === "Unauthorised") {
+          this.setState({
+            errpassword: "Invalid credential check username or passsord"
+          });
+        }
+      });
   }
 
   componentDidMount() {
-    this.props.getfromcart();
+    this.initialload();
   }
+
+  initialload() {
+    this.props.getfromcart()
+      .then(() => {
+        if (this.props.cartitems.length) {
+          var cartItems = this.props.cartitems;
+          var totalcost = 0;
+          if (cartItems !== "emtey cart") {
+            this.setState({
+              cartflag: true,
+              cartItems: cartItems
+            });
+            for (let i = 0; i < cartItems.length; i++) {
+              if (cartItems[i].price) {
+                totalcost = totalcost + parseFloat(cartItems[i].price) * parseInt(cartItems[i].quantity);
+                this.setState({
+                  totalcost: totalcost
+                });
+              }
+            }
+          } else {
+            this.setState({
+              cartflag: false
+            });
+          }
+        } else {
+          this.setState({
+            cartflag: false
+          });
+        }
+      })
+      .catch(error => {
+        if (error.error) {
+          this.setState({
+            errpassword: error.error
+          });
+        }
+      })
+  }
+
+  increment(item) {
+    var quentity = (item.quantity) + 1
+    if (quentity && item) {
+     
+        console.log("increment", this.state, item.id);
+        this.props.updatecartQuantity(quentity, item.id)
+          .then(() => {
+            this.initialload();
+          })
+          .catch(error => {
+            if (error.error === "Unauthorised") {
+              this.setState({
+                errpassword: "Invalid credential check username or passsord"
+              });
+            }
+          });
+      
+    }
+
+  }
+
+
 
   render() {
     const image_url = "https://admin.urbandmusic.com/storage/";
-    var cartItems = this.props.cartitems;
-    var totalcost = 0;
-    if (cartItems !== "emtey cart") {
-      var cartflag = true;
-      for (let i = 0; i < cartItems.length; i++) {
-        if (cartItems[i].price) {
-          totalcost =
-            totalcost +
-            parseFloat(cartItems[i].price) * parseInt(cartItems[i].quantity);
-        }
-      }
-    } else var cartflag = false;
-
     return (
       <div className="ani-slideInDown">
         <section className="header-padd cart-product mt-5">
@@ -53,8 +117,8 @@ class cart extends Component {
               <h2>Cart</h2>
             </div>
 
-            {cartflag ? (
-              cartItems.map(item => {
+            {this.state.cartflag ? (
+              this.state.cartItems.map(item => {
                 return (
                   <div className="row cart-item" key={item.id}>
                     <div className="col-sm-6 d-flex">
@@ -93,7 +157,7 @@ class cart extends Component {
                         <button
                           disabled={item.quantity == 1}
                           className="quantity-input__modifier quantity-input__modifier--left"
-                          onClick={() => this.decrementQuantity(item)}
+                          onClick={() => this.decrement(item)}
                         >
                           —
                         </button>
@@ -105,7 +169,7 @@ class cart extends Component {
                         />
                         <button
                           className="quantity-input__modifier quantity-input__modifier--right"
-                          onClick={() => this.incrementQuantity(item)}
+                          onClick={() => this.increment(item)}
                         >
                           ＋
                         </button>
@@ -123,25 +187,25 @@ class cart extends Component {
                 );
               })
             ) : (
-              <div>
-                <EmptyBox
-                  ThumbImage="noCartMessage.png"
-                  HeaderText="Your shopping cart looks empty"
-                  SubText="What are you waiting for?"
-                  LinkText="Start Shopping"
-                  LinkUrl="/store"
-                />
-              </div>
-            )}
-            {cartflag ? (
+                <div>
+                  <EmptyBox
+                    ThumbImage="noCartMessage.png"
+                    HeaderText="Your shopping cart looks empty"
+                    SubText="What are you waiting for?"
+                    LinkText="Start Shopping"
+                    LinkUrl="/store"
+                  />
+                </div>
+              )}
+            {this.state.cartflag ? (
               <div className="cart-total right-push">
                 <div className="d-flex price align-items-center">
                   Total
                   <span className="ml-2 mr-4">
-                    {totalcost ? totalcost : 0} AED
+                    {this.state.totalcost ? this.state.totalcost : 0} AED
                   </span>
                   <Link
-                    to={cartflag ? "/checkout" : "#"}
+                    to={this.state.cartflag ? "/checkout" : "#"}
                     className="checkout-btn-big bg-red-hover tim-btn"
                   >
                     check out
@@ -149,8 +213,8 @@ class cart extends Component {
                 </div>
               </div>
             ) : (
-              ""
-            )}
+                ""
+              )}
           </div>
         </section>
       </div>
@@ -162,7 +226,9 @@ const mapDispatchToProps = dispatch => {
   // call action functions
   return {
     getfromcart: () => dispatch(actionCreators.getfromcart()),
-    deletecart: id => dispatch(actionCreators.deletecart(id))
+    deletecart: id => dispatch(actionCreators.deletecart(id)),
+    updatecartQuantity: (quentity,id) => dispatch(actionCreators.updatecartQuantity(quentity,id))
+
   };
 };
 

@@ -20,7 +20,7 @@ class ShopDetail extends Component {
     super(props);
     this.state = { 
       showText: false,
-      isToken: localStorage.getItem("urbandtoken") ? true : false,
+      isToken: false,
       addcartflag: false
     };
     this.handleClick = this.handleClick.bind(this);
@@ -30,6 +30,8 @@ class ShopDetail extends Component {
   componentDidMount() {
     let storeid = this.props.location.pathname.split("/").pop();
     this.props.fetchStoreDetails(storeid);
+
+    
   }
 
   handleClick(id) {
@@ -45,6 +47,8 @@ class ShopDetail extends Component {
   }
 
   render() {
+    var token = localStorage.getItem("urbandtoken");
+    console.log("ttttttttt", token,this.state.isToken);
     var image_url = "https://admin.urbandmusic.com/storage/";
     var images = [];
     const storedetails = this.props.storedetails;
@@ -113,7 +117,7 @@ class ShopDetail extends Component {
                     </p>
 
                     <div className="product-cart">
-                    {this.state.isToken ? (
+                    {token ? (
                       <button
                         type="submit"
                         name="add-to-cart"
