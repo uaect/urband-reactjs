@@ -40,6 +40,8 @@ export const getfromcart = () => {
             })
                 .then(res => res.json())
                 .then(res => {
+                  
+                    
                     if (res.result) {
                         localStorage.setItem('address', true);
                         dispatch({
@@ -138,16 +140,17 @@ export const updatecartQuantity = (quantity,id) => {
                 cartid: id,
                 quantity:quantity
             };
-            fetch("https://admin.urbandmusic.com/api/quantityincrement", {
+            fetch("https://admin.urbandmusic.com/api/updatequantity", {
                 method: "POST",
                 body: JSON.stringify(body)
             })
                 .then(res => res.json())
                 .then(res => {
-                    if (res.result) {
+                    console.log("resulrtt", res);
+                    if (res.success) {
                         dispatch({
                             type: QUANTITY_UPDATE,
-                            value: res.result
+                            value: res
                         });
                         resolve()
                     } else {

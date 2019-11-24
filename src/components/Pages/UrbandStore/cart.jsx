@@ -84,23 +84,30 @@ class cart extends Component {
   increment(item) {
     var quentity = (item.quantity) + 1
     if (quentity && item) {
-     
-        console.log("increment", this.state, item.id);
+      this.props.updatecartQuantity(quentity, item.id)
+        .then(() => {
+          this.initialload();
+        })
+        .catch(error => {
+
+        });
+    }
+  }
+
+  decrement(item) {
+    if (item.quantity !== 1) {
+      var quentity = (item.quantity) - 1
+      if (quentity && item) {
         this.props.updatecartQuantity(quentity, item.id)
           .then(() => {
             this.initialload();
           })
           .catch(error => {
-            if (error.error === "Unauthorised") {
-              this.setState({
-                errpassword: "Invalid credential check username or passsord"
-              });
-            }
           });
-      
+      }
     }
-
   }
+
 
 
 
@@ -227,7 +234,7 @@ const mapDispatchToProps = dispatch => {
   return {
     getfromcart: () => dispatch(actionCreators.getfromcart()),
     deletecart: id => dispatch(actionCreators.deletecart(id)),
-    updatecartQuantity: (quentity,id) => dispatch(actionCreators.updatecartQuantity(quentity,id))
+    updatecartQuantity: (quentity, id) => dispatch(actionCreators.updatecartQuantity(quentity, id))
 
   };
 };
