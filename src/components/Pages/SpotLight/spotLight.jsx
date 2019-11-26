@@ -3,6 +3,7 @@ import ModalVideo from "../../VideoModal/video-modal.component";
 import "./style.css";
 import { connect } from "react-redux";
 import * as actionCreators from "../../../../src/store/actions/";
+
 class spotLight extends Component {
   constructor(props) {
     super(props);
