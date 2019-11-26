@@ -42,7 +42,31 @@ class Contact extends Component {
   componentDidMount() {
     this.props.fetchContact();
   }
-
+  // placeorder = () => {
+  
+  //   if(this.state.getaddress.length && this.state.addressid && this.state.cartItems.length){
+  //       this.props
+  //       .placeOrder(this.state)
+  //       .then(() => {
+  //         this.props.history.push({
+  //           pathname: "/orderPlaced",
+  //           state: {
+  //             cart: this.state.cartItems,
+  //             total: this.state.totalcost,
+  //             ticketDetail: this.state.vat
+  //           }
+  //         });
+  //       })
+  //       .catch(error => {});
+  //   }else{
+  //     this.setState({
+  //       errorflage: true
+  //     });
+  //   }
+   
+      
+  //   };
+  
   render() {
     var isResponseData = false;
     const detail = this.props.contact;

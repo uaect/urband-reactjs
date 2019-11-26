@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { connect } from "react-redux";
 import * as actionCreators from "../../../../src/store/actions/";
 import SiteMapLogo from "../../../assets/img/set_from_map.png";
+import AlertBox from "../../hoc/AlertBox/index";
 library.add(faArrowLeft);
 
 class storeCheckOut extends Component {
@@ -38,14 +39,15 @@ class storeCheckOut extends Component {
       emiratearea: "",
       selectedOption: "cash on delivery",
       cartItems: [],
-      totalcost: 0,
+      totalcost: "",
       delivery_charge: 0,
       cartflag: "",
       addressid: "",
       noaddress: "",
       getaddress: [],
       addressdata: [],
-      vat: 0
+      vat: 0,
+      errorflage:false
     };
     this.ShowFormHadler = this.ShowFormHadler.bind(this);
     this.GobackToAddressHandler = this.GobackToAddressHandler.bind(this);
@@ -67,25 +69,21 @@ class storeCheckOut extends Component {
           this.setState({
             cartflag: true
           });
+          var totalcost = 0;
           for (let i = 0; i < cartItems.length; i++) {
-            if (cartItems[i].price) {
+            if (cartItems[i].product.price) {
+             totalcost = totalcost + parseFloat(cartItems[i].product.price) * parseInt(cartItems[i].quantity);
               this.setState({
-                vat:
-                  ((this.state.totalcost +
-                    parseFloat(cartItems[i].price) *
-                      parseInt(cartItems[i].quantity)) *
-                    5) /
-                  100,
-                totalcost:
-                  ((this.state.totalcost +
-                    parseFloat(cartItems[i].price) *
-                      parseInt(cartItems[i].quantity)) *
-                    5) /
-                    100 +
-                  parseFloat(cartItems[i].price) *
-                    parseInt(cartItems[i].quantity)
+                totalcost: totalcost
               });
             }
+          }
+          var vat = ((this.state.totalcost * 5) / 100)
+          if(vat){
+            this.setState({
+              vat: vat,
+              totalcost:this.state.totalcost + vat
+            });
           }
         } else
           this.setState({
@@ -289,7 +287,9 @@ class storeCheckOut extends Component {
   }
 
   placeorder = () => {
-    this.props
+  
+  if(this.state.getaddress.length && this.state.addressid && this.state.cartItems.length){
+      this.props
       .placeOrder(this.state)
       .then(() => {
         this.props.history.push({
@@ -302,6 +302,13 @@ class storeCheckOut extends Component {
         });
       })
       .catch(error => {});
+  }else{
+    this.setState({
+      errorflage: true
+    });
+  }
+ 
+    
   };
 
   render() {
@@ -318,6 +325,11 @@ class storeCheckOut extends Component {
               </Link>
               <h2>Check Out</h2>
             </div>
+            {this.state.errorflage?(
+            <AlertBox
+          ActiveOrNot={true}
+          alertMessage="Please fill all the fields"
+        />):""}
             <div className="d-flex checkout-wrap mt-3">
               <div className="col-md-6 checkout-block">
                 <div className="full-wrap">
@@ -707,7 +719,7 @@ class storeCheckOut extends Component {
                                   </div>
                                 </div>
                                 <div className="sections">
-                                  <div className="price">{item.price} AED</div>
+                                  <div className="price">{(item.product.price)*(item.quantity)} AED</div>
                                 </div>
                               </div>
                             </div>

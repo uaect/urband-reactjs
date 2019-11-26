@@ -12,6 +12,7 @@ body {
   font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
 }
+
 .DeleteButtonTp1{
     position: absolute;
     top: 8px;
@@ -257,7 +258,7 @@ h6 {
   margin-top: 82px;
 }
 .hero-conatiner{
-  padding-bottom:653px;
+  /* padding-bottom:653px; */
 }
 .header-padd{
   padding-top: 84px;
@@ -12973,8 +12974,8 @@ div.jp-seeking-bg {
   padding: 260px 0 180px;
   background-repeat: no-repeat;
   background-size: cover;
-  position: absolute;
-  bottom: 0;
+  /* position: absolute;
+  bottom: 0; */
   width: 100%;
 }
 
