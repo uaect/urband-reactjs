@@ -352,9 +352,14 @@ export const aboutfounded = (email) => {
 export const contactus = (email) => {
     return dispatch => {
         return new Promise((resolve, reject) => {
-
+            const body = {
+                "email": email.email,
+                "name":email.name,
+                "message":email.message
+            };
             fetch("https://admin.urbandmusic.com/api/contact_us", {
-                method: "POST"
+                method: "POST",
+                body: JSON.stringify(body)
             })
                 .then(res => res.json())
                 .then(res => {
