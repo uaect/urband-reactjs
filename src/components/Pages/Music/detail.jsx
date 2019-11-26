@@ -4,8 +4,6 @@ class DetailHero extends Component {
   render() {
     const image_url = "https://admin.urbandmusic.com/storage/";
     const album = this.props.value;
-    console.log("album", album);
-
     if (album.tracks) {
       var tracks = album.tracks.length;
     } else {

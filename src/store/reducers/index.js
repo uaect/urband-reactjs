@@ -27,6 +27,7 @@ import emirates1Reducer from './emirates1Reducer';
 import previousShowReducer from './previousShowReducer';
 import spotlightReducer from './spotlightReducer';
 import fetchMenues from './fetchMenues';
+import aboutfounded from './aboutfounded';
 import eventDetailsReducer from './eventDetailsReducer';
 import profileReducer from './profileReducer';
 import getorderReducer from './getorderReducer';
@@ -62,5 +63,8 @@ export default combineReducers({
     menues:fetchMenues,
     event_details:eventDetailsReducer,
     user:profileReducer,
-    order:getorderReducer
+    order:getorderReducer,
+    aboutfounded:aboutfounded,
+    user:profileReducer
+
 })

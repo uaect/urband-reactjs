@@ -43,9 +43,9 @@ class multiCarouselHero extends Component {
                   <Link
                     to={{
                       pathname: `/artist`
-                    }}
+                    }} key={item.id}
                   >
-                  <div className="artist-single home-page" key={item.id}>
+                  <div className="artist-single home-page" >
                       <img
                         src={image_url + "/" + item.image}
                         className="ink-pattern"

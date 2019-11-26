@@ -13,6 +13,61 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+.DeleteButtonTp1{
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    color: #b1adad;
+    cursor: pointer;
+}
+.AlertBoxTp1{
+  position: fixed;
+  height:100%;
+  width: 100%;
+  left: 0;
+  top:0px;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+.BtnActionTp1{
+    background: #f60038;
+    color: #fff;
+    font-weight: 500;
+    font-size: 16px;
+    width: 100px;
+    display: block;
+    border-radius: 3px;
+    margin: 0 auto;
+    margin-top: 19px;
+    padding: 5px;
+    cursor: pointer;
+}
+.AlertBoxContent{
+  width: 300px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 19px;
+}
+@keyframes slideInDown {
+	0% {
+		opacity: 0;
+		transform: translateY(-(60*2));
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.ani-slideInDown {
+	animation: slideInDown 1000ms ease;
+}
 html {
   /* Adjust font size */
   font-size: 100%;
@@ -203,7 +258,7 @@ h6 {
   margin-top: 82px;
 }
 .hero-conatiner{
-  padding-bottom:653px;
+  /* padding-bottom:653px; */
 }
 .header-padd{
   padding-top: 84px;
@@ -12919,8 +12974,8 @@ div.jp-seeking-bg {
   padding: 260px 0 180px;
   background-repeat: no-repeat;
   background-size: cover;
-  position: absolute;
-  bottom: 0;
+  /* position: absolute;
+  bottom: 0; */
   width: 100%;
 }
 
@@ -16313,6 +16368,22 @@ input[type].field-control::-webkit-input-placeholder {
 color: #494848 !important; 
 margin-left: 10px;
 }
+.checkout-block select{
+  display: block;
+    width: 100%;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        height: 45px;
+}
 @media (max-width: 420px) {
   .urband-col-xs-6 {
     width: 50% !important;
@@ -16514,6 +16585,9 @@ margin-left: 10px;
 .BottomPlayerTp1 .PlayerIconTp1 {
     width: 35px;
     height: 35px;
+}
+.section-title.style-five p{
+  width: 100% ;
 }
 }
 
