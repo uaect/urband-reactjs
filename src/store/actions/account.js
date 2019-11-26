@@ -227,7 +227,7 @@ export const getuser = () => {
                     if (res.success) {
                         dispatch({
                             type: GETUSER,
-                            value: res
+                            value: res.result
                         });
                         resolve()
                     } else {
@@ -239,16 +239,15 @@ export const getuser = () => {
         })
     };
 };
+
 export const edituser = (params) => {
     return dispatch => {
         return new Promise((resolve, reject) => {
             const body = {
-                "token": "1",
-                "name": "ishan",
-                "email": "ishan@gmail.com",
-                "image": "file.png"
+                "token": urbandtoken,
+                "name": params.name,
+                "email": params.email
             };
-
             fetch("https://admin.urbandmusic.com/api/edituser", {
                 method: "POST",
                 body: JSON.stringify(body)
@@ -256,10 +255,6 @@ export const edituser = (params) => {
                 .then(res => res.json())
                 .then(res => {
                     if (res.success) {
-                        dispatch({
-                            type: EDITUSER,
-                            value: res
-                        });
                         resolve()
                     } else {
                         reject(res)

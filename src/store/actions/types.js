@@ -29,11 +29,12 @@ export const FETCH_MENUES = 'FETCH_MENUES';
 export const EVENTDETAIL = 'EVENTDETAIL';
 export const PLACEORDER = 'PLACEORDER';
 export const REMOVEADDRESS = 'REMOVEADDRESS';
-export const GETORDEREDLIST = 'REMOVEADDRESS';
-export const EDITUSER = 'REMOVEADDRESS';
-export const GETUSER = 'REMOVEADDRESS';
+export const GETORDEREDLIST = 'GETORDEREDLIST';
 export const SUBSCRIBE = 'SUBSCRIBE';
 export const QUANTITY_UPDATE = 'QUANTITY_UPDATE';
+export const GETUSER = 'GETUSER';
+export const EDITUSER = 'EDITUSER';
+
 
 
 
