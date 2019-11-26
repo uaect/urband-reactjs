@@ -57,7 +57,7 @@ class HeaderTypeOne extends Component {
                                                 Shipped
                                             </div>
                                         </li>
-                                        {order.order_status.status == 'Cancelled'? <li class="Processing">
+                                        {order.order_status.status == 'Cancelled'? <li style="background: red;">
                                             <div className="StatusBox101">
                                                 <FontAwesomeIcon icon={faCheck} />
                                                 Cancelled
