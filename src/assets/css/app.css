@@ -44,6 +44,9 @@ body {
     padding: 5px;
     cursor: pointer;
 }
+.BtnCst1{
+  line-height: 1 !important;
+}
 .AlertBoxContent{
   width: 300px;
   background: #fff;
