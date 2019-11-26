@@ -61,7 +61,7 @@ class ShopHome extends Component {
     
     return (
       <div>
-        <BannerHero title="Store Home" />
+        <BannerHero title={"Merchandise"} />
         <section className="shop header-padd"  onScroll={this.handleScroll}>
           <div className="container">
             <div className="row">

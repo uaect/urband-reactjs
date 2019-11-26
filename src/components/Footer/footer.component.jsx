@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { library } from "@fortawesome/fontawesome-svg-core";
+import { connect } from "react-redux";
+import * as actionCreators from "../../../src/store/actions/";
 import {
   faFacebookF,
   faTwitter,
@@ -25,6 +27,29 @@ library.add(
 );
 
 class Footer extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      description: ""
+    }
+  }
+  componentDidMount() {
+    this.props.fetchWhoWeAre()
+      .then(() => {
+        const detail = this.props.detail.result;
+        if (detail) {
+          console.log("footer", detail);
+
+          if (detail.whoweare)
+          this.setState({description: detail.whoweare});
+
+        }
+      })
+      .catch((error) => {
+        if (error) {
+        }
+      })
+  }
   render() {
     return (
       <footer id="footer-3" className="AppFooter">
@@ -41,10 +66,7 @@ class Footer extends Component {
                     />
                   </Link>
                   <p>
-                    There are many variations of passages of Lorem Ipsum
-                    available but the majority. We are proud there are many
-                    variations of passages of Lorem Ipsum available but the
-                    majority of the users does use this.
+                  {this.state.description.description}
                   </p>
                 </div>
                 <div className="footer-three-right">
@@ -71,7 +93,7 @@ class Footer extends Component {
                         </Link>
                       </li>
                       <li>
-                        <Link to="/">
+                        <Link to="https://www.urbandmusic.com/">
                           {" "}
                           <FontAwesomeIcon icon={faYoutube} />
                         </Link>
@@ -123,4 +145,23 @@ class Footer extends Component {
     );
   }
 }
-export default Footer;
+
+const mapDispatchToProps = dispatch => {
+  // call action functions
+  return {
+    fetchWhoWeAre: () => dispatch(actionCreators.fetchWhoWeAre())
+  };
+};
+
+const mapStateToProps = state => {
+  return {
+    detail: state.whoweare.items
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Footer);
+
+

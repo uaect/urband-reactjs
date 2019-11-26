@@ -42,7 +42,6 @@ class PlayerHero extends Component {
         type: "album"
       }
     });
-    //console.log(this.state.currentPlayList);
   }
   componentDidMount() {}
 

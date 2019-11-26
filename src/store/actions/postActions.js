@@ -243,19 +243,27 @@ export const spotlight = () => {
 
 export const fetchMenues = () => {
     return dispatch => {
-        fetch("https://admin.urbandmusic.com/api/menues", {
-            method: "POST"
-        })
-            .then(res => res.json())
-            .then(res => {
-                dispatch({
-                    type: FETCH_MENUES,
-                    value: res.result
-                });
+        return new Promise((resolve, reject) => {
+            fetch("https://admin.urbandmusic.com/api/menues", {
+                method: "POST"
             })
-            .catch(error => {
-                console.log("error :" + JSON.stringify(error));
-            });
+                .then(res => res.json())
+                .then(res => {
+                    if (res.success) {
+                        dispatch({
+                            type: FETCH_MENUES,
+                            value: res.result
+                        });
+                        resolve()
+                    } else {
+                        reject(res)
+                    }
+
+                })
+                .catch(error => {
+                    console.log("error :" + JSON.stringify(error));
+                });
+        });
     };
 };
 

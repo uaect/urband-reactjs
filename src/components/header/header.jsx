@@ -27,7 +27,37 @@ class Header extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchMenues();
+
+    this.headercheck()
+  }
+  headercheck() {
+    this.props.fetchMenues()
+      .then(() => {
+        if (this.props.menues.length) {
+
+          var headers = this.props.menues;
+          console.log("insidee function", headers);
+          if (headers) {
+            for (let i = 0; i < headers.length; i++) {
+              if (headers[i].title === "Event Tickets") {
+                console.log("insidee");
+                localStorage.setItem('ticketheader', "true");
+              }
+            }
+          }
+        }
+      })
+      .catch(error => {
+        if (error.error) {
+          this.setState({
+            errpassword: error.error
+          });
+        }
+      })
+
+
+
+
   }
   ToggleBox() {
     let show = this.state.activeBox;
@@ -47,14 +77,15 @@ class Header extends Component {
     localStorage.removeItem("urbandData");
     window.location.href = "/";
     this.setState({
-      redirect:true,
+      redirect: true,
       isToken: localStorage.getItem("urbandtoken") ? true : false
     });
-   
+
   };
 
   render() {
-  
+    console.log("yyyyyyyyyyyyyyy", this.props.menues);
+
     return (
       <div className="AppHeader">
         <div
@@ -159,24 +190,24 @@ class Header extends Component {
                           {this.props.menues.some(
                             el => el.title === "Event Tickets"
                           ) && (
-                            <li>
-                              <Link to="/event-tickets">Event Tickets</Link>
-                            </li>
-                          )}
+                              <li>
+                                <Link to="/event-tickets">Event Tickets</Link>
+                              </li>
+                            )}
                           {this.props.menues.some(
                             el => el.title === "Studio Bookings"
                           ) && (
-                            <li>
-                              <Link to="/coming-soon">Studio Bookings</Link>
-                            </li>
-                          )}
+                              <li>
+                                <Link to="/coming-soon">Studio Bookings</Link>
+                              </li>
+                            )}
                           {this.props.menues.some(
                             el => el.title === "Merchandise"
                           ) && (
-                            <li>
-                              <Link to="/store">Merchandise</Link>
-                            </li>
-                          )}
+                              <li>
+                                <Link to="/store">Merchandise</Link>
+                              </li>
+                            )}
                         </ul>
                       </li>
                     )}
@@ -205,8 +236,8 @@ class Header extends Component {
                         />
                       </Link>
                     ) : (
-                      ""
-                    )}
+                        ""
+                      )}
                   </li>
                   <li className="d-flex pos-relative">
                     {!this.state.isToken ? (
@@ -218,8 +249,8 @@ class Header extends Component {
                         />
                       </Link>
                     ) : (
-                      ""
-                    )}
+                        ""
+                      )}
                     {this.state.isToken ? (
                       <Link onClick={this.ToggleBox}>
                         <span>Profile</span>
@@ -230,7 +261,7 @@ class Header extends Component {
                         <div
                           className={
                             "BoxStyleTp105 " +
-                            (this.state.activeBox == "show" ? "show" : "hidden")
+                            (this.state.activeBox === "show" ? "show" : "hidden")
                           }
                         >
                           <div>
@@ -253,8 +284,8 @@ class Header extends Component {
                         </div>
                       </Link>
                     ) : (
-                      ""
-                    )}
+                        ""
+                      )}
                   </li>
                 </ul>
               </div>

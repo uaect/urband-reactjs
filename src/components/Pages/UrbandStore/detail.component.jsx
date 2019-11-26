@@ -48,7 +48,6 @@ class ShopDetail extends Component {
 
   render() {
     var token = localStorage.getItem("urbandtoken");
-    console.log("ttttttttt", token,this.state.isToken);
     var image_url = "https://admin.urbandmusic.com/storage/";
     var images = [];
     const storedetails = this.props.storedetails;

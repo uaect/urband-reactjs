@@ -29,12 +29,9 @@ class EventList extends Component {
 
 
   render() {
+    const ticketFlag = localStorage.getItem('ticketheader');
     const image_url = "https://admin.urbandmusic.com/storage/";
     const events = this.props.events;
-   console.log("ttttttt", events);
-   
-   
-    
     return (
       <div>
         <BannerHero title={"Events"} />
@@ -116,6 +113,7 @@ class EventList extends Component {
                               </ReadMoreAndLess>
                              
                             </div>
+                            {ticketFlag === true ? (
                             <Link
                               to={{
                                 pathname: `/ticket-detail/${item.id}`
@@ -123,7 +121,7 @@ class EventList extends Component {
                               className="tim-btn tim-btn-bgt read-more-btn"
                             >
                               Buy Ticket
-                            </Link>
+                            </Link>):""}
                           </div>
                         </article>
                       </div>

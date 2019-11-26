@@ -14,7 +14,6 @@ class checkOut extends Component {
 
   componentDidMount() {
     let ticketDetails = this.props.location.state;
-    console.log("ticketDetails :", ticketDetails);
   }
 
   bookTicket = () => {
@@ -25,7 +24,7 @@ class checkOut extends Component {
         })
       })
       .catch((error) => {
-        console.log(error);
+  
       })
   }
 

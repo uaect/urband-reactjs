@@ -1,20 +1,26 @@
 import {FETCH_WHO_WEW_ARE} from "./types";
-export const fetchWhoWeAre = () => {
+
+export const fetchWhoWeAre = (email) => {
     return dispatch => {
-        fetch("https://admin.urbandmusic.com/api/aboutus", {
-            method: "POST"
-        })
-            .then(res => res.json())
-            .then(res => {
-                //console.log("response", res.result);
-                
-                dispatch({
-                    type: FETCH_WHO_WEW_ARE,
-                    value: res
-                });
+        return new Promise((resolve, reject) => {
+
+            fetch("https://admin.urbandmusic.com/api/aboutus", {
+                method: "POST"
             })
-            .catch(error => {
-                
-            });
+                .then(res => res.json())
+                .then(res => {
+                    if (res.success) {
+                        dispatch({
+                            type: FETCH_WHO_WEW_ARE,
+                            value: res
+                        });
+                        resolve()
+                    } else {
+                        reject(res)
+                    }
+                })
+                .catch(error => {
+                });
+        })
     };
 };

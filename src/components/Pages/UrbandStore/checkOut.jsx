@@ -99,8 +99,6 @@ class storeCheckOut extends Component {
             noaddress: false
           });
         } else if(getaddress !== "no address added") {
-          console.log("fffffff", 444444);
-          
           this.setState({
             getaddress: getaddress
           });

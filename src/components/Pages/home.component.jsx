@@ -30,6 +30,7 @@ class HomePage extends Component {
     );
   }
 }
+
 const mapStateToProps = state => {
   return {
     homebanners: state.homebanner.items

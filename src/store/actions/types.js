@@ -34,6 +34,7 @@ export const EDITUSER = 'REMOVEADDRESS';
 export const GETUSER = 'REMOVEADDRESS';
 export const SUBSCRIBE = 'SUBSCRIBE';
 export const QUANTITY_UPDATE = 'QUANTITY_UPDATE';
+export const FOUNDED = 'FOUNDED';
 
 
 

@@ -27,6 +27,7 @@ import emirates1Reducer from './emirates1Reducer';
 import previousShowReducer from './previousShowReducer';
 import spotlightReducer from './spotlightReducer';
 import fetchMenues from './fetchMenues';
+import aboutfounded from './aboutfounded';
 import eventDetailsReducer from './eventDetailsReducer';
 
 export default combineReducers({
@@ -58,6 +59,7 @@ export default combineReducers({
     previousshow:previousShowReducer,
     spotlight:spotlightReducer,
     menues:fetchMenues,
-    event_details:eventDetailsReducer
+    event_details:eventDetailsReducer,
+    aboutfounded:aboutfounded
 
 })

@@ -6,32 +6,33 @@ import * as actionCreators from "../../../../src/store/actions/";
 import Moment from 'moment';
 class upcomingShowHome extends Component {
   constructor(props) {
-		super(props)
-		this.state = {
-			event: []
+    super(props)
+    this.state = {
+      event: []
 
-		}
+    }
   }
-  
+
   componentDidMount() {
     this.props.fetchEventDetail()
-			.then(() => {
+      .then(() => {
         const events = this.props.events;
         var event = events.slice(0, 2)
-				if (event) {
-					this.setState({
-						event: event
-					})
-				}
-			})
-			.catch((error) => {
-				if (error) {
-				}
-			})
-	}
+        if (event) {
+          this.setState({
+            event: event
+          })
+        }
+      })
+      .catch((error) => {
+        if (error) {
+        }
+      })
+  }
 
 
   render() {
+    const ticketFlag = localStorage.getItem('ticketheader');
     return (
       <section className="section-padding show-archive">
         <div className="container">
@@ -56,11 +57,14 @@ class upcomingShowHome extends Component {
                     </div>
                     <div className="col-sm-3 col-md-3 col-lg-2">
                       <div className="a_hover">
-                        <Link className="tim-btn" to={{
-                          pathname: `/ticket-detail/${item.id}`
-                        }}>
-                          Ticket
-                                </Link>
+                        {ticketFlag === true ? (
+                          <Link className="tim-btn" to={{
+                            pathname: `/ticket-detail/${item.id}`
+                          }}>
+                            Ticket
+                                </Link>) : (<Link className="tim-btn">
+                            No Tickets Available Now
+                                </Link>)}
                       </div>
                     </div>
                   </div>);
