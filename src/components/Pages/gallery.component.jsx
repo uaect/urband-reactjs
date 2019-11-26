@@ -13,7 +13,7 @@ function Gallery() {
   const [category, setCategory] = React.useState({
     categories: []
   });
-
+ 
   const [lightboxController, setLightboxController] = useState({
     toggler: false,
     sourceIndex: 0,
@@ -44,11 +44,10 @@ function Gallery() {
 
   const image_url = "https://admin.urbandmusic.com/storage/";
   const categories = category.categories.result;
-  console.log("categoriescategoriescategories", categories);
 
   return (
     <div>
-      <BannerHero title={"gallery"} />
+      <BannerHero title={"Gallery"} />
       <section className="section-padding">
         <div className="tim-container">
           <div className="section-title style-four text-center">
@@ -58,7 +57,6 @@ function Gallery() {
             <Tabs
               defaultTab="Drum"
               onChange={tabId => {
-                console.log(tabId);
               }}
             >
               <div className="tim-isotope-filter album-filter-button album-filter-button-two">

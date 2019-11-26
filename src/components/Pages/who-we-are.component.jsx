@@ -30,7 +30,7 @@ class WhoWeAre extends Component {
 
     return (
       <div className="fullWrap">
-        <BannerHero title={"Who We Are"} />
+        <BannerHero title={"About"} />
         <section className="section-hero pb-0">
           <div className="fullWrap">
             {isResponseData ? (
@@ -39,9 +39,9 @@ class WhoWeAre extends Component {
                   <div className="section-title style-four">
                     <h2>{whoweare ? whoweare.title : ""}</h2>
                     <p>{whoweare ? whoweare.description : ""}</p>
-                    <Link to="/" className="tim-btn hero">
+                    {/* <Link to="/" className="tim-btn hero">
                       Subscribe Us
-                    </Link>
+                    </Link> */}
                   </div>
                 </div>
                 <div className="row">

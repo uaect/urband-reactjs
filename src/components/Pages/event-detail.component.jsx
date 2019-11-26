@@ -12,7 +12,7 @@ class EventDetail extends Component {
   }
 
   render() {
-
+    const ticketFlag = localStorage.getItem('ticketheader');
     const events = this.props.events;
     if (events) {
       var event = events.result;
@@ -40,6 +40,7 @@ class EventDetail extends Component {
     };
 
     return (
+
       <div>
         <BannerHero title={"Events"} />
         {event ? (
@@ -68,7 +69,7 @@ class EventDetail extends Component {
 
                     <div className="event-details">
                       <p>
-                        <span>Date & Time:</span> {Moment(event.date_from).format('d MMM YYYY')}&nbsp; To 
+                        <span>Date & Time:</span> {Moment(event.date_from).format('d MMM YYYY')}&nbsp; To
                         {Moment(event.date_to).format('d MMM YYYY')} & {event.time_from} To {event.time_to}
                       </p>
 
@@ -86,12 +87,12 @@ class EventDetail extends Component {
                     There are many variations of passages of Lorem Ipsum the a
                     available, but the majority.
                   </p> */}
-
-                    <Link to={{
-                      pathname: `/ticket-detail/${event.id}`
-                    }} className="tim-btn">
-                      Buy Tickets
-                  </Link>
+                    {ticketFlag === true ? (
+                      <Link to={{
+                        pathname: `/ticket-detail/${event.id}`
+                      }} className="tim-btn">
+                        Buy Tickets
+                  </Link>) : ""}
                   </div>
                 </div>
               </div>
@@ -109,11 +110,12 @@ class EventDetail extends Component {
                   If You Can Drem It,
                 <br /> You Cane Live It
               </h3>
-              <Link to={{
-                      pathname: `/ticket-detail/${event.id}`
-                    }} className="tim-btn">
-                      Buy Tickets
-                  </Link>
+              {ticketFlag === true ? (
+                <Link to={{
+                  pathname: `/ticket-detail/${event.id}`
+                }} className="tim-btn">
+                  Buy Tickets
+                  </Link>):""}
                 {/* <Link to="/" className="tim-btn">
                   Buy Ticket
               </Link> */}
@@ -169,7 +171,7 @@ const mapDispatchToProps = dispatch => {
 };
 
 const mapStateToProps = state => {
-  
+
   return {
     events: state.event_details.eventdetails
   };
