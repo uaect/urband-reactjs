@@ -166,6 +166,7 @@ export const EventDetail = (id) => {
             });
     };
 };
+
 export const fetcheventtickets = (id) => {
     return dispatch => {
         const body = {
