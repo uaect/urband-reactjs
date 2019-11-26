@@ -11,8 +11,12 @@ import ProfileEntryBox from "./profileEntryBox/profileEntryBox";
 import profileData from "./profileData/profileData";
 import profileOrders from "./profileOrders/profileOrders";
 import profileAddress from "./profileAddresses/profileAddresses";
+import { Redirect } from 'react-router-dom';
 const ProfileDashboard = ({ match }) => {
   var userData = JSON.parse(localStorage.getItem("urbandData"));
+  if(!userData){
+    return <Redirect push to="/"/> 
+}
   return (
     <div>
       <div className="profileDashBoardBox">

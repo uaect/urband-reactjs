@@ -28,9 +28,6 @@ class Clients extends Component {
     }
     if (clientslist !== "Emptey table" || !clientslist)
       var clientdata = clientslist;
-      console.log("fffffff1111", clients);
-      console.log("clientslist", clientslist);
-      console.log("fffffff2", data);
     const responsive = {
       superLargeDesktop: {
         // the naming can be any, depends on you.

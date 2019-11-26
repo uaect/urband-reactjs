@@ -30,7 +30,6 @@ class OrderPlaced extends Component {
   }
 
   render() {
-    console.log("tttt33333333333tttt", this.state.cart);
     return (
       <div>
         <div className="orderPlacedBoxTp1">

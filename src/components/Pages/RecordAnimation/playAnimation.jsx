@@ -40,8 +40,6 @@ class playAnimation extends Component {
   render() {
     const image_url = "https://admin.urbandmusic.com/storage/";
     const events = this.props.albums.result;
-    console.log("tttoooooooot", events);
-
     return (
       <section className="section-padding latest-relese ani-slideInDown">
         {events && events[0] ? (
@@ -154,60 +152,60 @@ class playAnimation extends Component {
                           : "")
                       }
                     >
-                      <div class="bubble icon-1"></div>
-                      <div class="bubble icon-2 "></div>
-                      <div class="bubble icon-3"></div>
-                      <div class="bubble icon-4"></div>
+                      <div className="bubble icon-1"></div>
+                      <div className="bubble icon-2 "></div>
+                      <div className="bubble icon-3"></div>
+                      <div className="bubble icon-4"></div>
 
-                      <div class="bubble icon-5"></div>
-                      <div class="bubble icon-2 "></div>
-                      <div class="bubble icon-4"></div>
-                      <div class="bubble icon-5"></div>
+                      <div className="bubble icon-5"></div>
+                      <div className="bubble icon-2 "></div>
+                      <div className="bubble icon-4"></div>
+                      <div className="bubble icon-5"></div>
 
-                      <div class="bubble icon-1"></div>
-                      <div class="bubble icon-2 "></div>
+                      <div className="bubble icon-1"></div>
+                      <div className="bubble icon-2 "></div>
 
-                      <div class="bubble icon-5"></div>
-                      <div class="bubble icon-3"></div>
-                      <div class="bubble icon-3"></div>
+                      <div className="bubble icon-5"></div>
+                      <div className="bubble icon-3"></div>
+                      <div className="bubble icon-3"></div>
 
-                      <div class="bubble icon-2 "></div>
-                      <div class="bubble icon-3"></div>
-                      <div class="bubble icon-1"></div>
-                      <div class="bubble icon-2 "></div>
-                      <div class="bubble icon-3"></div>
-                      <div class="bubble icon-4"></div>
-                      <div class="bubble icon-4"></div>
-                      <div class="bubble icon-1"></div>
-                      <div class="bubble icon-5"></div>
-                      <div class="bubble icon-1"></div>
-                      <div class="bubble icon-2 "></div>
-                      <div class="bubble icon-4"></div>
-                      <div class="bubble icon-5"></div>
-                      <div class="bubble icon-1"></div>
-                      <div class="bubble icon-2 "></div>
-                      <div class="bubble icon-1"></div>
-                      <div class="bubble icon-2 "></div>
-                      <div class="bubble icon-4"></div>
-                      <div class="bubble icon-5"></div>
-                      <div class="bubble icon-5"></div>
-                      <div class="bubble icon-1"></div>
-                      <div class="bubble icon-4"></div>
-                      <div class="bubble icon-5"></div>
-                      <div class="bubble icon-3"></div>
-                      <div class="bubble icon-4"></div>
-                      <div class="bubble icon-2 "></div>
-                      <div class="bubble icon-3"></div>
-                      <div class="bubble icon-3"></div>
-                      <div class="bubble icon-4"></div>
-                      <div class="bubble icon-1"></div>
-                      <div class="bubble icon-5"></div>
-                      <div class="bubble icon-2 "></div>
-                      <div class="bubble icon-3"></div>
-                      <div class="bubble icon-1"></div>
-                      <div class="bubble icon-3"></div>
-                      <div class="bubble icon-4"></div>
-                      <div class="bubble icon-5"></div>
+                      <div className="bubble icon-2 "></div>
+                      <div className="bubble icon-3"></div>
+                      <div className="bubble icon-1"></div>
+                      <div className="bubble icon-2 "></div>
+                      <div className="bubble icon-3"></div>
+                      <div className="bubble icon-4"></div>
+                      <div className="bubble icon-4"></div>
+                      <div className="bubble icon-1"></div>
+                      <div className="bubble icon-5"></div>
+                      <div className="bubble icon-1"></div>
+                      <div className="bubble icon-2 "></div>
+                      <div className="bubble icon-4"></div>
+                      <div className="bubble icon-5"></div>
+                      <div className="bubble icon-1"></div>
+                      <div className="bubble icon-2 "></div>
+                      <div className="bubble icon-1"></div>
+                      <div className="bubble icon-2 "></div>
+                      <div className="bubble icon-4"></div>
+                      <div className="bubble icon-5"></div>
+                      <div className="bubble icon-5"></div>
+                      <div className="bubble icon-1"></div>
+                      <div className="bubble icon-4"></div>
+                      <div className="bubble icon-5"></div>
+                      <div className="bubble icon-3"></div>
+                      <div className="bubble icon-4"></div>
+                      <div className="bubble icon-2 "></div>
+                      <div className="bubble icon-3"></div>
+                      <div className="bubble icon-3"></div>
+                      <div className="bubble icon-4"></div>
+                      <div className="bubble icon-1"></div>
+                      <div className="bubble icon-5"></div>
+                      <div className="bubble icon-2 "></div>
+                      <div className="bubble icon-3"></div>
+                      <div className="bubble icon-1"></div>
+                      <div className="bubble icon-3"></div>
+                      <div className="bubble icon-4"></div>
+                      <div className="bubble icon-5"></div>
                     </div>
                     <div
                       className={
@@ -217,66 +215,66 @@ class playAnimation extends Component {
                           : "")
                       }
                     >
-                      <div class="bubble icon-1"></div>
-                      <div class="bubble icon-2 "></div>
-                      <div class="bubble icon-3"></div>
-                      <div class="bubble icon-4"></div>
+                      <div className="bubble icon-1"></div>
+                      <div className="bubble icon-2 "></div>
+                      <div className="bubble icon-3"></div>
+                      <div className="bubble icon-4"></div>
 
-                      <div class="bubble icon-5"></div>
-                      <div class="bubble icon-2 "></div>
-                      <div class="bubble icon-4"></div>
-                      <div class="bubble icon-5"></div>
+                      <div className="bubble icon-5"></div>
+                      <div className="bubble icon-2 "></div>
+                      <div className="bubble icon-4"></div>
+                      <div className="bubble icon-5"></div>
 
-                      <div class="bubble icon-1"></div>
-                      <div class="bubble icon-2 "></div>
+                      <div className="bubble icon-1"></div>
+                      <div className="bubble icon-2 "></div>
 
-                      <div class="bubble icon-5"></div>
-                      <div class="bubble icon-3"></div>
-                      <div class="bubble icon-3"></div>
+                      <div className="bubble icon-5"></div>
+                      <div className="bubble icon-3"></div>
+                      <div className="bubble icon-3"></div>
 
-                      <div class="bubble icon-2 "></div>
-                      <div class="bubble icon-3"></div>
-                      <div class="bubble icon-1"></div>
-                      <div class="bubble icon-2 "></div>
-                      <div class="bubble icon-3"></div>
-                      <div class="bubble icon-4"></div>
-                      <div class="bubble icon-4"></div>
-                      <div class="bubble icon-1"></div>
+                      <div className="bubble icon-2 "></div>
+                      <div className="bubble icon-3"></div>
+                      <div className="bubble icon-1"></div>
+                      <div className="bubble icon-2 "></div>
+                      <div className="bubble icon-3"></div>
+                      <div className="bubble icon-4"></div>
+                      <div className="bubble icon-4"></div>
+                      <div className="bubble icon-1"></div>
 
-                      <div class="bubble icon-5"></div>
+                      <div className="bubble icon-5"></div>
 
-                      <div class="bubble icon-1"></div>
-                      <div class="bubble icon-2 "></div>
+                      <div className="bubble icon-1"></div>
+                      <div className="bubble icon-2 "></div>
 
-                      <div class="bubble icon-4"></div>
-                      <div class="bubble icon-5"></div>
-                      <div class="bubble icon-1"></div>
-                      <div class="bubble icon-2 "></div>
-                      <div class="bubble icon-1"></div>
+                      <div className="bubble icon-4"></div>
+                      <div className="bubble icon-5"></div>
+                      <div className="bubble icon-1"></div>
+                      <div className="bubble icon-2 "></div>
+                      <div className="bubble icon-1"></div>
 
-                      <div class="bubble icon-2 "></div>
-                      <div class="bubble icon-4"></div>
-                      <div class="bubble icon-5"></div>
-                      <div class="bubble icon-5"></div>
-                      <div class="bubble icon-1"></div>
-                      <div class="bubble icon-4"></div>
-                      <div class="bubble icon-5"></div>
-                      <div class="bubble icon-3"></div>
-                      <div class="bubble icon-4"></div>
+                      <div className="bubble icon-2 "></div>
+                      <div className="bubble icon-4"></div>
+                      <div className="bubble icon-5"></div>
+                      <div className="bubble icon-5"></div>
+                      <div className="bubble icon-1"></div>
+                      <div className="bubble icon-4"></div>
+                      <div className="bubble icon-5"></div>
+                      <div className="bubble icon-3"></div>
+                      <div className="bubble icon-4"></div>
 
-                      <div class="bubble icon-2 "></div>
-                      <div class="bubble icon-3"></div>
+                      <div className="bubble icon-2 "></div>
+                      <div className="bubble icon-3"></div>
 
-                      <div class="bubble icon-3"></div>
-                      <div class="bubble icon-4"></div>
-                      <div class="bubble icon-1"></div>
-                      <div class="bubble icon-5"></div>
-                      <div class="bubble icon-2 "></div>
-                      <div class="bubble icon-3"></div>
-                      <div class="bubble icon-1"></div>
-                      <div class="bubble icon-3"></div>
-                      <div class="bubble icon-4"></div>
-                      <div class="bubble icon-5"></div>
+                      <div className="bubble icon-3"></div>
+                      <div className="bubble icon-4"></div>
+                      <div className="bubble icon-1"></div>
+                      <div className="bubble icon-5"></div>
+                      <div className="bubble icon-2 "></div>
+                      <div className="bubble icon-3"></div>
+                      <div className="bubble icon-1"></div>
+                      <div className="bubble icon-3"></div>
+                      <div className="bubble icon-4"></div>
+                      <div className="bubble icon-5"></div>
                     </div>
                   </div>
                 </div>

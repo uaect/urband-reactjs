@@ -10,6 +10,7 @@ import icon1 from "../../assets/img/icn1.png";
 import icon2 from "../../assets/img/icn2.png";
 import icon3 from "../../assets/img/icn3.png";
 import { connect } from "react-redux";
+import { Redirect } from 'react-router-dom';
 import * as actionCreators from "../../../src/store/actions/";
 
 library.add(faUserAlt, faCartPlus);
@@ -19,19 +20,50 @@ class Header extends Component {
     super(props);
     this.state = {
       isToken: localStorage.getItem("urbandtoken") ? true : false,
-      activeBox: "hide"
+      activeBox: "hide",
+      redirect: false
     };
     this.ToggleBox = this.ToggleBox.bind(this);
   }
 
   componentDidMount() {
-    this.props.fetchMenues();
+
+    this.headercheck()
+  }
+  headercheck() {
+    this.props.fetchMenues()
+      .then(() => {
+        if (this.props.menues.length) {
+
+          var headers = this.props.menues;
+          console.log("insidee function", headers);
+          if (headers) {
+            for (let i = 0; i < headers.length; i++) {
+              if (headers[i].title === "Event Tickets") {
+                console.log("insidee");
+                localStorage.setItem('ticketheader', "true");
+              }
+            }
+          }
+        }
+      })
+      .catch(error => {
+        if (error.error) {
+          this.setState({
+            errpassword: error.error
+          });
+        }
+      })
+
+
+
+
   }
   ToggleBox() {
     let show = this.state.activeBox;
     let index = show.indexOf("show");
 
-    if (index != -1) {
+    if (index !== -1) {
       show = "hide";
     } else {
       show = "show";
@@ -42,12 +74,18 @@ class Header extends Component {
 
   gotologout = () => {
     localStorage.removeItem("urbandtoken");
+    localStorage.removeItem("urbandData");
+    window.location.href = "/";
     this.setState({
+      redirect: true,
       isToken: localStorage.getItem("urbandtoken") ? true : false
     });
+
   };
 
   render() {
+    console.log("yyyyyyyyyyyyyyy", this.props.menues);
+
     return (
       <div className="AppHeader">
         <div
@@ -152,24 +190,24 @@ class Header extends Component {
                           {this.props.menues.some(
                             el => el.title === "Event Tickets"
                           ) && (
-                            <li>
-                              <Link to="/event-tickets">Event Tickets</Link>
-                            </li>
-                          )}
+                              <li>
+                                <Link to="/event-tickets">Event Tickets</Link>
+                              </li>
+                            )}
                           {this.props.menues.some(
                             el => el.title === "Studio Bookings"
                           ) && (
-                            <li>
-                              <Link to="/coming-soon">Studio Bookings</Link>
-                            </li>
-                          )}
+                              <li>
+                                <Link to="/coming-soon">Studio Bookings</Link>
+                              </li>
+                            )}
                           {this.props.menues.some(
                             el => el.title === "Merchandise"
                           ) && (
-                            <li>
-                              <Link to="/store">Merchandise</Link>
-                            </li>
-                          )}
+                              <li>
+                                <Link to="/store">Merchandise</Link>
+                              </li>
+                            )}
                         </ul>
                       </li>
                     )}
@@ -198,8 +236,8 @@ class Header extends Component {
                         />
                       </Link>
                     ) : (
-                      ""
-                    )}
+                        ""
+                      )}
                   </li>
                   <li className="d-flex pos-relative">
                     {!this.state.isToken ? (
@@ -211,8 +249,8 @@ class Header extends Component {
                         />
                       </Link>
                     ) : (
-                      ""
-                    )}
+                        ""
+                      )}
                     {this.state.isToken ? (
                       <Link onClick={this.ToggleBox}>
                         <span>Profile</span>
@@ -223,31 +261,31 @@ class Header extends Component {
                         <div
                           className={
                             "BoxStyleTp105 " +
-                            (this.state.activeBox == "show" ? "show" : "hidden")
+                            (this.state.activeBox === "show" ? "show" : "hidden")
                           }
                         >
                           <div>
-                            <Link to="/login">
+                            <Link to="/profile">
                               <img src={icon1} alt="" />
                               <span>Profile</span>
                             </Link>
-                            <Link to="/login">
+                            <Link to="/profile/profileAddress">
                               <img src={icon2} alt="" />
                               <span>Address</span>
                             </Link>
-                            <Link to="/login">
+                            <Link to="/profile/profileOrders">
                               <img src={icon3} alt="" />
                               <span>Orders</span>
                             </Link>
-                            <Link to="/login" className="LogoutBtn">
+                            <Link onClick={this.gotologout} className="LogoutBtn">
                               <span>Log Out</span>
                             </Link>
                           </div>
                         </div>
                       </Link>
                     ) : (
-                      ""
-                    )}
+                        ""
+                      )}
                   </li>
                 </ul>
               </div>

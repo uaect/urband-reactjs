@@ -105,7 +105,11 @@ class storeCheckOut extends Component {
       .getaddress()
       .then(() => {
         var getaddress = this.props.address;
-        if (getaddress) {
+        if (getaddress === "no address added") {
+          this.setState({
+            noaddress: false
+          });
+        } else if (getaddress !== "no address added") {
           this.setState({
             getaddress: getaddress
           });
@@ -113,24 +117,22 @@ class storeCheckOut extends Component {
             if (getaddress[i].is_default === 1) {
               this.setState({
                 addressdata: getaddress[i],
-                addressid: getaddress[i].id
+                addressid: getaddress[i].id,
+                noaddress: true
               });
             } else {
               this.setState({
                 addressdata: getaddress[i],
-                addressid: getaddress[0].id
+                addressid: getaddress[0].id,
+                noaddress: true
               });
             }
           }
-        }
-        if (getaddress === "no address added") {
+        } else {
           this.setState({
             noaddress: false
           });
-        } else
-          this.setState({
-            noaddress: true
-          });
+        }
         var formActiveOrNot = localStorage.getItem("address");
         if (formActiveOrNot) {
           this.setState({

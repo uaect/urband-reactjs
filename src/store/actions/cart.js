@@ -1,5 +1,5 @@
 
-import { ADD_CART, GET_CART, DELETE_CART, PLACEORDER } from "./types";
+import { ADD_CART, GET_CART, DELETE_CART, PLACEORDER,QUANTITY_UPDATE } from "./types";
 var urbandtoken = JSON.parse(localStorage.getItem("urbandtoken"));
 export const addtocart = (id) => {
     return dispatch => {
@@ -40,6 +40,8 @@ export const getfromcart = () => {
             })
                 .then(res => res.json())
                 .then(res => {
+                  
+                    
                     if (res.result) {
                         localStorage.setItem('address', true);
                         dispatch({
@@ -109,28 +111,57 @@ export const deletecart = (id) => {
             })
                 .then(res => res.json())
                 .then(res => {
-                    if (res.success) {
+                    if (res.result) {
                         dispatch({
-                            type: GET_CART,
+                            type: DELETE_CART,
                             value: res.result
                         });
                         resolve()
                     } else {
-                        dispatch({
-                            type: GET_CART,
-                            value: []
-                        });
-                        reject(false)
+                        reject(res)
                     }
+
+
                 })
                 .catch(error => {
-                    dispatch({
-                        type: GET_CART,
-                        value: []
-                    });
-                    reject(false)
                 });
         })
     };
-
 };
+
+
+export const updatecartQuantity = (quantity,id) => {
+    console.log("tttttttt",id);
+    
+    return dispatch => {
+        return new Promise((resolve, reject) => {
+            const body = {
+                token: urbandtoken,
+                cartid: id,
+                quantity:quantity
+            };
+            fetch("https://admin.urbandmusic.com/api/updatequantity", {
+                method: "POST",
+                body: JSON.stringify(body)
+            })
+                .then(res => res.json())
+                .then(res => {
+                    console.log("resulrtt", res);
+                    if (res.success) {
+                        dispatch({
+                            type: QUANTITY_UPDATE,
+                            value: res
+                        });
+                        resolve()
+                    } else {
+                        reject(res)
+                    }
+
+
+                })
+                .catch(error => {
+                });
+        })
+    };
+};
+

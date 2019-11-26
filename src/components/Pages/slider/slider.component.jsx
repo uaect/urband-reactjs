@@ -18,7 +18,7 @@ class sliderHero extends React.Component {
     if (getbanner) {
       var total = getbanner.length;
     }
-
+    const ticketFlag = localStorage.getItem('ticketheader');
     return (
       <div className="heroCarouselBox ani-slideInDown">
         <CarouselProvider
@@ -54,14 +54,15 @@ class sliderHero extends React.Component {
                               <h2 className="frame-4">{item.title}</h2>
                             </div>
                             <h3>{item.sub_title}</h3>
-                            <Link
+                            {ticketFlag ===true?( <Link
                               to={{
                                 pathname: `/event-tickets`
                               }}
                               className="tim-slide-btn"
                             >
                               TICKETS
-                            </Link>
+                            </Link>):""}
+                          
                             {/* <a className="tim-slide-btn" href="event-tickets#">
                               
                             </a> */}

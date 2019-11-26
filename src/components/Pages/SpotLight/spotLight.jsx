@@ -10,8 +10,51 @@ class spotLight extends Component {
     this.state = {
       spotlight: [],
       imageArray: [],
+      email: "",
+      erremail: "",
       videoArray: []
     };
+  }
+
+  handleChange(state, errState, evt) {
+    let _state = this.state
+    _state[state] = evt.target.value;
+    _state[errState] = '';
+    this.setState({
+      ..._state
+    })
+  }
+  
+  sendmail = () => {
+    const { email } = this.state;
+    let flag = 0;
+    if (email.length < 1) {
+      flag = 1;
+      this.setState({
+        erremail: 'Please enter email address'
+      })
+    } else if (!new RegExp(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}/g).test(email)) {
+      flag = 1;
+      this.setState({ erremail: 'Please enter valid email address' });
+    }
+
+    if (flag === 0) {
+      this.props.subscribe(this.state)
+        .then(() => {
+          this.setState({
+            isToken: true
+          })
+          alert("mail sent")
+        })
+        .catch((error) => {
+          if (error.error) {
+            this.setState({
+              errpassword: error.error
+            })
+          }
+        })
+    }
+
   }
 
   componentDidMount() {
@@ -88,12 +131,16 @@ class spotLight extends Component {
                         available but the majority.
                       </p>
                     </div>
-                    <form action="#">
-                      <input placeholder="Enter Your Email" type="text" />
-                      <button type="submit" className="submit">
+                   
+                      <input placeholder="Enter Your Email" 
+                       value={this.state.email}
+                       onChange={this.handleChange.bind(this, 'email', 'erremail')}
+                      type="text" />
+                       {this.state.erremail && <div class="text-danger">{this.state.erremail}</div>}
+                      <button type="submit" onClick={this.sendmail} className="submit">
                         send me
                       </button>
-                    </form>
+                   
                   </div>
                 </div>
               </div>
@@ -113,7 +160,8 @@ class spotLight extends Component {
 const mapDispatchToProps = dispatch => {
   // call action functions
   return {
-    spotlight: () => dispatch(actionCreators.spotlight())
+    spotlight: () => dispatch(actionCreators.spotlight()),
+    subscribe: (state) => dispatch(actionCreators.subscribe(state))
   };
 };
 

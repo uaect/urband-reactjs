@@ -1,5 +1,5 @@
 
-import { REGISTER, LOGIN, GETADDRESS, ADDADDRESS, GETEMIRATES, GETEMIRATES1, REMOVEADDRESS, GETUSER, EDITUSER, GETORDEREDLIST } from "./types";
+import { FOUNDED, REGISTER, LOGIN, GETADDRESS, ADDADDRESS, GETEMIRATES, SUBSCRIBE,GETEMIRATES1, REMOVEADDRESS, GETUSER, EDITUSER, GETORDEREDLIST } from "./types";
 var urbandtoken = JSON.parse(localStorage.getItem("urbandtoken"));
 export const register = (params) => {
     return dispatch => {
@@ -227,7 +227,7 @@ export const getuser = () => {
                     if (res.success) {
                         dispatch({
                             type: GETUSER,
-                            value: res
+                            value: res.result
                         });
                         resolve()
                     } else {
@@ -239,16 +239,15 @@ export const getuser = () => {
         })
     };
 };
+
 export const edituser = (params) => {
     return dispatch => {
         return new Promise((resolve, reject) => {
             const body = {
-                "token": "1",
-                "name": "ishan",
-                "email": "ishan@gmail.com",
-                "image": "file.png"
+                "token": urbandtoken,
+                "name": params.name,
+                "email": params.email
             };
-
             fetch("https://admin.urbandmusic.com/api/edituser", {
                 method: "POST",
                 body: JSON.stringify(body)
@@ -256,10 +255,6 @@ export const edituser = (params) => {
                 .then(res => res.json())
                 .then(res => {
                     if (res.success) {
-                        dispatch({
-                            type: EDITUSER,
-                            value: res
-                        });
                         resolve()
                     } else {
                         reject(res)
@@ -288,6 +283,61 @@ export const getorderedlist = () => {
                         dispatch({
                             type: GETORDEREDLIST,
                             value: res
+                        });
+                        resolve()
+                    } else {
+                        reject(res)
+                    }
+                })
+                .catch(error => {
+                });
+        })
+    };
+};
+
+
+export const subscribe = (email) => {
+    return dispatch => {
+        return new Promise((resolve, reject) => {
+            const body = {
+                "email": email.email
+            };
+
+            fetch("https://admin.urbandmusic.com/api/subscribe", {
+                method: "POST",
+                body: JSON.stringify(body)
+            })
+                .then(res => res.json())
+                .then(res => {
+                    if (res.success) {
+                        dispatch({
+                            type: SUBSCRIBE,
+                            value: res
+                        });
+                        resolve()
+                    } else {
+                        reject(res)
+                    }
+                })
+                .catch(error => {
+                });
+        })
+    };
+};
+
+export const aboutfounded = (email) => {
+    return dispatch => {
+        return new Promise((resolve, reject) => {
+
+            fetch("https://admin.urbandmusic.com/api/founded", {
+                method: "POST"
+            })
+                .then(res => res.json())
+                .then(res => {
+                    if (res.success) {
+                        dispatch({
+                            type: FOUNDED,
+                            value: res.result
                         });
                         resolve()
                     } else {

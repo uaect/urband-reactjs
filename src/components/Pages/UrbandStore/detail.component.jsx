@@ -11,21 +11,27 @@ import { connect } from "react-redux";
 import * as actionCreators from "../../../../src/store/actions";
 import AddedToCartAnimation from "../../../components/hoc/AddedTocartAnimation/index";
 library.add(faCartPlus);
-
+function createMarkup(item) {
+  return {__html: item};
+}
 class ShopDetail extends Component {
+
   constructor(props) {
     super(props);
     this.state = { 
       showText: false,
+      isToken: false,
       addcartflag: false
     };
     this.handleClick = this.handleClick.bind(this);
     this.state = { AddedToCartIcon: false };
   }
-
+ 
   componentDidMount() {
     let storeid = this.props.location.pathname.split("/").pop();
     this.props.fetchStoreDetails(storeid);
+
+    
   }
 
   handleClick(id) {
@@ -41,6 +47,7 @@ class ShopDetail extends Component {
   }
 
   render() {
+    var token = localStorage.getItem("urbandtoken");
     var image_url = "https://admin.urbandmusic.com/storage/";
     var images = [];
     const storedetails = this.props.storedetails;
@@ -109,6 +116,7 @@ class ShopDetail extends Component {
                     </p>
 
                     <div className="product-cart">
+                    {token ? (
                       <button
                         type="submit"
                         name="add-to-cart"
@@ -121,11 +129,23 @@ class ShopDetail extends Component {
                           className="cart-icon"
                         />
                         Add to cart
-                      </button>
+                      </button>):( <Link to='/login'
+                        type="submit"
+                        name="add-to-cart"
+                        value="0"
+                        className="tim-cart-btn"
+                        
+                      >
+                        <FontAwesomeIcon
+                          icon={faCartPlus}
+                          className="cart-icon"
+                        />
+                        Add to cart
+                      </Link>)}
                     </div>
                     <div className="woocommerce-product-details__short-description">
                       <h4>Product Details</h4>
-                      <p>{storedetails.description}</p>
+                      <div dangerouslySetInnerHTML={createMarkup(storedetails.description)}/>
                     </div>
                   </div>
                 </div>
