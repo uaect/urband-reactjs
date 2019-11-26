@@ -7,6 +7,7 @@ import EmptyBox from "../../hoc/EmptyMessageBox/EmptyBox.component";
 import { connect } from "react-redux";
 import * as actionCreators from "../../../../src/store/actions/";
 import SkeltonBox from "../../hoc/skeltonBox/SkeltonBox.component";
+import AlertBox from "../../hoc/AlertBox/index";
 library.add(faTimes, faArrowLeft);
 
 class cart extends Component {
@@ -19,7 +20,8 @@ class cart extends Component {
       quantity: "",
       cartflag: "",
       totalcost: "",
-      cartItems: []
+      cartItems: [],
+      deleteflag:false
     };
     this.deleteItem = this.deleteItem.bind(this);
   }
@@ -27,6 +29,10 @@ class cart extends Component {
   deleteItem(productid) {
     this.props.deletecart(productid)
       .then(() => {
+        
+        this.setState({
+          deleteflag: true
+        });
         this.initialload();
       })
       .catch(error => {
@@ -47,6 +53,8 @@ class cart extends Component {
       .then(() => {
         if (this.props.cartitems.length) {
           var cartItems = this.props.cartitems;
+          console.log("tttttttt", cartItems);
+          
           var totalcost = 0;
           if (cartItems !== "emtey cart") {
             this.setState({
@@ -54,8 +62,8 @@ class cart extends Component {
               cartItems: cartItems
             });
             for (let i = 0; i < cartItems.length; i++) {
-              if (cartItems[i].price) {
-                totalcost = totalcost + parseFloat(cartItems[i].price) * parseInt(cartItems[i].quantity);
+              if (cartItems[i].product.price) {
+                totalcost = totalcost + parseFloat(cartItems[i].product.price) * parseInt(cartItems[i].quantity);
                 this.setState({
                   totalcost: totalcost
                 });
@@ -123,7 +131,11 @@ class cart extends Component {
               </Link>
               <h2>Cart</h2>
             </div>
-
+            {this.state.deleteflag?(
+            <AlertBox
+          ActiveOrNot={true}
+          alertMessage="Item removed from cart"
+        />):""}
             {this.state.cartflag ? (
               this.state.cartItems.map(item => {
                 return (
@@ -149,14 +161,14 @@ class cart extends Component {
                             Qunatity: {item.quantity}
                           </div>
                           <div className="short-desc">
-                            Price: AED {item.price}
+                            Price: AED {item.product.price}
                           </div>
                         </div>
                       </div>
                     </div>
                     <div className="col-sm-2 d-flex price-name-line">
                       <div className="product-price">
-                        <span>AED {item.price}</span>
+                        <span>AED {item.product.price}</span>
                       </div>
                     </div>
                     <div className="col-sm-2 d-flex price-name-line">

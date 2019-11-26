@@ -29,7 +29,7 @@ const OrderStatusItem = (props) => {
                 <div className="col-auto text-center">
                   <div>
                     <div className="TxtSt103">Price</div>
-                    <div className="TxtSt104"> {item.price} AED</div>
+                    <div className="TxtSt104"> {item.product.price} AED</div>
                   </div>
                 </div>
               </div>)

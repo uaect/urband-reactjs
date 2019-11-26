@@ -35,6 +35,8 @@ export const QUANTITY_UPDATE = 'QUANTITY_UPDATE';
 export const FOUNDED = 'FOUNDED';
 export const GETUSER = 'GETUSER';
 export const EDITUSER = 'EDITUSER';
+export const CONTACTUS = 'CONTACTUS';
+
 
 
 
