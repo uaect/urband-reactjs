@@ -36,36 +36,86 @@ class Contact extends Component {
     super();
     this.state = {
       lat: "",
-      lng: ""
+      lng: "",
+      message: "",
+      errmessage: "",
+      name:"",
+      errname:"",
+      email:"",
+      erremail:"",
+      alertflag:false
+
     };
   }
   componentDidMount() {
     this.props.fetchContact();
+
   }
-  // placeorder = () => {
-  
-  //   if(this.state.getaddress.length && this.state.addressid && this.state.cartItems.length){
-  //       this.props
-  //       .placeOrder(this.state)
-  //       .then(() => {
-  //         this.props.history.push({
-  //           pathname: "/orderPlaced",
-  //           state: {
-  //             cart: this.state.cartItems,
-  //             total: this.state.totalcost,
-  //             ticketDetail: this.state.vat
-  //           }
-  //         });
-  //       })
-  //       .catch(error => {});
-  //   }else{
-  //     this.setState({
-  //       errorflage: true
-  //     });
-  //   }
-   
-      
-  //   };
+  handleChange(state, errState, evt) {
+    let _state = this.state
+    _state[state] = evt.target.value;
+    _state[errState] = '';
+    this.setState({
+      ..._state
+    })
+  }
+
+  contactmail = () => {
+
+    this.props.contactus()
+      .then(() => {
+        console.log("tttttttttt", this.props);
+
+      })
+      .catch(error => { });
+
+
+  };
+
+    gotocontactmail = () => {
+      const { message, email, name} = this.state;
+      var flag = 0;
+      if (message.length < 1) {
+        flag = 1;
+        this.setState({
+          errmessage: 'Please enter message'
+        })
+      }
+      if (email.length < 1) {
+        flag = 1;
+        this.setState({
+          erremail: 'Please enter email'
+        })
+      }else if (!new RegExp(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}/g).test(email)) {
+        flag = 1;
+        this.setState({ erremail: 'Please enter valid email address' });
+      }
+      if (name.length < 1) {
+        flag = 1;
+        this.setState({
+          errname: 'Please enter name'
+        })
+      }
+      if (flag === 0) {
+      this.props.contactus(this.state)
+      .then(() => {
+
+        this.setState({
+          alertflag: true,
+          message: "",
+          errmessage: "",
+          name:"",
+          errname:"",
+          email:"",
+          erremail:"",
+        })
+       
+      })
+      .catch((error) => {
+        
+      })
+    }
+    }
   
   render() {
     var isResponseData = false;
@@ -77,10 +127,11 @@ class Contact extends Component {
     }
     return (
       <div>
-        <AlertBox
+        {this.state.alertflag?( <AlertBox
           ActiveOrNot={true}
-          alertMessage="Thank you for contacting Ijas Np"
-        />
+          alertMessage="Thank you for contacting urband"
+        />):""}
+       
         <BannerHero title={"Contact"} />
 
         <div className="fullWrap">
@@ -158,15 +209,23 @@ class Contact extends Component {
                         <div className="con-page-form">
                           <textarea
                             name="message"
+                            value={this.state.message}
+                            onChange={this.handleChange.bind(this, 'message', 'errmessage')}
                             placeholder="Message"
                           ></textarea>
+                          {this.state.errmessage && <div class="text-danger">{this.state.errmessage}</div>}
                           <input
                             type="text"
+                            value={this.state.name}
+                            onChange={this.handleChange.bind(this, 'name', 'errname')}
                             placeholder="Name *"
                             className="mar-r"
                           />
-                          <input type="text" placeholder="Email *" />
-                          <input value="Submit" type="submit" />
+                           {this.state.errname && <div class="text-danger">{this.state.errname}</div>}
+                          <input type="text" placeholder="Email *"  value={this.state.email}
+                            onChange={this.handleChange.bind(this, 'email', 'erremail')} />
+                             {this.state.erremail && <div class="text-danger">{this.state.erremail}</div>}
+                          <input value="Submit" onClick={this.gotocontactmail} type="submit" />
                         </div>
                       </div>
                     </div>
@@ -175,8 +234,8 @@ class Contact extends Component {
               </section>
             </div>
           ) : (
-            <ComingSoon />
-          )}
+              <ComingSoon />
+            )}
         </div>
       </div>
     );
@@ -185,7 +244,9 @@ class Contact extends Component {
 const mapDispatchToProps = dispatch => {
   // call action functions
   return {
-    fetchContact: () => dispatch(actionCreators.fetchContact())
+    fetchContact: () => dispatch(actionCreators.fetchContact()),
+    contactus: (id) => dispatch(actionCreators.contactus(id))
+
   };
 };
 
