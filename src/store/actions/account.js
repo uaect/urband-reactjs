@@ -1,5 +1,5 @@
 
-import { FOUNDED, REGISTER, LOGIN, GETADDRESS, ADDADDRESS, GETEMIRATES, SUBSCRIBE,GETEMIRATES1, REMOVEADDRESS, GETUSER, EDITUSER, GETORDEREDLIST } from "./types";
+import { CONTACTUS,FOUNDED, REGISTER, LOGIN, GETADDRESS, ADDADDRESS, GETEMIRATES, SUBSCRIBE,GETEMIRATES1, REMOVEADDRESS, GETUSER, EDITUSER, GETORDEREDLIST } from "./types";
 var urbandtoken = JSON.parse(localStorage.getItem("urbandtoken"));
 export const register = (params) => {
     return dispatch => {
@@ -241,6 +241,8 @@ export const getuser = () => {
 };
 
 export const edituser = (params) => {
+    console.log(params);
+    
     return dispatch => {
         return new Promise((resolve, reject) => {
             const body = {
@@ -337,6 +339,30 @@ export const aboutfounded = (email) => {
                     if (res.success) {
                         dispatch({
                             type: FOUNDED,
+                            value: res.result
+                        });
+                        resolve()
+                    } else {
+                        reject(res)
+                    }
+                })
+                .catch(error => {
+                });
+        })
+    };
+};
+export const contactus = (email) => {
+    return dispatch => {
+        return new Promise((resolve, reject) => {
+
+            fetch("https://admin.urbandmusic.com/api/contact_us", {
+                method: "POST"
+            })
+                .then(res => res.json())
+                .then(res => {
+                    if (res.success) {
+                        dispatch({
+                            type: CONTACTUS,
                             value: res.result
                         });
                         resolve()
