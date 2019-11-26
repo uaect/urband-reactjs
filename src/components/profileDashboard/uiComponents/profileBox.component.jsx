@@ -7,11 +7,10 @@ class ProfileBox extends Component {
 
   constructor(props) {
     super(props)
-    const { name, email} = props.user;
     this.state = {
-      name: name,
+      name: "",
       nameErr: "",
-      email: email,
+      email: "",
       password: "",
       confirmpassword: "",
       passwordErr: "",
@@ -38,25 +37,21 @@ class ProfileBox extends Component {
     let flag = 0;
 
     if (name.length < 1) {
-      flag = 1;
       this.setState({
         nameErr: 'Please enter firstname'
       })
     }
 
     if (email.length < 1) {
-      flag = 1;
       this.setState({
         errEmail: 'Please enter email'
       })
     }else if (!new RegExp(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}/g).test(email)) {
-      flag = 1;
       this.setState({ errEmail: 'Please enter valid email address' });
     }
 
     if (password.length > 1) {
       if (password != confirmpassword) {
-        flag = 1;
         this.setState({ errEmail: 'Please confirm password' });
       }
     }
@@ -74,18 +69,16 @@ class ProfileBox extends Component {
           })
       })
     }
-    
+
   }
 
   render() {
-    console.log(this.state);
     const { name, email } = this.state;
     const userData = this.props.user;
     return (
       <div>
         <div className="AddNewBox101">
           <div>
-            <form className="mt-4">
               <div className="row">
                 <div className="col-md-4">
                   <div className="form-group">
@@ -142,7 +135,6 @@ class ProfileBox extends Component {
                   Save
                       </button>
               </div>
-            </form>
           </div>
         </div>
       </div>

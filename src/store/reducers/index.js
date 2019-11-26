@@ -29,6 +29,7 @@ import spotlightReducer from './spotlightReducer';
 import fetchMenues from './fetchMenues';
 import eventDetailsReducer from './eventDetailsReducer';
 import profileReducer from './profileReducer';
+import getorderReducer from './getorderReducer';
 
 export default combineReducers({
     posts: postReducer, // choose any name
@@ -60,6 +61,6 @@ export default combineReducers({
     spotlight:spotlightReducer,
     menues:fetchMenues,
     event_details:eventDetailsReducer,
-    user:profileReducer
-
+    user:profileReducer,
+    order:getorderReducer
 })

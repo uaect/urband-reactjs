@@ -241,6 +241,8 @@ export const getuser = () => {
 };
 
 export const edituser = (params) => {
+    console.log(params);
+    
     return dispatch => {
         return new Promise((resolve, reject) => {
             const body = {
