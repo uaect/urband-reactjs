@@ -7,61 +7,74 @@ import { connect } from "react-redux";
 import * as actionCreators from "../../../../src/store/actions/";
 
 class HeaderTypeOne extends Component {
-    render() {
-        console.log("xxxxx :",this.props.orders);
 
+    componentDidMount() {
+        this.props.getorderedlist();
+    }
+
+    render() {
+        const orders = this.props.orders.result;
+        const image_url = this.props.orders.image_url+'/';
         return (
             <div>
-                <div className="profileBoxTp1 mb-3">
+                {orders ? (
+                    orders.map(order => { 
+                    return (<div className="profileBoxTp1 mb-3">
                     <div className="profileBoxHeader1">
                         <div className="OrderShowingBoxTp1">
-                            <div>OrderId:&nbsp;1323232323 <span className="DateBoxTp1">Placed on Oct 30, 2019</span></div>
+                            <div>OrderId:&nbsp;{order.tracking_id} <span className="DateBoxTp1">Placed on {order.created_at}</span></div>
                             <div>See Detatils</div>
                         </div>
                     </div>
                     <div className="profileBoxContent">
                         {/* status */}
                         <div className="OrderStatusShowingBoxTp1">
-                            <div>Processing</div>
+                            <div>{order.order_status.status}</div>
                             <div>
                                 <div>
                                     <ul className="StatusNavigator clearfix">
-                                        <li class="completed">
+                                        <li class={order.order_status.status == "Ordered"?"completed":""}>
                                             <div className="StatusBox101">
                                                 <FontAwesomeIcon icon={faCheck} />
                                                 Ordered
-                </div>
+                                            </div>
                                         </li>
-                                        <li class="completed">
+                                        <li class={order.order_status.status == "Proccessing"?"Processing":""}>
                                             <div className="StatusBox101">
                                                 <FontAwesomeIcon icon={faCheck} />
-                                                Processing
-                </div>
+                                                Proccessing
+                                            </div>
                                         </li>
-                                        <li>
+                                        <li class={order.order_status.status == "Shipped"?"Processing":""}>
                                             <div className="StatusBox101">
                                                 <FontAwesomeIcon icon={faCheck} />
-                                                shipped
-                </div>
+                                                Shipped
+                                        </div>
                                         </li>
-                                        <li>
+                                        <li class={order.order_status.status == "Shipped"?"Processing":""}>
                                             <div className="StatusBox101">
                                                 <FontAwesomeIcon icon={faCheck} />
-                                                Delivered
-                </div>
+                                                Shipped
+                                            </div>
                                         </li>
+                                        {order.order_status.status == 'Cancelled'? <li class="Processing">
+                                            <div className="StatusBox101">
+                                                <FontAwesomeIcon icon={faCheck} />
+                                                Cancelled
+                                            </div>
+                                        </li>:""}
                                     </ul>
                                 </div>
                             </div>
                         </div>
                         {/* items */}
-                        {/* <div className="OrderStatusItemBox mb-2">
-                            {items ? (
-                                items.map(item => {
+                         <div className="OrderStatusItemBox mb-2">
+                            {order.order_items ? (
+                                order.order_items.map(item => {
                                     return (
                                         <div key={item.id} className="row d-flex align-items-center">
                                             <div className="col-auto">
-                                                <img className="PrdctIcn101" src={image_url + item.files[0].image} alt="" />
+                                                {item.files && item.files.length > 0 && <img className="PrdctIcn101" src={image_url + item.files[0].image} alt="" />}
                                             </div>
                                             <div className="col">
                                                 <div>
@@ -83,10 +96,11 @@ class HeaderTypeOne extends Component {
                                             </div>
                                         </div>)
                                 })) : ""}
-                        </div> */}
+                        </div> 
                     
                     </div>
-                </div>
+                </div>)
+                     })) : ""}
             </div>
         );
     }
