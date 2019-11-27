@@ -14,6 +14,7 @@ class eventTickets extends Component {
     this.props.fetchEventDetail();
   }
   render() {
+     var token = localStorage.getItem("urbandtoken");
     const events = this.props.events;
     return (
       <div>
@@ -44,14 +45,19 @@ class eventTickets extends Component {
                           </div>
                           <div className="col-sm-3 col-md-3 col-lg-2">
                             <div className="a_hover">
-                              <Link
+                              {token ? <Link
                                 className="tim-btn"
                                 to={{
                                   pathname: `/ticket-detail/${item.id}`
                                 }}
                               >
                                 Buy
-                              </Link>
+                              </Link> :<Link
+                                className="tim-btn"
+                                to='/login'
+                              >
+                                Buy
+                              </Link>}
                             </div>
                           </div>
                         </div>
