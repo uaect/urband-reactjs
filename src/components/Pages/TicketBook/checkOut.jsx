@@ -34,7 +34,7 @@ class checkOut extends Component {
     const ticketDetail = this.props.location.state.ticketDetail;
     const user = this.props.user;
     console,log(user);
-    
+
     return (
       <div>
         <section className="page-padd ticket-wrap">
@@ -77,7 +77,7 @@ class checkOut extends Component {
                     <div className="bg-block mt-3">
                       <div className="avathar-mail">
                         Your tickets will be sent to{" "}
-                        <span>johndoe@gmail.com</span>
+                        <span>{user.email}</span>
                       </div>
                     </div>
                   </div>
