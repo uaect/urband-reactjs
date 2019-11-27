@@ -13,6 +13,7 @@ library.add(faCalendarWeek, faArrowLeft);
 class checkOut extends Component {
 
   componentDidMount() {
+    this.props.getuser();
     let ticketDetails = this.props.location.state;
   }
 
@@ -31,6 +32,9 @@ class checkOut extends Component {
   render() {
     const eventDetail = this.props.location.state.eventDetail;
     const ticketDetail = this.props.location.state.ticketDetail;
+    const user = this.props.user;
+    console,log(user);
+    
     return (
       <div>
         <section className="page-padd ticket-wrap">
@@ -135,8 +139,16 @@ class checkOut extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    bookTicket: (value) => dispatch(actionCreators.bookTicket(value))
+    bookTicket: (value) => dispatch(actionCreators.bookTicket(value)),
+    getuser: () => dispatch(actionCreators.getuser())
   };
 };
 
-export default connect(null, mapDispatchToProps)(checkOut);
+const mapStateToProps = state => {
+  return {
+    events: state.eventdetails.eventdetails,
+    user: state.user.user
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(checkOut);
