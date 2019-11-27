@@ -15,12 +15,22 @@ class register extends Component {
       email: "",
       errEmail: "",
       password: "",
-      errPassword: ""
+      errPassword: "",
+      mobile: "",
+      errMobile: "",
+      city: "",
+      errCity: ""
     }
+  }
+  
+  componentDidMount(){
+    this.props.getemirates(1);
   }
 
   gotoSignUp = () => {
-    const { firstname, lastname, email, password } = this.state;
+    console.log(this.state);
+
+    const { firstname, lastname, email, password, mobile, city } = this.state;
     let flag = 0;
 
     if (firstname.length < 1) {
@@ -46,10 +56,30 @@ class register extends Component {
       flag = 1;
       this.setState({ errEmail: 'Please enter valid email address' });
     }
+
+    if (mobile.length < 1) {
+      flag = 1;
+      this.setState({
+        errMobile: 'Please enter mobile'
+      })
+    }else if (mobile.length < 9) {
+      flag = 1;
+      this.setState({
+        errMobile: 'Please enter valid mobile'
+      })
+    }
+    
     if (password.length < 1) {
       flag = 1;
       this.setState({
         errPassword: 'Please enter password'
+      })
+    }
+
+    if (city.length < 1) {
+      flag = 1;
+      this.setState({
+        errCity: 'Please select city'
       })
     }
 
@@ -81,7 +111,9 @@ class register extends Component {
 
 
   render() {
-    const { firstname, errFirstname, lastname, errLastname, email, errEmail, password, errPassword } = this.state;
+    const { firstname, errFirstname, lastname, errLastname, email, errEmail, password, errPassword, mobile, errMobile, city, errCity} = this.state;
+    const emirates = this.props.emirates;
+
     return (
       <div>
         <section className="header-padd">
@@ -140,6 +172,22 @@ class register extends Component {
                       </div>
                       {errEmail && <div class="text-danger">{errEmail}</div>}
                     </div>
+                    <div className="col-md-12 mb-3">
+                      <div className="form-group">
+                        <input
+                          required=""
+                          name="mobile"
+                          type="tel"
+                          value={mobile}
+                          onChange={this.handleChange.bind(this, 'mobile', 'errMobile')}
+                          title="Please enter your mobile"
+                          className="form-control field-control email"
+                          id="mobile"
+                          placeholder="Mobile"
+                        />
+                      </div>
+                      {errMobile && <div class="text-danger">{errMobile}</div>}
+                    </div>
                     <div className="col-md-12 mb-2">
                       <div className="form-group">
                         <input
@@ -153,6 +201,26 @@ class register extends Component {
                         />
                       </div>
                       {errPassword && <div class="text-danger">{errPassword}</div>}
+                    </div>
+
+                    <div className="col-md-12 mb-2">
+                      <div className="form-group">
+                        <select
+                          value={city}
+                          onChange={this.handleChange.bind(this, 'city', 'errCity')}
+                          className="form-control field-control password"
+                          name="city"
+                        >
+                          <option>Select city</option>
+                          {emirates &&
+                    emirates.map(state => {
+                      return (
+                      <option> {state.location}</option>
+                          );
+                        })}
+                          </select>
+                      </div>
+                      {errCity && <div class="text-danger">{errCity}</div>}
                     </div>
 
 
@@ -183,13 +251,14 @@ class register extends Component {
 const mapDispatchToProps = dispatch => {
   // call action functions
   return {
-    register: (state) => dispatch(actionCreators.register(state))
+    register: (state) => dispatch(actionCreators.register(state)),
+    getemirates: (id) => dispatch(actionCreators.getemirates(id))
   };
 };
 
 const mapStateToProps = state => {
   return {
-    register: state.register.items // in this state list is array name as stored  API  from defined in eventListReducer
+    emirates: state.emirateslist.emirates
   };
 };
 
