@@ -123,12 +123,12 @@ class Header extends Component {
                       <li className="menu-item-has-children in-array">
                         Studio
                         <ul className="sub-menu">
-                          <li>
+                          {this.props.menues.some(el => el.title === "Artist") && (<li>
                             <Link to="/artist">Artists</Link>
-                          </li>
-                          <li>
+                          </li>)}
+                          {this.props.menues.some(el => el.title === "Clients") && (<li>
                             <Link to="/clients">Clients</Link>
-                          </li>
+                          </li>)}
                         </ul>
                       </li>
                     )}
