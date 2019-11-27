@@ -33,7 +33,7 @@ class checkOut extends Component {
     const eventDetail = this.props.location.state.eventDetail;
     const ticketDetail = this.props.location.state.ticketDetail;
     const user = this.props.user;
-    console,log(user);
+    console.log(user);
 
     return (
       <div>
