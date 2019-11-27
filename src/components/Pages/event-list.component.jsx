@@ -81,7 +81,7 @@ class EventList extends Component {
                                     icon={faClock}
                                     className="ico"
                                   />
-                                  11:00 PM to 1:00 AM
+                                  {item.date_from}
                                 </li>
                                 <li>
                                   <FontAwesomeIcon
