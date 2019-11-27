@@ -22,8 +22,7 @@ class HeaderTypeOne extends Component {
                     return (<div className="profileBoxTp1 mb-3">
                     <div className="profileBoxHeader1">
                         <div className="OrderShowingBoxTp1">
-                            <div>OrderId:&nbsp;{order.tracking_id} <span className="DateBoxTp1">Placed on {order.created_at}</span></div>
-                            <div>See Detatils</div>
+                            <div>Order ID:&nbsp;{order.tracking_id} <span className="DateBoxTp1">Placed on {order.created_at}</span></div>
                         </div>
                     </div>
                     <div className="profileBoxContent">
