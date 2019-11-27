@@ -9,7 +9,6 @@ const emiratesReducer = (state = initialState, action) => {
       case GETEMIRATES:
           return{
               ...state,
-           
               emirates: action.value
           }
     default:

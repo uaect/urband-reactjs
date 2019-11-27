@@ -13,6 +13,7 @@ class multiCarouselHero extends Component {
   render() {
     const image_url = "https://admin.urbandmusic.com/storage/";
     const posts = this.props.posts;
+    console.log(posts);
 
     const responsive = {
       superLargeDesktop: {
@@ -54,7 +55,7 @@ class multiCarouselHero extends Component {
 
                       <div className="artist-single-content">
                         <h6>{item.name}</h6>
-                        <p>Band: Metallica</p>
+                        <p>{item.genre}</p>
                       </div>
                   </div>
                   </Link>

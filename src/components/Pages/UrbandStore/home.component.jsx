@@ -11,7 +11,7 @@ class ShopHome extends Component {
     super(props);
     this.state = {
       page: 0,
-      category: "",
+      category: [],
       priceMin: "",
       priceMax: "",
       sort: ""
@@ -42,18 +42,24 @@ class ShopHome extends Component {
       this.props.fetchStoreList(this.state);
   }
 
+
   handleCategory(state, evt ) {
-    if(evt.target.value == this.state.category){
-      this.setState({
-        category: ""
-      })
+    let catArray = this.state.category;
+    var index = catArray.indexOf(evt.target.value);
+    if (index > -1) {
+      catArray.splice(index, 1);
     }else{
-      this.setState({
-        category: evt.target.value
-      })
+      catArray.push(evt.target.value);
     }
+
+    this.setState({
+      category: catArray
+    })
+   
     this.props.fetchStoreList(this.state);
   }
+
+
 
   render() {
     const image_url = "https://admin.urbandmusic.com/storage/";

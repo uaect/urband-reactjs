@@ -120,7 +120,7 @@ class checkOut extends Component {
                     <button onClick={this.bookTicket}
                       className="tim-btn mt-4 ticket-btn-lg"
                     >
-                      Pay Securly
+                      Checkout
                     </button>
                   </div>
                 </div>
