@@ -307,8 +307,6 @@ class storeCheckOut extends Component {
       errorflage: true
     });
   }
- 
-    
   };
 
   render() {
