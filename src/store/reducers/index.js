@@ -64,7 +64,6 @@ export default combineReducers({
     event_details:eventDetailsReducer,
     user:profileReducer,
     order:getorderReducer,
-    aboutfounded:aboutfounded,
-    user:profileReducer
+    aboutfounded:aboutfounded
 
 })
