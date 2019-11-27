@@ -6,7 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import EmptyBox from "../../hoc/EmptyMessageBox/EmptyBox.component";
 import { connect } from "react-redux";
 import * as actionCreators from "../../../../src/store/actions/";
-import SkeltonBox from "../../hoc/skeltonBox/SkeltonBox.component";
+import BlockUi from "react-block-ui";
+import "react-block-ui/style.css";
 import AlertBox from "../../hoc/AlertBox/index";
 library.add(faTimes, faArrowLeft);
 
@@ -21,15 +22,15 @@ class cart extends Component {
       cartflag: "",
       totalcost: "",
       cartItems: [],
-      deleteflag:false
+      deleteflag: false
     };
     this.deleteItem = this.deleteItem.bind(this);
   }
 
   deleteItem(productid) {
-    this.props.deletecart(productid)
+    this.props
+      .deletecart(productid)
       .then(() => {
-        
         this.setState({
           deleteflag: true
         });
@@ -49,12 +50,13 @@ class cart extends Component {
   }
 
   initialload() {
-    this.props.getfromcart()
+    this.props
+      .getfromcart()
       .then(() => {
         if (this.props.cartitems.length) {
           var cartItems = this.props.cartitems;
           console.log("tttttttt", cartItems);
-          
+
           var totalcost = 0;
           if (cartItems !== "emtey cart") {
             this.setState({
@@ -63,7 +65,10 @@ class cart extends Component {
             });
             for (let i = 0; i < cartItems.length; i++) {
               if (cartItems[i].product.price) {
-                totalcost = totalcost + parseFloat(cartItems[i].product.price) * parseInt(cartItems[i].quantity);
+                totalcost =
+                  totalcost +
+                  parseFloat(cartItems[i].product.price) *
+                    parseInt(cartItems[i].quantity);
                 this.setState({
                   totalcost: totalcost
                 });
@@ -86,38 +91,34 @@ class cart extends Component {
             errpassword: error.error
           });
         }
-      })
+      });
   }
 
   increment(item) {
-    var quentity = (item.quantity) + 1
+    var quentity = item.quantity + 1;
     if (quentity && item) {
-      this.props.updatecartQuantity(quentity, item.id)
+      this.props
+        .updatecartQuantity(quentity, item.id)
         .then(() => {
           this.initialload();
         })
-        .catch(error => {
-
-        });
+        .catch(error => {});
     }
   }
 
   decrement(item) {
     if (item.quantity !== 1) {
-      var quentity = (item.quantity) - 1
+      var quentity = item.quantity - 1;
       if (quentity && item) {
-        this.props.updatecartQuantity(quentity, item.id)
+        this.props
+          .updatecartQuantity(quentity, item.id)
           .then(() => {
             this.initialload();
           })
-          .catch(error => {
-          });
+          .catch(error => {});
       }
     }
   }
-
-
-
 
   render() {
     const image_url = "https://admin.urbandmusic.com/storage/";
@@ -131,11 +132,14 @@ class cart extends Component {
               </Link>
               <h2>Cart</h2>
             </div>
-            {this.state.deleteflag?(
-            <AlertBox
-          ActiveOrNot={true}
-          alertMessage="Item removed from cart"
-        />):""}
+            {this.state.deleteflag ? (
+              <AlertBox
+                ActiveOrNot={true}
+                alertMessage="Item removed from cart"
+              />
+            ) : (
+              ""
+            )}
             {this.state.cartflag ? (
               this.state.cartItems.map(item => {
                 return (
@@ -206,16 +210,16 @@ class cart extends Component {
                 );
               })
             ) : (
-                <div>
-                  <EmptyBox
-                    ThumbImage="noCartMessage.png"
-                    HeaderText="Your shopping cart looks empty"
-                    SubText="What are you waiting for?"
-                    LinkText="Start Shopping"
-                    LinkUrl="/store"
-                  />
-                </div>
-              )}
+              <div>
+                <EmptyBox
+                  ThumbImage="noCartMessage.png"
+                  HeaderText="Your shopping cart looks empty"
+                  SubText="What are you waiting for?"
+                  LinkText="Start Shopping"
+                  LinkUrl="/store"
+                />
+              </div>
+            )}
             {this.state.cartflag ? (
               <div className="cart-total right-push">
                 <div className="d-flex price align-items-center">
@@ -232,8 +236,8 @@ class cart extends Component {
                 </div>
               </div>
             ) : (
-                ""
-              )}
+              ""
+            )}
           </div>
         </section>
       </div>
@@ -246,8 +250,8 @@ const mapDispatchToProps = dispatch => {
   return {
     getfromcart: () => dispatch(actionCreators.getfromcart()),
     deletecart: id => dispatch(actionCreators.deletecart(id)),
-    updatecartQuantity: (quentity, id) => dispatch(actionCreators.updatecartQuantity(quentity, id))
-
+    updatecartQuantity: (quentity, id) =>
+      dispatch(actionCreators.updatecartQuantity(quentity, id))
   };
 };
 
