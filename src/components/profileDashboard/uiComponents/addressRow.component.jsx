@@ -13,30 +13,32 @@ class AddressRow extends Component {
     }
 
     render() {
-       const address = this.props.address;
+        const address = this.props.address;
         console.warn("sss", address);
 
         return (
             <div>
-
-                <div className="AddressBoxTpWrp mb-2">
-                    <BoxTypeOne boxHeader="primary Address">
-                        <AddressHeader addressType="Work" />
-                        <div className="RowType1">
-                            <AddressColumn textType1="Name" textType2="ijas Np" />
-                            <AddressColumn textType1="Address" textType2="Nechipparamban House, Pallippadi, Pookkottur" />
-                            <AddressColumn textType1="Phone Number" textType2="+971-525995503" />
-                            <AddressColumn>
-                                <div className="BtnBoxType2">
-                                    <div>
-                                        <div className="btnType1">Edit</div>
-                                        <div className="btnType1">Delete</div>
-                                    </div>
+                {address ? (
+                    address.map(item => {
+                        <div className="AddressBoxTpWrp mb-2">
+                            <BoxTypeOne boxHeader="primary Address">
+                                <AddressHeader addressType="Work" />
+                                <div className="RowType1">
+                                    <AddressColumn textType1="Name" textType2="ijas Np" />
+                                    <AddressColumn textType1="Address" textType2="Nechipparamban House, Pallippadi, Pookkottur" />
+                                    <AddressColumn textType1="Phone Number" textType2="+971-525995503" />
+                                    <AddressColumn>
+                                        <div className="BtnBoxType2">
+                                            <div>
+                                                <div className="btnType1">Edit</div>
+                                                <div className="btnType1">Delete</div>
+                                            </div>
+                                        </div>
+                                    </AddressColumn>
                                 </div>
-                            </AddressColumn>
+                            </BoxTypeOne>
                         </div>
-                    </BoxTypeOne>
-                </div>
+                    })) : ""}
 
             </div>
         );
