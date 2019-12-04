@@ -18,8 +18,8 @@ class AddressRow extends Component {
 
         return (
             <div>
-                {address ? (
-                    address.map(item => {
+                {/* {address ? (
+                    address.map(item => { */}
                         <div className="AddressBoxTpWrp mb-2">
                             <BoxTypeOne boxHeader="primary Address">
                                 <AddressHeader addressType="Work" />
@@ -38,7 +38,7 @@ class AddressRow extends Component {
                                 </div>
                             </BoxTypeOne>
                         </div>
-                    })) : ""}
+                    {/* })) : ""} */}
 
             </div>
         );
