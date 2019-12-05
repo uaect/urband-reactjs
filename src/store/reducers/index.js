@@ -65,5 +65,4 @@ export default combineReducers({
     user:profileReducer,
     order:getorderReducer,
     aboutfounded:aboutfounded
-
 })
