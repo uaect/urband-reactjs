@@ -16,7 +16,7 @@ class AddressRow extends Component {
         this.props
             .deleteaddress(item.id)
             .then(() => {
-                this.getInitialAddress();
+                this.props.getaddress();
             })
             .catch(error => {
                 if (error.error == "Unauthorised") {
