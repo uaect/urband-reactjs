@@ -19,13 +19,13 @@ class AddressRow extends Component {
 
         return (
             <div>
-                {/* {address ? (
-                    address.map(item => { */}
-                        <div className="AddressBoxTpWrp mb-2">
+                {address ? (
+                    address.map(item => {
+                        return(<div className="AddressBoxTpWrp mb-2">
                             <BoxTypeOne boxHeader="primary Address">
                                 <AddressHeader addressType="Work" />
                                 <div className="RowType1">
-                                    <AddressColumn textType1="Name" textType2="ijas Np" />
+                                    <AddressColumn textType1="Name" textType2={item.first_name + ' ' +item.last_name} />
                                     <AddressColumn textType1="Address" textType2="Nechipparamban House, Pallippadi, Pookkottur" />
                                     <AddressColumn textType1="Phone Number" textType2="+971-525995503" />
                                     <AddressColumn>
@@ -38,8 +38,8 @@ class AddressRow extends Component {
                                     </AddressColumn>
                                 </div>
                             </BoxTypeOne>
-                        </div>
-                    {/* })) : ""} */}
+                        </div>)
+                    })) : ""} 
 
             </div>
         );
