@@ -26,8 +26,8 @@ class AddressRow extends Component {
                                 <AddressHeader addressType="Work" />
                                 <div className="RowType1">
                                     <AddressColumn textType1="Name" textType2={item.first_name + ' ' +item.last_name} />
-                                    <AddressColumn textType1="Address" textType2="Nechipparamban House, Pallippadi, Pookkottur" />
-                                    <AddressColumn textType1="Phone Number" textType2="+971-525995503" />
+                                    <AddressColumn textType1="Address" textType2={item.last_name}  />
+                                    <AddressColumn textType1="Phone Number" textType2={item.mobile}/>
                                     <AddressColumn>
                                         <div className="BtnBoxType2">
                                             <div>
