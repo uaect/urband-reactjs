@@ -78,9 +78,8 @@ export const getaddress = (params) => {
             })
                 .then(res => res.json())
                 .then(res => {
-
-
-                    if (res.result) {
+                    console.log(res);
+                    if (res.success) {
                         localStorage.setItem('address', true);
                         dispatch({
                             type: GETADDRESS,
