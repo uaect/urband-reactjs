@@ -53,7 +53,7 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
     return {
-        address: state.getaddress.items
+        address: state.getaddress.address
     };
 };
 
