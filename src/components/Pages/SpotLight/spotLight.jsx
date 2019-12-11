@@ -96,10 +96,10 @@ class spotLight extends Component {
             <div className="col-xl-10">
               <div className="section-title style-five">
                 <h2>SPOTLIGHT</h2>
-                <p>
+                {/*<p>
                   There are many variations of passages of Lorem Ipsum available
                   but the majority.
-                </p>
+                </p>*/}
               </div>
               <div className="row">
                 {this.state.spotlight ? (
@@ -126,9 +126,8 @@ class spotLight extends Component {
                   <div className="subscribe-two">
                     <div className="section-title style-five">
                       <h2>SUBSCRIBE</h2>
-                      <p>
-                        There are many variations of passages of Lorem Ipsum
-                        available but the majority.
+                      <p><br></br>
+                        Subscribe with us.
                       </p>
                     </div>
                    

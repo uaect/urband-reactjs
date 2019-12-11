@@ -29,11 +29,11 @@ class albumListHome extends Component {
             <section className="three-d-album">
               <div className="section-title style-four">
                 <h2>TRENDING ALBUMS</h2>
-                <p>
+                {/*<p>
                   There are many variations of passages of Lorem Ipsum available
                   but the majority have suffered alteration in some injected
                   humour.
-                </p>
+                </p>*/}
               </div>
 
               <div className="more-album">

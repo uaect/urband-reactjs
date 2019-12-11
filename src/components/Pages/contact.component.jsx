@@ -202,10 +202,10 @@ class Contact extends Component {
                     <div className="col-md-10 col-lg-8">
                       <div className="con-bottom-inner">
                         <h4>CONTACT US</h4>
-                        <p>
+                        {/*<p>
                           Dummy text of the printing and typesetting industry.
                           Lorem Ipsum has been the{" "}
-                        </p>
+                        </p>*/}
                         <div className="con-page-form">
                           <textarea
                             name="message"

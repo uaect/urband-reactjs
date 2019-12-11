@@ -64,7 +64,7 @@ const ProfileDashboard = ({ match }) => {
                             icon={faShoppingCart}
                             className="prfIcnTp1"
                           />
-                          orders
+                          Orders
                         </NavLink>
                       </div>
                     </div>
