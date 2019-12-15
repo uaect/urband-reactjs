@@ -44,7 +44,8 @@ export const login = (params) => {
                 password: params.password?params.password:"",
                 firstname: params.firstname?params.firstname:"",
                 lastname: params.lastname?params.lastname:"",
-                logo: params.logo?params.logo:""
+                logo: params.logo?params.logo:"",
+                token: params.token?params.token:""
             };
             fetch("https://admin.urbandmusic.com/api/login", {
                 method: "POST",

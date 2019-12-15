@@ -21,6 +21,7 @@ class logIn extends Component {
       firstname: "",
       lastname: "",
       logo: "",
+      token: "",
       isToken: localStorage.getItem('urbandtoken') ? true : false
     }
   }
@@ -73,6 +74,8 @@ class logIn extends Component {
   }
 
   responseGoogle = (response) => {
+    console.log("xxxxx11111 :", response);
+    console.log("xxxxx22222 :", response.WE);
     var res = response.WE.w3;
     console.log("xxxxx :", res);
     if (res.length) {
@@ -82,7 +85,8 @@ class logIn extends Component {
         firstname: res.ig,
         lastname: res.ofa,
         lastname: res.ofa,
-        logo: res.Paa
+        logo: res.Paa,
+        token: ""
       })
       this.props.login(this.state)
         .then(() => {
