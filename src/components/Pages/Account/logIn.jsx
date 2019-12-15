@@ -2,9 +2,8 @@ import React, { Component } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Redirect } from 'react-router';
 import "./style.css";
-import Gmail from "../../../assets/img/gmail.png";
-import Facebook from "../../../assets/img/facebook.png";
 import GoogleLogin from 'react-google-login';
+import FacebookLogin from 'react-facebook-login';
 import { connect } from "react-redux";
 import * as actionCreators from "../../../../src/store/actions/";
 class logIn extends Component {
@@ -71,6 +70,36 @@ class logIn extends Component {
           }
         })
     }
+  }
+
+  responseFacebook = (response) => {
+    console.log("xxxx :",response);
+
+    // var res = response.profileObj;
+    // if (res) {
+    //   this.setState({
+    //     loginType: 'gmail',
+    //     email: res.email,
+    //     firstname: res.givenName,
+    //     lastname: res.familyName,
+    //     logo: res.imageUrl,
+    //     token: response.tokenObj.access_token
+    //   })
+    //   this.props.login(this.state)
+    //     .then(() => {
+    //       this.setState({
+    //         isToken: true
+    //       })
+    //       window.location.href = "/";
+    //     })
+    //     .catch((error) => {
+    //       if (error.error == 'Unauthorised') {
+    //         this.setState({
+    //           errpassword: 'Sign in with gmail failed'
+    //         })
+    //       }
+    //     })
+    // }
   }
 
   responseGoogle = (response) => {
@@ -156,13 +185,22 @@ class logIn extends Component {
                     <div className="col-md-6">
                       <button className="btn" type="submit" onClick={this.gotoLogin}>Log In</button>
                     </div>
+                    <div className="social-btn">
                     <GoogleLogin
                       clientId="960961951131-46o64t0b0kjb3421pcu8ekpbnglrq6fb.apps.googleusercontent.com"
-                      buttonText="Sign in with google"
+                      buttonText="Login with google"
                       onSuccess={this.responseGoogle}
                       onFailure={this.responseGoogle}
                       cookiePolicy={'single_host_origin'}
                     />
+                    </div>
+                    <div className="social-btn">
+                    <FacebookLogin
+                      appId="2866633446709623" //APP ID NOT CREATED YET
+                      fields="name,email,picture"
+                      callback={this.responseFacebook}
+                    />
+                    </div>
                   </div>
                 </div>
               </div>
