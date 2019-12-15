@@ -17,6 +17,10 @@ class logIn extends Component {
       password: "",
       errpassword: "",
       loginflag: false,
+      loginType: "",
+      firstname: "",
+      lastname: "",
+      logo: "",
       isToken: localStorage.getItem('urbandtoken') ? true : false
     }
   }
@@ -68,13 +72,37 @@ class logIn extends Component {
     }
   }
 
-  
+  responseGoogle = (response) => {
+    var res = response.WE.w3;
+    console.log("xxxxx :", res);
+    if (res.length) {
+      this.setState({
+        loginType: 'gmail',
+        email: res.U3,
+        firstname: res.ig,
+        lastname: res.ofa,
+        lastname: res.ofa,
+        logo: res.Paa
+      })
+      this.props.login(this.state)
+        .then(() => {
+          this.setState({
+            isToken: true
+          })
+          window.location.href = "/";
+        })
+        .catch((error) => {
+          if (error.error == 'Unauthorised') {
+            this.setState({
+              errpassword: 'Sign in with gmail failed'
+            })
+          }
+        })
+    }
+  }
 
 
   render() {
-    const responseGoogle = (response) =>{
-      console.log(response);
-    }
     return (
       <div>
         <section className="header-padd">
@@ -128,13 +156,13 @@ class logIn extends Component {
                     <div className="col-md-6">
                       <button className="btn" type="submit" onClick={this.gotoLogin}>Log In</button>
                     </div>
-                      <GoogleLogin
-                        clientId="960961951131-46o64t0b0kjb3421pcu8ekpbnglrq6fb.apps.googleusercontent.com"
-                        buttonText="Sign in with google"
-                        onSuccess={responseGoogle}
-                        onFailure={responseGoogle}
-                        cookiePolicy={'single_host_origin'}
-                      />
+                    <GoogleLogin
+                      clientId="960961951131-46o64t0b0kjb3421pcu8ekpbnglrq6fb.apps.googleusercontent.com"
+                      buttonText="Sign in with google"
+                      onSuccess={this.responseGoogle}
+                      onFailure={this.responseGoogle}
+                      cookiePolicy={'single_host_origin'}
+                    />
                   </div>
                 </div>
               </div>

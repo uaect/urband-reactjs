@@ -34,11 +34,17 @@ export const register = (params) => {
 };
 
 export const login = (params) => {
+    console.log("action : ",params);
+
     return dispatch => {
         return new Promise((resolve, reject) => {
             const body = {
+                type: params.loginType?params.loginType:'website',
                 email: params.email,
-                password: params.password
+                password: params.password?params.password:"",
+                firstname: params.firstname?params.firstname:"",
+                lastname: params.lastname?params.lastname:"",
+                logo: params.logo?params.logo:""
             };
             fetch("https://admin.urbandmusic.com/api/login", {
                 method: "POST",
