@@ -54,7 +54,7 @@ class EventDetail extends Component {
                       src={
                         image_url +
                         event.image
-                      } alt="Thumb" />):"https://urbandmusic.com/ no_image.png"}
+                      } alt="Thumb" />):"https://urbandmusic.com/no_image.png"}
                   </div>
                 </div>
 

@@ -55,7 +55,7 @@ class EventList extends Component {
                                 {item.image?(  <img
                                   src={image_url + item.image} className=""
                                   alt="blog Thumb"
-                                />):"https://urbandmusic.com/ no_image.png"}
+                                />):"https://urbandmusic.com/no_image.png"}
                               
                               </figure>
                             </Link>
