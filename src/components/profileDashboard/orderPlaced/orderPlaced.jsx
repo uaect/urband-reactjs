@@ -7,6 +7,7 @@ import ButtonTypeOne from "../uiComponents/buttonType1.component";
 import ListStyleTp1 from "../uiComponents/ListStyleTp1.component";
 import ValueBoxType1 from "../uiComponents/valueBoxType1.component";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import * as actionCreators from "../../../../src/store/actions/";
 class OrderPlaced extends Component {
   componentDidMount() {
@@ -14,7 +15,7 @@ class OrderPlaced extends Component {
     if (ticketDetails.cart) {
       this.setState({
         cart: ticketDetails.cart,
-        total:ticketDetails,
+        total: ticketDetails,
       })
     }
 
@@ -24,7 +25,7 @@ class OrderPlaced extends Component {
     super(props)
     this.state = {
       cart: [],
-      total:[]
+      total: []
 
     }
   }
@@ -42,7 +43,7 @@ class OrderPlaced extends Component {
           <div className="mt-4 mb-4">
             <OrderBox orderId="NAEBA0053772514">
               <OrderStatusBox />
-              <OrderStatusItem item={this.state.cart}/>
+              <OrderStatusItem item={this.state.cart} />
               <div className="GridBoxTp201">
                 <div className="row d-flex align-items-center">
                   <div className="col-md-6">
@@ -76,7 +77,10 @@ class OrderPlaced extends Component {
             />
           </div>
           <div>
-            <ButtonTypeOne buttonText="Goto Products" />
+            <Link to="/store">
+              <ButtonTypeOne buttonText="Goto Products" />
+            </Link>
+
           </div>
         </div>
       </div>

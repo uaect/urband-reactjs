@@ -38,7 +38,6 @@ export const fetchAlbumsDetails = (id) => {
                 });
             })
             .catch(error => {
-                //console.log("error" + JSON.stringify(error));
             });
     };
 };
@@ -54,15 +53,14 @@ export const fetchgallerycategory = () => {
         })
             .then(res => res.json())
             .then(res => {
-                //console.log("res", res);
-                
+              
                 dispatch({
                     type: FETCH_GALLERYCATEGORY,
                     value: res.result
                 });
             })
             .catch(error => {
-                //console.log("error" + JSON.stringify(error));
+               
             });
     };
 };
