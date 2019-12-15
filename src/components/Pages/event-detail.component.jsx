@@ -49,11 +49,12 @@ class EventDetail extends Component {
               <div className="row">
                 <div className="col-lg-6">
                   <div className="event-thumb">
+                  {event.image?(
                     <img
                       src={
                         image_url +
                         event.image
-                      } alt="Thumb" />
+                      } alt="Thumb" />):"https://urbandmusic.com/ no_image.png"}
                   </div>
                 </div>
 
