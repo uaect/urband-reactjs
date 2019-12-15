@@ -81,7 +81,7 @@ class logIn extends Component {
         email: res.email,
         firstname: res.name,
         lastname: res.name,
-        logo: res.name.name.name,
+        logo: res.picture.data.url,
         token: response.access_token
       })
       this.props.login(this.state)
