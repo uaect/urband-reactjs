@@ -52,10 +52,11 @@ class EventList extends Component {
                                 pathname: `/event/${item.id}`
                               }}>
                               <figure className="post-thumbnail event-box">
-                                <img
+                                {item.image?(  <img
                                   src={image_url + item.image} className=""
                                   alt="blog Thumb"
-                                />
+                                />):"https://urbandmusic.com/ no_image.png"}
+                              
                               </figure>
                             </Link>
                           </div>
