@@ -77,7 +77,7 @@ class logIn extends Component {
     console.log(res);
     if (res) {
       this.setState({
-        loginType: 'gmail',
+        loginType: 'social',
         email: res.email,
         firstname: res.name,
         lastname: res.name,
@@ -105,7 +105,7 @@ class logIn extends Component {
     var res = response.profileObj;
     if (res) {
       this.setState({
-        loginType: 'gmail',
+        loginType: 'social',
         email: res.email,
         firstname: res.givenName,
         lastname: res.familyName,
