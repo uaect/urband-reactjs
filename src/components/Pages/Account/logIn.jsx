@@ -197,6 +197,7 @@ class logIn extends Component {
                       appId="2866633446709623" //APP ID NOT CREATED YET
                       fields="name,email,picture"
                       callback={this.responseFacebook}
+                      icon="fa-facebook"
                     />
                     </div>
                   </div>
