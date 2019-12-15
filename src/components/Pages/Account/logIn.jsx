@@ -84,6 +84,8 @@ class logIn extends Component {
         logo: res.imageUrl,
         token: response.tokenObj.access_token
       })
+      console.log("xxxx :",this.state);
+
       this.props.login(this.state)
         .then(() => {
           this.setState({
