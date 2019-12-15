@@ -75,7 +75,9 @@ class logIn extends Component {
 
   responseGoogle = (response) => {
     var res = response.profileObj;
-    if (res.length) {
+    console.log(res.length);
+
+    if (res) {
       this.setState({
         loginType: 'gmail',
         email: res.email,
