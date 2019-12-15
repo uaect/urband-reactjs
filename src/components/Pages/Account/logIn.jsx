@@ -115,7 +115,7 @@ class logIn extends Component {
                       {this.state.errpassword && <div class="text-danger">{this.state.errpassword}</div>}
                     </div>
                     <div className="col-md-12 text-right">
-                      <div className="forgot-pass">Forgot Password ?</div>
+                      {/*<div className="forgot-pass">Forgot Password ?</div>*/}
                     </div>
                   </div>
                   <div className="row mt-4">

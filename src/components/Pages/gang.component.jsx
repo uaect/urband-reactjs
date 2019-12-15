@@ -23,11 +23,11 @@ class Gang extends Component {
             <div className="container">
               <div className="section-title style-four">
                 <h2>Meet Our Gang</h2>
-                <p>
+                {/*<p>
                   There are many variations of passages of Lorem Ipsum available
                   but the majority have suffered alteration in some injected
                   humour.
-                </p>
+                </p>*/}
               </div>
 
               <StyleRoot>

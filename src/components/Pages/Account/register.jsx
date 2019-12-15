@@ -172,6 +172,20 @@ class register extends Component {
                       </div>
                       {errEmail && <div class="text-danger">{errEmail}</div>}
                     </div>
+                    <div className="col-md-12 mb-2">
+                      <div className="form-group">
+                        <input
+                          type="password"
+                          value={password}
+                          onChange={this.handleChange.bind(this, 'password', 'errPassword')}
+                          className="form-control field-control password"
+                          name="password"
+                          title="Please enter your Password"
+                          placeholder="Password"
+                        />
+                      </div>
+                      {errPassword && <div class="text-danger">{errPassword}</div>}
+                    </div>
                     <div className="col-md-12 mb-3">
                       <div className="form-group">
                         <input
@@ -190,28 +204,14 @@ class register extends Component {
                     </div>
                     <div className="col-md-12 mb-2">
                       <div className="form-group">
-                        <input
-                          type="password"
-                          value={password}
-                          onChange={this.handleChange.bind(this, 'password', 'errPassword')}
-                          className="form-control field-control password"
-                          name="password"
-                          title="Please enter your Password"
-                          placeholder="Password"
-                        />
-                      </div>
-                      {errPassword && <div class="text-danger">{errPassword}</div>}
-                    </div>
-
-                    <div className="col-md-12 mb-2">
-                      <div className="form-group">
                         <select
                           value={city}
                           onChange={this.handleChange.bind(this, 'city', 'errCity')}
                           className="form-control field-control password"
                           name="city"
+                          placeHolder="City"
                         >
-                          <option>Select city</option>
+                          <option>Select City</option>
                           {emirates &&
                     emirates.map(state => {
                       return (
