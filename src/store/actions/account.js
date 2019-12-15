@@ -35,7 +35,6 @@ export const register = (params) => {
 
 export const login = (params) => {
     console.log("action : ",params);
-
     return dispatch => {
         return new Promise((resolve, reject) => {
             const body = {

@@ -74,19 +74,15 @@ class logIn extends Component {
   }
 
   responseGoogle = (response) => {
-    console.log("xxxxx11111 :", response);
-    console.log("xxxxx22222 :", response.WE);
-    var res = response.WE.w3;
-    console.log("xxxxx :", res);
+    var res = response.profileObj;
     if (res.length) {
       this.setState({
         loginType: 'gmail',
-        email: res.U3,
-        firstname: res.ig,
-        lastname: res.ofa,
-        lastname: res.ofa,
-        logo: res.Paa,
-        token: ""
+        email: res.email,
+        firstname: res.givenName,
+        lastname: res.familyName,
+        logo: res.imageUrl,
+        token: response.tokenObj.access_token
       })
       this.props.login(this.state)
         .then(() => {
