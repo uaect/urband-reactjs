@@ -73,33 +73,31 @@ class logIn extends Component {
   }
 
   responseFacebook = (response) => {
-    console.log("xxxx :",response);
-
-    // var res = response.profileObj;
-    // if (res) {
-    //   this.setState({
-    //     loginType: 'gmail',
-    //     email: res.email,
-    //     firstname: res.givenName,
-    //     lastname: res.familyName,
-    //     logo: res.imageUrl,
-    //     token: response.tokenObj.access_token
-    //   })
-    //   this.props.login(this.state)
-    //     .then(() => {
-    //       this.setState({
-    //         isToken: true
-    //       })
-    //       window.location.href = "/";
-    //     })
-    //     .catch((error) => {
-    //       if (error.error == 'Unauthorised') {
-    //         this.setState({
-    //           errpassword: 'Sign in with gmail failed'
-    //         })
-    //       }
-    //     })
-    // }
+    var res = response;
+    if (res) {
+      this.setState({
+        loginType: 'gmail',
+        email: res.email,
+        firstname: res.name,
+        lastname: res.name,
+        logo: res.name.name.name,
+        token: response.access_token
+      })
+      this.props.login(this.state)
+        .then(() => {
+          this.setState({
+            isToken: true
+          })
+          window.location.href = "/";
+        })
+        .catch((error) => {
+          if (error.error == 'Unauthorised') {
+            this.setState({
+              errpassword: 'Sign in with gmail failed'
+            })
+          }
+        })
+    }
   }
 
   responseGoogle = (response) => {
@@ -188,7 +186,7 @@ class logIn extends Component {
                     <div className="social-btn">
                     <GoogleLogin
                       clientId="960961951131-46o64t0b0kjb3421pcu8ekpbnglrq6fb.apps.googleusercontent.com"
-                      buttonText="Login with google"
+                      buttonText="LOGIN WITH GOOGLE"
                       onSuccess={this.responseGoogle}
                       onFailure={this.responseGoogle}
                       cookiePolicy={'single_host_origin'}
