@@ -39,11 +39,11 @@ class Contact extends Component {
       lng: "",
       message: "",
       errmessage: "",
-      name:"",
-      errname:"",
-      email:"",
-      erremail:"",
-      alertflag:false
+      name: "",
+      errname: "",
+      email: "",
+      erremail: "",
+      alertflag: false
 
     };
   }
@@ -64,7 +64,6 @@ class Contact extends Component {
 
     this.props.contactus()
       .then(() => {
-        console.log("tttttttttt", this.props);
 
       })
       .catch(error => { });
@@ -72,51 +71,51 @@ class Contact extends Component {
 
   };
 
-    gotocontactmail = () => {
-      const { message, email, name} = this.state;
-      var flag = 0;
-      if (message.length < 1) {
-        flag = 1;
-        this.setState({
-          errmessage: 'Please enter message'
-        })
-      }
-      if (email.length < 1) {
-        flag = 1;
-        this.setState({
-          erremail: 'Please enter email'
-        })
-      }else if (!new RegExp(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}/g).test(email)) {
-        flag = 1;
-        this.setState({ erremail: 'Please enter valid email address' });
-      }
-      if (name.length < 1) {
-        flag = 1;
-        this.setState({
-          errname: 'Please enter name'
-        })
-      }
-      if (flag === 0) {
+  gotocontactmail = () => {
+    const { message, email, name } = this.state;
+    var flag = 0;
+    if (message.length < 1) {
+      flag = 1;
+      this.setState({
+        errmessage: 'Please enter message'
+      })
+    }
+    if (email.length < 1) {
+      flag = 1;
+      this.setState({
+        erremail: 'Please enter email'
+      })
+    } else if (!new RegExp(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}/g).test(email)) {
+      flag = 1;
+      this.setState({ erremail: 'Please enter valid email address' });
+    }
+    if (name.length < 1) {
+      flag = 1;
+      this.setState({
+        errname: 'Please enter name'
+      })
+    }
+    if (flag === 0) {
       this.props.contactus(this.state)
-      .then(() => {
+        .then(() => {
 
-        this.setState({
-          alertflag: true,
-          message: "",
-          errmessage: "",
-          name:"",
-          errname:"",
-          email:"",
-          erremail:"",
+          this.setState({
+            alertflag: true,
+            message: "",
+            errmessage: "",
+            name: "",
+            errname: "",
+            email: "",
+            erremail: "",
+          })
+
         })
-       
-      })
-      .catch((error) => {
-        
-      })
+        .catch((error) => {
+
+        })
     }
-    }
-  
+  }
+
   render() {
     var isResponseData = false;
     const detail = this.props.contact;
@@ -127,11 +126,11 @@ class Contact extends Component {
     }
     return (
       <div>
-        {this.state.alertflag?( <AlertBox
+        {this.state.alertflag ? (<AlertBox
           ActiveOrNot={true}
           alertMessage="Thank you for contacting urband"
-        />):""}
-       
+        />) : ""}
+
         <BannerHero title={"Contact"} />
 
         <div className="fullWrap">
@@ -221,10 +220,10 @@ class Contact extends Component {
                             placeholder="Name *"
                             className="mar-r"
                           />
-                           {this.state.errname && <div class="text-danger">{this.state.errname}</div>}
-                          <input type="text" placeholder="Email *"  value={this.state.email}
+                          {this.state.errname && <div class="text-danger">{this.state.errname}</div>}
+                          <input type="text" placeholder="Email *" value={this.state.email}
                             onChange={this.handleChange.bind(this, 'email', 'erremail')} />
-                             {this.state.erremail && <div class="text-danger">{this.state.erremail}</div>}
+                          {this.state.erremail && <div class="text-danger">{this.state.erremail}</div>}
                           <input value="Submit" onClick={this.gotocontactmail} type="submit" />
                         </div>
                       </div>

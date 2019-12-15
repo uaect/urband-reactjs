@@ -3,7 +3,7 @@ import ModalVideo from "../../VideoModal/video-modal.component";
 import "./style.css";
 import { connect } from "react-redux";
 import * as actionCreators from "../../../../src/store/actions/";
-
+import AlertBox from "../../hoc/AlertBox/index";
 class spotLight extends Component {
   constructor(props) {
     super(props);
@@ -12,7 +12,8 @@ class spotLight extends Component {
       imageArray: [],
       email: "",
       erremail: "",
-      videoArray: []
+      videoArray: [],
+      alertflag:false
     };
   }
 
@@ -42,9 +43,10 @@ class spotLight extends Component {
       this.props.subscribe(this.state)
         .then(() => {
           this.setState({
+            alertflag: true,
+            email: "",
             isToken: true
           })
-          alert("mail sent")
         })
         .catch((error) => {
           if (error.error) {
@@ -90,8 +92,14 @@ class spotLight extends Component {
     const image_url = "https://admin.urbandmusic.com/storage/";
 
     return (
+      
       <section className="section-padding-two wide_line_bg">
+        
         <div className="container">
+        {this.state.isToken?( <AlertBox
+          ActiveOrNot={true}
+          alertMessage="Thank you for contacting urband"
+        />):""}
           <div className="d-flex justify-content-center row">
             <div className="col-xl-10">
               <div className="section-title style-five">
