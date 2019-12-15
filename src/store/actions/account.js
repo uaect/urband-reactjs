@@ -1,5 +1,5 @@
 
-import { CONTACTUS,FOUNDED, REGISTER, LOGIN, GETADDRESS, ADDADDRESS, GETEMIRATES, SUBSCRIBE,GETEMIRATES1, REMOVEADDRESS, GETUSER, EDITUSER, GETORDEREDLIST } from "./types";
+import { CONTACTUS,FOUNDED, REGISTER, LOGIN, GETSOCIAL, GETADDRESS, ADDADDRESS, GETEMIRATES, SUBSCRIBE,GETEMIRATES1, REMOVEADDRESS, GETUSER, EDITUSER, GETORDEREDLIST } from "./types";
 var urbandtoken = JSON.parse(localStorage.getItem("urbandtoken"));
 export const register = (params) => {
     return dispatch => {
@@ -51,7 +51,6 @@ export const login = (params) => {
             })
                 .then(res => res.json())
                 .then(res => {
-                    console.log("result login", res);
                     if (res.success) {
                         localStorage.setItem('urbandtoken', JSON.stringify(res.token));
                         localStorage.setItem('urbandData', JSON.stringify(res.user));
@@ -70,7 +69,31 @@ export const login = (params) => {
         })
     };
 };
-
+export const getsocial = () => {
+    return dispatch => {
+        return new Promise((resolve, reject) => {
+            fetch("https://admin.urbandmusic.com/api/social", {
+                method: "POST"
+            })
+                .then(res => res.json())
+                .then(res => {
+                    console.log(res);
+                    if (res.success) {
+                        
+                        dispatch({
+                            type: GETSOCIAL,
+                            value: res.result
+                        });
+                        resolve()
+                    } else {
+                        reject(res)
+                    }
+                })
+                .catch(error => {
+                });
+        })
+    };
+};
 export const getaddress = (params) => {
     localStorage.removeItem('address');
     return dispatch => {

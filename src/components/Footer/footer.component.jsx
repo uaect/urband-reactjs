@@ -30,7 +30,15 @@ class Footer extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      description: ""
+      description: "",
+      social: "",
+      facebook: "",
+      Twitter: "",
+      Youtube: "",
+      LinkedIn: "",
+      Instagram: "",
+      SoundCloud: "",
+      Vimeo: ""
     }
   }
   componentDidMount() {
@@ -38,11 +46,60 @@ class Footer extends Component {
       .then(() => {
         const detail = this.props.detail.result;
         if (detail) {
-          console.log("footer", detail);
-
           if (detail.whoweare)
-          this.setState({description: detail.whoweare});
+            this.setState({ description: detail.whoweare });
 
+        }
+      })
+      .catch((error) => {
+        if (error) {
+        }
+      })
+    this.props.getsocial()
+      .then(() => {
+        console.log("foothher");
+        const social = this.props.social;
+        if (social) {
+          for (let i = 0; i < social.length; i++) {
+            if (social[i].title === "Facebook") {
+              this.setState({
+                facebook: social[i].description
+              });
+            }
+            if (social[i].title === "Twitter") {
+              this.setState({
+                Twitter: social[i].description
+              });
+            }
+            if (social[i].title === "Youtube") {
+              this.setState({
+                Youtube: social[i].description
+              });
+            }
+            if (social[i].title === "LinkedIn") {
+              this.setState({
+                LinkedIn: social[i].description
+              });
+            }
+            if (social[i].title === "Instagram") {
+              this.setState({
+                Instagram: social[i].description
+              });
+            }
+            if (social[i].title === "SoundCloud") {
+              this.setState({
+                SoundCloud: social[i].description
+              });
+            }
+            if (social[i].title === "Vimeo") {
+              this.setState({
+                Vimeo: social[i].description
+              });
+            }
+          }
+
+
+          console.log("fooer", this.state);
         }
       })
       .catch((error) => {
@@ -66,7 +123,7 @@ class Footer extends Component {
                     />
                   </Link>
                   <p>
-                  {this.state.description.description}
+                    {this.state.description.description}
                   </p>
                 </div>
                 <div className="footer-three-right">
@@ -86,54 +143,51 @@ class Footer extends Component {
                   </ul>
                   <div className="footer-social-three">
                     <ul>
-                      <li>
-                        <Link to="/">
+                      {this.state.facebook ? (<li>
+                        <a href={this.state.facebook}>
                           {" "}
                           <FontAwesomeIcon icon={faFacebookF} />
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="https://www.urbandmusic.com/">
+                        </a>
+                      </li>) : ""}
+
+                      {this.state.Youtube ? (<li>
+                        <a href={this.state.Youtube}>
                           {" "}
                           <FontAwesomeIcon icon={faYoutube} />
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/">
-                          {" "}
-                          <FontAwesomeIcon icon={faTwitter} />
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/">
+                        </a>
+                      </li>) : ""}
+
+                      {this.state.LinkedIn ? (<li>
+                        <a href={this.state.LinkedIn}>
                           {" "}
                           <FontAwesomeIcon icon={faLinkedin} />
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/">
+
+                        </a>
+                      </li>) : ""}
+                      {this.state.Twitter ? (<li>
+                        <a href={this.state.Twitter}>
+                          {" "}
+                          <FontAwesomeIcon icon={faTwitter} />
+                        </a>
+                      </li>) : ""}
+                      {this.state.Instagram ? (<li>
+                        <a href={this.state.Instagram}>
                           {" "}
                           <FontAwesomeIcon icon={faInstagram} />
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/">
-                          {" "}
-                          <FontAwesomeIcon icon={faApple} />
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/">
+                        </a>
+                      </li>) : ""}
+                      {this.state.Vimeo ? (<li>
+                        <a href={this.state.Vimeo}>
                           {" "}
                           <FontAwesomeIcon icon={faVimeo} />
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/">
+                        </a>
+                      </li>) : ""}
+                      {this.state.SoundCloud ? (<li>
+                        <a href={this.state.SoundCloud}>
                           {" "}
                           <FontAwesomeIcon icon={faSoundcloud} />
-                        </Link>
-                      </li>
+                        </a>
+                      </li>) : ""}
                     </ul>
                   </div>
                 </div>
@@ -149,14 +203,17 @@ class Footer extends Component {
 const mapDispatchToProps = dispatch => {
   // call action functions
   return {
-    fetchWhoWeAre: () => dispatch(actionCreators.fetchWhoWeAre())
+    fetchWhoWeAre: () => dispatch(actionCreators.fetchWhoWeAre()),
+    getsocial: () => dispatch(actionCreators.getsocial())
   };
 };
 
 const mapStateToProps = state => {
   return {
-    detail: state.whoweare.items
+    detail: state.whoweare.items,
+    social: state.social.items
   };
+
 };
 
 export default connect(

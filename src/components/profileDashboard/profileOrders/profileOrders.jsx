@@ -16,11 +16,6 @@ const ProfileOrders = () => {
             <OrderStatusBox/>
             <OrderStatusItem/>
           </OrderBox>
-          <OrderBox orderId="NAEBA0053772514">
-            <OrderStatusBox/>
-            <OrderStatusItem/>
-          </OrderBox>
-          
         </div>
       </div>
     </div>

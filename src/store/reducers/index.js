@@ -31,6 +31,8 @@ import aboutfounded from './aboutfounded';
 import eventDetailsReducer from './eventDetailsReducer';
 import profileReducer from './profileReducer';
 import getorderReducer from './getorderReducer';
+import socialReducer from './social';
+
 
 export default combineReducers({
     posts: postReducer, // choose any name
@@ -64,5 +66,6 @@ export default combineReducers({
     event_details:eventDetailsReducer,
     user:profileReducer,
     order:getorderReducer,
-    aboutfounded:aboutfounded
+    aboutfounded:aboutfounded,
+    social:socialReducer
 })
