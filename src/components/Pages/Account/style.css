@@ -55,3 +55,8 @@ h2.account-head {
 .btn.register{
     max-width: 100%;
 }
+.logo-social{
+    width: 250px;
+    padding: 17px;
+    text-align: center;
+}

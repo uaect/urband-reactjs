@@ -1,7 +1,10 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { Redirect } from 'react-router';
 import "./style.css";
+import Gmail from "../../../assets/img/gmail.png";
+import Facebook from "../../../assets/img/facebook.png";
+import GoogleLogin from 'react-google-login';
 import { connect } from "react-redux";
 import * as actionCreators from "../../../../src/store/actions/";
 class logIn extends Component {
@@ -63,12 +66,15 @@ class logIn extends Component {
           }
         })
     }
-
   }
+
+  
 
 
   render() {
-
+    const responseGoogle = (response) =>{
+      console.log(response);
+    }
     return (
       <div>
         <section className="header-padd">
@@ -122,9 +128,19 @@ class logIn extends Component {
                     <div className="col-md-6">
                       <button className="btn" type="submit" onClick={this.gotoLogin}>Log In</button>
                     </div>
+                      <GoogleLogin
+                        clientId="960961951131-46o64t0b0kjb3421pcu8ekpbnglrq6fb.apps.googleusercontent.com"
+                        buttonText="Sign in with google"
+                        onSuccess={responseGoogle}
+                        onFailure={responseGoogle}
+                        cookiePolicy={'single_host_origin'}
+                      />
                   </div>
                 </div>
               </div>
+
+
+
             </div>
           </div>
         </section>
