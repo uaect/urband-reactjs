@@ -45,14 +45,13 @@ export const login = (params) => {
                 logo: params.logo?params.logo:"",
                 token: params.token?params.token:""
             };
-
-            console.log(body);
             fetch("https://admin.urbandmusic.com/api/login", {
                 method: "POST",
                 body: JSON.stringify(body)
             })
                 .then(res => res.json())
                 .then(res => {
+                    console.log("result login", res);
                     if (res.success) {
                         localStorage.setItem('urbandtoken', JSON.stringify(res.token));
                         localStorage.setItem('urbandData', JSON.stringify(res.user));
