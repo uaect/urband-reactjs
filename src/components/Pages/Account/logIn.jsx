@@ -74,6 +74,7 @@ class logIn extends Component {
 
   responseFacebook = (response) => {
     var res = response;
+    console.log(res);
     if (res) {
       this.setState({
         loginType: 'gmail',
