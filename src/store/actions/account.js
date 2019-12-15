@@ -34,7 +34,6 @@ export const register = (params) => {
 };
 
 export const login = (params) => {
-    console.log(params);
     return dispatch => {
         return new Promise((resolve, reject) => {
             const body = {
@@ -46,6 +45,8 @@ export const login = (params) => {
                 logo: params.logo?params.logo:"",
                 token: params.token?params.token:""
             };
+
+            console.log(body);
             fetch("https://admin.urbandmusic.com/api/login", {
                 method: "POST",
                 body: JSON.stringify(body)
