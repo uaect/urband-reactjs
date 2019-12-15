@@ -93,7 +93,7 @@ class logIn extends Component {
         .catch((error) => {
           if (error.error == 'Unauthorised') {
             this.setState({
-              errpassword: 'Sign in with gmail failed'
+              errpassword: 'Sign in with facebook failed'
             })
           }
         })
