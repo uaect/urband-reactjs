@@ -28,7 +28,7 @@ const ProfileDashboard = ({ match }) => {
                   <div>
                     <div className="lftPrfDesc1">
                       <div className="DescTxtTp1">{userData.name}</div>
-                      <div className="DescTxtTp2"> <Link to="/logout">Sign Out</Link></div>
+                      <div className="DescTxtTp2"> {/*<Link to="/logout">Sign Out</Link>*/}</div>
                     </div>
                     <div className="PrfLinkBoxTp1">
                       <div className="ProfileNavItem">
