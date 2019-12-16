@@ -36,11 +36,11 @@ class Header extends Component {
         if (this.props.menues.length) {
 
           var headers = this.props.menues;
-          console.log("insidee function", headers);
+          //console.log("insidee function", headers);
           if (headers) {
             for (let i = 0; i < headers.length; i++) {
               if (headers[i].title === "Event Tickets") {
-                console.log("insidee");
+                //console.log("insidee");
                 localStorage.setItem('ticketheader', "true");
               }
             }
@@ -84,7 +84,7 @@ class Header extends Component {
   };
 
   render() {
-    console.log("yyyyyyyyyyyyyyy", this.props.menues);
+    //console.log("yyyyyyyyyyyyyyy", this.props.menues);
 
     return (
       <div className="AppHeader">

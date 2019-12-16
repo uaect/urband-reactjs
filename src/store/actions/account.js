@@ -77,7 +77,7 @@ export const getsocial = () => {
             })
                 .then(res => res.json())
                 .then(res => {
-                    console.log(res);
+                    //console.log(res);
                     if (res.success) {
                         
                         dispatch({
@@ -107,7 +107,7 @@ export const getaddress = (params) => {
             })
                 .then(res => res.json())
                 .then(res => {
-                    console.log(res);
+                    //console.log(res);
                     if (res.success) {
                         localStorage.setItem('address', true);
                         dispatch({
@@ -270,7 +270,7 @@ export const getuser = () => {
 };
 
 export const edituser = (params) => {
-    console.log(params);
+    //console.log(params);
     
     return dispatch => {
         return new Promise((resolve, reject) => {

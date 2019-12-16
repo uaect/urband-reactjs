@@ -11,7 +11,7 @@ const profileAddresses = () => {
             <div className="HdrBxc1 positionRelativeBox">
                 <HeaderTypeOne heading="Addresses" subheading="Add, remove and select preferred addresses" />
                 <div className="positionAbsTopRight">
-                    <ButtonTypeOne buttonText="Add New Address" />
+                    {/*<ButtonTypeOne buttonText="Add New Address" />*/}
                 </div>
             </div>
             <AddressRow />

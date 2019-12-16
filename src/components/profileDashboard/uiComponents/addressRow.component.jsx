@@ -29,8 +29,8 @@ class AddressRow extends Component {
 
     render() {
         const address = this.props.address;
-        console.warn("sss :", address);
-        console.warn("length :", address.length);
+        //console.warn("sss :", address);
+        //console.warn("length :", address.length);
 
         return (
             <div>

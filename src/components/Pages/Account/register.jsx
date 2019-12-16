@@ -28,7 +28,7 @@ class register extends Component {
   }
 
   gotoSignUp = () => {
-    console.log(this.state);
+    //console.log(this.state);
 
     const { firstname, lastname, email, password, mobile, city } = this.state;
     let flag = 0;

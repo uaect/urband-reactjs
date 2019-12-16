@@ -13,7 +13,7 @@ class multiCarouselHero extends Component {
   render() {
     const image_url = "https://admin.urbandmusic.com/storage/";
     const posts = this.props.posts;
-    console.log(posts);
+    //console.log(posts);
 
     const responsive = {
       superLargeDesktop: {

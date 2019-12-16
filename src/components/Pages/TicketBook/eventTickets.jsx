@@ -18,7 +18,7 @@ class eventTickets extends Component {
     const events = this.props.events;
     return (
       <div>
-        <BannerHero title={"eventTicket"} />
+        <BannerHero title={"Event Tickets"} />
         <section className="page-padd ticket-wrap">
           <div className="container">
             <div className="row">

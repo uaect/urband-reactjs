@@ -74,7 +74,7 @@ class logIn extends Component {
 
   responseFacebook = (response) => {
     var res = response;
-    console.log(res);
+    //console.log(res);
     if (res) {
       this.setState({
         loginType: 'social',
@@ -184,6 +184,9 @@ class logIn extends Component {
                     <div className="col-md-6">
                       <button className="btn" type="submit" onClick={this.gotoLogin}>Log In</button>
                     </div>
+                    </div>
+                  <div className="row mt-4">
+                  <div className="col-md-6">
                     <div className="social-btn">
                     <GoogleLogin
                       clientId="960961951131-46o64t0b0kjb3421pcu8ekpbnglrq6fb.apps.googleusercontent.com"
@@ -193,13 +196,14 @@ class logIn extends Component {
                       cookiePolicy={'single_host_origin'}
                     />
                     </div>
+                    </div>
+                    <div className="col-md-6">
                     <div className="social-btn">
-                    <FacebookLogin
-                      appId="2866633446709623" //APP ID NOT CREATED YET
+                    <FacebookLogin appId="2866633446709623" //APP ID NOT CREATED YET
                       fields="name,email,picture"
                       callback={this.responseFacebook}
-                      icon="fa-facebook"
-                    />
+                      icon="fa-facebook" />
+                    </div>
                     </div>
                   </div>
                 </div>

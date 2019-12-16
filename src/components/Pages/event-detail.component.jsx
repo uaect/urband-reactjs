@@ -42,19 +42,18 @@ class EventDetail extends Component {
     return (
 
       <div>
-        <BannerHero title={"Events"} />
+        <BannerHero title={"Event Detail"} />
         {event ? (
           <section id="event-about">
             <div className="container">
               <div className="row">
                 <div className="col-lg-6">
                   <div className="event-thumb">
-                  {event.image?(
                     <img
-                      src={
+                      src={event.image?(
                         image_url +
-                        event.image
-                      } alt="Thumb" />):"https://urbandmusic.com/no_image.png"}
+                        event.image):"https://urbandmusic.com/no_image.png"
+                      } alt="Thumb" />
                   </div>
                 </div>
 

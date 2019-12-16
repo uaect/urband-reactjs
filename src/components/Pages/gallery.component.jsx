@@ -115,7 +115,7 @@ function Gallery() {
                   })}
               </div>
             </Tabs>
-            {console.log("xxxxx :", lightboxController.sourceImg)}
+            {/*console.log("xxxxx :", lightboxController.sourceImg)*/}
             <FsLightbox
               toggler={lightboxController.toggler}
               sourceImg={lightboxController.sourceImg}

@@ -30,7 +30,7 @@ class ModalVideoComponent extends Component {
   }
 
   render() {
-    console.log("title", this.state.title);
+    //console.log("title", this.state.title);
     
     return (
       <div className="btn-wrap">

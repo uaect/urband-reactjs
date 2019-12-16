@@ -22,7 +22,7 @@ class AlbumHome extends Component {
 
     return (
       <div>
-        <BannerHero />
+        <BannerHero  title={"Albums"}/>
 
         <section className="section-hero">
           <div className="container">
