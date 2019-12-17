@@ -19,7 +19,9 @@ class register extends Component {
       mobile: "",
       errMobile: "",
       city: "",
-      errCity: ""
+      errCity: "",
+      terms: 0,
+      errTerms: ""
     }
   }
   
@@ -30,7 +32,7 @@ class register extends Component {
   gotoSignUp = () => {
     //console.log(this.state);
 
-    const { firstname, lastname, email, password, mobile, city } = this.state;
+    const { firstname, lastname, email, password, mobile, city, terms } = this.state;
     let flag = 0;
 
     if (firstname.length < 1) {
@@ -83,6 +85,13 @@ class register extends Component {
       })
     }
 
+    if (terms == 0) {
+      flag = 1;
+      this.setState({
+        errTerms: 'Accept terms and condition of urbandmusic.com'
+      })
+    }
+
     if (flag == 0) {
       this.props.register(this.state)
       .then(() => {
@@ -99,9 +108,15 @@ class register extends Component {
 
 
   handleChange(state, errState, evt) {
+    console.log(state);
     let _state = this.state
-    _state[state] = evt.target.value;
-    _state[errState] = '';
+    if(state == 'terms'){
+      _state[state] = this.state.terms == 1?0:1;
+      _state[errState] = '';
+    }else{
+      _state[state] = evt.target.value;
+      _state[errState] = '';
+    }
     this.setState({
       ..._state
     })
@@ -111,7 +126,7 @@ class register extends Component {
 
 
   render() {
-    const { firstname, errFirstname, lastname, errLastname, email, errEmail, password, errPassword, mobile, errMobile, city, errCity} = this.state;
+    const { firstname, errFirstname, lastname, errLastname, email, errEmail, password, errPassword, mobile, errMobile, city, errCity, terms, errTerms} = this.state;
     const emirates = this.props.emirates;
 
     return (
@@ -221,6 +236,17 @@ class register extends Component {
                           </select>
                       </div>
                       {errCity && <div class="text-danger">{errCity}</div>}
+                    </div>
+
+                    <div className="col-md-12 mb-2">
+                        <input
+                          type="checkbox"
+                          value={terms}
+                          onChange={this.handleChange.bind(this, 'terms', 'errTerms')}
+                          name="terms"
+                          placeholder="Password"
+                        />   Accept terms & condition
+                      {errTerms && <div class="text-danger">{errTerms}</div>}
                     </div>
 
 

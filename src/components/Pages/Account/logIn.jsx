@@ -60,7 +60,9 @@ class logIn extends Component {
           this.setState({
             isToken: true
           })
-          window.location.href = "/";
+          this.props.history.push({
+            pathname: '/'
+          })
         })
         .catch((error) => {
           if (error.error == 'Unauthorised') {
