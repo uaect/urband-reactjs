@@ -131,7 +131,7 @@ export const deletecart = (id) => {
 
 
 export const updatecartQuantity = (quantity,id) => {
-    console.log("tttttttt",id);
+    //console.log("tttttttt",id);
     
     return dispatch => {
         return new Promise((resolve, reject) => {
@@ -146,7 +146,7 @@ export const updatecartQuantity = (quantity,id) => {
             })
                 .then(res => res.json())
                 .then(res => {
-                    console.log("resulrtt", res);
+                    //console.log("resulrtt", res);
                     if (res.success) {
                         dispatch({
                             type: QUANTITY_UPDATE,

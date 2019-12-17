@@ -88,6 +88,7 @@ class ProfileBox extends Component {
                       placeholder={userData.name}
                       value={name}
                       onChange={this.handleChange.bind(this, 'name', 'nameErr')}
+                      autoComplete="off"
                     />
                   </div>
                 </div>
@@ -99,6 +100,7 @@ class ProfileBox extends Component {
                       placeholder={userData.email}
                       value={email}
                       onChange={this.handleChange.bind(this, 'email', 'emailErr')}
+                      autoComplete="off"
                     />
                   </div>
                 </div>
@@ -108,8 +110,9 @@ class ProfileBox extends Component {
                       type="password"
                       className="form-control field-control"
                       placeholder="Password"
-                      value={email}
+                      value=""
                       onChange={this.handleChange.bind(this, 'password', 'passwordErr')}
+                      autoComplete="off"
                     />
                   </div>
                 </div>
@@ -119,8 +122,9 @@ class ProfileBox extends Component {
                       type="text"
                       className="form-control field-control"
                       placeholder="Repeate Password"
-                      value={email}
+                      value=""
                       onChange={this.handleChange.bind(this, 'confirmpassword', 'passwordErr')}
+                      autoComplete="off"
                     />
                   </div>
                 </div>

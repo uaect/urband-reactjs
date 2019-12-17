@@ -55,7 +55,7 @@ class cart extends Component {
       .then(() => {
         if (this.props.cartitems.length) {
           var cartItems = this.props.cartitems;
-          console.log("tttttttt", cartItems);
+          //console.log("tttttttt", cartItems);
 
           var totalcost = 0;
           if (cartItems !== "emtey cart") {

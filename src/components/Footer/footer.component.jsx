@@ -57,7 +57,7 @@ class Footer extends Component {
       })
     this.props.getsocial()
       .then(() => {
-        console.log("foothher");
+        //console.log("foothher");
         const social = this.props.social;
         if (social) {
           for (let i = 0; i < social.length; i++) {
@@ -99,7 +99,7 @@ class Footer extends Component {
           }
 
 
-          console.log("fooer", this.state);
+          //console.log("fooer", this.state);
         }
       })
       .catch((error) => {

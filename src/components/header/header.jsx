@@ -27,20 +27,37 @@ class Header extends Component {
   }
 
   componentDidMount() {
-
+    this.fetchcontact()
     this.headercheck()
+  }
+  fetchcontact() {
+    this.props.fetchContact()
+      .then(() => {
+        if (this.props.contact) {
+          var contact = this.props.contact;
+          if (contact) {
+            this.setState({
+              logo: contact.contactus.image
+            });
+          }
+        }
+      })
+      .catch(error => {
+        if (error.error) {
+          this.setState({
+            errpassword: error.error
+          });
+        }
+      })
   }
   headercheck() {
     this.props.fetchMenues()
       .then(() => {
         if (this.props.menues.length) {
-
           var headers = this.props.menues;
-          console.log("insidee function", headers);
           if (headers) {
             for (let i = 0; i < headers.length; i++) {
               if (headers[i].title === "Event Tickets") {
-                console.log("insidee");
                 localStorage.setItem('ticketheader', "true");
               }
             }
@@ -84,8 +101,7 @@ class Header extends Component {
   };
 
   render() {
-    console.log("yyyyyyyyyyyyyyy", this.props.menues);
-
+    const image_url = "https://admin.urbandmusic.com/storage/";
     return (
       <div className="AppHeader">
         <div
@@ -298,15 +314,18 @@ class Header extends Component {
   }
 }
 
+
 const mapDispatchToProps = dispatch => {
   return {
+    fetchContact: () => dispatch(actionCreators.fetchContact()),
     fetchMenues: () => dispatch(actionCreators.fetchMenues())
   };
 };
 
 const mapStateToProps = state => {
   return {
-    menues: state.menues.items
+    menues: state.menues.items,
+    contact: state.contact.items
   };
 };
 

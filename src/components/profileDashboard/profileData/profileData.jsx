@@ -6,7 +6,7 @@ const ProfileData = () => {
   return (
     <div>
       <div className="HdrBxc1 positionRelativeBox">
-        <HeaderTypeOne heading="profile" subheading="General Informaton" />
+        <HeaderTypeOne heading="Profile" subheading="General Informaton" />
       </div>
       <div className="AddressBoxTpWrp mb-2">
         <div>

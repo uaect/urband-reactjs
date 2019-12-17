@@ -15,8 +15,8 @@ class HeaderTypeOne extends Component {
     render() {
         var orders = [];
         orders = this.props.orders.result;
-        if(orders)
-        console.log("ffffffffffffokkkkkkff", orders.length);
+        //if(orders)
+        //console.log("ffffffffffffokkkkkkff", orders.length);
         
         const image_url = this.props.orders.image_url+'/';
         return (

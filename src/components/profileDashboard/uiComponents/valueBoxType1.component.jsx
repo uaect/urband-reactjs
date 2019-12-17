@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 const HeaderTypeOne = (props) => {
   let totalcost=props.item.total;
-  console.log("header", props);
+  //console.log("header", props);
   
 let vat = props.item.ticketDetail;
   

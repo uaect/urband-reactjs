@@ -42,7 +42,7 @@ class EventDetail extends Component {
     return (
 
       <div>
-        <BannerHero title={"Events"} />
+        <BannerHero title={"Event Detail"} />
         {event ? (
           <section id="event-about">
             <div className="container">
@@ -50,9 +50,9 @@ class EventDetail extends Component {
                 <div className="col-lg-6">
                   <div className="event-thumb">
                     <img
-                      src={
+                      src={event.image?(
                         image_url +
-                        event.image
+                        event.image):"https://urbandmusic.com/no_image.png"
                       } alt="Thumb" />
                   </div>
                 </div>

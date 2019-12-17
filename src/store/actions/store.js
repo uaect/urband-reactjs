@@ -1,7 +1,7 @@
 import { FETCH_STORELIST,FETCH_STOREDETAILS,FETCH_STORECATEGORY} from "./types";
 
 export const fetchStoreList = (state) => {
-    console.log("body : ", state);
+    //console.log("body : ", state);
 
     return dispatch => {
         const body = {
@@ -41,7 +41,7 @@ export const fetchStoreDetails = (id) => {
         })
             .then(res => res.json())
             .then(res => {
-                console.log("hhhhhhhhhhhhh", res);
+                //console.log("hhhhhhhhhhhhh", res);
                 
                 dispatch({
                     type: FETCH_STOREDETAILS,
@@ -64,7 +64,7 @@ export const fetchStoreCategory = () => {
         })
             .then(res => res.json())
             .then(res => {
-                console.log(res.result);
+                //console.log(res.result);
 
                 dispatch({
                     type: FETCH_STORECATEGORY,

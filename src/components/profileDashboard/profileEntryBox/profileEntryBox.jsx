@@ -12,7 +12,7 @@ const profileEntryBox = () => {
                     <img src={EmptyMessage} alt=""/>
                     <div className="MangeEmptyBoxge101">Manage Your Orders, Profiles & Addresses</div>
                     <div className="MangeEmptyBoxge102">Need To Purchase Something ? Go Merchandise</div>
-                    <Link className="tim-btn mt-4 ticket-btn-lg place-order" to="/cart">Go to Products</Link>
+                    <Link className="tim-btn mt-4 ticket-btn-lg place-order" to="/store">Go to Products</Link>
                 </div>
             </div>
         </div>
