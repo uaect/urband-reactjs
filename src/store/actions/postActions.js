@@ -23,24 +23,32 @@ export const fetchPosts = () => {
     };
 };
 
+
 export const fetchContact = () => {
     return dispatch => {
-
+        return new Promise((resolve, reject) => {
         fetch("https://admin.urbandmusic.com/api/aboutus", {
             method: "POST"
         })
             .then(res => res.json())
             .then(res => {
-                dispatch({
-                    type: FETCH_CONTACT,
-                    value: res.result
-                });
+                if (res.success) {
+                    dispatch({
+                        type: FETCH_CONTACT,
+                        value: res.result
+                    });
+                    resolve()
+                } else {
+                    reject(res)
+                }
             })
             .catch(error => {
                 //console.log("error" + JSON.stringify(error));
             });
+        });
     };
 };
+
 
 export const fetchClients = () => {
     return dispatch => {
