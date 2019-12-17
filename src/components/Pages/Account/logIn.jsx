@@ -74,15 +74,14 @@ class logIn extends Component {
 
   responseFacebook = (response) => {
     var res = response;
-    console.log(res);
-    if (res) {
+    if (res.email) {
       this.setState({
         loginType: 'social',
-        email: res.email,
-        firstname: res.name,
-        lastname: res.name,
-        logo: res.picture.data.url,
-        token: response.access_token
+        email: res.email?res.email:"",
+        firstname: res.name?res.name:"",
+        lastname: res.name?res.name:"",
+        logo: res.picture?res.picture.data.url:"",
+        token: ""
       })
       this.props.login(this.state)
         .then(() => {
@@ -103,14 +102,14 @@ class logIn extends Component {
 
   responseGoogle = (response) => {
     var res = response.profileObj;
-    if (res) {
+    if (res.email) {
       this.setState({
         loginType: 'social',
-        email: res.email,
-        firstname: res.givenName,
-        lastname: res.familyName,
-        logo: res.imageUrl,
-        token: response.tokenObj.access_token
+        email: res.email?res.email:"",
+        firstname: res.givenName?res.givenName:"",
+        lastname: res.familyName?res.familyName:"",
+        logo: res.imageUrl?res.imageUrl:"",
+        token: ""
       })
       this.props.login(this.state)
         .then(() => {
