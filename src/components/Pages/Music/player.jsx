@@ -12,12 +12,11 @@ class PlayerHero extends Component {
   // constructor(props){
   //     super(props)
   // }
-
   constructor(props) {
     super(props);
     this.state = {
       currentPlayList: {},
-      playsong: false,
+      playsong: true,
       song: {}
     };
     this.handleClick = this.handleClick.bind(this);
@@ -25,7 +24,6 @@ class PlayerHero extends Component {
   handleClick(item) {
     this.setState({ playsong: true });
     this.setState({ song: item });
-
     this.setState({
       currentPlayList: {
         playlistCoverUrl:
@@ -43,7 +41,9 @@ class PlayerHero extends Component {
       }
     });
   }
-  componentDidMount() {}
+  componentDidMount() {
+
+  }
 
   render() {
     const image_url = "https://admin.urbandmusic.com/storage/";
