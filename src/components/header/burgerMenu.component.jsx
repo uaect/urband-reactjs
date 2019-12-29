@@ -27,7 +27,6 @@ class burgerMenu extends Component {
   onclickStepHandler(step) {
     this.setState({ childVisible: step });
   }
-
   render() {
     var styles = {
       bmBurgerButton: {
@@ -73,7 +72,6 @@ class burgerMenu extends Component {
         background: "rgba(0, 0, 0, 0.3)"
       }
     };
-
     return (
       <Menu
         className={"urband-menu"}
@@ -86,7 +84,6 @@ class burgerMenu extends Component {
         <NavLink exact to="/index" onClick={() => this.closeMenu()}>
           Home
         </NavLink>
-
         <NavLink
           to="/"
           className="in-array"
@@ -173,15 +170,6 @@ class burgerMenu extends Component {
           Contact
         </NavLink>
       </Menu>
-
-      // <Menu   styles={ styles } pageWrapId={ "page-wrap" } outerContainerId={ "outer-container" }>
-      // <main id="page-wrap">
-      // <a id="home" className="menu-item" href="/">Home</a>
-      // <a id="about" className="menu-item" href="/about">About</a>
-      // <a id="contact" className="menu-item" href="/contact">Contact</a>
-      // <a onClick={ this.showSettings } className="menu-item--small" href="">Settings</a>
-      // </main>
-      // </Menu>
     );
   }
 }
