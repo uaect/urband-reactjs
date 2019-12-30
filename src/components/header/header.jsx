@@ -102,6 +102,8 @@ class Header extends Component {
 
   render() {
     const image_url = "https://admin.urbandmusic.com/storage/";
+    const menue = this.props.menues;
+    console.log(menue);
     return (
       <div className="AppHeader">
         <div
@@ -124,120 +126,137 @@ class Header extends Component {
               <div className="d-flex full-wrap nav-wrap">
                 <div className="nav">
                   <ul className="group" id="header-menu-magic-line">
-                    {this.props.menues.some(el => el.title === "Home") && (
-                      <li>
-                        <NavLink
-                          to="/index"
-                          activeClassName="selected"
-                          className="in-array"
-                        >
-                          Home
-                        </NavLink>
-                      </li>
-                    )}
-                    {this.props.menues.some(el => el.title === "Studio") && (
-                      <li className="menu-item-has-children in-array">
-                        Studio
-                        <ul className="sub-menu">
-                          {this.props.menues.some(el => el.title === "Artist") && (<li>
-                            <Link to="/artist">Artists</Link>
-                          </li>)}
-                          {this.props.menues.some(el => el.title === "Clients") && (<li>
-                            <Link to="/clients">Clients</Link>
-                          </li>)}
-                        </ul>
-                      </li>
-                    )}
-                    {this.props.menues.some(el => el.title === "Radio") && (
-                      <li>
-                        <NavLink
-                          to="/radio"
-                          className="in-array"
-                          activeClassName="selected"
-                        >
-                          Radio
-                        </NavLink>
-                      </li>
-                    )}
-                    {this.props.menues.some(el => el.title === "Events") && (
-                      <li className="menu-item-has-children">
-                        <NavLink
-                          to="/event-list"
-                          activeClassName="selected"
-                          className="in-array"
-                        >
-                          Events
-                        </NavLink>
-                      </li>
-                    )}
+                    {menue ? (
+                      menue.map(el => {
+                        return (el.id == '10' && <li>
+                          <NavLink
+                            to="/index"
+                            activeClassName="selected"
+                            className="in-array"
+                          >
+                            {el.title}
+                          </NavLink>
+                        </li>)
+                      })) : ""}
+                    <li className="menu-item-has-children in-array">
+                      {menue ? (
+                        menue.map(el => {
+                          return (el.id == '11' && el.title);
+                        })) : ""}
+                      <ul className="sub-menu">
+                        {menue ? (
+                          menue.map(el => {
+                            return (el.id == '12' && <li>
+                              <Link to="/artist">{el.title}</Link>
+                            </li>);
+                          })) : ""}
+                        {menue ? (
+                          menue.map(el => {
+                            return (el.id == '13' && <li>
+                              <Link to="/clients">{el.title}</Link>
+                            </li>);
+                          })) : ""}
+                      </ul>
+                    </li>
 
-                    {this.props.menues.some(el => el.title === "About") && (
-                      <li>
-                        <NavLink
-                          to="/who-we-are"
-                          activeClassName="selected"
-                          className="in-array"
-                        >
-                          About
-                        </NavLink>
-                      </li>
-                    )}
+                    {menue ? (
+                      menue.map(el => {
+                        return (el.id == '14' && <li>
+                          <NavLink
+                            to="/radio"
+                            className="in-array"
+                            activeClassName="selected"
+                          >
+                            {el.title}
+                          </NavLink>
+                        </li>);
+                      })) : ""}
+
+                    {menue ? (
+                      menue.map(el => {
+                        return (el.id == '15' && <li className="menu-item-has-children">
+                          <NavLink
+                            to="/event-list"
+                            activeClassName="selected"
+                            className="in-array"
+                          >
+                            {el.title}
+                          </NavLink>
+                        </li>);
+                      })) : ""}
+
+                    {menue ? (
+                      menue.map(el => {
+                        return (el.id == '16' && <li>
+                          <NavLink
+                            to="/who-we-are"
+                            activeClassName="selected"
+                            className="in-array"
+                          >
+                            {el.title}
+                          </NavLink>
+                        </li>);
+                      })) : ""}
 
                     {/* <li>
                       <NavLink exact to="/vlog" className="in-array">
                         Vlog
                       </NavLink>
                     </li> */}
-                    {this.props.menues.some(el => el.title === "Gallery") && (
-                      <li>
-                        <NavLink
-                          to="/gallery"
-                          activeClassName="selected"
-                          className="in-array"
-                        >
-                          Gallery
+
+                    {menue ? (
+                      menue.map(el => {
+                        return (el.id == '18' && <li>
+                          <NavLink
+                            to="/gallery"
+                            activeClassName="selected"
+                            className="in-array"
+                          >
+                            Gallery
                         </NavLink>
-                      </li>
-                    )}
-                    {this.props.menues.some(el => el.title === "Purchase") && (
-                      <li className="menu-item-has-children in-array">
-                        Purchase
-                        <ul className="sub-menu">
-                          {this.props.menues.some(
-                            el => el.title === "Event Tickets"
-                          ) && (
-                              <li>
-                                <Link to="/event-tickets">Event Tickets</Link>
-                              </li>
-                            )}
-                          {this.props.menues.some(
-                            el => el.title === "Studio Bookings"
-                          ) && (
-                              <li>
-                                <Link to="/coming-soon">Studio Bookings</Link>
-                              </li>
-                            )}
-                          {this.props.menues.some(
-                            el => el.title === "Merchandise"
-                          ) && (
-                              <li>
-                                <Link to="/store">Merchandise</Link>
-                              </li>
-                            )}
-                        </ul>
-                      </li>
-                    )}
-                    {this.props.menues.some(el => el.title === "Contact") && (
-                      <li>
-                        <NavLink
-                          to="/contact"
-                          className="in-array"
-                          activeClassName="selected"
-                        >
-                          Contact
-                        </NavLink>
-                      </li>
-                    )}
+                        </li>);
+                      })) : ""}
+
+                    <li className="menu-item-has-children in-array">
+                      {menue ? (
+                        menue.map(el => {
+                          return (el.id == '19' && el.title);
+                        })) : ""}
+                      <ul className="sub-menu">
+                        {menue ? (
+                          menue.map(el => {
+                            return (el.id == '20' && <li>
+                              <Link to="/event-tickets">{el.title}</Link>
+                            </li>);
+                          })) : ""}
+                        {menue ? (
+                          menue.map(el => {
+                            return (el.id == '21' && <li>
+                              <Link to="/coming-soon">{el.title}</Link>
+                            </li>);
+                          })) : ""}
+                        {menue ? (
+                          menue.map(el => {
+                            return (el.id == '22' && <li>
+                              <Link to="/store">{el.title}</Link>
+                            </li>);
+                          })) : ""}
+                      </ul>
+                    </li>
+
+                    {menue ? (
+                      menue.map(el => {
+                        return (el.id == '23' && <li>
+                          <NavLink
+                            to="/contact"
+                            className="in-array"
+                            activeClassName="selected"
+                          >
+                            {el.title}
+                          </NavLink>
+                        </li>);
+                      })) : ""}
+
                   </ul>
                 </div>
 
