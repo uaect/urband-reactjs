@@ -159,18 +159,6 @@ class Header extends Component {
                       </ul>
                     </li>
 
-                    {this.props.menues.some(el => el.title === "Radio") && (
-                      <li>
-                        <NavLink
-                          to="/radio"
-                          className="in-array"
-                          activeClassName="selected"
-                        >
-                          Radio
-                        </NavLink>
-                      </li>
-                    )}
-
                     {menue ? (
                       menue.map(el => {
                         return (el.id == '14' && <li>
