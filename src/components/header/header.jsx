@@ -103,7 +103,6 @@ class Header extends Component {
   render() {
     const image_url = "https://admin.urbandmusic.com/storage/";
     const menue = this.props.menues;
-    console.log(menue);
     return (
       <div className="AppHeader">
         <div
@@ -212,7 +211,7 @@ class Header extends Component {
                             activeClassName="selected"
                             className="in-array"
                           >
-                            Gallery
+                            {el.title}
                         </NavLink>
                         </li>);
                       })) : ""}

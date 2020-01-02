@@ -4,10 +4,19 @@ import { slide as Menu } from "react-burger-menu";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Redirect } from 'react-router-dom';
+
+import { connect } from "react-redux";
+import * as actionCreators from "../../../src/store/actions/";
 
 library.add(faAngleDown);
 
 class burgerMenu extends Component {
+
+  componentDidMount() {
+    this.props.fetchMenues()
+  }
+
   showSettings(event) {
     event.preventDefault();
   }
@@ -28,6 +37,8 @@ class burgerMenu extends Component {
     this.setState({ childVisible: step });
   }
   render() {
+    const menue = this.props.menues;
+
     var styles = {
       bmBurgerButton: {
         position: "fixed",
@@ -81,97 +92,179 @@ class burgerMenu extends Component {
         isOpen={this.state.menuOpen}
         onStateChange={state => this.handleStateChange(state)}
       >
-        <NavLink exact to="/index" onClick={() => this.closeMenu()}>
-          Home
-        </NavLink>
-        <NavLink
-          to="/"
-          className="in-array"
-          onClick={() => this.onclickStepHandler(1)}
-        >
-          Studio{" "}
-          <span className="ico-drop">
-            <FontAwesomeIcon icon={faAngleDown} />
-          </span>
-        </NavLink>
+        {menue ? (
+          menue.map(el => {
+            return (el.id == '10' && <NavLink exact to="/index" onClick={() => this.closeMenu()}>
+              {el.title}
+            </NavLink>)
+          })) : ""}
+
+
+
+        {menue ? (
+          menue.map(el => {
+            return (el.id == '11' && <NavLink
+              to="/"
+              className="in-array"
+              onClick={() => this.onclickStepHandler(1)}
+            >
+              {el.title}
+              <span className="ico-drop">
+                <FontAwesomeIcon icon={faAngleDown} />
+              </span>
+            </NavLink>);
+          })) : ""}
+
+
         {this.state.childVisible === 1 ? (
           <div className="sub-drop">
-            <NavLink
-              exact
-              to="/artist"
-              activeClassName="selected"
-              onClick={() => this.closeMenu()}
-            >
-              Artists
-            </NavLink>
-            <NavLink
-              exact
-              to="/clients"
-              activeClassName="selected"
-              onClick={() => this.closeMenu()}
-            >
-              Clients
-            </NavLink>
+            {menue ? (
+              menue.map(el => {
+                return (el.id == '12' && <NavLink
+                  exact
+                  to="/artist"
+                  activeClassName="selected"
+                  onClick={() => this.closeMenu()}
+                >
+                  {el.title}
+                </NavLink>);
+              })) : ""}
+
+            {menue ? (
+              menue.map(el => {
+                return (el.id == '13' && <NavLink
+                  exact
+                  to="/clients"
+                  activeClassName="selected"
+                  onClick={() => this.closeMenu()}
+                >
+                  {el.title}
+                </NavLink>);
+              })) : ""}
+
+
           </div>
         ) : null}
-        <NavLink
-          exact
-          to="/radio"
-          className="in-array"
-          onClick={() => this.closeMenu()}
-        >
-          Radio
-        </NavLink>
-        <NavLink
-          exact
-          to="/event-list"
-          className="in-array"
-          onClick={() => this.closeMenu()}
-        >
-          Events
-        </NavLink>
-        <NavLink exact to="/who-we-are" onClick={() => this.closeMenu()}>
-          About
-        </NavLink>
-        <NavLink exact to="/gallery" onClick={() => this.closeMenu()}>
-          Gallery
-        </NavLink>
-        <NavLink
-          exact
-          to="/"
-          className="in-array"
-          onClick={() => this.onclickStepHandler(2)}
-        >
-          Purchase
-          <span className="ico-drop">
-            <FontAwesomeIcon icon={faAngleDown} />
-          </span>{" "}
-        </NavLink>
+
+        {menue ? (
+          menue.map(el => {
+            return (el.id == '14' && <NavLink
+              exact
+              to="/radio"
+              className="in-array"
+              onClick={() => this.closeMenu()}
+            >
+              {el.title}
+            </NavLink>);
+          })) : ""}
+
+        {menue ? (
+          menue.map(el => {
+            return (el.id == '15' && <NavLink
+              exact
+              to="/event-list"
+              className="in-array"
+              onClick={() => this.closeMenu()}
+            >
+              {el.title}
+            </NavLink>);
+          })) : ""}
+
+
+        {menue ? (
+          menue.map(el => {
+            return (el.id == '16' && <NavLink exact to="/who-we-are" onClick={() => this.closeMenu()}>
+              {el.title}
+            </NavLink>);
+          })) : ""}
+
+
+        {menue ? (
+          menue.map(el => {
+            return (el.id == '18' && <NavLink exact to="/gallery" onClick={() => this.closeMenu()}>
+              {el.title}
+            </NavLink>);
+          })) : ""}
+
+
+
+        {menue ? (
+          menue.map(el => {
+            return (el.id == '19' && <NavLink
+              exact
+              to="/"
+              className="in-array"
+              onClick={() => this.onclickStepHandler(2)}
+            >
+              {el.title}
+              <span className="ico-drop">
+                <FontAwesomeIcon icon={faAngleDown} />
+              </span>{" "}
+            </NavLink>);
+          })) : ""}
+
+
+
+
         {this.state.childVisible === 2 ? (
           <div className="sub-drop">
-            <NavLink to="/event-tickets" onClick={() => this.closeMenu()}>
-              Event Ticketing
-            </NavLink>
-            <NavLink to="/coming-soon" onClick={() => this.closeMenu()}>
-              Studio Ticketing
-            </NavLink>
-            <NavLink to="/store" onClick={() => this.closeMenu()}>
-              Merchandise
-            </NavLink>
+
+
+            {menue ? (
+              menue.map(el => {
+                return (el.id == '20' && <NavLink to="/event-tickets" onClick={() => this.closeMenu()}>
+                  {el.title}
+                </NavLink>);
+              })) : ""}
+
+
+            {menue ? (
+              menue.map(el => {
+                return (el.id == '21' && <NavLink to="/coming-soon" onClick={() => this.closeMenu()}>
+                  {el.title}
+                </NavLink>);
+              })) : ""}
+
+
+            {menue ? (
+              menue.map(el => {
+                return (el.id == '22' && <NavLink to="/store" onClick={() => this.closeMenu()}>
+                  {el.title}
+                </NavLink>);
+              })) : ""}
+
           </div>
         ) : null}
-        <NavLink
-          exact
-          to="/contact"
-          className="in-array"
-          activeClassName="selected"
-          onClick={() => this.closeMenu()}
-        >
-          Contact
-        </NavLink>
+
+
+        {menue ? (
+          menue.map(el => {
+            return (el.id == '23' && <NavLink
+              exact
+              to="/contact"
+              className="in-array"
+              activeClassName="selected"
+              onClick={() => this.closeMenu()}
+            >
+              {el.title}
+            </NavLink>);
+          })) : ""}
+
       </Menu>
     );
   }
 }
 
-export default burgerMenu;
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchMenues: () => dispatch(actionCreators.fetchMenues())
+  };
+};
+
+const mapStateToProps = state => {
+  return {
+    menues: state.menues.items
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(burgerMenu);
