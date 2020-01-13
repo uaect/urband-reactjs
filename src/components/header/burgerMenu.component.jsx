@@ -94,12 +94,10 @@ class burgerMenu extends Component {
       >
         {menue ? (
           menue.map(el => {
-            return (el.id == '10' && <NavLink exact to="/index" onClick={() => this.closeMenu()}>
+            return (el.id == '10' &&<NavLink exact to="/index" onClick={() => this.closeMenu()}>
               {el.title}
             </NavLink>)
           })) : ""}
-
-
 
         {menue ? (
           menue.map(el => {
@@ -208,31 +206,24 @@ class burgerMenu extends Component {
 
         {this.state.childVisible === 2 ? (
           <div className="sub-drop">
-
-
-            {menue ? (
-              menue.map(el => {
-                return (el.id == '20' && <NavLink to="/event-tickets" onClick={() => this.closeMenu()}>
-                  {el.title}
-                </NavLink>);
-              })) : ""}
-
-
             {menue ? (
               menue.map(el => {
                 return (el.id == '21' && <NavLink to="/coming-soon" onClick={() => this.closeMenu()}>
                   {el.title}
                 </NavLink>);
               })) : ""}
-
-
+            {menue ? (
+              menue.map(el => {
+                return (el.id == '20' && <NavLink to="/event-tickets" onClick={() => this.closeMenu()}>
+                  {el.title}
+                </NavLink>);
+              })) : ""}
             {menue ? (
               menue.map(el => {
                 return (el.id == '22' && <NavLink to="/store" onClick={() => this.closeMenu()}>
                   {el.title}
                 </NavLink>);
               })) : ""}
-
           </div>
         ) : null}
 
