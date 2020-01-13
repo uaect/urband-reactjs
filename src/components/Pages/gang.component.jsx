@@ -22,7 +22,7 @@ class Gang extends Component {
           <section className="the-gang">
             <div className="container">
               <div className="section-title style-four">
-                <h2>Meet Our Gang</h2>
+                <h2>Meet Our Team</h2>
                 {/*<p>
                   There are many variations of passages of Lorem Ipsum available
                   but the majority have suffered alteration in some injected
