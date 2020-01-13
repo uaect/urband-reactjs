@@ -212,7 +212,7 @@ class Header extends Component {
                             className="in-array"
                           >
                             {el.title}
-                        </NavLink>
+                          </NavLink>
                         </li>);
                       })) : ""}
 
@@ -224,14 +224,14 @@ class Header extends Component {
                       <ul className="sub-menu">
                         {menue ? (
                           menue.map(el => {
-                            return (el.id == '20' && <li>
-                              <Link to="/event-tickets">{el.title}</Link>
+                            return (el.id == '21' && <li>
+                              <Link to="/coming-soon">{el.title}</Link>
                             </li>);
                           })) : ""}
                         {menue ? (
                           menue.map(el => {
-                            return (el.id == '21' && <li>
-                              <Link to="/coming-soon">{el.title}</Link>
+                            return (el.id == '20' && <li>
+                              <Link to="/event-tickets">{el.title}</Link>
                             </li>);
                           })) : ""}
                         {menue ? (
