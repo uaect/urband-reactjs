@@ -1025,8 +1025,8 @@
   
   @media (max-width: 1024px) {
     #main-header-menu li {
-      padding: 25px 0;
-      margin: 0 10px;
+      padding: 28px 0;
+      margin: 0 12px;
     }
     #main-header-menu li a {
       font-size: 14px;
@@ -1041,6 +1041,9 @@
       margin-left: 25px;
       margin-top: 22px;
     }
+    .header-magic-line #site-logo {
+      line-height: 83px;
+  }
   }
   
   @media (max-width: 991px) {

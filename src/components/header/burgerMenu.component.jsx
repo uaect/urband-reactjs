@@ -55,7 +55,8 @@ class burgerMenu extends Component {
       },
       bmCrossButton: {
         height: "24px",
-        width: "24px"
+        width: "24px",
+        right: "24px"
       },
       bmCross: {
         background: "#bdc3c7"
