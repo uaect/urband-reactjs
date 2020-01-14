@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { slide as Menu } from "react-burger-menu";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
+import { faAngleDown,faUserAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { connect } from "react-redux";
 import * as actionCreators from "../../../src/store/actions/";
 
-library.add(faAngleDown);
+library.add(faAngleDown,faUserAlt);
 
 class burgerMenu extends Component {
 
@@ -260,9 +260,13 @@ class burgerMenu extends Component {
 
         <NavLink
           to="/"
-          className="in-array"
+          className="in-array acc-link"
           onClick={() => this.onclickStepHandler(3)}
         >
+          <FontAwesomeIcon
+                          icon={faUserAlt}
+                          className="ico-user"
+                        />
           Account
               <span className="ico-drop">
             <FontAwesomeIcon icon={faAngleDown} />
