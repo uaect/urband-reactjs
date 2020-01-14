@@ -137,7 +137,7 @@ class logIn extends Component {
         <section className="header-padd">
           <div className="container">
             <div className="row">
-              <div className="col-md-5 mx-auto hero-acct-wrap">
+              <div className="col-md-5 col-sm-4 mx-auto hero-acct-wrap">
                 <div className="user-content">
                   <div className="mb-7">
                     <h2 className="account-head mb-0">LOG IN</h2>
@@ -186,8 +186,8 @@ class logIn extends Component {
                       <button className="btn" type="submit" onClick={this.gotoLogin}>Log In</button>
                     </div>
                     </div>
-                  <div className="row mt-4">
-                  <div className="col-md-6">
+                  <div className="row mt-5 justify-content-center">
+                  <div className="social-btn-wrap">
                     <div className="social-btn">
                     <GoogleLogin
                       clientId="960961951131-46o64t0b0kjb3421pcu8ekpbnglrq6fb.apps.googleusercontent.com"
@@ -198,7 +198,7 @@ class logIn extends Component {
                     />
                     </div>
                     </div>
-                    <div className="col-md-6">
+                    <div className="social-btn-wrap">
                     <div className="social-btn">
                     <FacebookLogin appId="2866633446709623" //APP ID NOT CREATED YET
                       fields="name,email,picture"

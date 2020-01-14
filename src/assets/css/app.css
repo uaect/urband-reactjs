@@ -1440,12 +1440,12 @@ h6 {
 .header-magic-line .nav {
   padding-left: 0;
   float: right;
-  margin-right: 50px;
+  /* margin-right: 50px; */
 }
 
 .header-magic-line #site-logo {
   line-height: 104px;
-  width: 259px;
+  width: 221px;
 }
 
 .logo-main img {
@@ -1843,7 +1843,7 @@ h6 {
   display: inline-flex;
   font-family: "Changa", sans-serif;
   font-size: 17px;
-  margin: 0 20px;
+  margin: 0 17px;
   padding: 38px 0;
   position: relative;
   color: #fff;
@@ -2053,10 +2053,6 @@ h6 {
 }
 
 @media (max-width: 1024px) {
-  #header-menu-magic-line li {
-    padding: 25px 0;
-    margin: 0 10px;
-  }
 
   #header-menu-magic-line li a {
     font-size: 14px;
@@ -16452,7 +16448,7 @@ margin-left: 10px;
     height: 183px !important;
   }
   .bm-item-list a {
-    padding: 5px 0 !important;
+    padding: 7px 0 !important;
     font-size: 17px;
   }
   .page-header {
