@@ -49,11 +49,9 @@ class spotLight extends Component {
           })
         })
         .catch((error) => {
-          if (error.error) {
             this.setState({
-              errpassword: error.error
+              erremail: error.message
             })
-          }
         })
     }
 
@@ -138,7 +136,6 @@ class spotLight extends Component {
                         Subscribe with us.
                       </p>
                     </div>
-                   
                       <input placeholder="Enter Your Email" 
                        value={this.state.email}
                        onChange={this.handleChange.bind(this, 'email', 'erremail')}
@@ -147,7 +144,6 @@ class spotLight extends Component {
                       <button type="submit" onClick={this.sendmail} className="submit">
                         send me
                       </button>
-                   
                   </div>
                 </div>
               </div>

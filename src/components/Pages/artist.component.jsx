@@ -42,7 +42,6 @@ class Artist extends Component {
                               {/*  <span className="genere">
                                  Album: Rockstar, first rain, Love Song (More)
                                </span>*/}
-
                               <div className="content">
                                 <ReadMoreAndLess
                                   ref={this.ReadMore}

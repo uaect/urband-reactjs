@@ -69,8 +69,7 @@ class burgerMenu extends Component {
       },
       bmCrossButton: {
         height: "24px",
-        width: "24px",
-        right: "24px"
+        width: "24px"
       },
       bmCross: {
         background: "#bdc3c7"
@@ -284,6 +283,15 @@ class burgerMenu extends Component {
 
             {this.state.isToken?<NavLink
               exact
+              to="/cart"
+              activeClassName="selected"
+              onClick={() => this.closeMenu()}
+            >
+              Cart
+            </NavLink>:""}
+
+            {this.state.isToken?<NavLink
+              exact
               to="/profile/profileAddress"
               activeClassName="selected"
               onClick={() => this.closeMenu()}
@@ -320,12 +328,6 @@ class burgerMenu extends Component {
 
           </div>
         ) : null}
-
-
-
-
-
-
 
       </Menu>
       </div>

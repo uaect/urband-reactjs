@@ -30,8 +30,6 @@ class ShopDetail extends Component {
   componentDidMount() {
     let storeid = this.props.location.pathname.split("/").pop();
     this.props.fetchStoreDetails(storeid);
-
-    
   }
 
   handleClick(id) {

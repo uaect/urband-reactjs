@@ -23,6 +23,7 @@ class logIn extends Component {
       token: "",
       isToken: localStorage.getItem('urbandtoken') ? true : false
     }
+    // this.goBack = this.goBack.bind(this)
   }
 
   handleChange(state, errState, evt) {
@@ -60,9 +61,10 @@ class logIn extends Component {
           this.setState({
             isToken: true
           })
-          this.props.history.push({
-            pathname: '/'
-          })
+          // this.props.history.push({
+          //   pathname: '/'
+          // })
+          this.props.history.goBack();
         })
         .catch((error) => {
           if (error.error == 'Unauthorised') {
@@ -90,7 +92,8 @@ class logIn extends Component {
           this.setState({
             isToken: true
           })
-          window.location.href = "/";
+          // window.location.href = "/";
+          this.props.history.goBack();
         })
         .catch((error) => {
           if (error.error == 'Unauthorised') {
@@ -118,7 +121,8 @@ class logIn extends Component {
           this.setState({
             isToken: true
           })
-          window.location.href = "/";
+         //  window.location.href = "/";
+         this.props.history.goBack();
         })
         .catch((error) => {
           if (error.error == 'Unauthorised') {
@@ -129,7 +133,6 @@ class logIn extends Component {
         })
     }
   }
-
 
   render() {
     return (
@@ -209,9 +212,6 @@ class logIn extends Component {
                   </div>
                 </div>
               </div>
-
-
-
             </div>
           </div>
         </section>
