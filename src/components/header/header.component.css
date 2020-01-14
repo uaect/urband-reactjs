@@ -345,6 +345,10 @@
     display: inline-block;
     font-family: "Changa", sans-serif;
   }
+
+  .logo-main img {
+    height: none !important;
+  }
   
   #main-header-menu > li:after, #main-header-menu > li:before {
     position: absolute;
@@ -1025,8 +1029,8 @@
   
   @media (max-width: 1024px) {
     #main-header-menu li {
-      padding: 25px 0;
-      margin: 0 10px;
+      padding: 28px 0;
+      margin: 0 12px;
     }
     #main-header-menu li a {
       font-size: 14px;
@@ -1041,6 +1045,9 @@
       margin-left: 25px;
       margin-top: 22px;
     }
+    .header-magic-line #site-logo {
+      line-height: 83px;
+  }
   }
   
   @media (max-width: 991px) {
@@ -1063,7 +1070,7 @@
   .bm-item-list a{
     width: 100%;
     font-weight: 500;
-    font-size: 18px;
+    font-size: 17px;
     text-decoration: none;
     text-transform: uppercase;
     padding: 10px 0;
@@ -1117,7 +1124,7 @@
     color: #FFF;
     transition: all 0.4s ease-out;
     text-decoration: none;
-    font-size: 15px;
+    font-size: 15px !important;
     padding: 5px 0;
     font-weight: 600;
     font-family: "Changa", sans-serif;

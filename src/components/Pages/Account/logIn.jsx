@@ -75,6 +75,7 @@ class logIn extends Component {
   }
 
   responseFacebook = (response) => {
+console.log("res", response)
     var res = response;
     if (res.email) {
       this.setState({
@@ -200,7 +201,7 @@ class logIn extends Component {
                     </div>
                     <div className="col-md-6">
                     <div className="social-btn">
-                    <FacebookLogin appId="2866633446709623" //APP ID NOT CREATED YET
+                    <FacebookLogin appId="487607155274158" //APP ID NOT CREATED YET
                       fields="name,email,picture"
                       callback={this.responseFacebook}
                       icon="fa-facebook" />

@@ -4,16 +4,15 @@ import InfoHero from "../Pages/info.component";
 import BannerHero from "../Banners/bannerHero";
 import Gang from "../Pages/gang.component";
 import ComingSoon from "../Pages/comingsoon.component";
-import { Link } from "react-router-dom";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faMixcloud } from "@fortawesome/free-brands-svg-icons";
 import { faGlassCheers, faMicrophone } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { connect } from "react-redux";
 import * as actionCreators from "../../../src/store/actions/";
 
 library.add(faGlassCheers, faMixcloud, faMicrophone);
 class WhoWeAre extends Component {
+
   componentDidMount() {
     this.props.fetchWhoWeAre();
   }
@@ -60,66 +59,13 @@ class WhoWeAre extends Component {
               <ComingSoon />
             )}
           </div>
-
           <InfoHero />
         </section>
 
-       {/* <section className="black-bg side-img-section what-we-do-section">
-          <div className="col-sm-6 col-sm-offset-6 side-img d-none d-md-block"></div>
-          <div className="container">
-            <div className="row">
-              <div className="col-md-5 col-12">
-                <div className="doing-items section-padding">
-                  <div className="doing-item">
-                    <div className="doing-icon">
-                      <FontAwesomeIcon
-                        icon={faMixcloud}
-                        className="doing-icon"
-                      />
-                    </div>
-                    <h4 className="doing-title">Party Song</h4>
-                    <p className="doing-text">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                      sed do eiusmod tempor incididunt ut Lorem ipsum dolor sit
-                      amet,
-                    </p>
-                  </div>
-                  <div className="doing-item">
-                    <div className="doing-icon">
-                      <FontAwesomeIcon
-                        icon={faGlassCheers}
-                        className="doing-icon"
-                      />
-                    </div>
-                    <h4 className="doing-title">Special Event</h4>
-                    <p className="doing-text">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                      sed do eiusmod tempor incididunt ut Lorem ipsum dolor sit
-                      amet,
-                    </p>
-                  </div>
-                  <div className="doing-item">
-                    <div className="doing-icon">
-                      <FontAwesomeIcon
-                        icon={faMicrophone}
-                        className="doing-icon"
-                      />
-                    </div>
-                    <h4 className="doing-title">Live Concert</h4>
-                    <p className="doing-text">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                      sed do eiusmod tempor incididunt ut Lorem ipsum dolor sit
-                      amet,
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-            </section>*/}
-
-        <WhatweDo />
+        {/* <WhatweDo /> */}
+        <section className="section-hero pb-0">
         <Gang />
+        </section>
       </div>
     );
   }

@@ -10,7 +10,6 @@ import icon1 from "../../assets/img/icn1.png";
 import icon2 from "../../assets/img/icn2.png";
 import icon3 from "../../assets/img/icn3.png";
 import { connect } from "react-redux";
-import { Redirect } from 'react-router-dom';
 import * as actionCreators from "../../../src/store/actions/";
 
 library.add(faUserAlt, faCartPlus);
@@ -34,6 +33,7 @@ class Header extends Component {
 
 
   }
+
   fetchcontact() {
     this.props.fetchContact()
       .then(() => {
@@ -54,7 +54,6 @@ class Header extends Component {
         }
       })
   }
-
 
   headercheck() {
     this.props.fetchMenues()
@@ -137,6 +136,20 @@ class Header extends Component {
                           </NavLink>
                         </li>)
                       })) : ""}
+
+                    {menue ? (
+                      menue.map(el => {
+                        return (el.id == '16' && <li>
+                          <NavLink
+                            to="/who-we-are"
+                            activeClassName="selected"
+                            className="in-array"
+                          >
+                            {el.title}
+                          </NavLink>
+                        </li>);
+                      })) : ""}
+
                     <li className="menu-item-has-children in-array">
                       {menue ? (
                         menue.map(el => {
@@ -176,19 +189,6 @@ class Header extends Component {
                         return (el.id == '15' && <li className="menu-item-has-children">
                           <NavLink
                             to="/event-list"
-                            activeClassName="selected"
-                            className="in-array"
-                          >
-                            {el.title}
-                          </NavLink>
-                        </li>);
-                      })) : ""}
-
-                    {menue ? (
-                      menue.map(el => {
-                        return (el.id == '16' && <li>
-                          <NavLink
-                            to="/who-we-are"
                             activeClassName="selected"
                             className="in-array"
                           >
