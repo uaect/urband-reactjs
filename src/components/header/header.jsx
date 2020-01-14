@@ -20,14 +20,18 @@ class Header extends Component {
     this.state = {
       isToken: localStorage.getItem("urbandtoken") ? true : false,
       activeBox: "hide",
-      redirect: false
+      redirect: false,
+      logo: ""
     };
     this.ToggleBox = this.ToggleBox.bind(this);
   }
 
   componentDidMount() {
-    this.fetchcontact()
+
     this.headercheck()
+    this.fetchcontact()
+
+
   }
 
   fetchcontact() {
@@ -114,7 +118,7 @@ class Header extends Component {
             <div className="header-magic-line-inner clearfix d-flex full-wrap">
               <div id="site-logo" className="float-left">
                 <NavLink to="/" className="logo-main">
-                  <img src={Logo} alt="hero urband" />
+                  <img src={image_url + this.state.logo} alt="hero urband" />
                 </NavLink>
               </div>
               <div className="d-flex full-wrap nav-wrap">
@@ -327,7 +331,6 @@ class Header extends Component {
     );
   }
 }
-
 
 const mapDispatchToProps = dispatch => {
   return {
