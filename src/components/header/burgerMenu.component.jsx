@@ -98,6 +98,8 @@ class burgerMenu extends Component {
       }
     };
     return (
+      <div>
+       
       <Menu
         className={"urband-menu"}
         right
@@ -106,6 +108,7 @@ class burgerMenu extends Component {
         isOpen={this.state.menuOpen}
         onStateChange={state => this.handleStateChange(state)}
       >
+         
         {menue ? (
           menue.map(el => {
             return (el.id == '10' && <NavLink exact to="/index" onClick={() => this.closeMenu()}>
@@ -324,6 +327,7 @@ class burgerMenu extends Component {
 
 
       </Menu>
+      </div>
     );
   }
 }
