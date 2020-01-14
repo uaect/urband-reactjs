@@ -1444,11 +1444,12 @@ h6 {
 }
 
 .header-magic-line #site-logo {
-  line-height: 83px;
+  line-height: 104px;
+  width: 259px;
 }
 
 .logo-main img {
-  height: 55px;
+  height: 71px;
 }
 
 .logo-stickky img {
@@ -1843,7 +1844,7 @@ h6 {
   font-family: "Changa", sans-serif;
   font-size: 17px;
   margin: 0 20px;
-  padding: 28px 0;
+  padding: 38px 0;
   position: relative;
   color: #fff;
   text-transform: uppercase;
@@ -16452,7 +16453,7 @@ margin-left: 10px;
   }
   .bm-item-list a {
     padding: 5px 0 !important;
-    font-size: 17px !important;
+    font-size: 17px;
   }
   .page-header {
     height: 120px !important;
