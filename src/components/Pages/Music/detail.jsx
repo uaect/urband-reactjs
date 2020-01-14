@@ -27,7 +27,7 @@ class DetailHero extends Component {
                     <p>{album.description ? album.description : ""}</p>
                   </div>
 
-                  <ul>
+                  {/*<ul>
                     <li>
                       Albume <span>Single</span>
                     </li>
@@ -49,12 +49,12 @@ class DetailHero extends Component {
                     <li>
                       Number Of Track <span>{tracks} Tracks</span>
                     </li>
-                  </ul>
+                  </ul>*/}
 
-                  <div className="single-album-description">
+                  {/*<div className="single-album-description">
                     <h6>Album Description</h6>
                     <p>{album.description}</p>
-                  </div>
+                  </div>*/}
                 </div>
               </div>
             </div>

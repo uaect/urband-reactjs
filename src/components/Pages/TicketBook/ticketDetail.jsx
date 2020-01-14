@@ -192,11 +192,11 @@ class ticketDetail extends Component {
                               }}
                               className="ticket-office__button tim-btn disabled-link"
                             >
-                              check out
+                              Checkout
                             </Link>
                           ) : (
                             <Link className="ticket-office__button tim-btn disabled-link">
-                              check out
+                              Checkout
                             </Link>
                           )}
                         </div>
