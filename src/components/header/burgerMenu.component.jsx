@@ -4,14 +4,21 @@ import { slide as Menu } from "react-burger-menu";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Redirect } from 'react-router-dom';
-
 import { connect } from "react-redux";
 import * as actionCreators from "../../../src/store/actions/";
 
 library.add(faAngleDown);
 
 class burgerMenu extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      isToken: localStorage.getItem("urbandtoken") ? true : false,
+      menuOpen: false,
+      childVisible: false
+    };
+  }
 
   componentDidMount() {
     this.props.fetchMenues()
@@ -20,22 +27,29 @@ class burgerMenu extends Component {
   showSettings(event) {
     event.preventDefault();
   }
-  constructor(props) {
-    super(props);
-    this.state = {
-      menuOpen: false,
-      childVisible: false
-    };
-  }
+
   handleStateChange(state) {
     this.setState({ menuOpen: state.isOpen });
   }
+
   closeMenu() {
     this.setState({ menuOpen: false });
   }
+
   onclickStepHandler(step) {
     this.setState({ childVisible: step });
   }
+
+  gotologout = () => {
+    localStorage.removeItem("urbandtoken");
+    localStorage.removeItem("urbandData");
+    window.location.href = "/";
+    this.setState({
+      redirect: true,
+      isToken: localStorage.getItem("urbandtoken") ? true : false
+    });
+  };
+
   render() {
     const menue = this.props.menues;
 
@@ -98,9 +112,16 @@ class burgerMenu extends Component {
          
         {menue ? (
           menue.map(el => {
-            return (el.id == '10' &&<NavLink exact to="/index" onClick={() => this.closeMenu()}>
+            return (el.id == '10' && <NavLink exact to="/index" onClick={() => this.closeMenu()}>
               {el.title}
             </NavLink>)
+          })) : ""}
+
+        {menue ? (
+          menue.map(el => {
+            return (el.id == '16' && <NavLink exact to="/who-we-are" onClick={() => this.closeMenu()}>
+              {el.title}
+            </NavLink>);
           })) : ""}
 
         {menue ? (
@@ -172,15 +193,6 @@ class burgerMenu extends Component {
             </NavLink>);
           })) : ""}
 
-
-        {menue ? (
-          menue.map(el => {
-            return (el.id == '16' && <NavLink exact to="/who-we-are" onClick={() => this.closeMenu()}>
-              {el.title}
-            </NavLink>);
-          })) : ""}
-
-
         {menue ? (
           menue.map(el => {
             return (el.id == '18' && <NavLink exact to="/gallery" onClick={() => this.closeMenu()}>
@@ -244,6 +256,76 @@ class burgerMenu extends Component {
               {el.title}
             </NavLink>);
           })) : ""}
+
+
+
+        <NavLink
+          to="/"
+          className="in-array"
+          onClick={() => this.onclickStepHandler(3)}
+        >
+          Account
+              <span className="ico-drop">
+            <FontAwesomeIcon icon={faAngleDown} />
+          </span>
+        </NavLink>
+
+        {this.state.childVisible === 3 ? (
+          <div className="sub-drop">
+
+            {this.state.isToken?<NavLink
+              exact
+              to="/profile"
+              activeClassName="selected"
+              onClick={() => this.closeMenu()}
+            >
+              Profile
+            </NavLink>:""}
+
+            {this.state.isToken?<NavLink
+              exact
+              to="/profile/profileAddress"
+              activeClassName="selected"
+              onClick={() => this.closeMenu()}
+            >
+              Address
+            </NavLink>:""}
+
+            {this.state.isToken?<NavLink
+              exact
+              to="/profile/profileOrders"
+              activeClassName="selected"
+              onClick={() => this.closeMenu()}
+            >
+              Orders
+            </NavLink>:""}
+
+            {this.state.isToken?<NavLink
+              exact
+              to="/profile/profileOrders"
+              activeClassName="selected"
+              onClick={() => this.closeMenu()}
+            >
+              Log Out
+            </NavLink>:""}
+
+            {!this.state.isToken?<NavLink
+              exact
+              to="/login"
+              activeClassName="selected"
+              onClick={() => this.closeMenu()}
+            >
+              Login
+            </NavLink>:""}
+
+          </div>
+        ) : null}
+
+
+
+
+
+
 
       </Menu>
       </div>

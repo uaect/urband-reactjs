@@ -4,7 +4,7 @@ import Carousel from "react-multi-carousel";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import AudioPlayer from "react-playlist-player";
+import AudioPlayer, {toggleAudio} from "react-playlist-player";
 
 library.add(faPlay);
 
@@ -20,7 +20,12 @@ class PlayerHero extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
+  componentDidMount(){
+    
+  }
+
   handleClick(item) {
+    toggleAudio()
     var tracks = this.props.value.tracks;
     var position = 1;
     var mp3 = [{position: position, songName: item.title, songUrl:"https://admin.urbandmusic.com/storage/" + item.file}];
@@ -32,13 +37,13 @@ class PlayerHero extends Component {
       }
     }
     this.setState({ playsong: true });
-    this.setState({ song: item });
+    this.setState({ song: mp3 });
     this.setState({
       currentPlayList: {
-        playlistCoverUrl:"https://admin.urbandmusic.com/storage/" + item.image,
+        playlistCoverUrl:"https://admin.urbandmusic.com/storage/" + this.props.value.image,
         playlistName: item.title,
-        bandName: item.name,
-        songs: mp3,
+        bandName: this.props.value.title,
+        songs: this.state.song,
         type: "album"
       }
     });
@@ -77,7 +82,7 @@ class PlayerHero extends Component {
             <div className="row">
               <div className="style-fullwidth">
                 {state.playsong? (
-                  <AudioPlayer currentPlayList={state.currentPlayList} onToggle={({audioPlaying}) => console.log({audioPlaying})}/>
+                  <AudioPlayer currentPlayList={state.currentPlayList} onToggle={({audioPlaying}) => ""}/>
                 ) : (
                     ""
                   )}
