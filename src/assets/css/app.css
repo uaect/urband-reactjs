@@ -7703,6 +7703,7 @@ ul.comment-list .comment-body .reply a:hover {
   .artist-details-two .details p {
     margin-bottom: 20px;
   }
+  
 }
 
 @media (min-width: 1024px) and (max-width: 1440px) {
@@ -7739,12 +7740,22 @@ ul.comment-list .comment-body .reply a:hover {
   .artist-about.pl__30 {
     padding-left: 0 !important;
   }
+  .artist-timeline {
+    grid-template-areas: unset !important;
+}
+.album-feature.right:after{
+  display: none;
+}
+.Radio-Column-3{
+  display:none;
+}
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
   .artist-music-inner .aritist-music {
     border-right: 0;
   }
+  
 }
 
 @media (max-width: 768px) {
