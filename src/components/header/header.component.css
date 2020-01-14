@@ -345,6 +345,10 @@
     display: inline-block;
     font-family: "Changa", sans-serif;
   }
+
+  .logo-main img {
+    height: none !important;
+  }
   
   #main-header-menu > li:after, #main-header-menu > li:before {
     position: absolute;

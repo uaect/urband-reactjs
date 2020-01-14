@@ -10,7 +10,6 @@ import icon1 from "../../assets/img/icn1.png";
 import icon2 from "../../assets/img/icn2.png";
 import icon3 from "../../assets/img/icn3.png";
 import { connect } from "react-redux";
-import { Redirect } from 'react-router-dom';
 import * as actionCreators from "../../../src/store/actions/";
 
 library.add(faUserAlt, faCartPlus);
@@ -30,6 +29,7 @@ class Header extends Component {
     this.fetchcontact()
     this.headercheck()
   }
+
   fetchcontact() {
     this.props.fetchContact()
       .then(() => {
@@ -50,6 +50,7 @@ class Header extends Component {
         }
       })
   }
+
   headercheck() {
     this.props.fetchMenues()
       .then(() => {
@@ -71,21 +72,16 @@ class Header extends Component {
           });
         }
       })
-
-
-
-
   }
+
   ToggleBox() {
     let show = this.state.activeBox;
     let index = show.indexOf("show");
-
     if (index !== -1) {
       show = "hide";
     } else {
       show = "show";
     }
-
     this.setState({ activeBox: show });
   }
 
@@ -97,7 +93,6 @@ class Header extends Component {
       redirect: true,
       isToken: localStorage.getItem("urbandtoken") ? true : false
     });
-
   };
 
   render() {
@@ -137,6 +132,20 @@ class Header extends Component {
                           </NavLink>
                         </li>)
                       })) : ""}
+
+                    {menue ? (
+                      menue.map(el => {
+                        return (el.id == '16' && <li>
+                          <NavLink
+                            to="/who-we-are"
+                            activeClassName="selected"
+                            className="in-array"
+                          >
+                            {el.title}
+                          </NavLink>
+                        </li>);
+                      })) : ""}
+
                     <li className="menu-item-has-children in-array">
                       {menue ? (
                         menue.map(el => {
@@ -176,19 +185,6 @@ class Header extends Component {
                         return (el.id == '15' && <li className="menu-item-has-children">
                           <NavLink
                             to="/event-list"
-                            activeClassName="selected"
-                            className="in-array"
-                          >
-                            {el.title}
-                          </NavLink>
-                        </li>);
-                      })) : ""}
-
-                    {menue ? (
-                      menue.map(el => {
-                        return (el.id == '16' && <li>
-                          <NavLink
-                            to="/who-we-are"
                             activeClassName="selected"
                             className="in-array"
                           >
