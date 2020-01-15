@@ -189,7 +189,7 @@ class logIn extends Component {
                       <button className="btn" type="submit" onClick={this.gotoLogin}>Log In</button>
                     </div>
                     </div>
-                  <div className="row mt-5 justify-content-center">
+                  <div className="row mt-5 justify-content-between">
                   <div className="social-btn-wrap">
                     <div className="social-btn">
                     <GoogleLogin

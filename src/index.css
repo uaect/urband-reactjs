@@ -17,6 +17,9 @@ code {
   font-family: "Changa", sans-serif;
 }
 .ProfileBoardContent {
+  padding-top: 3em;
+    width: 91%;
+    margin: 0 auto;
 }
 .DsplayFlexBoxTp1 {
   display: flex;
@@ -149,7 +152,7 @@ code {
   justify-content: center;
 }
 .MangeEmptyBox img {
-  min-width: 750px;
+  /* min-width: 750px; */
 }
 .ProfileHeaderBoxTp1 {
 }
@@ -510,4 +513,56 @@ input[type="range"]:focus::-ms-fill-upper {
 .clr-type-1{
   color: #959595 !important;
 }
+@media (max-width: 410px) {
+  .PrfLinkBoxTp1{
+    display: inline-flex;
+    width: 100%;
+    justify-content: space-between;
+    border-top: 1px solid;
+  border-bottom: 1px solid;
+  border-color: #eee;
+  padding: 2px 0;
+  }
+  .PrfLinkBoxTp1 .ProfileNavItem span{
+    display: none;
+  }
+  .PrfLinkBoxTp1 .ProfileNavItem a{
+
+    padding: 0;
+    width: 58px;
+    height: 58px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+  .PrfLinkBoxTp1 .ProfileNavItem a.selected{
+    border-radius: 50%;
+  }
+  .PrfLinkBoxTp1 .ProfileNavItem a .prfIcnTp1{
+    margin-right: 0;
+  }
+  .lftPrfDesc1{
+    border: none
+  }
+  .DsplayFlexBoxTp1 .RgtBox{
+    padding-left: 0 !important;
+  }
+  .profile-cmn-btn{
+    width: 100% !important;
+  }
+  
+}
+@media (min-width: 320px) and (max-width: 768px) {
+  .DsplayFlexBoxTp1{
+    display: block;
+  }
+  .DsplayFlexBoxTp1 .LftBox{
+   width: 100%;
+ }
+ .PrfLinkBoxTp1 {
+  display: inline-flex;
+  
+}
+}
+
 @import "./assets/scss/main.scss";
