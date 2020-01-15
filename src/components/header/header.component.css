@@ -990,7 +990,11 @@
     -webkit-animation-name: slideUp;
     animation-name: slideUp;
   }
-  
+  @media (min-width: 1250px) and (max-width: 1350px) {
+    #header-menu-magic-line li {
+      margin: 0 11px !important;
+    }
+  }
   @media (max-width: 1440px) {
     #main-header-menu li {
       margin: 0 14px;
@@ -999,6 +1003,7 @@
       margin-left: 25px;
     }
   }
+
   
   @media (max-width: 1199px) {
     #main-header-menu > li::before {
@@ -1023,7 +1028,7 @@
       margin-top: 22px;
     }
     .header-magic-line .nav {
-      margin-right: 0px !important;
+      margin-right: 25px !important;
   }
   }
   
@@ -1134,8 +1139,8 @@
     vertical-align: middle;
     margin-right: 0.5em;
     position: relative;
-    top: -6px;
-    font-size: 27px;
+    top: -5px;
+    font-size: 20px;
 }
 .sub-drop a {
   display: block;
@@ -1175,6 +1180,7 @@
   }
   @media (max-width: 444px) {
     .social-btn-wrap {
+      margin:  auto;
      margin-top: 1em;
   }
   }

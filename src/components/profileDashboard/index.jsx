@@ -21,7 +21,7 @@ const ProfileDashboard = ({ match }) => {
     <div>
       <div className="profileDashBoardBox">
         <div>
-          <div className="tim-container clearfix">
+          <div className="container clearfix">
             <div className="ProfileBoardContent">
               <div className="DsplayFlexBoxTp1">
                 <div className="LftBox">
@@ -40,7 +40,7 @@ const ProfileDashboard = ({ match }) => {
                             icon={faUserAlt}
                             className="prfIcnTp1"
                           />
-                          Profile
+                          <span>Profile</span>
                         </NavLink>
                       </div>
                       <div className="ProfileNavItem">
@@ -52,7 +52,7 @@ const ProfileDashboard = ({ match }) => {
                             icon={faBreadSlice}
                             className="prfIcnTp1"
                           />
-                          Addresses
+                          <span>Addresses</span>
                         </NavLink>
                       </div>
                       <div className="ProfileNavItem">
@@ -64,7 +64,7 @@ const ProfileDashboard = ({ match }) => {
                             icon={faShoppingCart}
                             className="prfIcnTp1"
                           />
-                          Orders
+                          <span>Orders</span>
                         </NavLink>
                       </div>
                     </div>

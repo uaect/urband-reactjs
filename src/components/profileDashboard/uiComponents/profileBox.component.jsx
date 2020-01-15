@@ -80,7 +80,7 @@ class ProfileBox extends Component {
         <div className="AddNewBox101">
           <div>
               <div className="row">
-                <div className="col-md-4">
+                <div className="col-lg-4 col-sm-12">
                   <div className="form-group">
                     <input
                       type="text"
@@ -92,7 +92,7 @@ class ProfileBox extends Component {
                     />
                   </div>
                 </div>
-                <div className="col-md-4">
+                <div className="col-lg-4 col-sm-12">
                   <div className="form-group">
                     <input
                       type="text"
@@ -104,7 +104,7 @@ class ProfileBox extends Component {
                     />
                   </div>
                 </div>
-                <div className="col-md-4">
+                <div className="col-lg-4 col-sm-12">
                   <div className="form-group">
                     <input
                       type="password"
@@ -116,7 +116,7 @@ class ProfileBox extends Component {
                     />
                   </div>
                 </div>
-                <div className="col-md-4">
+                <div className="col-lg-4 col-sm-12">
                   <div className="form-group">
                     <input
                       type="text"
@@ -133,7 +133,7 @@ class ProfileBox extends Component {
               <div>
                 <button
                   type="submit"
-                  className="tim-btn mt-4 ticket-btn-lg place-order"
+                  className="tim-btn mt-4 ticket-btn-lg place-order profile-cmn-btn"
                   onClick={this.gotoSave}
                 >
                   Save
