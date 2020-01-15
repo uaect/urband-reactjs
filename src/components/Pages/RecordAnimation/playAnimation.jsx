@@ -25,6 +25,7 @@ class playAnimation extends Component {
     this.props.fetchAlbums();
   }
   PlayVideoHandler() {
+    console.log("ssssss");
     let show = this.state.bottomPlayerActivated;
     let index = show.indexOf("show");
 

@@ -4,7 +4,7 @@ import Carousel from "react-multi-carousel";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import AudioPlayer, {toggleAudio} from "react-playlist-player";
+import FixedBottomPlayer from "../../uicomponents/PlayerBottom/fixedBottomPlayer.component";
 
 library.add(faPlay);
 
@@ -13,49 +13,43 @@ class PlayerHero extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentPlayList: {},
-      playsong: false,
-      song: {}
+      currentPlayList: {}
     };
-    this.handleClick = this.handleClick.bind(this);
+    this.PlayVideoHandler = this.PlayVideoHandler.bind(this);
   }
 
-  componentDidMount(){
-    
+  componentDidMount() {
+
   }
 
-  handleClick(item) {
-    toggleAudio()
-    var tracks = this.props.value.tracks;
-    var position = 1;
-    var mp3 = [{position: position, songName: item.title, songUrl:"https://admin.urbandmusic.com/storage/" + item.file}];
-    var i;
-    for (i = 0; i < tracks.length; i++) {
-      if(tracks[i].id != item.id){
-        position++;
-        mp3.push({position: position, songName: tracks[i].title, songUrl:"https://admin.urbandmusic.com/storage/" + tracks[i].file});
-      }
+  gotoAlbumDetails(artistid) {
+    window.location.href = "/albums/detail/" + artistid;
+  }
+
+  PlayVideoHandler(status) {
+    if (status == "stop") {
+      this.setState({ bottomPlayerActivated: "hide" });
     }
-    this.setState({ playsong: true });
-    this.setState({ song: mp3 });
+  }
+
+  handleChangeSong(item) {
     this.setState({
       currentPlayList: {
-        playlistCoverUrl:"https://admin.urbandmusic.com/storage/" + this.props.value.image,
+        playlistCoverUrl: "https://admin.urbandmusic.com/storage/" + this.props.value.image,
         playlistName: item.title,
         bandName: this.props.value.title,
-        songs: this.state.song,
-        type: "album"
+        song: "https://admin.urbandmusic.com/storage/" + item.file
       }
     });
+    this.setState({ bottomPlayerActivated: "show" });
   }
 
   render() {
-
     const image_url = "https://admin.urbandmusic.com/storage/";
     const album = this.props.value;
     const track = album.tracks;
-    const state = this.state;
-    
+    const relatedAlbums = album.relatedAlbums;
+
     const responsive = {
       superLargeDesktop: {
         breakpoint: { max: 4000, min: 3000 },
@@ -81,11 +75,23 @@ class PlayerHero extends Component {
           <div className="container">
             <div className="row">
               <div className="style-fullwidth">
-                {state.playsong? (
-                  <AudioPlayer currentPlayList={state.currentPlayList} onToggle={({audioPlaying}) => ""}/>
+                {/* {state.playsong ? (
+                  <AudioPlayer currentPlayList={state.currentPlayList} onToggle={({ audioPlaying }) => ""} />
+                ) : (
+                    ""
+                  )} */}
+                {this.state.bottomPlayerActivated == "show" ? (
+                  <FixedBottomPlayer
+                    action={this.PlayVideoHandler}
+                    ArtistImage={this.state.currentPlayList.playlistCoverUrl}
+                    ArtistTittle={this.state.currentPlayList.playlistName}
+                    ArtistBrand={this.state.currentPlayList.bandName}
+                    trackUrl={this.state.currentPlayList.song}
+                  />
                 ) : (
                     ""
                   )}
+
                 <div className="jp-playlist style-fullwidth">
                   <div className="section-title m-0">
                     <h2>
@@ -102,7 +108,7 @@ class PlayerHero extends Component {
                           >
                             <div
                               className="jp-album-me"
-                              onClick={() => this.handleClick(item)}
+                              onClick={() => this.handleChangeSong(item)}
                             >
                               <div className="cell-play-icons">
                                 <FontAwesomeIcon icon={faPlay} />
@@ -135,10 +141,12 @@ class PlayerHero extends Component {
                   autoPlay={true}
                   infinite={true}
                 >
-                  {track
-                    ? track.map(item => {
+                  {relatedAlbums
+                    ? relatedAlbums.map(item => {
                       return (
-                        <div key={item.id}>
+                        <div key={item.id}
+                          onClick={() => this.gotoAlbumDetails(item.id)}
+                        >
                           <div className="clearfix swiper-slide">
                             <div className="single-related-album">
                               <img
@@ -147,11 +155,10 @@ class PlayerHero extends Component {
                               />
                               <div className="single-related-prod-bottom">
                                 <div className="left">
-                                  <Link to="/">{item.title}</Link>
+                                  {item.title}
                                 </div>
                                 <div
                                   className="play-bottom"
-                                  onClick={() => this.handleClick(item)}
                                 >
                                   {" "}
                                   <FontAwesomeIcon icon={faPlay} />

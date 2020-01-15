@@ -77,7 +77,6 @@ class logIn extends Component {
   }
 
   responseFacebook = (response) => {
-console.log("res", response)
     var res = response;
     if (res.email) {
       this.setState({

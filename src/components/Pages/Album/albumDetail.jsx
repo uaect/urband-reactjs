@@ -6,9 +6,31 @@ import BannerHero from "../../Banners/bannerHero";
 import { connect } from "react-redux";
 import * as actionCreators from "../../../store/actions";
 class AlbumDetail extends Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      albumid: this.props.location.pathname.split("/").pop(),
+      artistid: this.props.location.artistid
+    }
+  }
+
   componentDidMount() {
-    let albumid = this.props.location.pathname.split("/").pop();
-    this.props.fetchAlbumsDetails(albumid);
+    console.log(this.state);
+    this.props.fetchAlbumsDetails(this.state.albumid, this.state.artistid);
+  }
+
+  PlayVideoHandler() {
+    let show = this.state.bottomPlayerActivated;
+    let index = show.indexOf("show");
+
+    if (index != -1) {
+      show = "hide";
+    } else {
+      show = "show";
+    }
+
+    this.setState({ bottomPlayerActivated: show });
   }
 
   render() {
@@ -16,11 +38,10 @@ class AlbumDetail extends Component {
     return (
       <div>
         <BannerHero title={"Album Detail"} />
-
         <DetailHero value={album} />
-        <div className="album-player">
-          <PlayerHero value={album}></PlayerHero>
-        </div>
+          <div className="album-player">
+            <PlayerHero value={album}></PlayerHero>
+          </div>
       </div>
     );
   }
@@ -29,9 +50,9 @@ class AlbumDetail extends Component {
 const mapDispatchToProps = dispatch => {
   // call action functions
   return {
-    fetchAlbumsDetails: albumid =>
-      dispatch(actionCreators.fetchAlbumsDetails(albumid))
+    fetchAlbumsDetails: (albumid, artistid) => dispatch(actionCreators.fetchAlbumsDetails(albumid, artistid))
   };
+
 };
 
 const mapStateToProps = state => {

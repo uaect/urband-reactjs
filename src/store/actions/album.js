@@ -21,10 +21,11 @@ export const fetchAlbums = () => {
     };
 };
 
-export const fetchAlbumsDetails = (id) => {
+export const fetchAlbumsDetails = (albumid,artistid) => {
     return dispatch => {
         const body = {
-            albumid: id
+            albumid: albumid?albumid:"",
+            artistid: artistid?artistid:""
         };
         fetch("https://admin.urbandmusic.com/api/albumdetails", {
             method: "POST",

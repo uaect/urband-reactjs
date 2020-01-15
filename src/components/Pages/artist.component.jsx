@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import ComingSoon from "../Pages/comingsoon.component";
 import BannerHero from "../Banners/bannerHero";
 import ReadMoreAndLess from "react-read-more-less";
+
 import { connect } from "react-redux";
 import * as actionCreators from "../../../src/store/actions/";
 // import {
@@ -13,8 +14,18 @@ function createMarkup(item) {
   return {__html: item};
 }
 class Artist extends Component {
+
   componentDidMount() {
     this.props.fetchPosts();
+  }
+
+  gotoAlbumDetails(artistid){
+
+      this.props.history.push({
+          pathname: '/albums/detail/'+artistid,
+          artistid: artistid,
+      })
+      
   }
 
   render() {
@@ -34,6 +45,7 @@ class Artist extends Component {
                         <div
                           className="row no-gutters artist-row"
                           key={item.id}
+                          onClick={() => this.gotoAlbumDetails(item.id)}
                         >
                           <div className="col-lg-6">
                             <div className="artist-about pr__30">

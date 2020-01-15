@@ -314,7 +314,7 @@ class burgerMenu extends Component {
 
             {this.state.isToken?<NavLink
               exact
-              to="/profile/profileOrders"
+              to="/login"
               activeClassName="selected"
               onClick={() => this.closeMenu()}
             >
