@@ -1,7 +1,8 @@
 import { LOGIN } from '../actions/types';
 
 const initialState ={
-    items:[]
+    items:[],
+    isLoggedIn: false
 }
 
 const loginReducer = (state = initialState, action) => {
@@ -10,7 +11,8 @@ const loginReducer = (state = initialState, action) => {
           return{
               ...state,
            
-              items: action.value
+              items: action.value,
+              isLoggedIn: true,
           }  
     default:
         return state; 

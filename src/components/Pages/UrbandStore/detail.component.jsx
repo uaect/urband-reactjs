@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import ImageGallery from "react-image-gallery";
 import "./image-gallery.scss";
 import "./ionicons.scss";
@@ -127,7 +127,12 @@ class ShopDetail extends Component {
                           className="cart-icon"
                         />
                         Add to cart
-                      </button>):( <Link to='/login'
+                      </button>):( <Link to={{
+                          pathname: '/login',
+                          state: {
+                            from: `/detail/${storedetails.id}`
+                          }
+}}
                         type="submit"
                         name="add-to-cart"
                         value="0"
@@ -169,7 +174,7 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
   return {
     storedetails: state.storedetails.items,
-    addcart: state.addtocart.items
+    addcart: state.addtocart.items,
   };
 };
 

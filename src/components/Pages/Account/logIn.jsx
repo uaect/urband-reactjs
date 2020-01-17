@@ -64,7 +64,7 @@ class logIn extends Component {
           // this.props.history.push({
           //   pathname: '/'
           // })
-          this.props.history.goBack();
+          console.log("sucess login")
         })
         .catch((error) => {
           if (error.error == 'Unauthorised') {
@@ -107,7 +107,7 @@ class logIn extends Component {
 
   responseGoogle = (response) => {
     var res = response.profileObj;
-    if (res.email) {
+    if (res && res.email) {
       this.setState({
         loginType: 'social',
         email: res.email?res.email:"",
@@ -135,6 +135,14 @@ class logIn extends Component {
   }
 
   render() {
+    console.log("props", this.props)
+    if(this.props.isLoggedIn ){
+      if(this.props.location.state && this.props.location.state.from){
+        return <Redirect to={this.props.location.state.from} />
+      } else {
+        return <Redirect to='/' />
+      }
+   }
     return (
       <div>
         <section className="header-padd">
@@ -221,6 +229,13 @@ class logIn extends Component {
 }
 
 
+const mapStateToProps = state => {
+  return {
+    isLoggedIn: state.login.isLoggedIn
+  };
+};
+
+
 const mapDispatchToProps = dispatch => {
   return {
     login: (state) => dispatch(actionCreators.login(state))
@@ -228,7 +243,7 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(logIn);
 

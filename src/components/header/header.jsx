@@ -31,6 +31,7 @@ class Header extends Component {
     this.headercheck()
     this.fetchcontact()
 
+    console.log("header");
 
   }
 
@@ -93,11 +94,20 @@ class Header extends Component {
     localStorage.removeItem("urbandtoken");
     localStorage.removeItem("urbandData");
     window.location.href = "/";
+    // reset login reducer
     this.setState({
       redirect: true,
       isToken: localStorage.getItem("urbandtoken") ? true : false
     });
   };
+
+  // componentDidUpdate(prevProps, prevState) {
+  //   console.log("Header componentDidUpdate", prevProps)
+  //   if (this.props.isLoggedIn) {
+  //     this.headercheck()
+  //   this.fetchcontact()
+  //   }
+  // }
 
   render() {
     const image_url = "https://admin.urbandmusic.com/storage/";
@@ -261,7 +271,7 @@ class Header extends Component {
 
                 <ul className="d-inline-flex avathar-sec DNone768">
                   <li className="d-flex mr-4">
-                    {this.state.isToken ? (
+                    {this.props.isLoggedIn? (
                       <Link to="/cart">
                         <span>Cart</span>
                         <FontAwesomeIcon
@@ -274,7 +284,7 @@ class Header extends Component {
                       )}
                   </li>
                   <li className="d-flex pos-relative">
-                    {!this.state.isToken ? (
+                    {!this.props.isLoggedIn ? (
                       <Link to="/login">
                         <span>Log In</span>
                         <FontAwesomeIcon
@@ -285,7 +295,7 @@ class Header extends Component {
                     ) : (
                         ""
                       )}
-                    {this.state.isToken ? (
+                    {this.props.isLoggedIn ? (
                       <Link onClick={this.ToggleBox}>
                         <span>Profile</span>
                         <FontAwesomeIcon
@@ -342,7 +352,8 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
   return {
     menues: state.menues.items,
-    contact: state.contact.items
+    contact: state.contact.items,
+    isLoggedIn: state.login.isLoggedIn
   };
 };
 

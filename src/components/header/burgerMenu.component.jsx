@@ -276,7 +276,7 @@ class burgerMenu extends Component {
         {this.state.childVisible === 3 ? (
           <div className="sub-drop">
 
-            {this.state.isToken?<NavLink
+            {this.props.isLoggedIn?<NavLink
               exact
               to="/profile"
               activeClassName="selected"
@@ -285,7 +285,7 @@ class burgerMenu extends Component {
               Profile
             </NavLink>:""}
 
-            {this.state.isToken?<NavLink
+            {this.props.isLoggedIn?<NavLink
               exact
               to="/cart"
               activeClassName="selected"
@@ -294,7 +294,7 @@ class burgerMenu extends Component {
               Cart
             </NavLink>:""}
 
-            {this.state.isToken?<NavLink
+            {this.props.isLoggedIn?<NavLink
               exact
               to="/profile/profileAddress"
               activeClassName="selected"
@@ -303,7 +303,7 @@ class burgerMenu extends Component {
               Address
             </NavLink>:""}
 
-            {this.state.isToken?<NavLink
+            {this.props.isLoggedIn?<NavLink
               exact
               to="/profile/profileOrders"
               activeClassName="selected"
@@ -312,7 +312,7 @@ class burgerMenu extends Component {
               Orders
             </NavLink>:""}
 
-            {this.state.isToken?<NavLink
+            {this.props.isLoggedIn?<NavLink
               exact
               to="/login"
               activeClassName="selected"
@@ -321,7 +321,7 @@ class burgerMenu extends Component {
               Log Out
             </NavLink>:""}
 
-            {!this.state.isToken?<NavLink
+            {!this.props.isLoggedIn?<NavLink
               exact
               to="/login"
               activeClassName="selected"
@@ -347,7 +347,8 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
   return {
-    menues: state.menues.items
+    menues: state.menues.items,
+    isLoggedIn: state.login.isLoggedIn
   };
 };
 
