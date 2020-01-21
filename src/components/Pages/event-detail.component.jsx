@@ -13,6 +13,7 @@ class EventDetail extends Component {
 
   render() {
     const ticketFlag = localStorage.getItem('ticketheader');
+  console.log("ticket", ticketFlag)
     const events = this.props.events;
     if (events) {
       var event = events.result;

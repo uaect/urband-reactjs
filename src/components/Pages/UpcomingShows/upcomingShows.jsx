@@ -31,7 +31,7 @@ class upcomingShowHome extends Component {
   }
 
   render() {
-    const ticketFlag = localStorage.getItem("ticketheader");
+    const ticketFlag = localStorage.getItem('ticketheader');
     return (
       <section className="section-padding show-archive">
         <div className="container">
@@ -59,7 +59,7 @@ class upcomingShowHome extends Component {
                       </div>
                       <div className="col-sm-3 col-md-3 col-lg-2">
                         <div>
-                          {ticketFlag === true ? (
+                        {ticketFlag === "true" || ticketFlag === true? (
                             <Link
                               className="tim-btn"
                               to={{
