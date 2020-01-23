@@ -246,9 +246,7 @@ class storeCheckOut extends Component {
   }
 
   GobackToAddressHandler() {
-    this.setState({
-      formActiveOrNot: true
-    });
+    this.props.history.goBack();
   }
 
   handleOptionChange(event) {

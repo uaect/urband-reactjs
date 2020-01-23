@@ -16,7 +16,6 @@ class AlbumDetail extends Component {
   }
 
   componentDidMount() {
-    console.log(this.state);
     this.props.fetchAlbumsDetails(this.state.albumid, this.state.artistid);
   }
 
@@ -35,13 +34,23 @@ class AlbumDetail extends Component {
 
   render() {
     const album = this.props.album;
+    console.log("albumsss :", album.id);
     return (
       <div>
         <BannerHero title={"Album Detail"} />
-        <DetailHero value={album} />
-          <div className="album-player">
-            <PlayerHero value={album}></PlayerHero>
-          </div>
+        {album.id ?
+          <div>
+            <DetailHero value={album} />
+            <div className="album-player">
+              <PlayerHero value={album}></PlayerHero>
+            </div></div>
+          : <div className="container">
+            <div className="row">
+              <div className="style-fullwidth">
+                <center><h3 class="artist-name">Album Not Found !</h3></center> 
+              </div>
+            </div>
+          </div>}
       </div>
     );
   }

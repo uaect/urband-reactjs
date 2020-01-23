@@ -33,10 +33,18 @@ export const fetchAlbumsDetails = (albumid,artistid) => {
         })
             .then(res => res.json())
             .then(res => {
-                dispatch({
-                    type: FETCH_ALBUMSDETAILS,
-                    value: res.result
-                });
+                if(res.success){
+                    dispatch({
+                        type: FETCH_ALBUMSDETAILS,
+                        value: res.result
+                    });
+                }else{
+                    dispatch({
+                        type: FETCH_ALBUMSDETAILS,
+                        value: []
+                    });
+                }
+                
             })
             .catch(error => {
             });

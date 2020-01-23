@@ -16,7 +16,7 @@ class logIn extends Component {
       password: "",
       errpassword: "",
       loginflag: false,
-      loginType: "",
+      loginType: "manual",
       firstname: "",
       lastname: "",
       logo: "",
@@ -61,10 +61,13 @@ class logIn extends Component {
           this.setState({
             isToken: true
           })
-          // this.props.history.push({
-          //   pathname: '/'
-          // })
-          console.log("sucess login")
+          if (this.props.isLoggedIn) {
+            if (this.props.location.state && this.props.location.state.from) {
+              window.location.href = this.props.location.state.from;
+            } else {
+              window.location.href = "/";
+            }
+          }
         })
         .catch((error) => {
           if (error.error == 'Unauthorised') {
@@ -80,11 +83,11 @@ class logIn extends Component {
     var res = response;
     if (res.email) {
       this.setState({
-        loginType: 'social',
-        email: res.email?res.email:"",
-        firstname: res.name?res.name:"",
-        lastname: res.name?res.name:"",
-        logo: res.picture?res.picture.data.url:"",
+        loginType: 'facebook',
+        email: res.email ? res.email : "",
+        firstname: res.name ? res.name : "",
+        lastname: res.name ? res.name : "",
+        logo: res.picture ? res.picture.data.url : "",
         token: ""
       })
       this.props.login(this.state)
@@ -92,8 +95,13 @@ class logIn extends Component {
           this.setState({
             isToken: true
           })
-          // window.location.href = "/";
-          this.props.history.goBack();
+          if (this.props.isLoggedIn) {
+            if (this.props.location.state && this.props.location.state.from) {
+              window.location.href = this.props.location.state.from;
+            } else {
+              window.location.href = "/";
+            }
+          }
         })
         .catch((error) => {
           if (error.error == 'Unauthorised') {
@@ -109,11 +117,11 @@ class logIn extends Component {
     var res = response.profileObj;
     if (res && res.email) {
       this.setState({
-        loginType: 'social',
-        email: res.email?res.email:"",
-        firstname: res.givenName?res.givenName:"",
-        lastname: res.familyName?res.familyName:"",
-        logo: res.imageUrl?res.imageUrl:"",
+        loginType: 'gmail',
+        email: res.email ? res.email : "",
+        firstname: res.givenName ? res.givenName : "",
+        lastname: res.familyName ? res.familyName : "",
+        logo: res.imageUrl ? res.imageUrl : "",
         token: ""
       })
       this.props.login(this.state)
@@ -121,8 +129,13 @@ class logIn extends Component {
           this.setState({
             isToken: true
           })
-         //  window.location.href = "/";
-         this.props.history.goBack();
+          if (this.props.isLoggedIn) {
+            if (this.props.location.state && this.props.location.state.from) {
+              window.location.href = this.props.location.state.from;
+            } else {
+              window.location.href = "/";
+            }
+          }
         })
         .catch((error) => {
           if (error.error == 'Unauthorised') {
@@ -135,14 +148,6 @@ class logIn extends Component {
   }
 
   render() {
-    console.log("props", this.props)
-    if(this.props.isLoggedIn ){
-      if(this.props.location.state && this.props.location.state.from){
-        return <Redirect to={this.props.location.state.from} />
-      } else {
-        return <Redirect to='/' />
-      }
-   }
     return (
       <div>
         <section className="header-padd">
@@ -196,26 +201,26 @@ class logIn extends Component {
                     <div className="col-md-6">
                       <button className="btn" type="submit" onClick={this.gotoLogin}>Log In</button>
                     </div>
-                    </div>
+                  </div>
                   <div className="row mt-5 justify-content-between">
-                  <div className="social-btn-wrap">
-                    <div className="social-btn">
-                    <GoogleLogin
-                      clientId="960961951131-46o64t0b0kjb3421pcu8ekpbnglrq6fb.apps.googleusercontent.com"
-                      buttonText="LOGIN WITH GOOGLE"
-                      onSuccess={this.responseGoogle}
-                      onFailure={this.responseGoogle}
-                      cookiePolicy={'single_host_origin'}
-                    />
-                    </div>
+                    <div className="social-btn-wrap">
+                      <div className="social-btn">
+                        <GoogleLogin
+                          clientId="960961951131-46o64t0b0kjb3421pcu8ekpbnglrq6fb.apps.googleusercontent.com"
+                          buttonText="LOGIN WITH GOOGLE"
+                          onSuccess={this.responseGoogle}
+                          onFailure={this.responseGoogle}
+                          cookiePolicy={'single_host_origin'}
+                        />
+                      </div>
                     </div>
                     <div className="social-btn-wrap">
-                    <div className="social-btn">
-                    <FacebookLogin appId="487607155274158" //APP ID NOT CREATED YET
-                      fields="name,email,picture"
-                      callback={this.responseFacebook}
-                      icon="fa-facebook" />
-                    </div>
+                      <div className="social-btn">
+                        <FacebookLogin appId="487607155274158" //APP ID NOT CREATED YET
+                          fields="name,email,picture"
+                          callback={this.responseFacebook}
+                          icon="fa-facebook" />
+                      </div>
                     </div>
                   </div>
                 </div>

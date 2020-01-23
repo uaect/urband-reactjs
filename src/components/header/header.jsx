@@ -271,8 +271,10 @@ class Header extends Component {
 
                 <ul className="d-inline-flex avathar-sec DNone768">
                   <li className="d-flex mr-4">
-                    {this.props.isLoggedIn? (
-                      <Link to="/cart">
+                    {this.props.isLoggedIn || this.state.isToken? (
+                      <Link 
+                        to="/cart"
+                      >
                         <span>Cart</span>
                         <FontAwesomeIcon
                           icon={faCartPlus}
@@ -284,7 +286,7 @@ class Header extends Component {
                       )}
                   </li>
                   <li className="d-flex pos-relative">
-                    {!this.props.isLoggedIn ? (
+                    {!this.props.isLoggedIn && !this.state.isToken? (
                       <Link to="/login">
                         <span>Log In</span>
                         <FontAwesomeIcon
@@ -295,7 +297,7 @@ class Header extends Component {
                     ) : (
                         ""
                       )}
-                    {this.props.isLoggedIn ? (
+                    {this.props.isLoggedIn || this.state.isToken? (
                       <Link onClick={this.ToggleBox}>
                         <span>Profile</span>
                         <FontAwesomeIcon

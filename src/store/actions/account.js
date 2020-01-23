@@ -37,7 +37,7 @@ export const login = (params) => {
     return dispatch => {
         return new Promise((resolve, reject) => {
             const body = {
-                type: params.loginType?params.loginType:'website',
+                type: params.loginType?params.loginType:'manual',
                 email: params.email,
                 password: params.password?params.password:"",
                 firstname: params.firstname?params.firstname:"",
