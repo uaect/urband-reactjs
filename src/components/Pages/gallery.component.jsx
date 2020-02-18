@@ -44,7 +44,7 @@ function Gallery() {
 
   const image_url = "https://admin.urbandmusic.com/storage/";
   const categories = category.categories.result;
-
+  console.log(categories);
   return (
     <div>
       <BannerHero title={"Gallery"} />
@@ -60,13 +60,11 @@ function Gallery() {
               }}
             >
               <div className="tim-isotope-filter album-filter-button album-filter-button-two">
-                <TabList>
+              <TabList>
                   {categories &&
                     categories.map(item => {
                       return (
-                        <Tab tabFor={item.title} key={item.id}>
-                          {item.title}
-                        </Tab>
+                        item.gallery.length?<Tab tabFor={item.title} key={item.id}>{item.title}</Tab>:""
                       );
                     })}
                 </TabList>
@@ -76,9 +74,8 @@ function Gallery() {
                   categories.map(item => {
                     return (
                       <TabPanel tabId={item.title}>
-                        <ul class="tim-filter-items tim-album-items grid">
-                          {item.gallery[0].files &&
-                            item.gallery[0].files.map(gal => {
+                        {item.gallery[0] ?<ul class="tim-filter-items tim-album-items grid">
+                          {item.gallery[0].files.map(gal => {
                               return (
                                 <li className="tim-album-item grid-item">
                                   <div className="tim-isotope-grid__img effect-active">
@@ -109,7 +106,7 @@ function Gallery() {
                                 </li>
                               );
                             })}
-                        </ul>
+                        </ul>:""}
                       </TabPanel>
                     );
                   })}

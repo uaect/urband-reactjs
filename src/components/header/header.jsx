@@ -160,26 +160,29 @@ class Header extends Component {
                         </li>);
                       })) : ""}
 
-                    <li className="menu-item-has-children in-array">
-                      {menue ? (
-                        menue.map(el => {
-                          return (el.id == '11' && el.title);
-                        })) : ""}
-                      <ul className="sub-menu">
-                        {menue ? (
-                          menue.map(el => {
-                            return (el.id == '12' && <li>
-                              <Link to="/artist">{el.title}</Link>
-                            </li>);
-                          })) : ""}
-                        {menue ? (
-                          menue.map(el => {
-                            return (el.id == '13' && <li>
-                              <Link to="/clients">{el.title}</Link>
-                            </li>);
-                          })) : ""}
-                      </ul>
-                    </li>
+                    {menue ? (
+                      menue.map(el => {
+                        return (el.id == '11' && <li className="menu-item-has-children in-array">
+                          {menue ? (
+                            menue.map(el => {
+                              return (el.id == '11' && el.title);
+                            })) : ""}
+                          <ul className="sub-menu">
+                            {menue ? (
+                              menue.map(el => {
+                                return (el.id == '12' && <li>
+                                  <Link to="/artist">{el.title}</Link>
+                                </li>);
+                              })) : ""}
+                            {menue ? (
+                              menue.map(el => {
+                                return (el.id == '13' && <li>
+                                  <Link to="/clients">{el.title}</Link>
+                                </li>);
+                              })) : ""}
+                          </ul>
+                        </li>);
+                      })) : ""}
 
                     {menue ? (
                       menue.map(el => {
@@ -271,8 +274,8 @@ class Header extends Component {
 
                 <ul className="d-inline-flex avathar-sec DNone768">
                   <li className="d-flex mr-4">
-                    {this.props.isLoggedIn || this.state.isToken? (
-                      <Link 
+                    {this.props.isLoggedIn || this.state.isToken ? (
+                      <Link
                         to="/cart"
                       >
                         <span>Cart</span>
@@ -286,7 +289,7 @@ class Header extends Component {
                       )}
                   </li>
                   <li className="d-flex pos-relative">
-                    {!this.props.isLoggedIn && !this.state.isToken? (
+                    {!this.props.isLoggedIn && !this.state.isToken ? (
                       <Link to="/login">
                         <span>Log In</span>
                         <FontAwesomeIcon
@@ -297,7 +300,7 @@ class Header extends Component {
                     ) : (
                         ""
                       )}
-                    {this.props.isLoggedIn || this.state.isToken? (
+                    {this.props.isLoggedIn || this.state.isToken ? (
                       <Link onClick={this.ToggleBox}>
                         <span>Profile</span>
                         <FontAwesomeIcon

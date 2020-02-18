@@ -8,7 +8,9 @@ export const register = (params) => {
                 name: params.firstname,
                 lastname: params.lastname,
                 email: params.email,
-                password: params.password
+                password: params.password,
+                mobile: params.mobile,
+                city: params.city
             };
             fetch("https://admin.urbandmusic.com/api/register", {
                 method: "POST",

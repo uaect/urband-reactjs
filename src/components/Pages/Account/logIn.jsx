@@ -206,7 +206,7 @@ class logIn extends Component {
                     <div className="social-btn-wrap">
                       <div className="social-btn">
                         <GoogleLogin
-                          clientId="960961951131-46o64t0b0kjb3421pcu8ekpbnglrq6fb.apps.googleusercontent.com"
+                          clientId="46552750327-g8vrae58sm2ti880u9vv88j2na7efsgu.apps.googleusercontent.com"
                           buttonText="LOGIN WITH GOOGLE"
                           onSuccess={this.responseGoogle}
                           onFailure={this.responseGoogle}

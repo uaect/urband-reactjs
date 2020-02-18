@@ -81,7 +81,7 @@ class register extends Component {
     if (city.length < 1) {
       flag = 1;
       this.setState({
-        errCity: 'Please select city'
+        errCity: 'Please enter your city'
       })
     }
 
@@ -99,7 +99,7 @@ class register extends Component {
       })
       .catch((error) => {
           this.setState({
-            errpassword: 'Error in registration. try again'
+            errTerms: error?"Registration failed, "+error.message:""
           })
       })
 
@@ -217,23 +217,19 @@ class register extends Component {
                       </div>
                       {errMobile && <div class="text-danger">{errMobile}</div>}
                     </div>
-                    <div className="col-md-12 mb-2">
+                    <div className="col-md-12 mb-3">
                       <div className="form-group">
-                        <select
+                        <input
+                          required=""
+                          name="city"
+                          type="text"
                           value={city}
                           onChange={this.handleChange.bind(this, 'city', 'errCity')}
-                          className="form-control field-control password"
-                          name="city"
-                          placeHolder="City"
-                        >
-                          <option>Select City</option>
-                          {emirates &&
-                    emirates.map(state => {
-                      return (
-                      <option> {state.location}</option>
-                          );
-                        })}
-                          </select>
+                          title="Please enter your city"
+                          className="form-control field-control email"
+                          id="city"
+                          placeholder="City"
+                        />
                       </div>
                       {errCity && <div class="text-danger">{errCity}</div>}
                     </div>
@@ -245,7 +241,7 @@ class register extends Component {
                           onChange={this.handleChange.bind(this, 'terms', 'errTerms')}
                           name="terms"
                           placeholder="Password"
-                        />   Accept terms & condition
+                        />   {"Accept Terms & Conditions"}
                       {errTerms && <div class="text-danger">{errTerms}</div>}
                     </div>
 

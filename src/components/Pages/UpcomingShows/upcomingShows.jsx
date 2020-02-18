@@ -13,35 +13,39 @@ class upcomingShowHome extends Component {
   }
 
   componentDidMount() {
-    this.props
-      .fetchEventDetail()
-      .then(() => {
-        const events = this.props.events;
-        var event = events.slice(0, 2);
-        if (event) {
-          this.setState({
-            event: event
-          });
-        }
-      })
-      .catch(error => {
-        if (error) {
-        }
-      });
+    this.props.fetchEventDetail();
+
+    // this.props
+    //   .fetchEventDetail()
+    //   .then(() => {
+    //     const events = this.props.events;
+    //     var event = events.slice(0, 2);
+    //     if (event) {
+    //       this.setState({
+    //         event: event
+    //       });
+    //     }
+    //   })
+    //   .catch(error => {
+    //     if (error) {
+    //     }
+    //   });
   }
 
   render() {
     const ticketFlag = localStorage.getItem('ticketheader');
+    const events = this.props.events;
     return (
+      
       <section className="section-padding show-archive">
+        {events.length > 0 ? (
         <div className="container">
           <div className="d-flex justify-content-center row">
             <div className="col-xl-10">
               <div className="section-title style-four">
                 <h2>UPCOMING SHOWS</h2>
               </div>
-              {this.state.event &&
-                this.state.event.map(item => {
+              {events.map(item => {
                   return (
                     <div
                       key={item.id}
@@ -79,7 +83,14 @@ class upcomingShowHome extends Component {
             </div>
           </div>
         </div>
+        ) : (
+          ""
+        )}
+        
       </section>
+
+      
+
     );
   }
 }

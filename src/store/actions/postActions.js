@@ -134,7 +134,7 @@ export const fetchEventDetail = (page) => {
             })
                 .then(res => res.json())
                 .then(res => {
-                    if (res.result) {
+                    if (res.success) {
                         localStorage.setItem('address', true);
                         dispatch({
                             type: FETCH_EVENTDETAIL,
