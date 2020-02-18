@@ -39,14 +39,14 @@ class Gang extends Component {
                   clickable={true}
                   active={0}
                   media={{
-                    "@media (max-width: 900px)": {
-                      width: "600px",
-                      height: "300px"
-                    },
-                    "@media (min-width: 900px)": {
-                      width: "960px",
-                      height: "600px"
-                    }
+                    // "@media (max-width: 900px)": {
+                    //   width: "600px",
+                    //   height: "300px"
+                    // },
+                    // "@media (min-width: 768px)": {
+                    //   width: '100%',
+                    //   height: '553px'
+                    // }
                   }}
                 >
                   {gangmember.map(item => {

@@ -15289,6 +15289,9 @@ h1 {
 /*--------------------------------------------------------------
   ## Gang
   --------------------------------------------------------------*/
+  .coverflow__container__1P-xE{
+    min-height: 553px;
+  }
 .the-gang .coverflow__container__1P-xE {
   background-color: transparent;
 }
@@ -15818,6 +15821,17 @@ h1 {
   .header_player .jp-audio .jp-type-playlist .jp-interface .jp-progress {
     max-width: 55%;
   }
+  .rmq-f9ce3804 {
+    width: auto !important;
+}
+  .coverflow__figure__3bk_C{
+    min-width: 170px !important;
+  }
+  .coverflow__container__1P-xE {
+    height: 389px !important;
+    min-height: 389px;
+
+}
 }
 
 @media (min-width: 320px) and (max-width: 575px) {
