@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import Carousel from "react-multi-carousel";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
@@ -9,7 +8,6 @@ import FixedBottomPlayer from "../../uicomponents/PlayerBottom/fixedBottomPlayer
 library.add(faPlay);
 
 class PlayerHero extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -18,16 +16,14 @@ class PlayerHero extends Component {
     this.PlayVideoHandler = this.PlayVideoHandler.bind(this);
   }
 
-  componentDidMount() {
-
-  }
+  componentDidMount() {}
 
   gotoAlbumDetails(artistid) {
     window.location.href = "/albums/detail/" + artistid;
   }
 
   PlayVideoHandler(status) {
-    if (status == "stop") {
+    if (status === "stop") {
       this.setState({ bottomPlayerActivated: "hide" });
     }
   }
@@ -35,7 +31,8 @@ class PlayerHero extends Component {
   handleChangeSong(item) {
     this.setState({
       currentPlayList: {
-        playlistCoverUrl: "https://admin.urbandmusic.com/storage/" + this.props.value.image,
+        playlistCoverUrl:
+          "https://admin.urbandmusic.com/storage/" + this.props.value.image,
         playlistName: item.title,
         bandName: this.props.value.title,
         song: "https://admin.urbandmusic.com/storage/" + item.file
@@ -80,7 +77,7 @@ class PlayerHero extends Component {
                 ) : (
                     ""
                   )} */}
-                {this.state.bottomPlayerActivated == "show" ? (
+                {this.state.bottomPlayerActivated === "show" ? (
                   <FixedBottomPlayer
                     action={this.PlayVideoHandler}
                     ArtistImage={this.state.currentPlayList.playlistCoverUrl}
@@ -89,8 +86,8 @@ class PlayerHero extends Component {
                     trackUrl={this.state.currentPlayList.song}
                   />
                 ) : (
-                    ""
-                  )}
+                  ""
+                )}
 
                 <div className="jp-playlist style-fullwidth">
                   <div className="section-title m-0">
@@ -101,23 +98,23 @@ class PlayerHero extends Component {
                   <ul>
                     {track
                       ? track.map(item => {
-                        return (
-                          <li
-                            className="jp-playlist-current style-fullwidth"
-                            key={item.id}
-                          >
-                            <div
-                              className="jp-album-me"
-                              onClick={() => this.handleChangeSong(item)}
+                          return (
+                            <li
+                              className="jp-playlist-current style-fullwidth"
+                              key={item.id}
                             >
-                              <div className="cell-play-icons">
-                                <FontAwesomeIcon icon={faPlay} />
+                              <div
+                                className="jp-album-me"
+                                onClick={() => this.handleChangeSong(item)}
+                              >
+                                <div className="cell-play-icons">
+                                  <FontAwesomeIcon icon={faPlay} />
+                                </div>
+                                <span className="jp-artist">{item.name}</span>
                               </div>
-                              <span className="jp-artist">{item.name}</span>
-                            </div>
-                          </li>
-                        );
-                      })
+                            </li>
+                          );
+                        })
                       : ""}
                   </ul>
                 </div>
@@ -143,32 +140,29 @@ class PlayerHero extends Component {
                 >
                   {relatedAlbums
                     ? relatedAlbums.map(item => {
-                      return (
-                        <div key={item.id}
-                          onClick={() => this.gotoAlbumDetails(item.id)}
-                        >
-                          <div className="clearfix swiper-slide">
-                            <div className="single-related-album">
-                              <img
-                                src={image_url + item.image}
-                                alt={image_url + item.image}
-                              />
-                              <div className="single-related-prod-bottom">
-                                <div className="left">
-                                  {item.title}
-                                </div>
-                                <div
-                                  className="play-bottom"
-                                >
-                                  {" "}
-                                  <FontAwesomeIcon icon={faPlay} />
+                        return (
+                          <div
+                            key={item.id}
+                            onClick={() => this.gotoAlbumDetails(item.id)}
+                          >
+                            <div className="clearfix swiper-slide">
+                              <div className="single-related-album">
+                                <img
+                                  src={image_url + item.image}
+                                  alt={image_url + item.image}
+                                />
+                                <div className="single-related-prod-bottom">
+                                  <div className="left">{item.title}</div>
+                                  <div className="play-bottom">
+                                    {" "}
+                                    <FontAwesomeIcon icon={faPlay} />
+                                  </div>
                                 </div>
                               </div>
                             </div>
                           </div>
-                        </div>
-                      );
-                    })
+                        );
+                      })
                     : ""}
                 </Carousel>
               </div>

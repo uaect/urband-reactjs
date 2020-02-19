@@ -1,14 +1,9 @@
 import React, { Component } from "react";
-import moment from "moment";
 class DetailHero extends Component {
   render() {
     const image_url = "https://admin.urbandmusic.com/storage/";
     const album = this.props.value;
-    if (album.tracks) {
-      var tracks = album.tracks.length;
-    } else {
-      tracks = 0;
-    }
+
     return (
       <div>
         <section className="album-info-wrapper">

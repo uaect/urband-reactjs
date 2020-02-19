@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actionCreators from "../../../src/store/actions/";
 
@@ -22,24 +21,28 @@ class BannerHero extends Component {
 
     return (
       <div>
-        {getbanner.image ?<section className="page-header" style={bannerImg}>
-          <div className="tim-container">
-            <div className="page-header-title text-center">
-              <h2>{getbanner.title}</h2>
-            </div>
-            {/* <div className="breadcrumbs">
+        {getbanner.image ? (
+          <section className="page-header" style={bannerImg}>
+            <div className="tim-container">
+              <div className="page-header-title text-center">
+                <h2>{getbanner.title}</h2>
+              </div>
+              {/* <div className="breadcrumbs">
               <Link to="/">Home</Link>
               <span>/</span>
               <span>About</span>
             </div> */}
-          </div>
-        </section>:<section className="page-header no-banner">
-          <div className="tim-container">
-            <div className="page-header-title text-center">
-              <h2>Banner</h2>
             </div>
-          </div>
-        </section>}
+          </section>
+        ) : (
+          <section className="page-header no-banner">
+            <div className="tim-container">
+              <div className="page-header-title text-center">
+                <h2>Banner</h2>
+              </div>
+            </div>
+          </section>
+        )}
       </div>
     );
   }
@@ -57,7 +60,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(BannerHero);
+export default connect(mapStateToProps, mapDispatchToProps)(BannerHero);

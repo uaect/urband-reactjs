@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import RadioIcon from "../../../assets/img/radioButton.png";
 const HeaderTypeOne = ({ HeaderText, SubHeaderText }) => {
   return (

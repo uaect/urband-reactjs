@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { Tabs, Tab, TabPanel, TabList } from "react-web-tabs";
 import BannerHero from "../Banners/bannerHero";
@@ -13,7 +13,7 @@ function Gallery() {
   const [category, setCategory] = React.useState({
     categories: []
   });
- 
+
   const [lightboxController, setLightboxController] = useState({
     toggler: false,
     sourceIndex: 0,
@@ -54,28 +54,30 @@ function Gallery() {
             <h2>Music Gallery</h2>
           </div>
           <div className="tim-isotope tim-isotope-2">
-            <Tabs
-              defaultTab="Drum"
-              onChange={tabId => {
-              }}
-            >
+            <Tabs defaultTab="Drum" onChange={tabId => {}}>
               <div className="tim-isotope-filter album-filter-button album-filter-button-two">
-              <TabList>
-                  {categories &&
-                    categories.map(item => {
-                      return (
-                        item.gallery.length?<Tab tabFor={item.title} key={item.id}>{item.title}</Tab>:""
-                      );
-                    })}
+                <TabList>
+                  {categories
+                    ? categories.map(item => {
+                        return item.gallery.length ? (
+                          <Tab tabFor={item.title} key={item.id}>
+                            {item.title}
+                          </Tab>
+                        ) : (
+                          ""
+                        );
+                      })
+                    : ""}
                 </TabList>
               </div>
               <div className="col-xl-10 mx-auto">
                 {categories &&
                   categories.map(item => {
                     return (
-                      <TabPanel tabId={item.title}>
-                        {item.gallery[0] ?<ul class="tim-filter-items tim-album-items grid">
-                          {item.gallery[0].files.map(gal => {
+                      <TabPanel tabId={item.title} key={item.title}>
+                        {item.gallery[0] ? (
+                          <ul class="tim-filter-items tim-album-items grid">
+                            {item.gallery[0].files.map(gal => {
                               return (
                                 <li className="tim-album-item grid-item">
                                   <div className="tim-isotope-grid__img effect-active">
@@ -106,7 +108,10 @@ function Gallery() {
                                 </li>
                               );
                             })}
-                        </ul>:""}
+                          </ul>
+                        ) : (
+                          ""
+                        )}
                       </TabPanel>
                     );
                   })}

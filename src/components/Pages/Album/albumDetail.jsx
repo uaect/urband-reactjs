@@ -1,18 +1,16 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import DetailHero from "../Music/detail";
 import PlayerHero from "../Music/player";
 import BannerHero from "../../Banners/bannerHero";
 import { connect } from "react-redux";
 import * as actionCreators from "../../../store/actions";
 class AlbumDetail extends Component {
-
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       albumid: this.props.location.pathname.split("/").pop(),
       artistid: this.props.location.artistid
-    }
+    };
   }
 
   componentDidMount() {
@@ -23,7 +21,7 @@ class AlbumDetail extends Component {
     let show = this.state.bottomPlayerActivated;
     let index = show.indexOf("show");
 
-    if (index != -1) {
+    if (index !== -1) {
       show = "hide";
     } else {
       show = "show";
@@ -38,19 +36,24 @@ class AlbumDetail extends Component {
     return (
       <div>
         <BannerHero title={"Album Detail"} />
-        {album.id ?
+        {album.id ? (
           <div>
             <DetailHero value={album} />
             <div className="album-player">
               <PlayerHero value={album}></PlayerHero>
-            </div></div>
-          : <div className="container">
+            </div>
+          </div>
+        ) : (
+          <div className="container">
             <div className="row">
               <div className="style-fullwidth">
-                <center><h3 class="artist-name">Album Not Found !</h3></center> 
+                <center>
+                  <h3 class="artist-name">Album Not Found !</h3>
+                </center>
               </div>
             </div>
-          </div>}
+          </div>
+        )}
       </div>
     );
   }
@@ -59,9 +62,9 @@ class AlbumDetail extends Component {
 const mapDispatchToProps = dispatch => {
   // call action functions
   return {
-    fetchAlbumsDetails: (albumid, artistid) => dispatch(actionCreators.fetchAlbumsDetails(albumid, artistid))
+    fetchAlbumsDetails: (albumid, artistid) =>
+      dispatch(actionCreators.fetchAlbumsDetails(albumid, artistid))
   };
-
 };
 
 const mapStateToProps = state => {

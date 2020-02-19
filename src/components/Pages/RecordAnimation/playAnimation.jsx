@@ -4,7 +4,6 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { faPlay, faStop } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./style.css";
-import cover from "../../../media/album/cover.jpg";
 import record from "../../../media/background/record.png";
 import recordshade from "../../../media/background/record-shade.png";
 import playerkey from "../../../media/background/player-key.png";
@@ -29,7 +28,7 @@ class playAnimation extends Component {
     let show = this.state.bottomPlayerActivated;
     let index = show.indexOf("show");
 
-    if (index != -1) {
+    if (index !== -1) {
       show = "hide";
     } else {
       show = "show";
@@ -89,13 +88,13 @@ class playAnimation extends Component {
                               className="sm2_button"
                               onClick={this.PlayVideoHandler}
                             >
-                              {this.state.bottomPlayerActivated == "show" ? (
+                              {this.state.bottomPlayerActivated === "show" ? (
                                 <FontAwesomeIcon icon={faStop} />
                               ) : (
                                 <FontAwesomeIcon icon={faPlay} />
                               )}
                             </span>
-                            {this.state.bottomPlayerActivated == "show" ? (
+                            {this.state.bottomPlayerActivated === "show" ? (
                               <FixedBottomPlayer
                                 action={this.PlayVideoHandler}
                                 ArtistImage={image_url + events[0].image}
@@ -116,7 +115,7 @@ class playAnimation extends Component {
                         <div
                           className={
                             "player-main " +
-                            (this.state.bottomPlayerActivated == "show"
+                            (this.state.bottomPlayerActivated === "show"
                               ? "active"
                               : "")
                           }
@@ -126,7 +125,7 @@ class playAnimation extends Component {
                         <div
                           className={
                             "player-main-shade " +
-                            (this.state.bottomPlayerActivated == "show"
+                            (this.state.bottomPlayerActivated === "show"
                               ? "active"
                               : "")
                           }
@@ -136,7 +135,7 @@ class playAnimation extends Component {
                         <div
                           className={
                             "record-key " +
-                            (this.state.bottomPlayerActivated == "show"
+                            (this.state.bottomPlayerActivated === "show"
                               ? "active"
                               : "")
                           }
@@ -148,7 +147,7 @@ class playAnimation extends Component {
                     <div
                       className={
                         "bubble-wrap " +
-                        (this.state.bottomPlayerActivated == "show"
+                        (this.state.bottomPlayerActivated === "show"
                           ? "active"
                           : "")
                       }
@@ -211,7 +210,7 @@ class playAnimation extends Component {
                     <div
                       className={
                         "bubble-wrap-right " +
-                        (this.state.bottomPlayerActivated == "show"
+                        (this.state.bottomPlayerActivated === "show"
                           ? "active"
                           : "")
                       }
