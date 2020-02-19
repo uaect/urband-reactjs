@@ -106,7 +106,7 @@ class EventList extends Component {
                                 <ReadMoreAndLess
                                   ref={this.ReadMore}
                                   className="read-more-content"
-                                  charLimit={250}
+                                  charLimit={150}
                                   readMoreText="Read more"
                                   readLessText="Read less"
                               >
