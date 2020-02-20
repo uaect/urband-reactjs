@@ -111,6 +111,52 @@ class Header extends Component {
   render() {
     const image_url = "https://admin.urbandmusic.com/storage/";
     const menue = this.props.menues;
+
+    let menuItems = [];
+    let Submenu1Items = [];
+    let Submenu2Items = [];
+    for (var i = 0; i < menue.length; i++) {
+        if(menue[i].id==10){
+          menuItems.push(<li key={menue[i].id}><NavLink to="/index" activeClassName="selected" className="in-array">{menue[i].title}</NavLink></li>);
+        }else if(menue[i].id==16){
+          menuItems.push(<li key={menue[i].id}><NavLink to="/who-we-are" activeClassName="selected" className="in-array">{menue[i].title}</NavLink></li>);
+        }else if(menue[i].id==11 || menue[i]==12  || menue[i]==13 ){
+          if(menue[i].id==12){
+            Submenu1Items.push(<li><Link to="/artist">{menue[i].title}</Link></li>);
+          }else if(menue[i].id==13){
+            Submenu1Items.push(<li><Link to="/clients">{menue[i].title}</Link></li>);
+          }else if(menue[i].id==11){
+            menuItems.push(<li className="menu-item-has-children in-array" key={menue[i].id}>
+            {menue[i].title}
+              <ul className="sub-menu">
+                {Submenu1Items}
+              </ul>
+            </li>);
+          }
+        }else if(menue[i].id==14){
+          menuItems.push(<li key={menue[i].id}><NavLink to="/radio" activeClassName="selected" className="in-array">{menue[i].title}</NavLink></li>);
+        }else if(menue[i].id==18){
+          menuItems.push(<li key={menue[i].id}><NavLink to="/gallery" activeClassName="selected" className="in-array">{menue[i].title}</NavLink></li>);
+        }else if(menue[i].id==19 || menue[i].id==21 || menue[i].id==20 || menue[i].id==22){
+          if(menue[i].id==21){
+            Submenu2Items.push(<li><Link to="/coming-soon">{menue[i].title}</Link></li>);
+          }else if(menue[i].id==20){
+            Submenu2Items.push(<li><Link to="/event-tickets">{menue[i].title}</Link></li>);
+          }else if(menue[i].id==22){
+            Submenu2Items.push(<li><Link to="/store">{menue[i].title}</Link></li>);
+          }else if(menue[i].id==19){
+            menuItems.push(<li className="menu-item-has-children in-array" key={menue[i].id}>
+            {menue[i].title}
+              <ul className="sub-menu">
+                {Submenu2Items}
+              </ul>
+            </li>);
+          }
+        }else if(menue[i].id==23){
+          menuItems.push(<li key={menue[i].id}><NavLink to="/contact" activeClassName="selected" className="in-array">{menue[i].title}</NavLink></li>);
+        }
+    }
+    
     return (
       <div className="AppHeader">
         <div
@@ -133,212 +179,7 @@ class Header extends Component {
               <div className="d-flex full-wrap nav-wrap">
                 <div className="nav">
                   <ul className="group" id="header-menu-magic-line">
-                    {menue
-                      ? menue.map(el => {
-                          return (
-                            el.id === 10 && (
-                              <li key={el.id}>
-                                <NavLink
-                                  to="/index"
-                                  activeClassName="selected"
-                                  className="in-array"
-                                >
-                                  {el.title}
-                                </NavLink>
-                              </li>
-                            )
-                          );
-                        })
-                      : ""}
-
-                    {menue
-                      ? menue.map(el => {
-                          return (
-                            el.id === 16 && (
-                              <li key={el.id}>
-                                <NavLink
-                                  to="/who-we-are"
-                                  activeClassName="selected"
-                                  className="in-array"
-                                >
-                                  {el.title}
-                                </NavLink>
-                              </li>
-                            )
-                          );
-                        })
-                      : ""}
-
-                    {menue
-                      ? menue.map(el => {
-                          return (
-                            el.id === 11 && (
-                              <li
-                                className="menu-item-has-children in-array"
-                                key={el.id}
-                              >
-                                {menue
-                                  ? menue.map(el => {
-                                      return el.id === 11 && el.title;
-                                    })
-                                  : ""}
-                                <ul className="sub-menu">
-                                  {menue
-                                    ? menue.map(el => {
-                                        return (
-                                          el.id === 12 && (
-                                            <li>
-                                              <Link to="/artist">
-                                                {el.title}
-                                              </Link>
-                                            </li>
-                                          )
-                                        );
-                                      })
-                                    : ""}
-                                  {menue
-                                    ? menue.map(el => {
-                                        return (
-                                          el.id === 13 && (
-                                            <li>
-                                              <Link to="/clients">
-                                                {el.title}
-                                              </Link>
-                                            </li>
-                                          )
-                                        );
-                                      })
-                                    : ""}
-                                </ul>
-                              </li>
-                            )
-                          );
-                        })
-                      : ""}
-
-                    {menue
-                      ? menue.map(el => {
-                          return (
-                            el.id === 14 && (
-                              <li>
-                                <NavLink
-                                  to="/radio"
-                                  className="in-array"
-                                  activeClassName="selected"
-                                >
-                                  {el.title}
-                                </NavLink>
-                              </li>
-                            )
-                          );
-                        })
-                      : ""}
-
-                    {menue
-                      ? menue.map(el => {
-                          return (
-                            el.id === 15 && (
-                              <li
-                                className="menu-item-has-children"
-                                key={el.id}
-                              >
-                                <NavLink
-                                  to="/event-list"
-                                  activeClassName="selected"
-                                  className="in-array"
-                                >
-                                  {el.title}
-                                </NavLink>
-                              </li>
-                            )
-                          );
-                        })
-                      : ""}
-
-                    {/* <li>
-                      <NavLink exact to="/vlog" className="in-array">
-                        Vlog
-                      </NavLink>
-                    </li> */}
-
-                    {menue
-                      ? menue.map(el => {
-                          return (
-                            el.id === 18 && (
-                              <li key={el.id}>
-                                <NavLink
-                                  to="/gallery"
-                                  activeClassName="selected"
-                                  className="in-array"
-                                >
-                                  {el.title}
-                                </NavLink>
-                              </li>
-                            )
-                          );
-                        })
-                      : ""}
-
-                    <li className="menu-item-has-children in-array">
-                      {menue
-                        ? menue.map(el => {
-                            return el.id === 19 && el.title;
-                          })
-                        : ""}
-                      <ul className="sub-menu">
-                        {menue
-                          ? menue.map((el, id) => {
-                              return (
-                                el.id === 21 && (
-                                  <li key={id}>
-                                    <Link to="/coming-soon">{el.title}</Link>
-                                  </li>
-                                )
-                              );
-                            })
-                          : ""}
-                        {menue
-                          ? menue.map(el => {
-                              return (
-                                el.id === 20 && (
-                                  <li key={el.id}>
-                                    <Link to="/event-tickets">{el.title}</Link>
-                                  </li>
-                                )
-                              );
-                            })
-                          : ""}
-                        {menue
-                          ? menue.map(el => {
-                              return (
-                                el.id === 22 && (
-                                  <li key={el.id}>
-                                    <Link to="/store">{el.title}</Link>
-                                  </li>
-                                )
-                              );
-                            })
-                          : ""}
-                      </ul>
-                    </li>
-
-                    {menue
-                      ? menue.map(el => {
-                          return (
-                            el.id === 23 && (
-                              <li key={el.id}>
-                                <NavLink
-                                  to="/contact"
-                                  className="in-array"
-                                  activeClassName="selected"
-                                >
-                                  {el.title}
-                                </NavLink>
-                              </li>
-                            )
-                          );
-                        })
-                      : ""}
+                  {menuItems}
                   </ul>
                 </div>
 
