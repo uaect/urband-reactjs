@@ -12213,7 +12213,7 @@ div.jp-seeking-bg {
 }
 
 .con-page-form input {
-  width: 49%;
+  width: 100%;
   float: left;
   border: 1px solid #e7e6e6;
   -webkit-box-shadow: 0px 0px 2px 0px rgba(108, 108, 108, 0.25);

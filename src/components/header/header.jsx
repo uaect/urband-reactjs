@@ -229,32 +229,35 @@ class Header extends Component {
                         </li>);
                       })) : ""}
 
-                    <li className="menu-item-has-children in-array">
-                      {menue ? (
-                        menue.map(el => {
-                          return (el.id == '19' && el.title);
-                        })) : ""}
-                      <ul className="sub-menu">
-                        {menue ? (
-                          menue.map(el => {
-                            return (el.id == '21' && <li>
-                              <Link to="/coming-soon">{el.title}</Link>
-                            </li>);
-                          })) : ""}
-                        {menue ? (
-                          menue.map(el => {
-                            return (el.id == '20' && <li>
-                              <Link to="/event-tickets">{el.title}</Link>
-                            </li>);
-                          })) : ""}
-                        {menue ? (
-                          menue.map(el => {
-                            return (el.id == '22' && <li>
-                              <Link to="/store">{el.title}</Link>
-                            </li>);
-                          })) : ""}
-                      </ul>
-                    </li>
+                    {menue ? (
+                      menue.map(el => {
+                        return (el.id == '19' && <li className="menu-item-has-children in-array">
+                          {menue ? (
+                            menue.map(el => {
+                              return (el.id == '19' && el.title);
+                            })) : ""}
+                          <ul className="sub-menu">
+                            {menue ? (
+                              menue.map(el => {
+                                return (el.id == '21' && <li>
+                                  <Link to="/coming-soon">{el.title}</Link>
+                                </li>);
+                              })) : ""}
+                            {menue ? (
+                              menue.map(el => {
+                                return (el.id == '20' && <li>
+                                  <Link to="/event-tickets">{el.title}</Link>
+                                </li>);
+                              })) : ""}
+                            {menue ? (
+                              menue.map(el => {
+                                return (el.id == '22' && <li>
+                                  <Link to="/store">{el.title}</Link>
+                                </li>);
+                              })) : ""}
+                          </ul>
+                        </li>);
+                      })) : ""}
 
                     {menue ? (
                       menue.map(el => {

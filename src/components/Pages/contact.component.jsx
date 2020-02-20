@@ -205,14 +205,20 @@ class Contact extends Component {
                           Dummy text of the printing and typesetting industry.
                           Lorem Ipsum has been the{" "}
                         </p>*/}
-                        <div className="con-page-form">
-                          <textarea
+                        <div className="con-page-form col-md-12">
+                          <div className="row">
+                          <div className="col-md-12">
+                            <textarea
                             name="message"
                             value={this.state.message}
                             onChange={this.handleChange.bind(this, 'message', 'errmessage')}
                             placeholder="Message"
                           ></textarea>
                           {this.state.errmessage && <div class="text-danger">{this.state.errmessage}</div>}
+                          </div>
+                          </div>
+                          <div className="row">
+                          <div className="col-md-6">
                           <input
                             type="text"
                             value={this.state.name}
@@ -221,9 +227,13 @@ class Contact extends Component {
                             className="mar-r"
                           />
                           {this.state.errname && <div class="text-danger">{this.state.errname}</div>}
+                          </div>
+                          <div className="col-md-6">
                           <input type="text" placeholder="Email *" value={this.state.email}
                             onChange={this.handleChange.bind(this, 'email', 'erremail')} />
                           {this.state.erremail && <div class="text-danger">{this.state.erremail}</div>}
+                          </div>
+                          </div>
                           <input value="Submit" onClick={this.gotocontactmail} type="submit" />
                         </div>
                       </div>
