@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const HeaderTypeOne = props => {

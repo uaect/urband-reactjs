@@ -11,23 +11,20 @@ import * as actionCreators from "../../../../src/store/actions/";
 library.add(faCalendarWeek, faArrowLeft);
 
 class checkOut extends Component {
-
   componentDidMount() {
     this.props.getuser();
-    let ticketDetails = this.props.location.state;
   }
 
   bookTicket = () => {
-    this.props.bookTicket(this.props.location.state.ticketDetail)
+    this.props
+      .bookTicket(this.props.location.state.ticketDetail)
       .then(() => {
         this.props.history.push({
-          pathname: '/profile'
-        })
+          pathname: "/profile"
+        });
       })
-      .catch((error) => {
-  
-      })
-  }
+      .catch(error => {});
+  };
 
   render() {
     const eventDetail = this.props.location.state.eventDetail;
@@ -55,7 +52,9 @@ class checkOut extends Component {
                     <ul>
                       <li>
                         <div className="block-line">
-                          <div className="ticket-head">{ticketDetail && ticketDetail.packageName}</div>
+                          <div className="ticket-head">
+                            {ticketDetail && ticketDetail.packageName}
+                          </div>
                           <div className="time-foot mt-2">
                             <FontAwesomeIcon
                               icon={faCalendarWeek}
@@ -66,7 +65,10 @@ class checkOut extends Component {
                         </div>
                         <div className="block-line">
                           <div className="rate">
-                            <span>{ticketDetail && ticketDetail.ticketPrice}</span> AED
+                            <span>
+                              {ticketDetail && ticketDetail.ticketPrice}
+                            </span>{" "}
+                            AED
                           </div>
                         </div>
                       </li>
@@ -76,8 +78,7 @@ class checkOut extends Component {
                     <div className="head">YOUR EMAIL</div>
                     <div className="bg-block mt-3">
                       <div className="avathar-mail">
-                        Your tickets will be sent to{" "}
-                        <span>{user.email}</span>
+                        Your tickets will be sent to <span>{user.email}</span>
                       </div>
                     </div>
                   </div>
@@ -85,8 +86,7 @@ class checkOut extends Component {
                 <div className="col-md-5 checkout-block right">
                   <div className="head">SELECT A PAYMENT METHOD</div>
                   <div>
-                    
-                      <div className="payment-method">
+                    <div className="payment-method">
                       <div className="payment-header d-flex align-items-center">
                         <div className="custom-control custom-radio">
                           <input
@@ -95,23 +95,29 @@ class checkOut extends Component {
                             name="customRadio"
                             className="custom-control-input"
                           />
-                          <label className="custom-control-label" htmlFor="Paypal">
+                          <label
+                            className="custom-control-label"
+                            htmlFor="Paypal"
+                          >
                             PayPal
                           </label>
                         </div>
                       </div>
-                      </div>
-                  
+                    </div>
                   </div>
 
                   <div className="full-wrap checkout-block mt-4">
                     <div className="head">SUMMARY</div>
                     <div className="bg-block">
-                    <div className="d-flex justify-content-between block-item mb-1">
-                        <div>Num of Ticket</div> <span>{ticketDetail && ticketDetail.totalPerson}</span>
+                      <div className="d-flex justify-content-between block-item mb-1">
+                        <div>Num of Ticket</div>{" "}
+                        <span>{ticketDetail && ticketDetail.totalPerson}</span>
                       </div>
                       <div className="d-flex justify-content-between block-item mb-1">
-                        <div>Ticket Price</div> <span>{ticketDetail && ticketDetail.grandTotal} AED</span>
+                        <div>Ticket Price</div>{" "}
+                        <span>
+                          {ticketDetail && ticketDetail.grandTotal} AED
+                        </span>
                       </div>
                       {/* <div className="d-flex justify-content-between block-item">
                         <div>VAT 5%</div> <span>20.5 AED</span>
@@ -121,7 +127,8 @@ class checkOut extends Component {
                       <span className="mb-1">Grand Total </span>
                       {ticketDetail && ticketDetail.grandTotal}
                     </div>
-                    <button onClick={this.bookTicket}
+                    <button
+                      onClick={this.bookTicket}
                       className="tim-btn mt-4 ticket-btn-lg"
                     >
                       Checkout
@@ -139,7 +146,7 @@ class checkOut extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    bookTicket: (value) => dispatch(actionCreators.bookTicket(value)),
+    bookTicket: value => dispatch(actionCreators.bookTicket(value)),
     getuser: () => dispatch(actionCreators.getuser())
   };
 };

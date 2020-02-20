@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import ComingSoon from "../Pages/comingsoon.component";
 import BannerHero from "../Banners/bannerHero";
 import ReadMoreAndLess from "react-read-more-less";
@@ -10,22 +9,19 @@ import * as actionCreators from "../../../src/store/actions/";
 //   LazyLoadImage,
 //   trackWindowScroll
 // } from "react-lazy-load-image-component";
-function createMarkup(item) {
-  return {__html: item};
-}
+// function createMarkup(item) {
+//   return {__html: item};
+// }
 class Artist extends Component {
-
   componentDidMount() {
     this.props.fetchPosts();
   }
 
-  gotoAlbumDetails(artistid){
-
-      this.props.history.push({
-          pathname: '/albums/detail/'+artistid,
-          artistid: artistid,
-      })
-      
+  gotoAlbumDetails(artistid) {
+    this.props.history.push({
+      pathname: "/albums/detail/" + artistid,
+      artistid: artistid
+    });
   }
 
   render() {
@@ -139,7 +135,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Artist);
+export default connect(mapStateToProps, mapDispatchToProps)(Artist);

@@ -4,7 +4,6 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { faUserAlt, faCartPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../header/header.component.css";
-import Logo from "../../assets/img/logo_5.png";
 import BurgerMenu from "../header/burgerMenu.component";
 import icon1 from "../../assets/img/icn1.png";
 import icon2 from "../../assets/img/icn2.png";
@@ -27,16 +26,15 @@ class Header extends Component {
   }
 
   componentDidMount() {
-
-    this.headercheck()
-    this.fetchcontact()
+    this.headercheck();
+    this.fetchcontact();
 
     console.log("header");
-
   }
 
   fetchcontact() {
-    this.props.fetchContact()
+    this.props
+      .fetchContact()
       .then(() => {
         if (this.props.contact) {
           var contact = this.props.contact;
@@ -53,18 +51,19 @@ class Header extends Component {
             errpassword: error.error
           });
         }
-      })
+      });
   }
 
   headercheck() {
-    this.props.fetchMenues()
+    this.props
+      .fetchMenues()
       .then(() => {
         if (this.props.menues.length) {
           var headers = this.props.menues;
           if (headers) {
             for (let i = 0; i < headers.length; i++) {
               if (headers[i].title === "Event Tickets") {
-                localStorage.setItem('ticketheader', "true");
+                localStorage.setItem("ticketheader", "true");
               }
             }
           }
@@ -76,7 +75,7 @@ class Header extends Component {
             errpassword: error.error
           });
         }
-      })
+      });
   }
 
   ToggleBox() {
@@ -118,7 +117,7 @@ class Header extends Component {
           onClick={this.ToggleBox}
           className={
             "overlayBoxTp1 " +
-            (this.state.activeBox == "show" ? "show" : "hidden")
+            (this.state.activeBox === "show" ? "show" : "hidden")
           }
         >
           &nbsp;
@@ -134,81 +133,127 @@ class Header extends Component {
               <div className="d-flex full-wrap nav-wrap">
                 <div className="nav">
                   <ul className="group" id="header-menu-magic-line">
-                    {menue ? (
-                      menue.map(el => {
-                        return (el.id == '10' && <li>
-                          <NavLink
-                            to="/index"
-                            activeClassName="selected"
-                            className="in-array"
-                          >
-                            {el.title}
-                          </NavLink>
-                        </li>)
-                      })) : ""}
+                    {menue
+                      ? menue.map(el => {
+                          return (
+                            el.id === 10 && (
+                              <li key={el.id}>
+                                <NavLink
+                                  to="/index"
+                                  activeClassName="selected"
+                                  className="in-array"
+                                >
+                                  {el.title}
+                                </NavLink>
+                              </li>
+                            )
+                          );
+                        })
+                      : ""}
 
-                    {menue ? (
-                      menue.map(el => {
-                        return (el.id == '16' && <li>
-                          <NavLink
-                            to="/who-we-are"
-                            activeClassName="selected"
-                            className="in-array"
-                          >
-                            {el.title}
-                          </NavLink>
-                        </li>);
-                      })) : ""}
+                    {menue
+                      ? menue.map(el => {
+                          return (
+                            el.id === 16 && (
+                              <li key={el.id}>
+                                <NavLink
+                                  to="/who-we-are"
+                                  activeClassName="selected"
+                                  className="in-array"
+                                >
+                                  {el.title}
+                                </NavLink>
+                              </li>
+                            )
+                          );
+                        })
+                      : ""}
 
-                    {menue ? (
-                      menue.map(el => {
-                        return (el.id == '11' && <li className="menu-item-has-children in-array">
-                          {menue ? (
-                            menue.map(el => {
-                              return (el.id == '11' && el.title);
-                            })) : ""}
-                          <ul className="sub-menu">
-                            {menue ? (
-                              menue.map(el => {
-                                return (el.id == '12' && <li>
-                                  <Link to="/artist">{el.title}</Link>
-                                </li>);
-                              })) : ""}
-                            {menue ? (
-                              menue.map(el => {
-                                return (el.id == '13' && <li>
-                                  <Link to="/clients">{el.title}</Link>
-                                </li>);
-                              })) : ""}
-                          </ul>
-                        </li>);
-                      })) : ""}
+                    {menue
+                      ? menue.map(el => {
+                          return (
+                            el.id === 11 && (
+                              <li
+                                className="menu-item-has-children in-array"
+                                key={el.id}
+                              >
+                                {menue
+                                  ? menue.map(el => {
+                                      return el.id === 11 && el.title;
+                                    })
+                                  : ""}
+                                <ul className="sub-menu">
+                                  {menue
+                                    ? menue.map(el => {
+                                        return (
+                                          el.id === 12 && (
+                                            <li>
+                                              <Link to="/artist">
+                                                {el.title}
+                                              </Link>
+                                            </li>
+                                          )
+                                        );
+                                      })
+                                    : ""}
+                                  {menue
+                                    ? menue.map(el => {
+                                        return (
+                                          el.id === 13 && (
+                                            <li>
+                                              <Link to="/clients">
+                                                {el.title}
+                                              </Link>
+                                            </li>
+                                          )
+                                        );
+                                      })
+                                    : ""}
+                                </ul>
+                              </li>
+                            )
+                          );
+                        })
+                      : ""}
 
-                    {menue ? (
-                      menue.map(el => {
-                        return (el.id == '14' && <li>
-                          <NavLink
-                            to="/radio"
-                            className="in-array"
-                            activeClassName="selected"
-                          >
-                            {el.title}
-                          </NavLink>
-                        </li>);
-                      })) : ""}
+                    {menue
+                      ? menue.map(el => {
+                          return (
+                            el.id === 14 && (
+                              <li>
+                                <NavLink
+                                  to="/radio"
+                                  className="in-array"
+                                  activeClassName="selected"
+                                >
+                                  {el.title}
+                                </NavLink>
+                              </li>
+                            )
+                          );
+                        })
+                      : ""}
 
-                    {menue ? (
-                      menue.map(el => {
-                        return (el.id == '15' && <li className="menu-item-has-children">
-                          <NavLink
-                            to="/event-list"
-                            activeClassName="selected"
-                            className="in-array"
-                          >
-                            {el.title}
-                          </NavLink>
-                        </li>);
-                      })) : ""}
+                    {menue
+                      ? menue.map(el => {
+                          return (
+                            el.id === 15 && (
+                              <li
+                                className="menu-item-has-children"
+                                key={el.id}
+                              >
+                                <NavLink
+                                  to="/event-list"
+                                  activeClassName="selected"
+                                  className="in-array"
+                                >
+                                  {el.title}
+                                </NavLink>
+                              </li>
+                            )
+                          );
+                        })
+                      : ""}
 
                     {/* <li>
                       <NavLink exact to="/vlog" className="in-array">
@@ -216,71 +261,91 @@ class Header extends Component {
                       </NavLink>
                     </li> */}
 
-                    {menue ? (
-                      menue.map(el => {
-                        return (el.id == '18' && <li>
-                          <NavLink
-                            to="/gallery"
-                            activeClassName="selected"
-                            className="in-array"
-                          >
-                            {el.title}
-                          </NavLink>
-                        </li>);
-                      })) : ""}
+                    {menue
+                      ? menue.map(el => {
+                          return (
+                            el.id === 18 && (
+                              <li key={el.id}>
+                                <NavLink
+                                  to="/gallery"
+                                  activeClassName="selected"
+                                  className="in-array"
+                                >
+                                  {el.title}
+                                </NavLink>
+                              </li>
+                            )
+                          );
+                        })
+                      : ""}
 
-                    {menue ? (
-                      menue.map(el => {
-                        return (el.id == '19' && <li className="menu-item-has-children in-array">
-                          {menue ? (
-                            menue.map(el => {
-                              return (el.id == '19' && el.title);
-                            })) : ""}
-                          <ul className="sub-menu">
-                            {menue ? (
-                              menue.map(el => {
-                                return (el.id == '21' && <li>
-                                  <Link to="/coming-soon">{el.title}</Link>
-                                </li>);
-                              })) : ""}
-                            {menue ? (
-                              menue.map(el => {
-                                return (el.id == '20' && <li>
-                                  <Link to="/event-tickets">{el.title}</Link>
-                                </li>);
-                              })) : ""}
-                            {menue ? (
-                              menue.map(el => {
-                                return (el.id == '22' && <li>
-                                  <Link to="/store">{el.title}</Link>
-                                </li>);
-                              })) : ""}
-                          </ul>
-                        </li>);
-                      })) : ""}
+                    <li className="menu-item-has-children in-array">
+                      {menue
+                        ? menue.map(el => {
+                            return el.id === 19 && el.title;
+                          })
+                        : ""}
+                      <ul className="sub-menu">
+                        {menue
+                          ? menue.map((el, id) => {
+                              return (
+                                el.id === 21 && (
+                                  <li key={id}>
+                                    <Link to="/coming-soon">{el.title}</Link>
+                                  </li>
+                                )
+                              );
+                            })
+                          : ""}
+                        {menue
+                          ? menue.map(el => {
+                              return (
+                                el.id === 20 && (
+                                  <li key={el.id}>
+                                    <Link to="/event-tickets">{el.title}</Link>
+                                  </li>
+                                )
+                              );
+                            })
+                          : ""}
+                        {menue
+                          ? menue.map(el => {
+                              return (
+                                el.id === 22 && (
+                                  <li key={el.id}>
+                                    <Link to="/store">{el.title}</Link>
+                                  </li>
+                                )
+                              );
+                            })
+                          : ""}
+                      </ul>
+                    </li>
 
-                    {menue ? (
-                      menue.map(el => {
-                        return (el.id == '23' && <li>
-                          <NavLink
-                            to="/contact"
-                            className="in-array"
-                            activeClassName="selected"
-                          >
-                            {el.title}
-                          </NavLink>
-                        </li>);
-                      })) : ""}
-
+                    {menue
+                      ? menue.map(el => {
+                          return (
+                            el.id === 23 && (
+                              <li key={el.id}>
+                                <NavLink
+                                  to="/contact"
+                                  className="in-array"
+                                  activeClassName="selected"
+                                >
+                                  {el.title}
+                                </NavLink>
+                              </li>
+                            )
+                          );
+                        })
+                      : ""}
                   </ul>
                 </div>
 
                 <ul className="d-inline-flex avathar-sec DNone768">
                   <li className="d-flex mr-4">
                     {this.props.isLoggedIn || this.state.isToken ? (
-                      <Link
-                        to="/cart"
-                      >
+                      <Link to="/cart">
                         <span>Cart</span>
                         <FontAwesomeIcon
                           icon={faCartPlus}
@@ -288,8 +353,8 @@ class Header extends Component {
                         />
                       </Link>
                     ) : (
-                        ""
-                      )}
+                      ""
+                    )}
                   </li>
                   <li className="d-flex pos-relative">
                     {!this.props.isLoggedIn && !this.state.isToken ? (
@@ -301,8 +366,8 @@ class Header extends Component {
                         />
                       </Link>
                     ) : (
-                        ""
-                      )}
+                      ""
+                    )}
                     {this.props.isLoggedIn || this.state.isToken ? (
                       <Link onClick={this.ToggleBox}>
                         <span>Profile</span>
@@ -313,7 +378,9 @@ class Header extends Component {
                         <div
                           className={
                             "BoxStyleTp105 " +
-                            (this.state.activeBox === "show" ? "show" : "hidden")
+                            (this.state.activeBox === "show"
+                              ? "show"
+                              : "hidden")
                           }
                         >
                           <div>
@@ -329,15 +396,18 @@ class Header extends Component {
                               <img src={icon3} alt="" />
                               <span>Orders</span>
                             </Link>
-                            <Link onClick={this.gotologout} className="LogoutBtn">
+                            <Link
+                              onClick={this.gotologout}
+                              className="LogoutBtn"
+                            >
                               <span>Log Out</span>
                             </Link>
                           </div>
                         </div>
                       </Link>
                     ) : (
-                        ""
-                      )}
+                      ""
+                    )}
                   </li>
                 </ul>
               </div>

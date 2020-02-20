@@ -1,33 +1,28 @@
 import React, { Component } from "react";
-import { findDOMNode } from "react-dom";
 import { hot } from "react-hot-loader";
 import StopButton from "../../../assets/img/stopButton.png";
 import PlayButton from "../../../assets/img/urbandPlay.png";
 import PauseButton from "../../../assets/img/urbandPause.png";
 import ReactPlayer from "react-player";
-import Duration from "./Duration";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faVolumeUp } from "@fortawesome/free-solid-svg-icons";
 
-const MULTIPLE_SOURCES = [
-  {
-    src: "http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4",
-    type: "video/mp4"
-  },
-  {
-    src: "http://clips.vorwaerts-gmbh.de/big_buck_bunny.ogv",
-    type: "video/ogv"
-  },
-  {
-    src: "http://clips.vorwaerts-gmbh.de/big_buck_bunny.webm",
-    type: "video/webm"
-  }
-];
+// const MULTIPLE_SOURCES = [
+//   {
+//     src: "http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4",
+//     type: "video/mp4"
+//   },
+//   {
+//     src: "http://clips.vorwaerts-gmbh.de/big_buck_bunny.ogv",
+//     type: "video/ogv"
+//   },
+//   {
+//     src: "http://clips.vorwaerts-gmbh.de/big_buck_bunny.webm",
+//     type: "video/webm"
+//   }
+// ];
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-  }
   state = {
     url: "",
     pip: false,
@@ -46,11 +41,11 @@ class App extends Component {
     this.setState({ url: this.props.trackUrl });
   }
   componentDidUpdate(prevProps, prevState) {
-    if (
-      prevState.url !==
-      this.props.trackUrl 
-    ) {
-      this.setState({url: this.props.trackUrl, playing: prevState.playing ? true : false })
+    if (prevState.url !== this.props.trackUrl) {
+      this.setState({
+        url: this.props.trackUrl,
+        playing: prevState.playing ? true : false
+      });
     }
   }
   load = url => {
@@ -180,12 +175,9 @@ class App extends Component {
       muted,
       loop,
       played,
-      loaded,
-      duration,
       playbackRate,
       pip
     } = this.state;
-    const SEPARATOR = " · ";
 
     return (
       <div className="BottomPlayerTp1 ">
@@ -196,7 +188,7 @@ class App extends Component {
                 <img
                   className="ArtistImgTp1"
                   src={this.props.ArtistImage}
-                  alt=""
+                  alt="ArtistImgTp1"
                 />
               </div>
             </div>
@@ -286,6 +278,7 @@ class App extends Component {
                 className="PlayerIconTp1"
                 src={StopButton}
                 onClick={this.handleStop}
+                alt="PlayerIconTp1"
               />
             </div>
           </div>

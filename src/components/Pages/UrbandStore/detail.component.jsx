@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import ImageGallery from "react-image-gallery";
 import "./image-gallery.scss";
 import "./ionicons.scss";
@@ -12,13 +12,12 @@ import * as actionCreators from "../../../../src/store/actions";
 import AddedToCartAnimation from "../../../components/hoc/AddedTocartAnimation/index";
 library.add(faCartPlus);
 function createMarkup(item) {
-  return {__html: item};
+  return { __html: item };
 }
 class ShopDetail extends Component {
-
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       showText: false,
       isToken: false,
       addcartflag: false
@@ -26,7 +25,7 @@ class ShopDetail extends Component {
     this.handleClick = this.handleClick.bind(this);
     this.state = { AddedToCartIcon: false };
   }
- 
+
   componentDidMount() {
     let storeid = this.props.location.pathname.split("/").pop();
     this.props.fetchStoreDetails(storeid);
@@ -49,21 +48,21 @@ class ShopDetail extends Component {
     var image_url = "https://admin.urbandmusic.com/storage/";
     var images = [];
     const storedetails = this.props.storedetails;
-      if (storedetails.files) {
-        for (var i = 0; i < storedetails.files.length; i++) {
-          var image = [
-            {
-              original: image_url + storedetails.files[i].image,
-              thumbnail: image_url + storedetails.files[i].image
-            }
-          ];
-          if (images[0]) {
-            images[0].push(image[0]);
-          } else {
-            images.push(image);
+    if (storedetails.files) {
+      for (var i = 0; i < storedetails.files.length; i++) {
+        var image = [
+          {
+            original: image_url + storedetails.files[i].image,
+            thumbnail: image_url + storedetails.files[i].image
           }
-        } 
+        ];
+        if (images[0]) {
+          images[0].push(image[0]);
+        } else {
+          images.push(image);
+        }
       }
+    }
     return (
       <div>
         <AddedToCartAnimation isActive={this.state.AddedToCartIcon} />
@@ -114,41 +113,48 @@ class ShopDetail extends Component {
                     </p>
 
                     <div className="product-cart">
-                    {token ? (
-                      <button
-                        type="submit"
-                        name="add-to-cart"
-                        value="0"
-                        className="tim-cart-btn"
-                        onClick={() => this.handleClick(storedetails.id)}
-                      >
-                        <FontAwesomeIcon
-                          icon={faCartPlus}
-                          className="cart-icon"
-                        />
-                        Add to cart
-                      </button>):( <Link to={{
-                          pathname: '/login',
-                          state: {
-                            from: `/detail/${storedetails.id}`
-                          }
-}}
-                        type="submit"
-                        name="add-to-cart"
-                        value="0"
-                        className="tim-cart-btn"
-                        
-                      >
-                        <FontAwesomeIcon
-                          icon={faCartPlus}
-                          className="cart-icon"
-                        />
-                        Add to cart
-                      </Link>)}
+                      {token ? (
+                        <button
+                          type="submit"
+                          name="add-to-cart"
+                          value="0"
+                          className="tim-cart-btn"
+                          onClick={() => this.handleClick(storedetails.id)}
+                        >
+                          <FontAwesomeIcon
+                            icon={faCartPlus}
+                            className="cart-icon"
+                          />
+                          Add to cart
+                        </button>
+                      ) : (
+                        <Link
+                          to={{
+                            pathname: "/login",
+                            state: {
+                              from: `/detail/${storedetails.id}`
+                            }
+                          }}
+                          type="submit"
+                          name="add-to-cart"
+                          value="0"
+                          className="tim-cart-btn"
+                        >
+                          <FontAwesomeIcon
+                            icon={faCartPlus}
+                            className="cart-icon"
+                          />
+                          Add to cart
+                        </Link>
+                      )}
                     </div>
                     <div className="woocommerce-product-details__short-description">
                       <h4>Product Details</h4>
-                      <div dangerouslySetInnerHTML={createMarkup(storedetails.description)}/>
+                      <div
+                        dangerouslySetInnerHTML={createMarkup(
+                          storedetails.description
+                        )}
+                      />
                     </div>
                   </div>
                 </div>
@@ -174,11 +180,8 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
   return {
     storedetails: state.storedetails.items,
-    addcart: state.addtocart.items,
+    addcart: state.addtocart.items
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ShopDetail);
+export default connect(mapStateToProps, mapDispatchToProps)(ShopDetail);

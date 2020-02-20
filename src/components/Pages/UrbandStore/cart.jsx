@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import EmptyBox from "../../hoc/EmptyMessageBox/EmptyBox.component";
 import { connect } from "react-redux";
 import * as actionCreators from "../../../../src/store/actions/";
-import BlockUi from "react-block-ui";
 import "react-block-ui/style.css";
 import AlertBox from "../../hoc/AlertBox/index";
 library.add(faTimes, faArrowLeft);
@@ -152,7 +151,6 @@ class cart extends Component {
                             className="fit-it store-img"
                             src={image_url + item.files[0].image}
                             alt="album thumb"
-                            className="fit-it"
                           />
                         </Link>
                       </div>
@@ -178,7 +176,7 @@ class cart extends Component {
                     <div className="col-sm-2 d-flex price-name-line">
                       <div className="quantity-input">
                         <button
-                          disabled={item.quantity == 1}
+                          disabled={item.quantity === 1}
                           className="quantity-input__modifier quantity-input__modifier--left"
                           onClick={() => this.decrement(item)}
                         >

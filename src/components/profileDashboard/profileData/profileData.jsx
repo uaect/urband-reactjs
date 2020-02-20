@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import HeaderTypeOne from "../uiComponents/headerTypeOne.component";
 import BoxTypeOne from "../uiComponents/BoxTypeOne.component";
-import ProfileBox from '../uiComponents/profileBox.component';
+import ProfileBox from "../uiComponents/profileBox.component";
 const ProfileData = () => {
   return (
     <div>
@@ -12,8 +12,7 @@ const ProfileData = () => {
         <div>
           <BoxTypeOne boxHeader="General Information">
             <div>
-              
-              <ProfileBox/>
+              <ProfileBox />
             </div>
           </BoxTypeOne>
         </div>

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import AddedCartIcon from "../../../assets/img/addedtocart.gif";
 const HeaderTypeOne = ({ isActive }) => {
   return (

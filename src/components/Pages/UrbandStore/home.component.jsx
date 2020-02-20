@@ -6,7 +6,6 @@ import { connect } from "react-redux";
 import * as actionCreators from "../../../../src/store/actions";
 
 class ShopHome extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -23,52 +22,49 @@ class ShopHome extends Component {
     this.props.fetchStoreCategory();
   }
 
-  handleScroll = (e) => {
-    let element = e.target
+  handleScroll = e => {
+    let element = e.target;
     if (element.scrollHeight - element.scrollTop === element.clientHeight) {
       this.setState({
-        page: this.state.page++
-      })
+        page: this.state.page + 1
+      });
       this.props.fetchStoreList(this.state);
     }
-  }
+  };
 
-  handleChange(state,evt ) {
-    let _state = this.state
+  handleChange(state, evt) {
+    let _state = this.state;
     _state[state] = evt.target.value;
     this.setState({
       ..._state
-    })
-      this.props.fetchStoreList(this.state);
+    });
+    this.props.fetchStoreList(this.state);
   }
 
-
-  handleCategory(state, evt ) {
+  handleCategory(state, evt) {
     let catArray = this.state.category;
     var index = catArray.indexOf(evt.target.value);
     if (index > -1) {
       catArray.splice(index, 1);
-    }else{
+    } else {
       catArray.push(evt.target.value);
     }
 
     this.setState({
       category: catArray
-    })
-   
+    });
+
     this.props.fetchStoreList(this.state);
   }
-
-
 
   render() {
     const image_url = "https://admin.urbandmusic.com/storage/";
     const storelist = this.props.storelist;
-    
+
     return (
       <div>
         <BannerHero title={"Merchandise"} />
-        <section className="shop header-padd"  onScroll={this.handleScroll}>
+        <section className="shop header-padd" onScroll={this.handleScroll}>
           <div className="container">
             <div className="row">
               <div className="col-xl-3 col-lg-4 col-md-4">
@@ -79,26 +75,27 @@ class ShopHome extends Component {
 
                     {this.props.storecategory &&
                       this.props.storecategory.map(cat => {
-
-                        return (<div className="form-check">
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            value={cat.id}
-                            id="defaultCheck1"
-                            onChange={this.handleCategory.bind(this, 'category')}
-                          />
-                          <label
-                            className="form-check-label"
-                            htmlFor="defaultCheck1"
-                          >
-                            {cat.title}
-                          </label>
-                        </div>);
-
-                      })
-                    }
-
+                        return (
+                          <div className="form-check" key={cat.id}>
+                            <input
+                              className="form-check-input"
+                              type="checkbox"
+                              value={cat.id}
+                              id="defaultCheck1"
+                              onChange={this.handleCategory.bind(
+                                this,
+                                "category"
+                              )}
+                            />
+                            <label
+                              className="form-check-label"
+                              htmlFor="defaultCheck1"
+                            >
+                              {cat.title}
+                            </label>
+                          </div>
+                        );
+                      })}
                   </div>
                   <div className="filter-left-type">
                     <h3 className="title">By Price</h3>
@@ -106,11 +103,20 @@ class ShopHome extends Component {
                       <div className="input-group-prepend price-group">
                         <span className="input-group-text">Min-Max</span>
                       </div>
-                      <input type="text" aria-label="First name" onChange={this.handleChange.bind(this, 'priceMin')} className="form-control field-control" />
-                      <input type="text" aria-label="Last name" onChange={this.handleChange.bind(this, 'priceMax')} className="form-control field-control" />
+                      <input
+                        type="text"
+                        aria-label="First name"
+                        onChange={this.handleChange.bind(this, "priceMin")}
+                        className="form-control field-control"
+                      />
+                      <input
+                        type="text"
+                        aria-label="Last name"
+                        onChange={this.handleChange.bind(this, "priceMax")}
+                        className="form-control field-control"
+                      />
                     </div>
                   </div>
-
                 </aside>
               </div>
 
@@ -118,14 +124,18 @@ class ShopHome extends Component {
                 <div className="product-top-menu">
                   <div className="product-menu-wrapper">
                     <span>Short By</span>
-                    <select id="product-short" className="product-select" onChange={this.handleChange.bind(this, 'sort')}>
+                    <select
+                      id="product-short"
+                      className="product-select"
+                      onChange={this.handleChange.bind(this, "sort")}
+                    >
                       <option value="">Sorting</option>
                       <option value="new">Newest</option>
                       <option value="old">Oldest</option>
                     </select>
                   </div>
                 </div>
-                {storelist.length &&
+                {storelist.length && (
                   <div className="row store-products">
                     {storelist.map(item => {
                       return (
@@ -154,7 +164,7 @@ class ShopHome extends Component {
                       );
                     })}
                   </div>
-                }
+                )}
               </div>
             </div>
           </div>
@@ -167,7 +177,7 @@ class ShopHome extends Component {
 const mapDispatchToProps = dispatch => {
   // call action functions
   return {
-    fetchStoreList: (state) => dispatch(actionCreators.fetchStoreList(state)),
+    fetchStoreList: state => dispatch(actionCreators.fetchStoreList(state)),
     fetchStoreCategory: () => dispatch(actionCreators.fetchStoreCategory())
   };
 };
@@ -179,7 +189,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ShopHome);
+export default connect(mapStateToProps, mapDispatchToProps)(ShopHome);

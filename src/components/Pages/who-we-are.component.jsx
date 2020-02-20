@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import WhatweDo from "../Pages/what-we-do.component";
 import InfoHero from "../Pages/info.component";
 import BannerHero from "../Banners/bannerHero";
 import Gang from "../Pages/gang.component";
@@ -12,7 +11,6 @@ import * as actionCreators from "../../../src/store/actions/";
 
 library.add(faGlassCheers, faMixcloud, faMicrophone);
 class WhoWeAre extends Component {
-
   componentDidMount() {
     this.props.fetchWhoWeAre();
   }
@@ -23,9 +21,7 @@ class WhoWeAre extends Component {
 
     const image_url = "https://admin.urbandmusic.com/storage/";
     var detail = this.props.detail.result;
-    if (detail)
-    if(detail.whoweare) 
-    var whoweare = detail.whoweare;
+    if (detail) if (detail.whoweare) var whoweare = detail.whoweare;
 
     return (
       <div className="fullWrap">
@@ -64,7 +60,7 @@ class WhoWeAre extends Component {
 
         {/* <WhatweDo /> */}
         <section className="section-hero pb-0">
-        <Gang />
+          <Gang />
         </section>
       </div>
     );
@@ -84,7 +80,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(WhoWeAre);
+export default connect(mapStateToProps, mapDispatchToProps)(WhoWeAre);

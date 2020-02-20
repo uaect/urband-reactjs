@@ -7,11 +7,9 @@ import {
   faMapMarkerAlt
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Select from "react-select";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actionCreators from "../../../../src/store/actions/";
-import Moment from "moment";
 library.add(faClock, faArrowLeft, faMapMarkerAlt);
 
 class ticketDetail extends Component {
@@ -36,7 +34,7 @@ class ticketDetail extends Component {
   handleChange = event => {
     this.setState({ ticketid: event.target.value });
     const _pkg = this.props.eventsDetails.packages.filter(
-      pk => pk.id == event.target.value
+      pk => pk.id === event.target.value
     );
     this.setState({ packageName: _pkg[0].package_name });
     this.setState({ ticketPrice: _pkg[0].price });

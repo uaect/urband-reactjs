@@ -47,7 +47,7 @@ class storeCheckOut extends Component {
       getaddress: [],
       addressdata: [],
       vat: 0,
-      errorflage:false
+      errorflage: false
     };
     this.ShowFormHadler = this.ShowFormHadler.bind(this);
     this.GobackToAddressHandler = this.GobackToAddressHandler.bind(this);
@@ -72,17 +72,20 @@ class storeCheckOut extends Component {
           var totalcost = 0;
           for (let i = 0; i < cartItems.length; i++) {
             if (cartItems[i].product.price) {
-             totalcost = totalcost + parseFloat(cartItems[i].product.price) * parseInt(cartItems[i].quantity);
+              totalcost =
+                totalcost +
+                parseFloat(cartItems[i].product.price) *
+                  parseInt(cartItems[i].quantity);
               this.setState({
                 totalcost: totalcost
               });
             }
           }
-          var vat = ((this.state.totalcost * 5) / 100)
-          if(vat){
+          var vat = (this.state.totalcost * 5) / 100;
+          if (vat) {
             this.setState({
               vat: vat,
-              totalcost:this.state.totalcost + vat
+              totalcost: this.state.totalcost + vat
             });
           }
         } else
@@ -214,7 +217,7 @@ class storeCheckOut extends Component {
           this.getInitialAddress();
         })
         .catch(error => {
-          if (error.error == "Unauthorised") {
+          if (error.error === "Unauthorised") {
             this.setState({
               errpassword: "Invalid credential check username or passsord"
             });
@@ -237,7 +240,7 @@ class storeCheckOut extends Component {
         this.getInitialAddress();
       })
       .catch(error => {
-        if (error.error == "Unauthorised") {
+        if (error.error === "Unauthorised") {
           this.setState({
             errpassword: "Invalid credential check username or passsord"
           });
@@ -285,26 +288,29 @@ class storeCheckOut extends Component {
   }
 
   placeorder = () => {
-  
-  if(this.state.getaddress.length && this.state.addressid && this.state.cartItems.length){
+    if (
+      this.state.getaddress.length &&
+      this.state.addressid &&
+      this.state.cartItems.length
+    ) {
       this.props
-      .placeOrder(this.state)
-      .then(() => {
-        this.props.history.push({
-          pathname: "/orderPlaced",
-          state: {
-            cart: this.state.cartItems,
-            total: this.state.totalcost,
-            ticketDetail: this.state.vat
-          }
-        });
-      })
-      .catch(error => {});
-  }else{
-    this.setState({
-      errorflage: true
-    });
-  }
+        .placeOrder(this.state)
+        .then(() => {
+          this.props.history.push({
+            pathname: "/orderPlaced",
+            state: {
+              cart: this.state.cartItems,
+              total: this.state.totalcost,
+              ticketDetail: this.state.vat
+            }
+          });
+        })
+        .catch(error => {});
+    } else {
+      this.setState({
+        errorflage: true
+      });
+    }
   };
 
   render() {
@@ -321,11 +327,14 @@ class storeCheckOut extends Component {
               </Link>
               <h2>Check Out</h2>
             </div>
-            {this.state.errorflage?(
-            <AlertBox
-          ActiveOrNot={true}
-          alertMessage="Please fill all the fields"
-        />):""}
+            {this.state.errorflage ? (
+              <AlertBox
+                ActiveOrNot={true}
+                alertMessage="Please fill all the fields"
+              />
+            ) : (
+              ""
+            )}
             <div className="d-flex checkout-wrap mt-3">
               <div className="col-md-6 checkout-block">
                 <div className="full-wrap">
@@ -715,7 +724,9 @@ class storeCheckOut extends Component {
                                   </div>
                                 </div>
                                 <div className="sections">
-                                  <div className="price">{(item.product.price)*(item.quantity)} AED</div>
+                                  <div className="price">
+                                    {item.product.price * item.quantity} AED
+                                  </div>
                                 </div>
                               </div>
                             </div>
