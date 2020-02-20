@@ -142,7 +142,7 @@ export const fetchEventDetail = (page) => {
                         });
                         resolve()
                     } else {
-                        reject(res)
+                        // reject(res)
                     }
 
                 })

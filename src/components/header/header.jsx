@@ -111,7 +111,6 @@ class Header extends Component {
   render() {
     const image_url = "https://admin.urbandmusic.com/storage/";
     const menue = this.props.menues;
-
     let menuItems = [];
     let Submenu1Items = [];
     let Submenu2Items = [];
@@ -120,15 +119,15 @@ class Header extends Component {
           menuItems.push(<li key={menue[i].id}><NavLink to="/index" activeClassName="selected" className="in-array">{menue[i].title}</NavLink></li>);
         }else if(menue[i].id==16){
           menuItems.push(<li key={menue[i].id}><NavLink to="/who-we-are" activeClassName="selected" className="in-array">{menue[i].title}</NavLink></li>);
-        }else if(menue[i].id==11 || menue[i]==12  || menue[i]==13 ){
+        }else if(menue[i].id==11 || menue[i].id==12  || menue[i].id==13 ){
           if(menue[i].id==12){
-            Submenu1Items.push(<li><Link to="/artist">{menue[i].title}</Link></li>);
+            Submenu1Items.push(<li key={menue[i].id}><Link to="/artist">{menue[i].title}</Link></li>);
           }else if(menue[i].id==13){
-            Submenu1Items.push(<li><Link to="/clients">{menue[i].title}</Link></li>);
+            Submenu1Items.push(<li key={menue[i].id}><Link to="/clients">{menue[i].title}</Link></li>);
           }else if(menue[i].id==11){
             menuItems.push(<li className="menu-item-has-children in-array" key={menue[i].id}>
             {menue[i].title}
-              <ul className="sub-menu">
+              <ul  key={menue[i].id+'1'} className="sub-menu">
                 {Submenu1Items}
               </ul>
             </li>);
@@ -139,11 +138,11 @@ class Header extends Component {
           menuItems.push(<li key={menue[i].id}><NavLink to="/gallery" activeClassName="selected" className="in-array">{menue[i].title}</NavLink></li>);
         }else if(menue[i].id==19 || menue[i].id==21 || menue[i].id==20 || menue[i].id==22){
           if(menue[i].id==21){
-            Submenu2Items.push(<li><Link to="/coming-soon">{menue[i].title}</Link></li>);
+            Submenu2Items.push(<li key={menue[i].id}><Link to="/coming-soon">{menue[i].title}</Link></li>);
           }else if(menue[i].id==20){
-            Submenu2Items.push(<li><Link to="/event-tickets">{menue[i].title}</Link></li>);
+            Submenu2Items.push(<li key={menue[i].id}><Link to="/event-tickets">{menue[i].title}</Link></li>);
           }else if(menue[i].id==22){
-            Submenu2Items.push(<li><Link to="/store">{menue[i].title}</Link></li>);
+            Submenu2Items.push(<li key={menue[i].id}><Link to="/store">{menue[i].title}</Link></li>);
           }else if(menue[i].id==19){
             menuItems.push(<li className="menu-item-has-children in-array" key={menue[i].id}>
             {menue[i].title}

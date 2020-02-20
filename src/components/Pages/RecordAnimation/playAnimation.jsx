@@ -40,6 +40,7 @@ class playAnimation extends Component {
   render() {
     const image_url = "https://admin.urbandmusic.com/storage/";
     const events = this.props.albums.result;
+
     return (
       <section className="section-padding latest-relese ani-slideInDown">
         {events && events[0] ? (
@@ -99,7 +100,7 @@ class playAnimation extends Component {
                                 action={this.PlayVideoHandler}
                                 ArtistImage={image_url + events[0].image}
                                 ArtistTittle={events[0].title}
-                                trackUrl={image_url + events[0].tracks[1].file}
+                                trackUrl={image_url + events[0].tracks[0].file}
                               />
                             ) : (
                               ""
