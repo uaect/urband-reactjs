@@ -48,7 +48,7 @@ class AlbumDetail extends Component {
             <div className="row">
               <div className="style-fullwidth">
                 <center>
-                  <h3 class="artist-name">Album Not Found !</h3>
+                  <h3 className="artist-name">Album Not Found !</h3>
                 </center>
               </div>
             </div>

@@ -13,49 +13,51 @@ class spotLight extends Component {
       email: "",
       erremail: "",
       videoArray: [],
-      alertflag:false
+      alertflag: false
     };
   }
 
   handleChange(state, errState, evt) {
-    let _state = this.state
+    let _state = this.state;
     _state[state] = evt.target.value;
-    _state[errState] = '';
+    _state[errState] = "";
     this.setState({
       ..._state
-    })
+    });
   }
-  
+
   sendmail = () => {
     const { email } = this.state;
     let flag = 0;
     if (email.length < 1) {
       flag = 1;
       this.setState({
-        erremail: 'Please enter email address'
-      })
-    } else if (!new RegExp(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}/g).test(email)) {
+        erremail: "Please enter email address"
+      });
+    } else if (
+      !new RegExp(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}/g).test(email)
+    ) {
       flag = 1;
-      this.setState({ erremail: 'Please enter valid email address' });
+      this.setState({ erremail: "Please enter valid email address" });
     }
 
     if (flag === 0) {
-      this.props.subscribe(this.state)
+      this.props
+        .subscribe(this.state)
         .then(() => {
           this.setState({
             alertflag: true,
             email: "",
             isToken: true
-          })
+          });
         })
-        .catch((error) => {
-            this.setState({
-              erremail: error.message
-            })
-        })
+        .catch(error => {
+          this.setState({
+            erremail: error.message
+          });
+        });
     }
-
-  }
+  };
 
   componentDidMount() {
     this.props
@@ -90,25 +92,27 @@ class spotLight extends Component {
     const image_url = "https://admin.urbandmusic.com/storage/";
 
     return (
-      
       <section className="section-padding-two wide_line_bg">
-        
         <div className="container">
-        {this.state.isToken?( <AlertBox
-          ActiveOrNot={true}
-          alertMessage="Thank you for contacting urband"
-        />):""}
+          {this.state.isToken && (
+            <AlertBox
+              ActiveOrNot={true}
+              alertMessage="Thank you for contacting urband"
+            />
+          )}
           <div className="d-flex justify-content-center row">
             <div className="col-xl-10">
-              <div className="section-title style-five">
-                <h2>SPOTLIGHT</h2>
-                {/*<p>
+              {this.state.spotlight && this.state.spotlight.length > 0 && (
+                <div className="section-title style-five">
+                  <h2>SPOTLIGHT</h2>
+                  {/*<p>
                   There are many variations of passages of Lorem Ipsum available
                   but the majority.
                 </p>*/}
-              </div>
+                </div>
+              )}
               <div className="row">
-                {this.state.spotlight ? (
+                {this.state.spotlight && (
                   <div className="grid-60">
                     <div className="spotlight-inner">
                       <img
@@ -124,26 +128,37 @@ class spotLight extends Component {
                       </div>
                     </div>
                   </div>
-                ) : (
-                  ""
                 )}
 
                 <div className="grid-40">
                   <div className="subscribe-two">
                     <div className="section-title style-five">
                       <h2>SUBSCRIBE</h2>
-                      <p><br></br>
+                      <p>
+                        <br></br>
                         Subscribe with us.
                       </p>
                     </div>
-                      <input placeholder="Enter Your Email" 
-                       value={this.state.email}
-                       onChange={this.handleChange.bind(this, 'email', 'erremail')}
-                      type="text" />
-                       {this.state.erremail && <div class="text-danger">{this.state.erremail}</div>}
-                      <button type="submit" onClick={this.sendmail} className="submit">
-                        send me
-                      </button>
+                    <input
+                      placeholder="Enter Your Email"
+                      value={this.state.email}
+                      onChange={this.handleChange.bind(
+                        this,
+                        "email",
+                        "erremail"
+                      )}
+                      type="text"
+                    />
+                    {this.state.erremail && (
+                      <div class="text-danger">{this.state.erremail}</div>
+                    )}
+                    <button
+                      type="submit"
+                      onClick={this.sendmail}
+                      className="submit"
+                    >
+                      send me
+                    </button>
                   </div>
                 </div>
               </div>
@@ -164,7 +179,7 @@ const mapDispatchToProps = dispatch => {
   // call action functions
   return {
     spotlight: () => dispatch(actionCreators.spotlight()),
-    subscribe: (state) => dispatch(actionCreators.subscribe(state))
+    subscribe: state => dispatch(actionCreators.subscribe(state))
   };
 };
 

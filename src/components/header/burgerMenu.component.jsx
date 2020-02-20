@@ -9,6 +9,22 @@ import * as actionCreators from "../../../src/store/actions/";
 
 library.add(faAngleDown, faUserAlt);
 
+const MenuPath = {
+  10: "/index",
+  11: "/",
+  12: "/artist",
+  16: "/who-we-are",
+  13: "/clients",
+  14: "/radio",
+  15: "/event-list",
+  18: "/gallery",
+  19: "/event-tickets",
+  20: "/",
+  21: "/coming-soon",
+  22: "/store",
+  23: "/contact"
+};
+
 class burgerMenu extends Component {
   constructor(props) {
     super(props);
@@ -96,6 +112,7 @@ class burgerMenu extends Component {
         background: "rgba(0, 0, 0, 0.3)"
       }
     };
+
     return (
       <div>
         <Menu
@@ -106,242 +123,34 @@ class burgerMenu extends Component {
           isOpen={this.state.menuOpen}
           onStateChange={state => this.handleStateChange(state)}
         >
-          {menue
-            ? menue.map(el => {
+          {menue &&
+            menue.map(el => {
+              if (this.state.childVisible === 2 && el.id === 21) {
                 return (
-                  el.id === 10 && (
+                  <div className="sub-drop">
                     <NavLink
                       key={el.id}
                       exact
-                      to="/index"
+                      to={`${MenuPath[el.id]}`}
                       onClick={() => this.closeMenu()}
                     >
                       {el.title}
                     </NavLink>
-                  )
+                  </div>
                 );
-              })
-            : ""}
-
-          {menue
-            ? menue.map(el => {
+              } else {
                 return (
-                  el.id === 16 && (
-                    <NavLink
-                      key={el.id}
-                      exact
-                      to="/who-we-are"
-                      onClick={() => this.closeMenu()}
-                    >
-                      {el.title}
-                    </NavLink>
-                  )
+                  <NavLink
+                    key={el.id}
+                    exact
+                    to={`${MenuPath[el.id]}`}
+                    onClick={() => this.closeMenu()}
+                  >
+                    {el.title}
+                  </NavLink>
                 );
-              })
-            : ""}
-
-          {menue
-            ? menue.map(el => {
-                return (
-                  el.id === 11 && (
-                    <NavLink
-                      key={el.id}
-                      to="/"
-                      className="in-array"
-                      onClick={() => this.onclickStepHandler(1)}
-                    >
-                      {el.title}
-                      <span className="ico-drop">
-                        <FontAwesomeIcon icon={faAngleDown} />
-                      </span>
-                    </NavLink>
-                  )
-                );
-              })
-            : ""}
-
-          {this.state.childVisible === 1 ? (
-            <div className="sub-drop">
-              {menue
-                ? menue.map(el => {
-                    return (
-                      el.id === 12 && (
-                        <NavLink
-                          key={el.id}
-                          exact
-                          to="/artist"
-                          activeClassName="selected"
-                          onClick={() => this.closeMenu()}
-                        >
-                          {el.title}
-                        </NavLink>
-                      )
-                    );
-                  })
-                : ""}
-
-              {menue
-                ? menue.map(el => {
-                    return (
-                      el.id === 13 && (
-                        <NavLink
-                          key={el.id}
-                          exact
-                          to="/clients"
-                          activeClassName="selected"
-                          onClick={() => this.closeMenu()}
-                        >
-                          {el.title}
-                        </NavLink>
-                      )
-                    );
-                  })
-                : ""}
-            </div>
-          ) : null}
-
-          {menue
-            ? menue.map(el => {
-                return (
-                  el.id === 14 && (
-                    <NavLink
-                      key={el.id}
-                      exact
-                      to="/radio"
-                      className="in-array"
-                      onClick={() => this.closeMenu()}
-                    >
-                      {el.title}
-                    </NavLink>
-                  )
-                );
-              })
-            : ""}
-
-          {menue
-            ? menue.map(el => {
-                return (
-                  el.id === 15 && (
-                    <NavLink
-                      key={el.id}
-                      exact
-                      to="/event-list"
-                      className="in-array"
-                      onClick={() => this.closeMenu()}
-                    >
-                      {el.title}
-                    </NavLink>
-                  )
-                );
-              })
-            : ""}
-
-          {menue
-            ? menue.map(el => {
-                return (
-                  el.id === 18 && (
-                    <NavLink
-                      key={el.id}
-                      exact
-                      to="/gallery"
-                      onClick={() => this.closeMenu()}
-                    >
-                      {el.title}
-                    </NavLink>
-                  )
-                );
-              })
-            : ""}
-
-          {menue
-            ? menue.map(el => {
-                return (
-                  el.id === 19 && (
-                    <NavLink
-                      key={el.id}
-                      exact
-                      to="/"
-                      className="in-array"
-                      onClick={() => this.onclickStepHandler(2)}
-                    >
-                      {el.title}
-                      <span className="ico-drop">
-                        <FontAwesomeIcon icon={faAngleDown} />
-                      </span>{" "}
-                    </NavLink>
-                  )
-                );
-              })
-            : ""}
-
-          {this.state.childVisible === 2 ? (
-            <div className="sub-drop">
-              {menue
-                ? menue.map(el => {
-                    return (
-                      el.id === 21 && (
-                        <NavLink
-                          key={el.id}
-                          to="/coming-soon"
-                          onClick={() => this.closeMenu()}
-                        >
-                          {el.title}
-                        </NavLink>
-                      )
-                    );
-                  })
-                : ""}
-              {menue
-                ? menue.map(el => {
-                    return (
-                      el.id === 20 && (
-                        <NavLink
-                          key={el.id}
-                          to="/event-tickets"
-                          onClick={() => this.closeMenu()}
-                        >
-                          {el.title}
-                        </NavLink>
-                      )
-                    );
-                  })
-                : ""}
-              {menue
-                ? menue.map(el => {
-                    return (
-                      el.id === 22 && (
-                        <NavLink
-                          key={el.id}
-                          to="/store"
-                          onClick={() => this.closeMenu()}
-                        >
-                          {el.title}
-                        </NavLink>
-                      )
-                    );
-                  })
-                : ""}
-            </div>
-          ) : null}
-
-          {menue
-            ? menue.map(el => {
-                return (
-                  el.id === 23 && (
-                    <NavLink
-                      key={el.id}
-                      exact
-                      to="/contact"
-                      className="in-array"
-                      activeClassName="selected"
-                      onClick={() => this.closeMenu()}
-                    >
-                      {el.title}
-                    </NavLink>
-                  )
-                );
-              })
-            : ""}
+              }
+            })}
 
           <NavLink
             to="/"
@@ -355,74 +164,54 @@ class burgerMenu extends Component {
             </span>
           </NavLink>
 
-          {this.state.childVisible === 3 ? (
+          {this.state.childVisible === 3 && (
             <div className="sub-drop">
-              {this.props.isLoggedIn || this.state.isToken ? (
-                <NavLink
-                  exact
-                  to="/profile"
-                  activeClassName="selected"
-                  onClick={() => this.closeMenu()}
-                >
-                  Profile
-                </NavLink>
-              ) : (
-                ""
+              {(this.props.isLoggedIn || this.state.isToken) && (
+                <>
+                  <NavLink
+                    exact
+                    to="/profile"
+                    activeClassName="selected"
+                    onClick={() => this.closeMenu()}
+                  >
+                    Profile
+                  </NavLink>
+                  <NavLink
+                    exact
+                    to="/cart"
+                    activeClassName="selected"
+                    onClick={() => this.closeMenu()}
+                  >
+                    Cart
+                  </NavLink>
+                  <NavLink
+                    exact
+                    to="/profile/profileAddress"
+                    activeClassName="selected"
+                    onClick={() => this.closeMenu()}
+                  >
+                    Address
+                  </NavLink>
+                  <NavLink
+                    exact
+                    to="/profile/profileOrders"
+                    activeClassName="selected"
+                    onClick={() => this.closeMenu()}
+                  >
+                    Orders
+                  </NavLink>
+                  <NavLink
+                    exact
+                    to="/login"
+                    activeClassName="selected"
+                    onClick={() => this.closeMenu()}
+                  >
+                    Log Out
+                  </NavLink>
+                </>
               )}
 
-              {this.props.isLoggedIn || this.state.isToken ? (
-                <NavLink
-                  exact
-                  to="/cart"
-                  activeClassName="selected"
-                  onClick={() => this.closeMenu()}
-                >
-                  Cart
-                </NavLink>
-              ) : (
-                ""
-              )}
-
-              {this.props.isLoggedIn || this.state.isToken ? (
-                <NavLink
-                  exact
-                  to="/profile/profileAddress"
-                  activeClassName="selected"
-                  onClick={() => this.closeMenu()}
-                >
-                  Address
-                </NavLink>
-              ) : (
-                ""
-              )}
-
-              {this.props.isLoggedIn || this.state.isToken ? (
-                <NavLink
-                  exact
-                  to="/profile/profileOrders"
-                  activeClassName="selected"
-                  onClick={() => this.closeMenu()}
-                >
-                  Orders
-                </NavLink>
-              ) : (
-                ""
-              )}
-
-              {this.props.isLoggedIn || this.state.isToken ? (
-                <NavLink
-                  exact
-                  to="/login"
-                  activeClassName="selected"
-                  onClick={() => this.closeMenu()}
-                >
-                  Log Out
-                </NavLink>
-              ) : (
-                ""
-              )}
-
-              {!this.props.isLoggedIn && !this.state.isToken ? (
+              {!this.props.isLoggedIn && !this.state.isToken && (
                 <NavLink
                   exact
                   to="/login"
@@ -431,11 +220,9 @@ class burgerMenu extends Component {
                 >
                   Login
                 </NavLink>
-              ) : (
-                ""
               )}
             </div>
-          ) : null}
+          )}
         </Menu>
       </div>
     );

@@ -33,64 +33,61 @@ class upcomingShowHome extends Component {
   }
 
   render() {
-    const ticketFlag = localStorage.getItem('ticketheader');
+    const ticketFlag = localStorage.getItem("ticketheader");
     const events = this.props.events;
     return (
-      
-      <section className="section-padding show-archive">
-        {events.length > 0 ? (
-        <div className="container">
-          <div className="d-flex justify-content-center row">
-            <div className="col-xl-10">
-              <div className="section-title style-four">
-                <h2>UPCOMING SHOWS</h2>
+      <>
+        {events.length > 0 && (
+          <section className="section-padding show-archive">
+            <div className="container">
+              <div className="d-flex justify-content-center row">
+                <div className="col-xl-10">
+                  <div className="section-title style-four">
+                    <h2>UPCOMING SHOWS</h2>
+                  </div>
+                  {events.map(item => {
+                    return (
+                      <div
+                        key={item.id}
+                        className="single-show-ticket row no-guters"
+                      >
+                        <div className="col-sm-3 col-md-3 col-lg-3">
+                          <div className="date-time">
+                            <h6>{Moment(item.date_to).format("dddd")}</h6>
+                            <p>{Moment(item.date_to).format("DD-MM-YYYY")}</p>
+                          </div>
+                        </div>
+                        <div className="col-sm-6 col-md-6 col-lg-7">
+                          <h5>{item.title}</h5>
+                          <p> {item.location}</p>
+                        </div>
+                        <div className="col-sm-3 col-md-3 col-lg-2">
+                          <div>
+                            {ticketFlag === "true" || ticketFlag === true ? (
+                              <Link
+                                className="tim-btn"
+                                to={{
+                                  pathname: `/ticket-detail/${item.id}`
+                                }}
+                              >
+                                Ticket
+                              </Link>
+                            ) : (
+                              <Link className="tim-btn BtnCst1">
+                                No Tickets
+                              </Link>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
-              {events.map(item => {
-                  return (
-                    <div
-                      key={item.id}
-                      className="single-show-ticket row no-guters"
-                    >
-                      <div className="col-sm-3 col-md-3 col-lg-3">
-                        <div className="date-time">
-                          <h6>{Moment(item.date_to).format("dddd")}</h6>
-                          <p>{Moment(item.date_to).format("DD-MM-YYYY")}</p>
-                        </div>
-                      </div>
-                      <div className="col-sm-6 col-md-6 col-lg-7">
-                        <h5>{item.title}</h5>
-                        <p> {item.location}</p>
-                      </div>
-                      <div className="col-sm-3 col-md-3 col-lg-2">
-                        <div>
-                        {ticketFlag === "true" || ticketFlag === true? (
-                            <Link
-                              className="tim-btn"
-                              to={{
-                                pathname: `/ticket-detail/${item.id}`
-                              }}
-                            >
-                              Ticket
-                            </Link>
-                          ) : (
-                            <Link className="tim-btn BtnCst1">No Tickets</Link>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
             </div>
-          </div>
-        </div>
-        ) : (
-          ""
+          </section>
         )}
-        
-      </section>
-
-      
-
+      </>
     );
   }
 }

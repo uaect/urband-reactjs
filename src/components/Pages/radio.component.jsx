@@ -17,7 +17,7 @@ class Radio extends Component {
                 src={require("../../media/background/tracks-left.png")}
                 alt="thum"
               />
-              <div class="bubble-wrap-right active">
+              <div className="bubble-wrap-right active">
                 <div className="bubble icon-1"></div>
                 <div className="bubble icon-2 "></div>
                 <div className="bubble icon-3"></div>
