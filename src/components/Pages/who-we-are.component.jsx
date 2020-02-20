@@ -19,7 +19,6 @@ class WhoWeAre extends Component {
     var isResponseData = false;
     if (this.props.detail.success === true) isResponseData = true;
 
-    const image_url = "https://admin.urbandmusic.com/storage/";
     var detail = this.props.detail.result;
     if (detail) if (detail.whoweare) var whoweare = detail.whoweare;
 
@@ -34,9 +33,6 @@ class WhoWeAre extends Component {
                   <div className="section-title style-four">
                     <h2>{whoweare ? whoweare.title : ""}</h2>
                     <p>{whoweare ? whoweare.description : ""}</p>
-                    {/* <Link to="/" className="tim-btn hero">
-                      Subscribe Us
-                    </Link> */}
                   </div>
                 </div>
                 <div className="row">
@@ -44,7 +40,7 @@ class WhoWeAre extends Component {
                     <div className="band-img">
                       <img
                         className="img-responsive"
-                        src={whoweare ? image_url + "/" + whoweare.image : ""}
+                        src={whoweare ? "https://admin.urbandmusic.com/storage/" + whoweare.image : ""}
                         alt="About Band"
                       />
                     </div>
@@ -68,7 +64,6 @@ class WhoWeAre extends Component {
 }
 
 const mapDispatchToProps = dispatch => {
-  // call action functions
   return {
     fetchWhoWeAre: () => dispatch(actionCreators.fetchWhoWeAre())
   };
