@@ -1,20 +1,18 @@
-import {FETCH_BANNER,FETCH_HOMEBANNER} from "./types";
+import { FETCH_BANNER, FETCH_HOMEBANNER } from "./types";
+import ApiService from "../../common/config/axiosConfig";
 
 export const fetchBanner = (id) => {
     return dispatch => {
         const body = {
             page: id
         };
-        fetch("https://admin.urbandmusic.com/api/banners", {
-            method: "POST",
-            body: JSON.stringify(body)
-        })
+        ApiService.post("api/banners", body)
             .then(res => res.json())
             .then(res => {
                 dispatch({
-                    
-                    type:FETCH_BANNER ,
-                    value: res.result[0]   
+
+                    type: FETCH_BANNER,
+                    value: res.result[0]
                 });
             })
             .catch(error => {
@@ -27,15 +25,12 @@ export const fetchHomeBanner = (id) => {
         const body = {
             page: id
         };
-        fetch("https://admin.urbandmusic.com/api/banners", {
-            method: "POST",
-            body: JSON.stringify(body)
-        })
+        ApiService.post("api/banners", body)
             .then(res => res.json())
             .then(res => {
                 dispatch({
                     type: FETCH_HOMEBANNER,
-                    value: res.result  
+                    value: res.result
                 });
             })
             .catch(error => {

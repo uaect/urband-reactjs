@@ -89,7 +89,7 @@ class spotLight extends Component {
   }
 
   render() {
-    const image_url = "https://admin.urbandmusic.com/storage/";
+    const image_url = "http://happiness-spinner.com/storage/";
 
     return (
       <section className="section-padding-two wide_line_bg">
@@ -167,8 +167,8 @@ class spotLight extends Component {
           {this.state.videoArray.length ? (
             <ModalVideo title={this.state.videoArray} />
           ) : (
-            ""
-          )}
+              ""
+            )}
         </div>
       </section>
     );

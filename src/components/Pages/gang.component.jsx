@@ -11,10 +11,10 @@ class Gang extends Component {
     if (this.props.detail.success === true) isResponseData = true;
 
     if (this.props.detail.success === true) isResponseData = true;
-    const image_url = "https://admin.urbandmusic.com/storage/";
+    const image_url = "http://happiness-spinner.com/storage/";
     var gangmember = this.props.detail.result;
 
-    if (gangmember) if (gangmember.gang)  gangmember = gangmember.gang;
+    if (gangmember) if (gangmember.gang) gangmember = gangmember.gang;
 
     return (
       <div>
@@ -65,8 +65,8 @@ class Gang extends Component {
             </div>
           </section>
         ) : (
-          <ComingSoon />
-        )}
+            <ComingSoon />
+          )}
       </div>
     );
   }

@@ -8,10 +8,10 @@ class WhatweDo extends Component {
   render() {
     var isResponseData = false;
     if (this.props.detail.success === true) isResponseData = true;
-    // const image_url = "https://admin.urbandmusic.com/storage/";
+    // const image_url = "http://happiness-spinner.com/storage/";
     var services = this.props.detail.result;
 
-    if (services) if (services.whatwedo)  services = services.whatwedo;
+    if (services) if (services.whatwedo) services = services.whatwedo;
     return (
       <div>
         {isResponseData ? (
@@ -49,8 +49,8 @@ class WhatweDo extends Component {
             </div>
           </div>
         ) : (
-          <ComingSoon />
-        )}
+            <ComingSoon />
+          )}
       </div>
     );
   }

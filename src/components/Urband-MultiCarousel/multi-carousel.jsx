@@ -11,7 +11,7 @@ class multiCarouselHero extends Component {
   }
 
   render() {
-    const image_url = "https://admin.urbandmusic.com/storage/";
+    const image_url = "http://happiness-spinner.com/storage/";
     const posts = this.props.posts;
     //console.log(posts);
 
@@ -46,7 +46,7 @@ class multiCarouselHero extends Component {
                       pathname: `/artist`
                     }} key={item.id}
                   >
-                  <div className="artist-single home-page" >
+                    <div className="artist-single home-page" >
                       <img
                         src={image_url + "/" + item.image}
                         className="ink-pattern"
@@ -57,7 +57,7 @@ class multiCarouselHero extends Component {
                         <h6>{item.name}</h6>
                         <p>{item.genre}</p>
                       </div>
-                  </div>
+                    </div>
                   </Link>
                 );
               })}

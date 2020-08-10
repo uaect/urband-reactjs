@@ -1,17 +1,17 @@
 
-import { ADD_CART, GET_CART, DELETE_CART, PLACEORDER,QUANTITY_UPDATE } from "./types";
+import { ADD_CART, GET_CART, DELETE_CART, PLACEORDER, QUANTITY_UPDATE } from "./types";
+import ApiService from "../../common/config/axiosConfig";
 var urbandtoken = JSON.parse(localStorage.getItem("urbandtoken"));
+
+
 export const addtocart = (id) => {
     return dispatch => {
         const body = {
             productid: id,
-            token:urbandtoken,
+            token: urbandtoken,
             quantity: 1
         };
-        fetch("https://admin.urbandmusic.com/api/addtocart", {
-            method: "POST",
-            body: JSON.stringify(body)
-        })
+        ApiService.post("api/addtocart", body)
             .then(res => res.json())
             .then(res => {
                 dispatch({
@@ -34,14 +34,9 @@ export const getfromcart = () => {
                 quantity: 1,
                 token: urbandtoken
             };
-            fetch("https://admin.urbandmusic.com/api/getcart", {
-                method: "POST",
-                body: JSON.stringify(body)
-            })
+            ApiService.post("api/getcart", body)
                 .then(res => res.json())
                 .then(res => {
-                  
-                    
                     if (res.result) {
                         localStorage.setItem('address', true);
                         dispatch({
@@ -65,19 +60,16 @@ export const placeOrder = (id) => {
     return dispatch => {
         return new Promise((resolve, reject) => {
             const body = {
-                token:urbandtoken,
-                address_id:id.addressid,
-                payment_option:id.selectedOption,
-                grand_total:id.totalcost,
-                note:"hi order fast",
-                delivery_charge:id.delivery_charge,
-                order_items:id.cartItems,
-                vat:id.vat
+                token: urbandtoken,
+                address_id: id.addressid,
+                payment_option: id.selectedOption,
+                grand_total: id.totalcost,
+                note: "hi order fast",
+                delivery_charge: id.delivery_charge,
+                order_items: id.cartItems,
+                vat: id.vat
             };
-            fetch("https://admin.urbandmusic.com/api/proceedorder", {
-                method: "POST",
-                body: JSON.stringify(body)
-            })
+            ApiService.post("api/proceedorder", body)
                 .then(res => res.json())
                 .then(res => {
                     if (res.result) {
@@ -105,10 +97,7 @@ export const deletecart = (id) => {
                 token: urbandtoken,
                 productid: id
             };
-            fetch("https://admin.urbandmusic.com/api/removecart", {
-                method: "POST",
-                body: JSON.stringify(body)
-            })
+            ApiService.post("api/removecart", body)
                 .then(res => res.json())
                 .then(res => {
                     if (res.result) {
@@ -130,20 +119,17 @@ export const deletecart = (id) => {
 };
 
 
-export const updatecartQuantity = (quantity,id) => {
+export const updatecartQuantity = (quantity, id) => {
     //console.log("tttttttt",id);
-    
+
     return dispatch => {
         return new Promise((resolve, reject) => {
             const body = {
                 token: urbandtoken,
                 cartid: id,
-                quantity:quantity
+                quantity: quantity
             };
-            fetch("https://admin.urbandmusic.com/api/updatequantity", {
-                method: "POST",
-                body: JSON.stringify(body)
-            })
+            ApiService.post("api/updatequantity", body)
                 .then(res => res.json())
                 .then(res => {
                     //console.log("resulrtt", res);

@@ -40,7 +40,7 @@ class WhoWeAre extends Component {
                     <div className="band-img">
                       <img
                         className="img-responsive"
-                        src={whoweare ? "https://admin.urbandmusic.com/storage/" + whoweare.image : ""}
+                        src={whoweare ? "http://happiness-spinner.com/storage/" + whoweare.image : ""}
                         alt="About Band"
                       />
                     </div>
@@ -48,8 +48,8 @@ class WhoWeAre extends Component {
                 </div>
               </div>
             ) : (
-              <ComingSoon />
-            )}
+                <ComingSoon />
+              )}
           </div>
           <InfoHero />
         </section>

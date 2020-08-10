@@ -58,7 +58,7 @@ class ShopHome extends Component {
   }
 
   render() {
-    const image_url = "https://admin.urbandmusic.com/storage/";
+    const image_url = "http://happiness-spinner.com/storage/";
     const storelist = this.props.storelist;
 
     return (

@@ -67,7 +67,7 @@ class cart extends Component {
                 totalcost =
                   totalcost +
                   parseFloat(cartItems[i].product.price) *
-                    parseInt(cartItems[i].quantity);
+                  parseInt(cartItems[i].quantity);
                 this.setState({
                   totalcost: totalcost
                 });
@@ -101,7 +101,7 @@ class cart extends Component {
         .then(() => {
           this.initialload();
         })
-        .catch(error => {});
+        .catch(error => { });
     }
   }
 
@@ -114,13 +114,13 @@ class cart extends Component {
           .then(() => {
             this.initialload();
           })
-          .catch(error => {});
+          .catch(error => { });
       }
     }
   }
 
   render() {
-    const image_url = "https://admin.urbandmusic.com/storage/";
+    const image_url = "http://happiness-spinner.com/storage/";
     return (
       <div className="ani-slideInDown">
         <section className="header-padd cart-product mt-5">
@@ -137,8 +137,8 @@ class cart extends Component {
                 alertMessage="Item removed from cart"
               />
             ) : (
-              ""
-            )}
+                ""
+              )}
             {this.state.cartflag ? (
               this.state.cartItems.map(item => {
                 return (
@@ -208,16 +208,16 @@ class cart extends Component {
                 );
               })
             ) : (
-              <div>
-                <EmptyBox
-                  ThumbImage="noCartMessage.png"
-                  HeaderText="Your shopping cart looks empty"
-                  SubText="What are you waiting for?"
-                  LinkText="Start Shopping"
-                  LinkUrl="/store"
-                />
-              </div>
-            )}
+                <div>
+                  <EmptyBox
+                    ThumbImage="noCartMessage.png"
+                    HeaderText="Your shopping cart looks empty"
+                    SubText="What are you waiting for?"
+                    LinkText="Start Shopping"
+                    LinkUrl="/store"
+                  />
+                </div>
+              )}
             {this.state.cartflag ? (
               <div className="cart-total right-push">
                 <div className="d-flex price align-items-center">
@@ -234,8 +234,8 @@ class cart extends Component {
                 </div>
               </div>
             ) : (
-              ""
-            )}
+                ""
+              )}
           </div>
         </section>
       </div>

@@ -38,7 +38,7 @@ class playAnimation extends Component {
   }
 
   render() {
-    const image_url = "https://admin.urbandmusic.com/storage/";
+    const image_url = "http://happiness-spinner.com/storage/";
     const events = this.props.albums.result;
 
     return (
@@ -92,8 +92,8 @@ class playAnimation extends Component {
                               {this.state.bottomPlayerActivated === "show" ? (
                                 <FontAwesomeIcon icon={faStop} />
                               ) : (
-                                <FontAwesomeIcon icon={faPlay} />
-                              )}
+                                  <FontAwesomeIcon icon={faPlay} />
+                                )}
                             </span>
                             {this.state.bottomPlayerActivated === "show" ? (
                               <FixedBottomPlayer
@@ -103,14 +103,14 @@ class playAnimation extends Component {
                                 trackUrl={image_url + events[0].tracks[0].file}
                               />
                             ) : (
-                              ""
-                            )}
+                                ""
+                              )}
                           </div>
                         </div>
                       </div>
                     ) : (
-                      ""
-                    )}
+                        ""
+                      )}
                     <div className="col-xl-12">
                       <div className="record-player">
                         <div
@@ -283,8 +283,8 @@ class playAnimation extends Component {
             </div>
           </div>
         ) : (
-          ""
-        )}
+            ""
+          )}
       </section>
     );
   }

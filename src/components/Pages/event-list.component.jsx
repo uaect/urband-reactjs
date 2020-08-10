@@ -17,20 +17,20 @@ import Moment from 'moment';
 library.add(faCalendarCheck, faClock, faTheaterMasks, faMapMarkerAlt);
 
 class EventList extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state = { showText: false};
+    this.state = { showText: false };
   }
   componentDidMount() {
     this.props.fetchEvent();
   }
 
-  
+
 
 
   render() {
     const ticketFlag = localStorage.getItem('ticketheader');
-    const image_url = "https://admin.urbandmusic.com/storage/";
+    const image_url = "http://happiness-spinner.com/storage/";
     const events = this.props.events;
     return (
       <div>
@@ -49,14 +49,14 @@ class EventList extends Component {
                         <article className="blog-post">
                           <div className="entry-image-wrapper">
                             <Link to={{
-                                pathname: `/event/${item.id}`
-                              }}>
+                              pathname: `/event/${item.id}`
+                            }}>
                               <figure className="post-thumbnail event-box">
-                                 <img
-                                  src={item.image?( image_url + item.image):"https://urbandmusic.com/no_image.png"} className=""
+                                <img
+                                  src={item.image ? (image_url + item.image) : "https://urbandmusic.com/no_image.png"} className=""
                                   alt="blog Thumb"
                                 />
-                              
+
                               </figure>
                             </Link>
                           </div>
@@ -102,27 +102,27 @@ class EventList extends Component {
                             </div>
                             <div className="entry-content">
                               {/* <div dangerouslySetInnerHTML={createMarkup(item.description)}/> */}
-                              
-                                <ReadMoreAndLess
-                                  ref={this.ReadMore}
-                                  className="read-more-content"
-                                  charLimit={150}
-                                  readMoreText="Read more"
-                                  readLessText="Read less"
+
+                              <ReadMoreAndLess
+                                ref={this.ReadMore}
+                                className="read-more-content"
+                                charLimit={150}
+                                readMoreText="Read more"
+                                readLessText="Read less"
                               >
-                            {item.description}
+                                {item.description}
                               </ReadMoreAndLess>
-                             
+
                             </div>
                             {ticketFlag === true ? (
-                            <Link
-                              to={{
-                                pathname: `/ticket-detail/${item.id}`
-                              }}
-                              className="tim-btn tim-btn-bgt read-more-btn"
-                            >
-                              Buy Ticket
-                            </Link>):""}
+                              <Link
+                                to={{
+                                  pathname: `/ticket-detail/${item.id}`
+                                }}
+                                className="tim-btn tim-btn-bgt read-more-btn"
+                              >
+                                Buy Ticket
+                              </Link>) : ""}
                           </div>
                         </article>
                       </div>

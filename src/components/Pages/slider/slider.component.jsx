@@ -13,7 +13,7 @@ class sliderHero extends React.Component {
   }
 
   render() {
-    const image_url = "https://admin.urbandmusic.com/storage/";
+    const image_url = "http://happiness-spinner.com/storage/";
     const getbanner = this.props.homebanners;
     if (getbanner) {
       var total = getbanner.length;
@@ -54,15 +54,15 @@ class sliderHero extends React.Component {
                               <h2 className="frame-4">{item.title}</h2>
                             </div>
                             <h3>{item.sub_title}</h3>
-                            {ticketFlag ===true?( <Link
+                            {ticketFlag === true ? (<Link
                               to={{
                                 pathname: `/event-tickets`
                               }}
                               className="tim-slide-btn"
                             >
                               TICKETS
-                            </Link>):""}
-                          
+                            </Link>) : ""}
+
                             {/* <a className="tim-slide-btn" href="event-tickets#">
                               
                             </a> */}

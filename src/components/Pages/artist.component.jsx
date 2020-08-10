@@ -25,7 +25,7 @@ class Artist extends Component {
   }
 
   render() {
-    const image_url = "https://admin.urbandmusic.com/storage/";
+    const image_url = "http://happiness-spinner.com/storage/";
     const posts = this.props.posts;
     return (
       <div>
@@ -107,15 +107,15 @@ class Artist extends Component {
               </section>
             </div>
           ) : (
-            ""
-          )}
+              ""
+            )}
           {posts.length < 0 ? (
             <div>
               <ComingSoon />
             </div>
           ) : (
-            ""
-          )}
+              ""
+            )}
         </div>
       </div>
     );

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 class DetailHero extends Component {
   render() {
-    const image_url = "https://admin.urbandmusic.com/storage/";
+    const image_url = "http://happiness-spinner.com/storage/";
     const album = this.props.value;
 
     return (

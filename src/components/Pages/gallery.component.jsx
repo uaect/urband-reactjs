@@ -17,7 +17,7 @@ function Gallery() {
   const [lightboxController, setLightboxController] = useState({
     toggler: false,
     sourceIndex: 0,
-    sourceImg: "https://admin.urbandmusic.com/storage/"
+    sourceImg: "http://happiness-spinner.com/storage/"
   });
 
   function openLightboxOnSourceIndex(sourceIndex, sourceImg) {
@@ -32,7 +32,7 @@ function Gallery() {
     const body = {
       page: "1"
     };
-    fetch("https://admin.urbandmusic.com/api/gallerycategory", {
+    fetch("http://happiness-spinner.com/api/gallerycategory", {
       method: "POST",
       body: JSON.stringify(body)
     })
@@ -42,7 +42,7 @@ function Gallery() {
       });
   }, []);
 
-  const image_url = "https://admin.urbandmusic.com/storage/";
+  const image_url = "http://happiness-spinner.com/storage/";
   const categories = category.categories.result;
   console.log(categories);
   return (
@@ -54,19 +54,19 @@ function Gallery() {
             <h2>Music Gallery</h2>
           </div>
           <div className="tim-isotope tim-isotope-2">
-            <Tabs defaultTab="Drum" onChange={tabId => {}}>
+            <Tabs defaultTab="Drum" onChange={tabId => { }}>
               <div className="tim-isotope-filter album-filter-button album-filter-button-two">
                 <TabList>
                   {categories
                     ? categories.map(item => {
-                        return item.gallery.length ? (
-                          <Tab tabFor={item.title} key={item.id}>
-                            {item.title}
-                          </Tab>
-                        ) : (
+                      return item.gallery.length ? (
+                        <Tab tabFor={item.title} key={item.id}>
+                          {item.title}
+                        </Tab>
+                      ) : (
                           ""
                         );
-                      })
+                    })
                     : ""}
                 </TabList>
               </div>
@@ -110,8 +110,8 @@ function Gallery() {
                             })}
                           </ul>
                         ) : (
-                          ""
-                        )}
+                            ""
+                          )}
                       </TabPanel>
                     );
                   })}

@@ -13,7 +13,7 @@ class BannerHero extends Component {
     let bannerImg = {
       background:
         "url(" +
-        "https://admin.urbandmusic.com/storage/" +
+        "http://happiness-spinner.com/storage/" +
         getbanner.image +
         ")"
     };

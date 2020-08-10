@@ -36,7 +36,7 @@ class ShopDetail extends Component {
     this.setState({ addcartflag: true });
     this.setState({ AddedToCartIcon: true });
     setTimeout(
-      function() {
+      function () {
         this.setState({ AddedToCartIcon: false });
       }.bind(this),
       2000
@@ -45,7 +45,7 @@ class ShopDetail extends Component {
 
   render() {
     var token = localStorage.getItem("urbandtoken");
-    var image_url = "https://admin.urbandmusic.com/storage/";
+    var image_url = "http://happiness-spinner.com/storage/";
     var images = [];
     const storedetails = this.props.storedetails;
     if (storedetails.files) {
@@ -76,8 +76,8 @@ class ShopDetail extends Component {
             </div>
           </section>
         ) : (
-          ""
-        )}
+            ""
+          )}
         <section className="single-product">
           <div className="container">
             <div className="single-product-wrapper">
@@ -128,25 +128,25 @@ class ShopDetail extends Component {
                           Add to cart
                         </button>
                       ) : (
-                        <Link
-                          to={{
-                            pathname: "/login",
-                            state: {
-                              from: `/detail/${storedetails.id}`
-                            }
-                          }}
-                          type="submit"
-                          name="add-to-cart"
-                          value="0"
-                          className="tim-cart-btn"
-                        >
-                          <FontAwesomeIcon
-                            icon={faCartPlus}
-                            className="cart-icon"
-                          />
+                          <Link
+                            to={{
+                              pathname: "/login",
+                              state: {
+                                from: `/detail/${storedetails.id}`
+                              }
+                            }}
+                            type="submit"
+                            name="add-to-cart"
+                            value="0"
+                            className="tim-cart-btn"
+                          >
+                            <FontAwesomeIcon
+                              icon={faCartPlus}
+                              className="cart-icon"
+                            />
                           Add to cart
-                        </Link>
-                      )}
+                          </Link>
+                        )}
                     </div>
                     <div className="woocommerce-product-details__short-description">
                       <h4>Product Details</h4>

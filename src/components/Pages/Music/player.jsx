@@ -16,7 +16,7 @@ class PlayerHero extends Component {
     this.PlayVideoHandler = this.PlayVideoHandler.bind(this);
   }
 
-  componentDidMount() {}
+  componentDidMount() { }
 
   gotoAlbumDetails(artistid) {
     window.location.href = "/albums/detail/" + artistid;
@@ -32,17 +32,17 @@ class PlayerHero extends Component {
     this.setState({
       currentPlayList: {
         playlistCoverUrl:
-          "https://admin.urbandmusic.com/storage/" + this.props.value.image,
+          "http://happiness-spinner.com/storage/" + this.props.value.image,
         playlistName: item.title,
         bandName: this.props.value.title,
-        song: "https://admin.urbandmusic.com/storage/" + item.file
+        song: "http://happiness-spinner.com/storage/" + item.file
       }
     });
     this.setState({ bottomPlayerActivated: "show" });
   }
 
   render() {
-    const image_url = "https://admin.urbandmusic.com/storage/";
+    const image_url = "http://happiness-spinner.com/storage/";
     const album = this.props.value;
     const track = album.tracks;
     const relatedAlbums = album.relatedAlbums;
@@ -86,8 +86,8 @@ class PlayerHero extends Component {
                     trackUrl={this.state.currentPlayList.song}
                   />
                 ) : (
-                  ""
-                )}
+                    ""
+                  )}
 
                 <div className="jp-playlist style-fullwidth">
                   <div className="section-title m-0">
@@ -98,23 +98,23 @@ class PlayerHero extends Component {
                   <ul>
                     {track
                       ? track.map(item => {
-                          return (
-                            <li
-                              className="jp-playlist-current style-fullwidth"
-                              key={item.id}
+                        return (
+                          <li
+                            className="jp-playlist-current style-fullwidth"
+                            key={item.id}
+                          >
+                            <div
+                              className="jp-album-me"
+                              onClick={() => this.handleChangeSong(item)}
                             >
-                              <div
-                                className="jp-album-me"
-                                onClick={() => this.handleChangeSong(item)}
-                              >
-                                <div className="cell-play-icons">
-                                  <FontAwesomeIcon icon={faPlay} />
-                                </div>
-                                <span className="jp-artist">{item.name}</span>
+                              <div className="cell-play-icons">
+                                <FontAwesomeIcon icon={faPlay} />
                               </div>
-                            </li>
-                          );
-                        })
+                              <span className="jp-artist">{item.name}</span>
+                            </div>
+                          </li>
+                        );
+                      })
                       : ""}
                   </ul>
                 </div>
@@ -140,29 +140,29 @@ class PlayerHero extends Component {
                 >
                   {relatedAlbums
                     ? relatedAlbums.map(item => {
-                        return (
-                          <div
-                            key={item.id}
-                            onClick={() => this.gotoAlbumDetails(item.id)}
-                          >
-                            <div className="clearfix swiper-slide">
-                              <div className="single-related-album">
-                                <img
-                                  src={image_url + item.image}
-                                  alt={image_url + item.image}
-                                />
-                                <div className="single-related-prod-bottom">
-                                  <div className="left">{item.title}</div>
-                                  <div className="play-bottom">
-                                    {" "}
-                                    <FontAwesomeIcon icon={faPlay} />
-                                  </div>
+                      return (
+                        <div
+                          key={item.id}
+                          onClick={() => this.gotoAlbumDetails(item.id)}
+                        >
+                          <div className="clearfix swiper-slide">
+                            <div className="single-related-album">
+                              <img
+                                src={image_url + item.image}
+                                alt={image_url + item.image}
+                              />
+                              <div className="single-related-prod-bottom">
+                                <div className="left">{item.title}</div>
+                                <div className="play-bottom">
+                                  {" "}
+                                  <FontAwesomeIcon icon={faPlay} />
                                 </div>
                               </div>
                             </div>
                           </div>
-                        );
-                      })
+                        </div>
+                      );
+                    })
                     : ""}
                 </Carousel>
               </div>

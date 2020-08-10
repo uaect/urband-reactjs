@@ -13,13 +13,13 @@ class EventDetail extends Component {
 
   render() {
     const ticketFlag = localStorage.getItem('ticketheader');
-  console.log("ticket", ticketFlag)
+    console.log("ticket", ticketFlag)
     const events = this.props.events;
     if (events) {
       var event = events.result;
       var artists = events.artists;
     }
-    const image_url = "https://admin.urbandmusic.com/storage/";
+    const image_url = "http://happiness-spinner.com/storage/";
     const responsive = {
       superLargeDesktop: {
         // the naming can be any, depends on you.
@@ -51,9 +51,9 @@ class EventDetail extends Component {
                 <div className="col-lg-6">
                   <div className="event-thumb">
                     <img
-                      src={event.image?(
+                      src={event.image ? (
                         image_url +
-                        event.image):"https://urbandmusic.com/no_image.png"
+                        event.image) : "https://urbandmusic.com/no_image.png"
                       } alt="Thumb" />
                   </div>
                 </div>
@@ -93,7 +93,7 @@ class EventDetail extends Component {
                         pathname: `/ticket-detail/${event.id}`
                       }} className="tim-btn">
                         Buy Tickets
-                  </Link>) : ""}
+                      </Link>) : ""}
                   </div>
                 </div>
               </div>
@@ -111,12 +111,12 @@ class EventDetail extends Component {
                   If You Can Drem It,
                 <br /> You Cane Live It
               </h3>
-              {ticketFlag === true ? (
-                <Link to={{
-                  pathname: `/ticket-detail/${event.id}`
-                }} className="tim-btn">
-                  Buy Tickets
-                  </Link>):""}
+                {ticketFlag === true ? (
+                  <Link to={{
+                    pathname: `/ticket-detail/${event.id}`
+                  }} className="tim-btn">
+                    Buy Tickets
+                  </Link>) : ""}
                 {/* <Link to="/" className="tim-btn">
                   Buy Ticket
               </Link> */}

@@ -13,7 +13,10 @@ import {
   GETUSER,
   GETORDEREDLIST
 } from "./types";
+import ApiService from "../../common/config/axiosConfig";
 var urbandtoken = JSON.parse(localStorage.getItem("urbandtoken"));
+
+
 export const register = params => {
   return dispatch => {
     return new Promise((resolve, reject) => {
@@ -25,10 +28,7 @@ export const register = params => {
         mobile: params.mobile,
         city: params.city
       };
-      fetch("https://admin.urbandmusic.com/api/register", {
-        method: "POST",
-        body: JSON.stringify(body)
-      })
+      ApiService.post("api/register", body)
         .then(res => res.json())
         .then(res => {
           if (res.success) {
@@ -60,10 +60,7 @@ export const login = params => {
         logo: params.logo ? params.logo : "",
         token: params.token ? params.token : ""
       };
-      fetch("https://admin.urbandmusic.com/api/login", {
-        method: "POST",
-        body: JSON.stringify(body)
-      })
+      ApiService.post("api/login", body)
         .then(res => res.json())
         .then(res => {
           if (res.success) {
@@ -87,9 +84,7 @@ export const login = params => {
 export const getsocial = () => {
   return dispatch => {
     return new Promise((resolve, reject) => {
-      fetch("https://admin.urbandmusic.com/api/social", {
-        method: "POST"
-      })
+      ApiService.post("api/social")
         .then(res => res.json())
         .then(res => {
           //console.log(res);
@@ -103,7 +98,7 @@ export const getsocial = () => {
             reject(res);
           }
         })
-        .catch(error => {});
+        .catch(error => { });
     });
   };
 };
@@ -114,10 +109,7 @@ export const getaddress = params => {
       const body = {
         token: urbandtoken
       };
-      fetch("https://admin.urbandmusic.com/api/address", {
-        method: "POST",
-        body: JSON.stringify(body)
-      })
+      ApiService.post("api/address", body)
         .then(res => res.json())
         .then(res => {
           //console.log(res);
@@ -132,7 +124,7 @@ export const getaddress = params => {
             reject(res);
           }
         })
-        .catch(error => {});
+        .catch(error => { });
     });
   };
 };
@@ -141,10 +133,7 @@ export const getemirates = id => {
     const body = {
       id: id
     };
-    fetch("https://admin.urbandmusic.com/api/countries", {
-      method: "POST",
-      body: JSON.stringify(body)
-    })
+    ApiService.post("api/countries", body)
       .then(res => res.json())
       .then(res => {
         dispatch({
@@ -152,7 +141,7 @@ export const getemirates = id => {
           value: res.result
         });
       })
-      .catch(error => {});
+      .catch(error => { });
   };
 };
 
@@ -161,10 +150,7 @@ export const getemirates1 = id => {
     const body = {
       id: id
     };
-    fetch("https://admin.urbandmusic.com/api/countries", {
-      method: "POST",
-      body: JSON.stringify(body)
-    })
+    ApiService.post("api/countries", body)
       .then(res => res.json())
       .then(res => {
         dispatch({
@@ -172,7 +158,7 @@ export const getemirates1 = id => {
           value: res.result
         });
       })
-      .catch(error => {});
+      .catch(error => { });
   };
 };
 
@@ -192,11 +178,7 @@ export const addaddress = params => {
         area: params.area,
         street: params.street
       };
-
-      fetch("https://admin.urbandmusic.com/api/addaddress", {
-        method: "POST",
-        body: JSON.stringify(body)
-      })
+      ApiService.post("api/addaddress", body)
         .then(res => res.json())
         .then(res => {
           if (res.success) {
@@ -209,7 +191,7 @@ export const addaddress = params => {
             reject(res);
           }
         })
-        .catch(error => {});
+        .catch(error => { });
     });
   };
 };
@@ -221,11 +203,7 @@ export const deleteaddress = params => {
         token: urbandtoken,
         addressid: params
       };
-
-      fetch("https://admin.urbandmusic.com/api/removeaddress", {
-        method: "POST",
-        body: JSON.stringify(body)
-      })
+      ApiService.post("api/removeaddress", body)
         .then(res => res.json())
         .then(res => {
           if (res.success) {
@@ -238,7 +216,7 @@ export const deleteaddress = params => {
             reject(res);
           }
         })
-        .catch(error => {});
+        .catch(error => { });
     });
   };
 };
@@ -249,11 +227,7 @@ export const getuser = () => {
       const body = {
         token: urbandtoken
       };
-
-      fetch("https://admin.urbandmusic.com/api/getuser", {
-        method: "POST",
-        body: JSON.stringify(body)
-      })
+      ApiService.post("api/getuser", body)
         .then(res => res.json())
         .then(res => {
           if (res.success) {
@@ -266,7 +240,7 @@ export const getuser = () => {
             reject(res);
           }
         })
-        .catch(error => {});
+        .catch(error => { });
     });
   };
 };
@@ -281,10 +255,7 @@ export const edituser = params => {
         name: params.name,
         email: params.email
       };
-      fetch("https://admin.urbandmusic.com/api/edituser", {
-        method: "POST",
-        body: JSON.stringify(body)
-      })
+      ApiService.post("api/edituser", body)
         .then(res => res.json())
         .then(res => {
           if (res.success) {
@@ -293,7 +264,7 @@ export const edituser = params => {
             reject(res);
           }
         })
-        .catch(error => {});
+        .catch(error => { });
     });
   };
 };
@@ -304,11 +275,7 @@ export const getorderedlist = () => {
       const body = {
         token: urbandtoken
       };
-
-      fetch("https://admin.urbandmusic.com/api/getorderedlist", {
-        method: "POST",
-        body: JSON.stringify(body)
-      })
+      ApiService.post("api/getorderedlist", body)
         .then(res => res.json())
         .then(res => {
           if (res.success) {
@@ -321,7 +288,7 @@ export const getorderedlist = () => {
             reject(res);
           }
         })
-        .catch(error => {});
+        .catch(error => { });
     });
   };
 };
@@ -332,11 +299,7 @@ export const subscribe = email => {
       const body = {
         email: email.email
       };
-
-      fetch("https://admin.urbandmusic.com/api/subscribe", {
-        method: "POST",
-        body: JSON.stringify(body)
-      })
+      ApiService.post("api/subscribe", body)
         .then(res => res.json())
         .then(res => {
           if (res.success) {
@@ -349,7 +312,7 @@ export const subscribe = email => {
             reject(res);
           }
         })
-        .catch(error => {});
+        .catch(error => { });
     });
   };
 };
@@ -357,9 +320,7 @@ export const subscribe = email => {
 export const aboutfounded = email => {
   return dispatch => {
     return new Promise((resolve, reject) => {
-      fetch("https://admin.urbandmusic.com/api/founded", {
-        method: "POST"
-      })
+      ApiService.post("api/founded")
         .then(res => res.json())
         .then(res => {
           if (res.success) {
@@ -372,7 +333,7 @@ export const aboutfounded = email => {
             reject(res);
           }
         })
-        .catch(error => {});
+        .catch(error => { });
     });
   };
 };
@@ -384,10 +345,7 @@ export const contactus = email => {
         name: email.name,
         message: email.message
       };
-      fetch("https://admin.urbandmusic.com/api/contact_us", {
-        method: "POST",
-        body: JSON.stringify(body)
-      })
+      ApiService.post("api/contact_us", body)
         .then(res => res.json())
         .then(res => {
           if (res.success) {
@@ -400,7 +358,7 @@ export const contactus = email => {
             reject(res);
           }
         })
-        .catch(error => {});
+        .catch(error => { });
     });
   };
 };

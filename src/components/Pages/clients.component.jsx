@@ -15,7 +15,7 @@ class Clients extends Component {
   }
 
   render() {
-    const image_url = "https://admin.urbandmusic.com/storage/";
+    const image_url = "http://happiness-spinner.com/storage/";
     const clients = this.props.clients;
 
     const clientslist = this.props.clientslist;
@@ -91,10 +91,10 @@ class Clients extends Component {
                 </div>
               </section>
             ) : (
-              <div>
-                <ComingSoon />
-              </div>
-            )}
+                <div>
+                  <ComingSoon />
+                </div>
+              )}
 
             {clientdata ? (
               <section className="partners-area">
@@ -130,10 +130,10 @@ class Clients extends Component {
                 </div>
               </section>
             ) : (
-              <div>
-                <ComingSoon />
-              </div>
-            )}
+                <div>
+                  <ComingSoon />
+                </div>
+              )}
           </div>
         </div>
       </div>

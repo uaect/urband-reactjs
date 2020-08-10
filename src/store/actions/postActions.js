@@ -1,4 +1,5 @@
 import { EVENTDETAIL, FETCH_SPOTLIGHT, PREVIOUSSHOW, FETCH_EVENTTICKET, FETCH_POSTS, FETCH_CONTACT, FETCH_CLIENTS, FETCH_CLIENTSLIST, FETCH_EVENTLIST, FETCH_EVENTDETAIL, FETCH_MENUES } from "./types";
+import ApiService from "../../common/config/axiosConfig";
 var urbandtoken = JSON.parse(localStorage.getItem("urbandtoken"));
 
 export const fetchPosts = () => {
@@ -6,10 +7,7 @@ export const fetchPosts = () => {
         const body = {
             page: 1
         };
-        fetch("https://admin.urbandmusic.com/api/artists", {
-            method: "POST",
-            body: JSON.stringify(body)
-        })
+        ApiService.post("api/artists", body)
             .then(res => res.json())
             .then(res => {
                 dispatch({
@@ -27,24 +25,22 @@ export const fetchPosts = () => {
 export const fetchContact = () => {
     return dispatch => {
         return new Promise((resolve, reject) => {
-        fetch("https://admin.urbandmusic.com/api/aboutus", {
-            method: "POST"
-        })
-            .then(res => res.json())
-            .then(res => {
-                if (res.success) {
-                    dispatch({
-                        type: FETCH_CONTACT,
-                        value: res.result
-                    });
-                    resolve()
-                } else {
-                    reject(res)
-                }
-            })
-            .catch(error => {
-                //console.log("error" + JSON.stringify(error));
-            });
+            ApiService.post("api/aboutus")
+                .then(res => res.json())
+                .then(res => {
+                    if (res.success) {
+                        dispatch({
+                            type: FETCH_CONTACT,
+                            value: res.result
+                        });
+                        resolve()
+                    } else {
+                        reject(res)
+                    }
+                })
+                .catch(error => {
+                    //console.log("error" + JSON.stringify(error));
+                });
         });
     };
 };
@@ -55,11 +51,7 @@ export const fetchClients = () => {
         const body = {
             page: 1
         };
-
-        fetch("https://admin.urbandmusic.com/api/clientsfeedback", {
-            method: "POST",
-            body: JSON.stringify(body)
-        })
+        ApiService.post("api/clientsfeedback", body)
             .then(res => res.json())
             .then(res => {
                 //console.log("resssssssssss", res.result[0]);
@@ -79,11 +71,7 @@ export const fetchClientsList = () => {
         const body = {
             page: 1
         };
-
-        fetch("https://admin.urbandmusic.com/api/clients", {
-            method: "POST",
-            body: JSON.stringify(body)
-        })
+        ApiService.post("api/clients", body)
             .then(res => res.json())
             .then(res => {
                 //console.log("resssssssssss", res.result[0]);
@@ -103,11 +91,7 @@ export const fetchEvent = () => {
         const body = {
             page: 1
         };
-
-        fetch("https://admin.urbandmusic.com/api/events", {
-            method: "POST",
-            body: JSON.stringify(body)
-        })
+        ApiService.post("api/events", body)
             .then(res => res.json())
             .then(res => {
                 dispatch({
@@ -127,11 +111,7 @@ export const fetchEventDetail = (page) => {
             const body = {
                 "page": page
             };
-
-            fetch("https://admin.urbandmusic.com/api/ticketevents", {
-                method: "POST",
-                body: JSON.stringify(body)
-            })
+            ApiService.post("api/ticketevents", body)
                 .then(res => res.json())
                 .then(res => {
                     if (res.success) {
@@ -158,10 +138,7 @@ export const EventDetail = (id) => {
         const body = {
             "eventid": id
         };
-        fetch("https://admin.urbandmusic.com/api/eventdetails", {
-            method: "POST",
-            body: JSON.stringify(body)
-        })
+        ApiService.post("api/eventdetails", body)
             .then(res => res.json())
             .then(res => {
                 dispatch({
@@ -180,11 +157,7 @@ export const fetcheventtickets = (id) => {
         const body = {
             "eventid": id
         };
-
-        fetch("https://admin.urbandmusic.com/api/eventdetails", {
-            method: "POST",
-            body: JSON.stringify(body)
-        })
+        ApiService.post("api/eventdetails", body)
             .then(res => res.json())
             .then(res => {
                 dispatch({
@@ -201,9 +174,7 @@ export const fetcheventtickets = (id) => {
 export const previousshow = () => {
     return dispatch => {
         return new Promise((resolve, reject) => {
-            fetch("https://admin.urbandmusic.com/api/previousshow", {
-                method: "POST"
-            })
+            ApiService.post("api/previousshow")
                 .then(res => res.json())
                 .then(res => {
                     if (res.success) {
@@ -227,9 +198,7 @@ export const previousshow = () => {
 export const spotlight = () => {
     return dispatch => {
         return new Promise((resolve, reject) => {
-            fetch("https://admin.urbandmusic.com/api/spotlight", {
-                method: "POST"
-            })
+            ApiService.post("api/spotlight")
                 .then(res => res.json())
                 .then(res => {
                     if (res.success) {
@@ -253,9 +222,7 @@ export const spotlight = () => {
 export const fetchMenues = () => {
     return dispatch => {
         return new Promise((resolve, reject) => {
-            fetch("https://admin.urbandmusic.com/api/menues", {
-                method: "POST"
-            })
+            ApiService.post("api/menues")
                 .then(res => res.json())
                 .then(res => {
                     if (res.success) {
@@ -288,11 +255,7 @@ export const bookTicket = (state) => {
                 "payment_option": "",
                 "price": state.ticketPrice
             };
-
-            fetch("https://admin.urbandmusic.com/api/eventbooking", {
-                method: "POST",
-                body: JSON.stringify(body)
-            })
+            ApiService.post("api/eventbooking", body)
                 .then(res => res.json())
                 .then(res => {
                     if (res.success) {

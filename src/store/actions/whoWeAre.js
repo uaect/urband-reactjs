@@ -1,12 +1,10 @@
-import {FETCH_WHO_WEW_ARE} from "./types";
+import { FETCH_WHO_WEW_ARE } from "./types";
+import ApiService from "../../common/config/axiosConfig";
 
 export const fetchWhoWeAre = (email) => {
     return dispatch => {
         return new Promise((resolve, reject) => {
-
-            fetch("https://admin.urbandmusic.com/api/aboutus", {
-                method: "POST"
-            })
+            ApiService.post("api/aboutus")
                 .then(res => res.json())
                 .then(res => {
                     if (res.success) {

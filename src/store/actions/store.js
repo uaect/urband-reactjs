@@ -1,4 +1,5 @@
-import { FETCH_STORELIST,FETCH_STOREDETAILS,FETCH_STORECATEGORY} from "./types";
+import { FETCH_STORELIST, FETCH_STOREDETAILS, FETCH_STORECATEGORY } from "./types";
+import ApiService from "../../common/config/axiosConfig";
 
 export const fetchStoreList = (state) => {
     //console.log("body : ", state);
@@ -11,19 +12,16 @@ export const fetchStoreList = (state) => {
             priceto: state.priceMax,
             sort: state.sort
         };
-        fetch("https://admin.urbandmusic.com/api/store", {
-            method: "POST",
-            body: JSON.stringify(body)
-        })
+        ApiService.post("api/store", body)
             .then(res => res.json())
             .then(res => {
-                if(res.success){
+                if (res.success) {
                     dispatch({
                         type: FETCH_STORELIST,
                         value: res.result
                     });
                 }
-                
+
             })
             .catch(error => {
                 //console.log("error" + JSON.stringify(error));
@@ -35,14 +33,11 @@ export const fetchStoreDetails = (id) => {
         const body = {
             productid: id
         };
-        fetch("https://admin.urbandmusic.com/api/productdetails", {
-            method: "POST",
-            body: JSON.stringify(body)
-        })
+        ApiService.post("api/productdetails", body)
             .then(res => res.json())
             .then(res => {
                 //console.log("hhhhhhhhhhhhh", res);
-                
+
                 dispatch({
                     type: FETCH_STOREDETAILS,
                     value: res.result
@@ -58,10 +53,7 @@ export const fetchStoreCategory = () => {
         const body = {
             page: 1
         };
-        fetch("https://admin.urbandmusic.com/api/storecategory", {
-            method: "POST",
-            body: JSON.stringify(body)
-        })
+        ApiService.post("api/storecategory", body)
             .then(res => res.json())
             .then(res => {
                 //console.log(res.result);

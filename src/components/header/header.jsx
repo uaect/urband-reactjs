@@ -109,7 +109,7 @@ class Header extends Component {
   // }
 
   render() {
-    const image_url = "https://admin.urbandmusic.com/storage/";
+    const image_url = "http://happiness-spinner.com/storage/";
     const menue = this.props.menues;
     let menuItems = [];
     let Submenu1Items = [];
@@ -274,8 +274,8 @@ class Header extends Component {
                         />
                       </Link>
                     ) : (
-                      ""
-                    )}
+                        ""
+                      )}
                   </li>
                   <li className="d-flex pos-relative">
                     {!this.props.isLoggedIn && !this.state.isToken ? (
@@ -287,8 +287,8 @@ class Header extends Component {
                         />
                       </Link>
                     ) : (
-                      ""
-                    )}
+                        ""
+                      )}
                     {this.props.isLoggedIn || this.state.isToken ? (
                       <Link onClick={this.ToggleBox}>
                         <span>Profile</span>
@@ -327,8 +327,8 @@ class Header extends Component {
                         </div>
                       </Link>
                     ) : (
-                      ""
-                    )}
+                        ""
+                      )}
                   </li>
                 </ul>
               </div>
